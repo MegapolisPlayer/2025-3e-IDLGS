@@ -4,9 +4,9 @@
 
 <div
 	class="
-	bg-neutral-400/30 backdrop-blur-xl rounded-lg p-2
-	flex flex-col gap-2 aspect-square
-	border-2 border-neutral-500
+	flex aspect-square flex-col gap-2
+	rounded-lg border-2 border-neutral-500 bg-neutral-400/30
+	p-2 backdrop-blur-xl
 	"
 >
 	{text}

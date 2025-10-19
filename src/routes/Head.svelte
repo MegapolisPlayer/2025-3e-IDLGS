@@ -1,23 +1,22 @@
 <script lang="ts">
-	import HeadBox from "./HeadBox.svelte";
-
+	import HeadBox from './HeadBox.svelte';
 </script>
 
 <!-- TODO abstract common elements into classes, make page for testing!!! -->
 <!-- TODO transitions -->
 
 <div
-	class="*:z-3 relative flex h-[90lvh] w-full flex-col items-center justify-center gap-6 overflow-hidden bg-violet-800 text-neutral-100"
+	class="relative flex h-[90lvh] w-full flex-col items-center justify-center gap-6 overflow-hidden bg-violet-800 text-neutral-100 *:z-3"
 >
 	<!-- bg image -->
 	<div
-		class="!z-1 max-w-screen min-w-screen absolute h-[90lvh] max-h-[90lvh] min-h-[90lvh] w-screen"
+		class="absolute !z-1 h-[90lvh] max-h-[90lvh] min-h-[90lvh] w-screen max-w-screen min-w-screen"
 	>
 		<img src="./testimage.jpg" alt="BG" />
 	</div>
 
 	<!-- cover -->
-	<div class="!z-2 absolute h-full w-full bg-violet-800/60"></div>
+	<div class="absolute !z-2 h-full w-full bg-violet-800/60"></div>
 
 	<div class="grow"></div>
 
@@ -42,12 +41,14 @@
 
 	<div
 		class="
-		w-2/3 grid grid-cols-3 gap-8
+		grid w-2/3 grid-cols-3 gap-8
 	"
 	>
 		<HeadBox text="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
-		<HeadBox text="Eum veritatis praesentium sint eveniet hic ipsum, dolor voluptate vitae, neque magnam ea
-			exercitationem" />
+		<HeadBox
+			text="Eum veritatis praesentium sint eveniet hic ipsum, dolor voluptate vitae, neque magnam ea
+			exercitationem"
+		/>
 		<HeadBox text="enim tempora est minus delectus. Autem, assumenda quod!" />
 	</div>
 
