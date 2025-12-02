@@ -1,4 +1,5 @@
-const DEFAULT_MODEL = 'gpt-oss-20b';
+// const DEFAULT_MODEL = 'gemma-3-12b-it';
+const DEFAULT_MODEL = 'openai/gpt-oss-20b';
 
 export class AIService {
 	private modelEndpoint: string = 'https://dgls.share.zrok.io/v1';
