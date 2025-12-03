@@ -5,7 +5,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
 	server: {
-		allowedHosts: ['']
+		allowedHosts: ['dgls.share.zrok.io']
 	},
 	plugins: [
 		tailwindcss(),
