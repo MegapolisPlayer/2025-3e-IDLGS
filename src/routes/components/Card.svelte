@@ -25,7 +25,7 @@
 		xRotation = (xPercentage - 0.5) * 50;
 		yRotation = (0.5 - yPercentage) * 50;
 	};
-	const mouseLeaveEventHandler = (e: MouseEvent) => {
+	const mouseLeaveEventHandler = () => {
 		rect = undefined;
 		xPercentage = 0;
 		yPercentage = 0;

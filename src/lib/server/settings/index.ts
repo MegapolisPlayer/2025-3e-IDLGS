@@ -2,7 +2,7 @@ import * as dataSchema from '$lib/server/db/schema';
 import { eq, count } from 'drizzle-orm';
 import { db } from '$lib/server/db';
 
-export const getSetting = async (key: string, lang: string = 'all'): Promise<string> => {
+export const getSetting = async (key: string): Promise<string> => {
 	const value = await db
 		.select()
 		.from(dataSchema.setting)
@@ -15,7 +15,6 @@ export const getSetting = async (key: string, lang: string = 'all'): Promise<str
 export const setSetting = async (
 	key: string,
 	value: string,
-	lang: string = 'all'
 ): Promise<void> => {
 	//get count first
 
@@ -47,7 +46,6 @@ export const setSetting = async (
 export const checkSetting = async (
 	key: string,
 	value: string,
-	lang: string = 'all'
 ): Promise<void> => {
 	//get count first
 

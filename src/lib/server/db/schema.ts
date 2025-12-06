@@ -1,8 +1,3 @@
-/*
-	db/schema.ts
-	Martin Bykov
-*/
-
 import {
 	pgTable,
 	text,
@@ -10,7 +5,6 @@ import {
 	timestamp,
 	date,
 	boolean,
-	bigint,
 	check
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
@@ -122,6 +116,8 @@ export const question = pgTable("question", {
 	answer: text("answer").notNull().default(""),
 	name: text("name").notNull().default(""),
 	course: integer("course").references(() => course.id).notNull(),
+	reportCount: integer("reportCount").notNull().default(0),
+	ai: boolean("ai").notNull().default(false)
 });
 
 export const courseCodes = pgTable("courseCode", {

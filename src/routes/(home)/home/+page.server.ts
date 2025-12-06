@@ -1,4 +1,4 @@
-export const load = (event) => {
+export const load = () => {
 
 }
 
