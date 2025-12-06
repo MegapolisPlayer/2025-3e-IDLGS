@@ -2,7 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Navbar from './Navbar.svelte';
-	import ChatBot from '$lib/components/ChatBot.svelte';
+	import ChatBot from './components/ChatBot.svelte';
 
 	let { children } = $props();
 </script>

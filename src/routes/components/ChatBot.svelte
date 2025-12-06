@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { aiService } from '$lib/ai';
-	import { marked } from 'marked';
-	import createDOMPurify from 'isomorphic-dompurify';
+	import markdownit from 'markdown-it';
 
-	const DOMPurify = createDOMPurify(typeof window !== 'undefined' ? (window as any) : undefined);
+	const mdi = markdownit();
+
+	type Message = {
+		role: 'user' | 'assistant';
+		content: string;
+	};
 
 	let isOpen = false;
 	let messages: Message[] = [];
@@ -13,12 +17,12 @@
 	let inputRef: HTMLTextAreaElement;
 	let isMobile = false;
 
-	function toggleChat() {
+	const toggleChat = () => {
 		isOpen = !isOpen;
 		if (isOpen) setTimeout(() => inputRef?.focus(), 0);
-	}
+	};
 
-	async function handleSubmit() {
+	const handleSubmit = async () => {
 		if (!currentMessage.trim()) return;
 
 		const userMessage = currentMessage.trim();
@@ -31,14 +35,14 @@
 			const response = await aiService.generateResponse(userMessage);
 			// const response = await aiService.makeResponse(messages);
 			messages = [...messages, { role: 'assistant', content: response }];
-		} catch (err: any) {
-			messages = [...messages, { role: 'assistant', content: `Error: ${err?.message ?? err}` }];
+		} catch (err) {
+			messages = [...messages, { role: 'assistant', content: `Error: ${(err as Error).message}` }];
 		} finally {
 			isLoading = false;
 		}
-	}
+	};
 
-	function handleKeydown(e: KeyboardEvent) {
+	const handleKeydown = (e: KeyboardEvent) => {
 		if (e.key === 'Enter') {
 			if (isMobile) {
 				// let the textarea get the newline — don't submit
@@ -52,31 +56,31 @@
 			if (e.shiftKey || e.ctrlKey) currentMessage += '\n';
 			else handleSubmit();
 		}
-	}
+	};
 
 	onMount(() => {
 		try {
-			isMobile = typeof window !== 'undefined' && ('ontouchstart' in window || window.matchMedia('(max-width: 768px)').matches);
+			isMobile =
+				typeof window !== 'undefined' &&
+				('ontouchstart' in window || window.matchMedia('(max-width: 768px)').matches);
 			const onResize = () => {
 				isMobile = window.matchMedia('(max-width: 768px)').matches;
 			};
 			window.addEventListener('resize', onResize);
 			return () => window.removeEventListener('resize', onResize);
-		} catch (e) {
+		} catch {
 			// fail safe
 			isMobile = false;
 		}
 	});
 
-	function renderMarkdown(md: string) {
+	const renderMarkdown = (md: string) => {
 		try {
-			const html = marked.parse(md ?? '');
-			return DOMPurify.sanitize(html);
-		} catch (e) {
-			// Fallback to escaped text on error
+			return mdi.render(md ?? '');
+		} catch {
 			return md ? md.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
 		}
-	}
+	};
 </script>
 
 <div class="chatbot-container" class:open={isOpen}>
@@ -91,7 +95,7 @@
 	{#if isOpen}
 		<div class="chat-window">
 			<div class="chat-messages">
-				{#each messages as message}
+				{#each messages as message, i (i)}
 					<div class="message {message.role}">
 						<span class="avatar">
 							{message.role === 'user' ? '👤' : '🤖'}
@@ -125,15 +129,15 @@
 	{/if}
 </div>
 
+<!-- TODO convert this to tailwind (-MB) -->
 <style>
 	.chatbot-container {
 		position: fixed;
 		bottom: 20px;
 		right: 20px;
 		z-index: 1000;
-		font-family:
-			-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-			sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+			'Cantarell', sans-serif;
 	}
 
 	.chat-toggle {
@@ -330,8 +334,8 @@
 		padding: 0.75rem;
 		border-radius: 8px;
 		overflow: auto;
-		font-family:
-			ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New',
+			monospace;
 		font-size: 0.85rem;
 	}
 

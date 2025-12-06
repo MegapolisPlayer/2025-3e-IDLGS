@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Finlandica:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme {
+	--font-finland: 'Finlandica', sans-serif;
+	--font-inter: 'Inter', sans-serif;
+	--font-anon: 'Anonymous Pro', monospace;
+}
+
+@layer base {
+	:root {
+		@apply font-inter font-light wrap-break-word text-white max-lg:text-lg;
+	}
+}
+
+/* Scrollbar */
+:root {
+	overflow: scroll;
+	scrollbar-color: var(--color-emerald-500) rgba(0, 0, 0, 0);
+	scrollbar-width: auto;
+}
+
+@layer components {
+	h2 {
+		@apply text-2xl font-medium;
+	}
+}

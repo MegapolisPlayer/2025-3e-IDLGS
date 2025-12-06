@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 // const DEFAULT_MODEL = 'gemma-3-12b-it';
 const DEFAULT_MODEL = 'openai/gpt-oss-20b';
+=======
+/*
+	ai/index.ts
+	Ali Yunussov
+*/
+
+const DEFAULT_MODEL = 'gpt-oss-20b';
+>>>>>>> 3b35e1bb52473d6a770c81eab295fc1e112437ce
 
 export class AIService {
 	private modelEndpoint: string = 'https://dgls.share.zrok.io/v1';
