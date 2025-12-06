@@ -1,3 +1,8 @@
+/*
+	ai/index.ts
+	Ali Yunussov
+*/
+
 const DEFAULT_MODEL = 'gpt-oss-20b';
 
 export class AIService {

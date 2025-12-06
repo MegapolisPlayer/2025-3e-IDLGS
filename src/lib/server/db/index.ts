@@ -1,10 +1,15 @@
-import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from '@libsql/client';
-import * as schema from './schema';
-import { env } from '$env/dynamic/private';
+/*
+	db/index.ts
+	Martin Bykov
+*/
 
-if (!env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
+import "dotenv/config";
+import { drizzle } from "drizzle-orm/postgres-js";
+import { env } from "$env/dynamic/private";
+import postgres from "postgres";
+import * as schema from "./schema";
 
-const client = createClient({ url: env.DATABASE_URL });
+if (!env.DATABASE_URL) throw Error("DATABASE_URL not set!");
 
+const client = postgres(env.DATABASE_URL, { prepare: false });
 export const db = drizzle(client, { schema });

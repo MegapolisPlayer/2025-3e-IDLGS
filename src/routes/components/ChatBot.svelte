@@ -1,3 +1,5 @@
+<!-- TODO when this doesnt work check CSP and CSRF policies -->
+
 <script lang="ts">
 	import { aiService } from '$lib/ai';
 
@@ -85,6 +87,7 @@
 	{/if}
 </div>
 
+<!-- TODO convert this to tailwind (-MB) -->
 <style>
 	.chatbot-container {
 		position: fixed;

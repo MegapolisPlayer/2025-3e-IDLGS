@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HeadBox from './HeadBox.svelte';
+	import Card from './components/Card.svelte';
 </script>
 
 <!-- TODO abstract common elements into classes, make page for testing!!! -->
@@ -44,12 +44,12 @@
 		grid w-2/3 grid-cols-3 gap-8
 	"
 	>
-		<HeadBox text="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
-		<HeadBox
+		<Card text="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
+		<Card
 			text="Eum veritatis praesentium sint eveniet hic ipsum, dolor voluptate vitae, neque magnam ea
 			exercitationem"
 		/>
-		<HeadBox text="enim tempora est minus delectus. Autem, assumenda quod!" />
+		<Card text="enim tempora est minus delectus. Autem, assumenda quod!" />
 	</div>
 
 	<div class="grow"></div>

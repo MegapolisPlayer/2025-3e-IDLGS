@@ -1,5 +1,5 @@
 <div
-	class="fixed flex h-[10lvh] w-full flex-row items-center gap-10 bg-neutral-100 p-3 ps-[10%] pe-[10%]"
+	class="z-40! fixed flex h-[10lvh] w-full flex-row items-center gap-10 bg-neutral-100 p-3 ps-[10%] pe-[10%] text-black!"
 >
 	<img src="??" alt="Logo" />
 
