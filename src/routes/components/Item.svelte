@@ -2,6 +2,4 @@
 	//List item: for course
 </script>
 
-<div>
-
-</div>
+<div></div>

@@ -1,7 +1,3 @@
-export const enableAnticheatMode = () => {
+export const enableAnticheatMode = () => {};
 
-};
-
-export const disableAnticheadMode = () => {
-
-};
+export const disableAnticheadMode = () => {};

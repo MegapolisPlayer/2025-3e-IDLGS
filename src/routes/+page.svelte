@@ -7,7 +7,7 @@
 <svelte:head>
 	<!-- TODO -->
 	<title>
-		{m.hello_world({name: "idlgs"})}
+		{m.hello_world({ name: 'idlgs' })}
 	</title>
 </svelte:head>
 

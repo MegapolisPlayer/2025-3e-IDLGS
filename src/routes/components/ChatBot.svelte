@@ -20,7 +20,7 @@
 	const toggleChat = () => {
 		isOpen = !isOpen;
 		if (isOpen) setTimeout(() => inputRef?.focus(), 0);
-	}
+	};
 
 	const handleSubmit = async () => {
 		if (!currentMessage.trim()) return;
@@ -40,7 +40,7 @@
 		} finally {
 			isLoading = false;
 		}
-	}
+	};
 
 	const handleKeydown = (e: KeyboardEvent) => {
 		if (e.key === 'Enter') {
@@ -56,11 +56,13 @@
 			if (e.shiftKey || e.ctrlKey) currentMessage += '\n';
 			else handleSubmit();
 		}
-	}
+	};
 
 	onMount(() => {
 		try {
-			isMobile = typeof window !== 'undefined' && ('ontouchstart' in window || window.matchMedia('(max-width: 768px)').matches);
+			isMobile =
+				typeof window !== 'undefined' &&
+				('ontouchstart' in window || window.matchMedia('(max-width: 768px)').matches);
 			const onResize = () => {
 				isMobile = window.matchMedia('(max-width: 768px)').matches;
 			};
@@ -78,7 +80,7 @@
 		} catch {
 			return md ? md.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
 		}
-	}
+	};
 </script>
 
 <div class="chatbot-container" class:open={isOpen}>
@@ -134,9 +136,8 @@
 		bottom: 20px;
 		right: 20px;
 		z-index: 1000;
-		font-family:
-			-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-			sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+			'Cantarell', sans-serif;
 	}
 
 	.chat-toggle {
@@ -333,8 +334,8 @@
 		padding: 0.75rem;
 		border-radius: 8px;
 		overflow: auto;
-		font-family:
-			ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New',
+			monospace;
 		font-size: 0.85rem;
 	}
 

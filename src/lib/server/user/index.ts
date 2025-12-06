@@ -1,4 +1,4 @@
-import { checkSetting } from "../settings";
+import { checkSetting } from '../settings';
 import * as crypto from 'node:crypto';
 
 export const setPassword = async (password: string): Promise<void> => {

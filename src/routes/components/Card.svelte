@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
-	import { onDestroy, onMount } from "svelte";
+	import { browser } from '$app/environment';
+	import { onDestroy, onMount } from 'svelte';
 
-	let { text, color = "neutral-500" } = $props();
+	let { text, color = 'neutral-500' } = $props();
 
 	let rect: DOMRect | undefined = $state(undefined);
 	let value = $state(crypto.randomUUID());
@@ -16,7 +16,7 @@
 		rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
 	};
 	const mouseMoveEventHandler = (e: MouseEvent) => {
-		if(!rect) return;
+		if (!rect) return;
 
 		const x = e.clientX - rect.left;
 		const y = e.clientY - rect.top;
@@ -34,18 +34,18 @@
 	};
 
 	onMount(() => {
-		if(!browser) return;
+		if (!browser) return;
 		let el = document.getElementById(value) as HTMLElement;
-		el.addEventListener("mousemove", mouseMoveEventHandler);
-		el.addEventListener("mouseleave", mouseLeaveEventHandler);
-		el.addEventListener("mouseenter", mouseEnterEventHandler);
+		el.addEventListener('mousemove', mouseMoveEventHandler);
+		el.addEventListener('mouseleave', mouseLeaveEventHandler);
+		el.addEventListener('mouseenter', mouseEnterEventHandler);
 	});
 	onDestroy(() => {
-		if(!browser) return;
+		if (!browser) return;
 		let el = document.getElementById(value) as HTMLElement;
-		el.removeEventListener("mousemove", mouseMoveEventHandler);
-		el.removeEventListener("mouseleave", mouseLeaveEventHandler);
-		el.removeEventListener("mouseenter", mouseEnterEventHandler);
+		el.removeEventListener('mousemove', mouseMoveEventHandler);
+		el.removeEventListener('mouseleave', mouseLeaveEventHandler);
+		el.removeEventListener('mouseenter', mouseEnterEventHandler);
 	});
 </script>
 
@@ -58,7 +58,7 @@
 	"
 	style="transform: rotateX({yRotation}deg) rotateY({xRotation}deg) translateZ(0);"
 >
-	<div class="flex flex-col w-full grow backdrop-blur-2xl">
+	<div class="flex w-full grow flex-col backdrop-blur-2xl">
 		{text}
 	</div>
 </div>

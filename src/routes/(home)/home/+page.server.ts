@@ -1,7 +1,3 @@
-export const load = () => {
+export const load = () => {};
 
-}
-
-export const actions = {
-
-};
+export const actions = {};
