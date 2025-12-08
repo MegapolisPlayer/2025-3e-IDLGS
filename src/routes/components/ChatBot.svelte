@@ -82,8 +82,8 @@
 <div
 	class="
 		absolute right-2 bottom-2 z-30 max-h-1/3 max-w-1/4 rounded-lg
-		p-5
-		bg-linear-to-tr from-emerald-500 to-violet-700
+		bg-linear-to-tr
+		from-emerald-500 to-violet-700 p-5
 		hover:brightness-80 active:brightness-60
 	"
 >

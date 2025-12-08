@@ -28,6 +28,6 @@
 		@apply text-2xl font-medium;
 	}
 	textarea {
-		@apply focus:outline-1 outline-white outline-0 overflow-hidden rounded-lg border-0 border-b-2! border-white bg-black/30 placeholder:text-white;
+		@apply overflow-hidden rounded-lg border-0 border-b-2! border-white bg-black/30 outline-0 outline-white placeholder:text-white focus:outline-1;
 	}
 }
