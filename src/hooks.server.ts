@@ -13,7 +13,7 @@ const handleParaglide: Handle = ({ event, resolve }) =>
 	});
 
 const handleRateLimit: Handle = async ({ event, resolve }) => {
-	if(await checkLimit(event)) {
+	if (await checkLimit(event)) {
 		return resolve(event);
 	}
 	return error(429);
