@@ -27,4 +27,7 @@
 	h2 {
 		@apply text-2xl font-medium;
 	}
+	textarea {
+		@apply overflow-hidden rounded-lg border-0 border-b-2! border-white bg-black/30 outline-0 outline-white placeholder:text-white focus:outline-1;
+	}
 }
