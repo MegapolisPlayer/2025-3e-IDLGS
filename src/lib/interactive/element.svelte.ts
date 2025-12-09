@@ -4,15 +4,15 @@
 */
 
 export class RElement {
-	x: number = 0;
-	y: number = 0;
-	width: number = 0;
-	height: number = 0;
-	visible: boolean = true;
-	bgcolor: string = "#aaaaaa";
-	fgcolor: string = "#000000";
-	rounded: number = 0;
-	uuid: string = "";
+	x: number = $state(0);
+	y: number = $state(0);
+	width: number = $state(0);
+	height: number = $state(0);
+	visible: boolean = $state(true);
+	bgcolor: string = $state("#aaaaaa");
+	fgcolor: string = $state("#000000");
+	rounded: number = $state(0);
+	uuid: string = $state(crypto.randomUUID());
 
 	constructor(
 		x: number, 
@@ -22,8 +22,7 @@ export class RElement {
 		visible: boolean,
 		bgcolor: string,
 		fgcolor: string,
-		rounded: number,
-		uuid: string,
+		rounded: number
 	) {	
 		this.x = x;
 		this.y = y;
@@ -33,7 +32,6 @@ export class RElement {
 		this.bgcolor = bgcolor;
 		this.fgcolor = fgcolor;
 		this.rounded = rounded;
-		this.uuid = uuid;
 	}
 };
 

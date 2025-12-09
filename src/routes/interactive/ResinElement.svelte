@@ -16,7 +16,8 @@ Author: Martin Bykov
 		bgcolor,
 		fgcolor,
 		rounded,
-		uuid
+		uuid,
+		uuidVariable = $bindable(),
 	}: {
 		x: number,
 		y: number,
@@ -26,12 +27,17 @@ Author: Martin Bykov
 		bgcolor: string,
 		fgcolor: string,
 		rounded: number,
-		uuid: string
+		uuid: string,
+		uuidVariable: string,
 	} = $props();
 </script>
 
-<div 
-	class="p-1 z-50 absolute {visible ? "" : "hidden"}" id={uuid}
+<button 
+	class="
+	p-1 z-50 absolute {visible ? "" : "hidden"}
+	{uuid === uuidVariable ? "border-2 border-violet-700" : ""}
+	" 
+	id={uuid}
 	style="
 		top:              {y}%;
 		left:             {x}%;
@@ -41,6 +47,6 @@ Author: Martin Bykov
 		color:            {fgcolor};
 		border-radius:    {rounded}px;
 	"
->
-	ELEMENT???
-</div>
+	onclick={() => uuidVariable = uuid}
+	aria-label={"RESIN ELEMENT"}
+></button>

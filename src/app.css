@@ -30,11 +30,14 @@
 	h3 {
 		@apply text-xl font-medium;
 	}
+	h4 {
+		@apply text-lg font-medium;
+	}
 	textarea {
 		@apply overflow-hidden rounded-lg border-0 border-b-2! border-white bg-black/30 outline-0 outline-white placeholder:text-white focus:outline-1;
 	}
 	button {
-		@apply flex flex-row gap-1 justify-center items-center rounded-lg hover:brightness-80 focus:brightness-60 p-3 font-medium;
+		@apply flex flex-row gap-1 justify-center items-center rounded-lg hover:brightness-80 active:brightness-60 p-3 font-medium;
 	}
 	.button-primary {
 		@apply bg-linear-to-tr to-emerald-500 from-violet-700;

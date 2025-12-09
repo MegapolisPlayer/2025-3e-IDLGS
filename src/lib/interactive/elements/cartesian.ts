@@ -1,4 +1,4 @@
-import { RElement } from "../element";
+import { RElement } from "../element.svelte";
 
 export class RElementCartesian extends RElement {
 	
