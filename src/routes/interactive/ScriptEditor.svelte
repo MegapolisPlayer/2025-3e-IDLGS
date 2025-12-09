@@ -1,18 +1,12 @@
 <!--
 
 RESIN
-Single script block
+Script editor window
 Author: Martin Bykov
-
-TODO
 
 -->
 
-
 <script lang="ts">
-
 </script>
 
-<div>
-
-</div>
+<div></div>

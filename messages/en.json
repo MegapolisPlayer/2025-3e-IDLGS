@@ -8,5 +8,6 @@
 	"sendMessage": "Send Message",
 	"closeAIAssistant": "Close AI Assistant",
 	"anErrorOccurred": "An error occurred",
-	"goToHomePage": "Go to Home Page"
+	"goToHomePage": "Go to Home Page",
+	"noElementsYet": "No elements yet"
 }

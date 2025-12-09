@@ -8,5 +8,6 @@
 	"sendMessage": "Odeslat zprávu",
 	"closeAIAssistant": "Zavřít AI asistenta",
 	"anErrorOccurred": "Došlo k chybě",
-	"goToHomePage": "Jít na domovskou stránku"
+	"goToHomePage": "Jít na domovskou stránku",
+	"noElementsYet": "Zatím žádné prvky"
 }

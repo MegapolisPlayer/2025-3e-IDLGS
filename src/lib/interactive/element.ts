@@ -12,9 +12,28 @@ export class RElement {
 	bgcolor: string = "#aaaaaa";
 	fgcolor: string = "#000000";
 	rounded: number = 0;
+	uuid: string = "";
 
-	constructor() {
-
+	constructor(
+		x: number, 
+		y: number,
+		width: number,
+		height: number,
+		visible: boolean,
+		bgcolor: string,
+		fgcolor: string,
+		rounded: number,
+		uuid: string,
+	) {	
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.visible = visible;
+		this.bgcolor = bgcolor;
+		this.fgcolor = fgcolor;
+		this.rounded = rounded;
+		this.uuid = uuid;
 	}
 };
 

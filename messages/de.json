@@ -8,5 +8,6 @@
 	"sendMessage": "Nachricht senden",
 	"closeAIAssistant": "KI-Assistent schließen",
 	"anErrorOccurred": "Ein Fehler ist aufgetreten",
-	"goToHomePage": "Zur Startseite gehen"
+	"goToHomePage": "Zur Startseite gehen",
+	"noElementsYet": "Noch keine Elemente"
 }

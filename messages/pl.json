@@ -8,5 +8,6 @@
 	"sendMessage": "Wyślij wiadomość",
 	"closeAIAssistant": "Zamknij asystenta AI",
 	"anErrorOccurred": "Wystąpił błąd",
-	"goToHomePage": "Przejdź do strony głównej"
+	"goToHomePage": "Przejdź do strony głównej",
+	"noElementsYet": "Brak elementów"
 }
