@@ -1,6 +1,7 @@
 <script lang="ts">
+	//TODO rewrite with form actions=
 	import { onMount } from 'svelte';
-	import { aiService } from '$lib/ai';
+	//import { aiService } from '$lib/ai';
 	import markdownit from 'markdown-it';
 	import { m } from '$lib/paraglide/messages';
 
@@ -28,9 +29,11 @@
 		setTimeout(() => inputRef?.focus(), 0);
 		isLoading = true;
 		try {
-			const response = await aiService.generateResponse(userMessage);
+			//const response = await aiService.generateResponse(userMessage);
 			// const response = await aiService.makeResponse(messages);
-			messages = [...messages, { role: 'assistant', content: response }];
+			//messages = [...messages, { role: 'assistant', content: response }];
+			//TEMP
+			messages = [...messages, { role: 'assistant', content: "AI not available!" }];
 		} catch (err) {
 			messages = [...messages, { role: 'assistant', content: `Error: ${(err as Error).message}` }];
 		} finally {
@@ -81,9 +84,9 @@
 
 <div
 	class="
-		absolute right-2 bottom-2 z-30 max-h-1/3 max-w-1/4 rounded-lg
+		fixed right-2 bottom-2 z-30 max-h-1/3 max-w-1/4 rounded-lg
 		bg-linear-to-tr
-		from-emerald-500 to-violet-700 p-5
+		from-emerald-500 to-violet-700 p-3
 		hover:brightness-80 active:brightness-60
 	"
 >

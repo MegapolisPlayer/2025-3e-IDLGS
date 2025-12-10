@@ -132,7 +132,7 @@ Author: Martin Bykov
 			if (uuidVariable == uuid) uuidVariable = '';
 			else uuidVariable = uuid;
 		}}
-		aria-label={'RESIN ELEMENT'}
+		aria-label="RESIN ELEMENT"
 	>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque fugiat dignissimos, facilis et
 		suscipit repudiandae molestias placeat sint. Ad voluptates tempora mollitia illo quas error

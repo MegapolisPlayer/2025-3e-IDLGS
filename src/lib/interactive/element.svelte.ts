@@ -37,7 +37,7 @@ export class RElement {
 		this.opacity = opacity;
 	}
 
-	toObject(): Object {
+	toObject(): object {
 		return {
 			x: this.x,
 			y: this.y,

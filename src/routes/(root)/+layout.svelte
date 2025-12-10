@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Navbar from './Navbar.svelte';
 	import ChatBot from './components/ChatBot.svelte';
+	import Footer from './Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -10,6 +11,9 @@
 >
 	<Navbar />
 	<div class="h-[10lvh] w-full"></div>
-	{@render children?.()}
-	<ChatBot />
+	<div class="flex w-full grow flex-col relative">
+		{@render children?.()}
+		<ChatBot />
+	</div>
+	<Footer />
 </div>

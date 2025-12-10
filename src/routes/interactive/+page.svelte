@@ -112,99 +112,99 @@ Author: Martin Bykov
 					onclick={() => {
 						el?.addElementDone(new RElementAIChat());
 					}}
-					name={'AI Chat'}
-					icon={'speak-ai'}
+					name="AI Chat"
+					icon="speak-ai"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementArrowPoint());
 					}}
-					name={'Arrow point'}
-					icon={'arrow-left-right'}
+					name="Arrow point"
+					icon="arrow-left-right"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementCard());
 					}}
-					name={'Card'}
-					icon={'checkbox-blank'}
+					name="Card"
+					icon="checkbox-blank"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementCartesian());
 					}}
-					name={'Cartesian'}
-					icon={'layout-grid'}
+					name="Cartesian"
+					icon="layout-grid"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementCheckbox());
 					}}
-					name={'Checkbox'}
-					icon={'checkbox'}
+					name="Checkbox"
+					icon="checkbox"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementCodeInput());
 					}}
-					name={'Code input'}
-					icon={'code-s-slash'}
+					name="Code input"
+					icon="code-s-slash"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementEmbedFrame());
 					}}
-					name={'Embed'}
-					icon={'artboard'}
+					name="Embed"
+					icon="artboard"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementGraph());
 					}}
-					name={'Graph'}
-					icon={'bar-chart-grouped'}
+					name="Graph"
+					icon="bar-chart-grouped"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementImage());
 					}}
-					name={'Image'}
-					icon={'image-2'}
+					name="Image"
+					icon="image-2"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementInputTextArea());
 					}}
-					name={'Input text area'}
-					icon={'keyboard-box'}
+					name="Input text area"
+					icon="keyboard-box"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementInputTextSmall());
 					}}
-					name={'Input text small'}
-					icon={'keyboard'}
+					name="Input text small"
+					icon="keyboard"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementLetterInput());
 					}}
-					name={'Letter input'}
-					icon={'edit-box'}
+					name="Letter input"
+					icon="edit-box"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementText());
 					}}
-					name={'Text'}
-					icon={'file-text'}
+					name="Text"
+					icon="file-text"
 				/>
 				<ResinItemSelect
 					onclick={() => {
 						el?.addElementDone(new RElementVideoPlayer());
 					}}
-					name={'Video'}
-					icon={'video'}
+					name="Video"
+					icon="video"
 				/>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { onDestroy, onMount } from 'svelte';
 
-	let { text, color = 'neutral-500' } = $props();
+	let { text, r = 115, g = 115, b = 115 } = $props();
 
 	let rect: DOMRect | undefined = $state(undefined);
 	let value = $state(crypto.randomUUID());
@@ -53,10 +53,10 @@
 	id={value}
 	class="
 	flex aspect-square flex-col gap-2
-	rounded-lg border-2 border-{color} bg-{color}/30
+	rounded-lg border-2
 	overflow-hidden perspective-[1600px]
 	"
-	style="transform: rotateX({yRotation}deg) rotateY({xRotation}deg) translateZ(0);"
+	style="background-color: rgb({r} {g} {b} / 30%); border-color: rgb({r} {g} {b} / 30%); transform: rotateX({yRotation}deg) rotateY({xRotation}deg) translateZ(0);"
 >
 	<div class="flex w-full grow flex-col rounded-lg p-2 backdrop-blur-2xl">
 		{text}
