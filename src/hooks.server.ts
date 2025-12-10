@@ -1,5 +1,7 @@
-import type { Handle } from '@sveltejs/kit';
+import { error, type Handle } from '@sveltejs/kit';
 import { paraglideMiddleware } from '$lib/paraglide/server';
+import { sequence } from '@sveltejs/kit/hooks';
+import { checkLimit } from '$lib/server/rate';
 
 const handleParaglide: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
@@ -10,4 +12,30 @@ const handleParaglide: Handle = ({ event, resolve }) =>
 		});
 	});
 
-export const handle: Handle = handleParaglide;
+const handleRateLimit: Handle = async ({ event, resolve }) => {
+	if (await checkLimit(event)) {
+		return resolve(event);
+	}
+	return error(429);
+};
+
+//https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html
+//If something doesn't work: play around with this.
+const securityHeaders = {
+	'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+	'Permissions-Policy': 'camera=(), microphone=(), interest-cohort=()',
+	'Cross-Origin-Resource-Policy': 'same-site',
+	'Cross-Origin-Embedder-Policy': 'credentialless',
+	'Cross-Origin-Opener-Policy': 'same-origin',
+	'X-Frame-Options': 'SAMEORIGIN',
+	'X-Content-Type-Options': 'nosniff',
+	'Referrer-Policy': 'strict-origin-when-cross-origin'
+};
+
+const handleSecurity: Handle = async ({ event, resolve }) => {
+	const response = await resolve(event);
+	Object.entries(securityHeaders).forEach(([header, value]) => response.headers.set(header, value));
+	return response;
+};
+
+export const handle: Handle = sequence(handleParaglide, handleRateLimit, handleSecurity);
