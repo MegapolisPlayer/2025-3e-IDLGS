@@ -12,6 +12,7 @@ export class RElement {
 	bgcolor: string = $state("#aaaaaa");
 	fgcolor: string = $state("#000000");
 	rounded: number = $state(0);
+	opacity: number = $state(1);
 	uuid: string = $state(crypto.randomUUID());
 
 	constructor(
@@ -22,7 +23,8 @@ export class RElement {
 		visible: boolean,
 		bgcolor: string,
 		fgcolor: string,
-		rounded: number
+		rounded: number,
+		opacity: number,
 	) {	
 		this.x = x;
 		this.y = y;
@@ -32,6 +34,22 @@ export class RElement {
 		this.bgcolor = bgcolor;
 		this.fgcolor = fgcolor;
 		this.rounded = rounded;
+		this.opacity = opacity;
+	}
+
+	toObject(): Object {
+		return {
+			x: this.x,
+			y: this.y,
+			width: this.width,
+			height: this.height,
+			visible: this.visible,
+			bgcolor: this.bgcolor,
+			fgcolor: this.fgcolor,
+			rounded: this.rounded,
+			opacity: this.opacity,
+			uuid: this.uuid
+		}
 	}
 };
 

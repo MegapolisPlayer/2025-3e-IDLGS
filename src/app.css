@@ -48,4 +48,6 @@
 	.button-green {
 		@apply bg-emerald-500;
 	}
+
+	/* TODO fix checkbox styles */
 }
