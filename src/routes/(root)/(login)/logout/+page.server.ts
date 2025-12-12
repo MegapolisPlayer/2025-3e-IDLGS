@@ -4,7 +4,7 @@ import * as dataSchema from '$lib/server/db/schema.js';
 import { eq } from 'drizzle-orm';
 
 export const load = async (event) => {
-	let cookie = event.cookies.get('session');
+	const cookie = event.cookies.get('session');
 
 	await db.delete(dataSchema.userSession).where(eq(dataSchema.userSession.token, cookie as string));
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { m } from '$lib/paraglide/messages';
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import Button from '../../components/Button.svelte';
 	import HorizontalLine from '../../components/HorizontalLine.svelte';
 	import PasswordInput from '../../components/PasswordInput.svelte';
@@ -81,16 +81,16 @@
 				</button>
 			</div>
 
-			<Button emoji={'login-box'} btn={'button-primary'} type={'submit'}>
+			<Button emoji="login-box" btn="button-primary" type="submit">
 				{m.login()}
 			</Button>
 
-			<HorizontalLine text={m.orIfYouDontHaveAnAccount()} color={'rgb(0, 128, 0)'} />
+			<HorizontalLine text={m.orIfYouDontHaveAnAccount()} color="rgb(0, 128, 0)" />
 
-			<Button emoji={'user-add'} btn={'button-green'}>
+			<Button emoji="user-add" btn="button-green">
 				{m.signUp()}
 			</Button>
-			<Button emoji={'slideshow'} btn={'button-violet'}>
+			<Button emoji="slideshow" btn="button-violet">
 				{m.viewDemo()}
 			</Button>
 		</form>

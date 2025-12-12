@@ -21,7 +21,7 @@
 			<img src="??" alt="Logo of IDLGS" />
 		</a>
 
-		<LangDropdown css={'button-transparent'} bind:langValue={value} />
+		<LangDropdown css="button-transparent" bind:langValue={value} />
 
 		<div class="grow"></div>
 

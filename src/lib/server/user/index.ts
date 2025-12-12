@@ -82,7 +82,7 @@ export const createUser = async (
 };
 
 export const getUser = async (event: RequestEvent): Promise<UserType | undefined> => {
-	let cookie = event.cookies.get('session');
+	const cookie = event.cookies.get('session');
 	if (!cookie) {
 		return undefined;
 	}

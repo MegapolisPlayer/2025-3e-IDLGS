@@ -2,4 +2,6 @@
 	let { data } = $props();
 </script>
 
-<div class="lg:hidden"></div>
+<div class="lg:hidden">
+	{JSON.stringify(data)}
+</div>

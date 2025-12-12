@@ -71,13 +71,9 @@ jobs:
         run : |
          touch .env
          echo DATABASE_URL=\"\" >> .env
-         echo GOOGLE_CLIENT_ID=\"\" >> .env
-         echo GOOGLE_CLIENT_SECRET=\"\" >> .env
-         echo GOOGLE_REFRESH_TOKEN=\"\" >> .env
-         echo CLOUDINARY_CLOUD_NAME=\"\" >> .env
-         echo CLOUDINARY_API_KEY=\"\" >> .env
-         echo CLOUDINARY_API_SECRET=\"\" >> .env
-         echo CLOUDINARY_URL=\"\" >> .env
+         echo CLOUDFLARE_SECRET=\"\" >> .env
+         echo DEFAULT_EMAIL=\"\" >> .env
+         echo DEFAULT_PASSWORD=\"\" >> .env
       - name: "Run SvelteKit Check"
         run: |
           npm run sveltekit

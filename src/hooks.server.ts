@@ -2,7 +2,6 @@ import { error, type Handle, type ServerInit } from '@sveltejs/kit';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
 import { checkLimit } from '$lib/server/rate';
-import { setSetting } from '$lib/server/settings';
 import { createUser } from '$lib/server/user';
 import { env } from '$env/dynamic/private';
 
