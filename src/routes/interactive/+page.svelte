@@ -78,12 +78,14 @@ Author: Martin Bykov
 		widthMax = rect.width;
 		heightMax = rect.height;
 
-		new ResizeObserver((data: ResizeObserverEntry[]) => {
-			widthMax = data[0].contentRect.width;
+		new ResizeObserver((data: ResizeObserverEntry[], observer: ResizeObserver) => {
+			widthMax =  data[0].contentRect.width;
 			heightMax = data[0].contentRect.height;
 
 			elementWidthShowValue = Math.min(elementWidthShowValue, widthMax);
 			elementHeightShowValue = Math.min(elementHeightShowValue, heightMax);
+
+			observer.observe(elem);
 		}).observe(elem);
 
 		addEventListener('mousemove', mmHandler);
@@ -113,7 +115,7 @@ Author: Martin Bykov
 	<title>RESIN</title>
 </svelte:head>
 
-<div class="relative flex h-screen max-h-screen min-h-screen w-full grow flex-row overflow-hidden">
+<div class="relative flex h-screen max-h-screen min-h-screen w-full grow flex-row">
 	<div class="absolute top-2 left-3/10 flex w-fit max-w-1/2 flex-col gap-0 bg-black/40 z-50 text-xs">
 		<div class="flex flex-row gap-2">
 			<span>

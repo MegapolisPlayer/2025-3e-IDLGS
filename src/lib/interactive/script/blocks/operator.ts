@@ -1,7 +1,7 @@
 //RESIN script comparison operations
 
 
-import { RScriptBlock } from "../block";
+import { RScriptBlock } from "../block.svelte";
 
 export class RScriptBlockLessThan extends RScriptBlock {
 

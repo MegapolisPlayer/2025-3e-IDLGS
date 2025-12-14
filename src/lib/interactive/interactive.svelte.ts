@@ -19,7 +19,7 @@ import { RElementInputTextSmall } from './elements/inputtextsmall';
 import { RElementLetterInput } from './elements/letterinput';
 import { RElementText } from './elements/text';
 import { RElementVideoPlayer } from './elements/video';
-import type { RScriptBlock } from './script/block';
+import type { RScriptBlock } from './script/block.svelte';
 import { RScriptBlockVariableDefinition } from './script/blocks/variable';
 
 export const RESIN_MAX_ELEMENTS = 1000;
@@ -28,6 +28,7 @@ export const RESIN_MAX_ELEMENTS = 1000;
 //array is polymorphic
 export class RInteractive {
 	elements: RElement[] = $state([]);
+	blocks: RScriptBlock[] = $state([]);
 	bgcolor = $state('#dddddd');
 
 	//aspect ratio as x/y

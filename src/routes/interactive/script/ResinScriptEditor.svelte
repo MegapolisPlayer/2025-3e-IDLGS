@@ -7,6 +7,8 @@ Author: Martin Bykov
 -->
 
 <script lang="ts">
+	import { RScriptBlock } from '$lib/interactive/script/block.svelte';
+	import { onMount } from 'svelte';
 	import ResinScriptBlock from './ResinScriptBlock.svelte';
 
 	let {
@@ -14,6 +16,17 @@ Author: Martin Bykov
 	}: {
 		closeModal: boolean;
 	} = $props();
+
+	let test = $state(new RScriptBlock(10, 10, 30, 10, "#ff0000", "#ffffff", true));
+	let test2 = $state(new RScriptBlock(50, 50, 20, 10, "#00ff00", "#ffffff", false));
+
+	onMount(() => {
+		test.connectionBottom = "ASASRRAA";
+		test.connectionTop = "SASA";
+
+		test2.connectionTop = "ASASRRAA";
+		test2.connectionBottom = "SR";
+	})
 </script>
 
 <div class="flex w-full grow flex-col gap-2">
@@ -29,7 +42,12 @@ Author: Martin Bykov
 	<div class="relative flex w-full grow flex-col rounded-2xl bg-neutral-600 p-5">
 		<!-- TODO -->
 
-		<ResinScriptBlock />
+		<ResinScriptBlock
+			block={test}
+		/>
+		<ResinScriptBlock
+			block={test2}
+		/>
 	</div>
 
 	<div class="flex w-full flex-row gap-2">
