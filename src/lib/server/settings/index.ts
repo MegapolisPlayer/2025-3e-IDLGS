@@ -27,20 +27,23 @@ export const setSetting = async (key: string, value: string): Promise<void> => {
 		//create new
 		await db.insert(dataSchema.setting).values({
 			key: key,
-			value: value
+			value: value,
 		});
 	} else {
 		//update existing
 		await db
 			.update(dataSchema.setting)
 			.set({
-				value: value
+				value: value,
 			})
 			.where(eq(dataSchema.setting.key, key));
 	}
 };
 
-export const checkSetting = async (key: string, value: string): Promise<void> => {
+export const checkSetting = async (
+	key: string,
+	value: string,
+): Promise<void> => {
 	//get count first
 
 	const len = (
@@ -55,7 +58,7 @@ export const checkSetting = async (key: string, value: string): Promise<void> =>
 		//create new if no existing
 		await db.insert(dataSchema.setting).values({
 			key: key,
-			value: value
+			value: value,
 		});
 	}
 };

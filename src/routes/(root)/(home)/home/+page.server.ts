@@ -10,7 +10,7 @@ export const load = async (event) => {
 
 	return {
 		//TODO fix and abstract to loadCourses function
-		courses: await db.select().from(dataSchema.course)
+		courses: await db.select().from(dataSchema.course),
 	};
 };
 
@@ -26,5 +26,5 @@ export const actions = {
 	createCourse: async (event) => {
 		const user = await getUser(event);
 		if (!user) return fail(401);
-	}
+	},
 };

@@ -26,16 +26,18 @@
 			onclick={(e) => {
 				if (!clickable?.contains(e.target as Node)) dialog?.close();
 			}}
-			class="min-h-screen w-screen max-w-screen min-w-screen
-		backdrop:bg-linear-to-tr backdrop:black/70"
+			class="backdrop:black/70 min-h-screen w-screen max-w-screen
+		min-w-screen backdrop:bg-linear-to-tr"
 		>
-			<div class=" flex min-h-screen w-full grow flex-col items-center justify-center">
+			<div
+				class=" flex min-h-screen w-full grow flex-col items-center justify-center"
+			>
 				<div
 					bind:this={clickable}
 					class="
 				{cssClass
 						? cssClass
-						: 'bg-white!'} mt-5 mb-5 flex max-w-4/5 grow flex-col rounded-2xl lg:p-5 text-left text-white max-lg:min-w-9/10 lg:min-w-2/3 max-lg:w-screen max-lg:h-screen lg:max-h-[66svh]
+						: 'bg-white!'} mt-5 mb-5 flex max-w-4/5 grow flex-col rounded-2xl text-left text-white max-lg:h-screen max-lg:w-screen max-lg:min-w-9/10 lg:max-h-[66svh] lg:min-w-2/3 lg:p-5
 			"
 				>
 					{@render children?.()}

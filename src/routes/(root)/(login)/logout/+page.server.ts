@@ -6,8 +6,12 @@ import { eq } from 'drizzle-orm';
 export const load = async (event) => {
 	const cookie = event.cookies.get('session');
 
-	await db.delete(dataSchema.userSession).where(eq(dataSchema.userSession.token, cookie as string));
+	await db
+		.delete(dataSchema.userSession)
+		.where(eq(dataSchema.userSession.token, cookie as string));
 
-	event.cookies.set('session', 'not anymore there is a blanket', { path: '/' });
+	event.cookies.set('session', 'not anymore there is a blanket', {
+		path: '/',
+	});
 	redirect(303, '/');
 };

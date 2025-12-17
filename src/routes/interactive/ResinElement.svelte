@@ -27,7 +27,7 @@ Author: Martin Bykov
 		mousePosY,
 		canvasWidth,
 		canvasHeight,
-		opacity
+		opacity,
 	}: {
 		x: number;
 		y: number;
@@ -134,9 +134,10 @@ Author: Martin Bykov
 		}}
 		aria-label="RESIN ELEMENT"
 	>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque fugiat dignissimos, facilis et
-		suscipit repudiandae molestias placeat sint. Ad voluptates tempora mollitia illo quas error
-		commodi modi minus fuga repudiandae.
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque fugiat
+		dignissimos, facilis et suscipit repudiandae molestias placeat sint. Ad
+		voluptates tempora mollitia illo quas error commodi modi minus fuga
+		repudiandae.
 	</button>
 
 	{#if uuidVariable == uuid}

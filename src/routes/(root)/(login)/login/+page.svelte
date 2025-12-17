@@ -23,12 +23,12 @@
 				theme: 'light',
 				'refresh-timeout': 'auto',
 				'refresh-expired': 'auto',
-				language: getLocale() as string
+				language: getLocale() as string,
 			});
 			return {
 				destroy: () => {
 					window.turnstile.remove(id as unknown as HTMLElement);
-				}
+				},
 			};
 		} catch (error) {
 			console.error(error);
@@ -60,12 +60,21 @@
 		>
 			<h2 class="text-violet-700">{m.login()}</h2>
 
-			<input name="email" type="text" class="input-text" placeholder={m.enterYourEmail()} />
+			<input
+				name="email"
+				type="text"
+				class="input-text"
+				placeholder={m.enterYourEmail()}
+			/>
 
 			<PasswordInput formName="password" />
 
 			<div class="flex w-full flex-row items-center gap-2 text-black">
-				<input name="remember" type="checkbox" class="input-checkbox" />
+				<input
+					name="remember"
+					type="checkbox"
+					class="input-checkbox"
+				/>
 				<label for="remember">{m.rememberMe()}</label>
 			</div>
 
@@ -73,24 +82,42 @@
 				<div use:turnstile></div>
 			{/if}
 
-			<div class="flex w-full flex-row items-center gap-2 text-sm text-emerald-500">
+			<div
+				class="flex w-full flex-row items-center gap-2 text-sm text-emerald-500"
+			>
 				{m.forgotPassword()}
 
-				<button class="button-violet" type="button">
+				<button
+					class="button-violet"
+					type="button"
+				>
 					{m.reset()}
 				</button>
 			</div>
 
-			<Button emoji="login-box" btn="button-primary" type="submit">
+			<Button
+				emoji="login-box"
+				btn="button-primary"
+				type="submit"
+			>
 				{m.login()}
 			</Button>
 
-			<HorizontalLine text={m.orIfYouDontHaveAnAccount()} color="rgb(0, 128, 0)" />
+			<HorizontalLine
+				text={m.orIfYouDontHaveAnAccount()}
+				color="rgb(0, 128, 0)"
+			/>
 
-			<Button emoji="user-add" btn="button-green">
+			<Button
+				emoji="user-add"
+				btn="button-green"
+			>
 				{m.signUp()}
 			</Button>
-			<Button emoji="slideshow" btn="button-violet">
+			<Button
+				emoji="slideshow"
+				btn="button-violet"
+			>
 				{m.viewDemo()}
 			</Button>
 		</form>

@@ -2,7 +2,7 @@
 	let {
 		name,
 		icon,
-		onclick
+		onclick,
 	}: {
 		name: string;
 		icon: string;

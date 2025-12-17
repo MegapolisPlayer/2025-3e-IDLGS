@@ -1,7 +1,7 @@
 import {
 	USER_SESSION_LENGTH,
 	USER_SESSION_LENGTH_REMEMBER,
-	validateTurnstile
+	validateTurnstile,
 } from '$lib/server/user/index.js';
 import { fail, redirect } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
@@ -37,14 +37,18 @@ export const actions = {
 					event.request.headers.get('X-Forwarded-For') ||
 					'unknown',
 				formData.get('cf-turnstile-response')?.toString() as string,
-				env.CLOUDFLARE_SECRET
+				env.CLOUDFLARE_SECRET,
 			))
 		) {
 			return fail(401, {});
 		}
 
 		const user = (
-			await db.select().from(dataSchema.user).where(eq(dataSchema.user.email, email)).limit(1)
+			await db
+				.select()
+				.from(dataSchema.user)
+				.where(eq(dataSchema.user.email, email))
+				.limit(1)
 		)[0];
 
 		const hashedPassword = crypto
@@ -60,12 +64,15 @@ export const actions = {
 				.values({
 					user: user.id,
 					expiresAt: new Date(
-						Date.now() + (remember ? USER_SESSION_LENGTH_REMEMBER : USER_SESSION_LENGTH)
-					)
+						Date.now() +
+							(remember
+								? USER_SESSION_LENGTH_REMEMBER
+								: USER_SESSION_LENGTH),
+					),
 				})
 				.returning()
 		)[0];
 
 		event.cookies.set('session', session.token, { path: '/' });
-	}
+	},
 };

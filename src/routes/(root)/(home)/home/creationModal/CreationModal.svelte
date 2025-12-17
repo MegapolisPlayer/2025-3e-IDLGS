@@ -10,13 +10,16 @@
 	import CourseTextbookSelect from './DCourseTextbookSelect.svelte';
 
 	let {
-		showModal = $bindable()
+		showModal = $bindable(),
 	}: {
 		showModal: boolean;
 	} = $props();
 </script>
 
-<Modal bind:showModal cssClass="bg-violet-700">
+<Modal
+	bind:showModal
+	cssClass="bg-violet-700"
+>
 	<!-- both -->
 	<SelectType />
 

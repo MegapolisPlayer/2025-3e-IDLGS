@@ -33,9 +33,18 @@
 			// const response = await aiService.makeResponse(messages);
 			//messages = [...messages, { role: 'assistant', content: response }];
 			//TEMP
-			messages = [...messages, { role: 'assistant', content: 'AI not available!' }];
+			messages = [
+				...messages,
+				{ role: 'assistant', content: 'AI not available!' },
+			];
 		} catch (err) {
-			messages = [...messages, { role: 'assistant', content: `Error: ${(err as Error).message}` }];
+			messages = [
+				...messages,
+				{
+					role: 'assistant',
+					content: `Error: ${(err as Error).message}`,
+				},
+			];
 		} finally {
 			isLoading = false;
 		}
@@ -61,7 +70,8 @@
 		try {
 			isMobile =
 				typeof window !== 'undefined' &&
-				('ontouchstart' in window || window.matchMedia('(max-width: 768px)').matches);
+				('ontouchstart' in window ||
+					window.matchMedia('(max-width: 768px)').matches);
 			const onResize = () => {
 				isMobile = window.matchMedia('(max-width: 768px)').matches;
 			};
@@ -110,7 +120,9 @@
 			}}
 		>
 			{#if messages.length > 0}
-				<div class="flex grow flex-col gap-2 rounded-lg bg-white p-2 text-black">
+				<div
+					class="flex grow flex-col gap-2 rounded-lg bg-white p-2 text-black"
+				>
 					{#each messages as message, i (i)}
 						<div class="flex flex-row gap-2">
 							<span class="text-violet-700">
@@ -121,7 +133,9 @@
 								{/if}
 							</span>
 							{#if message.role === 'assistant'}
-								<div>{@html renderMarkdown(message.content)}</div>
+								<div>
+									{@html renderMarkdown(message.content)}
+								</div>
 							{:else}
 								<p>{message.content}</p>
 							{/if}
@@ -136,7 +150,10 @@
 				</div>
 			{/if}
 
-			<form onsubmit={handleSubmit} class="flex w-full flex-row items-center gap-2">
+			<form
+				onsubmit={handleSubmit}
+				class="flex w-full flex-row items-center gap-2"
+			>
 				<textarea
 					bind:this={inputRef}
 					bind:value={currentMessage}

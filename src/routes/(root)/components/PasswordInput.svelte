@@ -3,7 +3,13 @@
 
 	let passwordVisible = $state(false);
 
-	let { formName, label = '', placeholder = '', cssClass = '', value = $bindable('') } = $props();
+	let {
+		formName,
+		label = '',
+		placeholder = '',
+		cssClass = '',
+		value = $bindable(''),
+	} = $props();
 </script>
 
 <div class="relative flex w-full flex-col items-center justify-center gap-2">
@@ -12,14 +18,18 @@
 			<h3 class="whitespace-nowrap">{label}:</h3>
 		{/if}
 		<br class="lg:hidden" />
-		<div class="flex w-full flex-row items-center justify-center overflow-hidden">
+		<div
+			class="flex w-full flex-row items-center justify-center overflow-hidden"
+		>
 			<input
 				type={passwordVisible ? 'text' : 'password'}
 				name={formName}
 				class="{cssClass} {passwordVisible
 					? ''
 					: 'font-medium'} input-text overflow-hidden rounded-e-none!"
-				placeholder={placeholder === '' ? m.enterYourPassword() : placeholder}
+				placeholder={placeholder === ''
+					? m.enterYourPassword()
+					: placeholder}
 				required
 				bind:value
 			/>

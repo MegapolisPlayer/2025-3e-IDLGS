@@ -4,7 +4,7 @@
 	import ResinScriptEditor from './ResinScriptEditor.svelte';
 
 	let {
-		el
+		el,
 	}: {
 		el: RElement;
 	} = $props();
@@ -12,7 +12,9 @@
 	let showScriptingModal = $state(false);
 </script>
 
-<div class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5">
+<div
+	class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5"
+>
 	<h3>Manage element</h3>
 
 	<button
@@ -57,32 +59,52 @@
 	<span class="flex w-full flex-row items-center gap-2">
 		Background color
 		<div class="grow"></div>
-		<input type="color" bind:value={el.bgcolor} />
+		<input
+			type="color"
+			bind:value={el.bgcolor}
+		/>
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
 		Foreground color
 		<div class="grow"></div>
-		<input type="color" bind:value={el.fgcolor} />
+		<input
+			type="color"
+			bind:value={el.fgcolor}
+		/>
 	</span>
 
 	<!-- TODO limit according to size -->
 	<span class="flex w-full flex-row items-center gap-2">
 		Roundness
 		<div class="grow"></div>
-		<input type="range" min="0" max="100" bind:value={el.rounded} />
+		<input
+			type="range"
+			min="0"
+			max="100"
+			bind:value={el.rounded}
+		/>
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
 		Opacity
 		<div class="grow"></div>
-		<input type="range" min="0" max="1" step="0.01" bind:value={el.opacity} />
+		<input
+			type="range"
+			min="0"
+			max="1"
+			step="0.01"
+			bind:value={el.opacity}
+		/>
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
 		Is visible?
 		<div class="grow"></div>
-		<input type="checkbox" bind:checked={el.visible} />
+		<input
+			type="checkbox"
+			bind:checked={el.visible}
+		/>
 	</span>
 
 	<div class="grow"></div>

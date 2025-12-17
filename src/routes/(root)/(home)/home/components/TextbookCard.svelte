@@ -6,7 +6,7 @@
 		textbook,
 		delay = 0,
 		perspective,
-		onclick = () => {}
+		onclick = () => {},
 	}: {
 		textbook: TextbookType;
 		r: number;
@@ -18,7 +18,14 @@
 	} = $props();
 </script>
 
-<Card r={textbook.red} g={textbook.green} b={textbook.blue} {delay} {perspective} {onclick}>
+<Card
+	r={textbook.red}
+	g={textbook.green}
+	b={textbook.blue}
+	{delay}
+	{perspective}
+	{onclick}
+>
 	<div class="flex w-full grow flex-col">
 		<h2></h2>
 		<p></p>

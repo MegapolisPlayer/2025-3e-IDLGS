@@ -12,7 +12,8 @@ const handleParaglide: Handle = ({ event, resolve }) =>
 		event.request = request;
 
 		return resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale)
+			transformPageChunk: ({ html }) =>
+				html.replace('%paraglide.lang%', locale),
 		});
 	});
 
@@ -33,16 +34,22 @@ const securityHeaders = {
 	'Cross-Origin-Opener-Policy': 'same-origin',
 	'X-Frame-Options': 'SAMEORIGIN',
 	'X-Content-Type-Options': 'nosniff',
-	'Referrer-Policy': 'strict-origin-when-cross-origin'
+	'Referrer-Policy': 'strict-origin-when-cross-origin',
 };
 
 const handleSecurity: Handle = async ({ event, resolve }) => {
 	const response = await resolve(event);
-	Object.entries(securityHeaders).forEach(([header, value]) => response.headers.set(header, value));
+	Object.entries(securityHeaders).forEach(([header, value]) =>
+		response.headers.set(header, value),
+	);
 	return response;
 };
 
-export const handle: Handle = sequence(handleParaglide, handleRateLimit, handleSecurity);
+export const handle: Handle = sequence(
+	handleParaglide,
+	handleRateLimit,
+	handleSecurity,
+);
 
 export const init: ServerInit = async () => {
 	if ((await db.select().from(dataSchema.user)).length == 0) {
@@ -51,7 +58,7 @@ export const init: ServerInit = async () => {
 			env.DEFAULT_PASSWORD,
 			new Date(2008, 4, 25, 5, 31, 0, 0),
 			'pl',
-			true
+			true,
 		);
 	}
 };
