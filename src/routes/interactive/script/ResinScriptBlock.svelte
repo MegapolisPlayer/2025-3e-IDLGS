@@ -18,12 +18,12 @@ Author: Martin Bykov
 
 	let {
 		block = $bindable(),
-		uuid = $bindable(""),
+		uuid = $bindable(''),
 		mousePosX,
 		mousePosY,
 		editorWidth,
 		editorHeight,
-		program = $bindable()
+		program = $bindable(),
 	}: {
 		block: RScriptBlock;
 		uuid: string;
@@ -33,7 +33,7 @@ Author: Martin Bykov
 		editorHeight: number;
 		program: RProgram;
 	} = $props();
-	
+
 	let isDragging = $state(false);
 	let xBegin = $state(0);
 	let yBegin = $state(0);
@@ -58,15 +58,18 @@ Author: Martin Bykov
 		canvas = document.getElementById(id) as HTMLCanvasElement;
 		context = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-		new ResizeObserver((data: ResizeObserverEntry[], observer: ResizeObserver) => {
-			(canvas as HTMLCanvasElement).width = data[0].contentRect.width;
-			(canvas as HTMLCanvasElement).height = data[0].contentRect.height;
+		new ResizeObserver(
+			(data: ResizeObserverEntry[], observer: ResizeObserver) => {
+				(canvas as HTMLCanvasElement).width = data[0].contentRect.width;
+				(canvas as HTMLCanvasElement).height =
+					data[0].contentRect.height;
 
-			context = canvas?.getContext('2d') as CanvasRenderingContext2D;
-			block.drawBackground(context);
+				context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+				block.drawBackground(context);
 
-			observer.observe(canvas as HTMLCanvasElement);
-		}).observe(canvas);
+				observer.observe(canvas as HTMLCanvasElement);
+			},
+		).observe(canvas);
 
 		block.drawBackground(context);
 
@@ -79,7 +82,7 @@ Author: Martin Bykov
 
 <div
 	class="
-absolute z-40 flex flex-row rounded-lg p-2 font-medium items-center
+absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 "
 	style="
 	background-color: #00000000;
@@ -107,23 +110,25 @@ absolute z-40 flex flex-row rounded-lg p-2 font-medium items-center
 		}}
 		draggable="true"
 	>
-		<div class="w-full h-full flex flex-row gap-2 items-center">
+		<div class="flex h-full w-full flex-row items-center gap-2">
 			<div class="grow-2"></div>
-			<div class="grow z-42">{block.text}</div>
+			<div class="z-42 grow">{block.text}</div>
 			<div class="grow-7"></div>
-		</div>	
+		</div>
 	</button>
-	<canvas {id} class="absolute top-0 left-0 z-40 h-full w-full">Canvas not supported.</canvas>
-	<div 
-		class="absolute bottom-2 right-2 z-41 text-2xl flex flex-row gap-2"
+	<canvas
+		{id}
+		class="absolute top-0 left-0 z-40 h-full w-full"
+		>Canvas not supported.</canvas
 	>
+	<div class="absolute right-2 bottom-2 z-41 flex flex-row gap-2 text-2xl">
 		<!-- add comment -->
-		<button 
+		<button
 			aria-label={m.addCommentToScriptBlock()}
 			onclick={() => {
 				//program.addComment();
 			}}
-			class="w-fit h-fit button-none"
+			class="button-none h-fit w-fit"
 		>
 			<i class="ri-chat-4-line"></i>
 		</button>

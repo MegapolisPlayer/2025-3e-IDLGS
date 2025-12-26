@@ -20,7 +20,10 @@ import { RElementLetterInput } from './elements/letterinput';
 import { RElementText } from './elements/text';
 import { RElementVideoPlayer } from './elements/video';
 import type { RScriptBlock } from './script/block.svelte';
-import { RScriptBlockVariableRead, RScriptBlockVariableWrite } from './script/blocks/variable';
+import {
+	RScriptBlockVariableRead,
+	RScriptBlockVariableWrite,
+} from './script/blocks/variable';
 import { RProgram } from './script/program.svelte';
 
 export const RESIN_MAX_ELEMENTS = 1000;
@@ -49,13 +52,24 @@ export class RInteractive {
 		rounded: number,
 		opacity: number,
 	) {
-		if(this.elements.length >= RESIN_MAX_ELEMENTS) return;
+		if (this.elements.length >= RESIN_MAX_ELEMENTS) return;
 		this.elements.push(
-			new RElement(name, x, y, width, height, visible, bgcolor, fgcolor, rounded, opacity)
+			new RElement(
+				name,
+				x,
+				y,
+				width,
+				height,
+				visible,
+				bgcolor,
+				fgcolor,
+				rounded,
+				opacity,
+			),
 		);
 	}
 	addElementDone(el: RElement) {
-		if(this.elements.length >= RESIN_MAX_ELEMENTS) return;
+		if (this.elements.length >= RESIN_MAX_ELEMENTS) return;
 		this.elements.push(el);
 	}
 

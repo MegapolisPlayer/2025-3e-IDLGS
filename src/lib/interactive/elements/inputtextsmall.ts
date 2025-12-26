@@ -2,6 +2,17 @@ import { RAnswerElement } from '../element.svelte';
 
 export class RElementInputTextSmall extends RAnswerElement {
 	constructor() {
-		super("Small text input", 25, 45, 50, 10, true, '#ffffff', '#000000', 10, 1);
+		super(
+			'Small text input',
+			25,
+			45,
+			50,
+			10,
+			true,
+			'#ffffff',
+			'#000000',
+			10,
+			1,
+		);
 	}
 }

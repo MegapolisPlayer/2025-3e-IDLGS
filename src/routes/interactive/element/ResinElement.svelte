@@ -10,7 +10,10 @@ Author: Martin Bykov
 	//TODO snap to 100%
 
 	import { browser } from '$app/environment';
-	import { RESIN_MIN_ELEMENT_SIZE, type RElement } from '$lib/interactive/element.svelte';
+	import {
+		RESIN_MIN_ELEMENT_SIZE,
+		type RElement,
+	} from '$lib/interactive/element.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { RESIN_MAX_SNAP } from '$lib/interactive/interactive.svelte';
 
@@ -45,11 +48,16 @@ Author: Martin Bykov
 		if (!isDragging) return;
 
 		if (!shiftPressed) {
-			el.width = widthBegin + ((e.pageX - dragBeginX) / canvasWidth) * 100;
-			el.height = heightBegin + ((e.pageY - dragBeginY) / canvasHeight) * 100;
+			el.width =
+				widthBegin + ((e.pageX - dragBeginX) / canvasWidth) * 100;
+			el.height =
+				heightBegin + ((e.pageY - dragBeginY) / canvasHeight) * 100;
 		} else {
-			el.width = widthBegin + ((e.pageX - dragBeginX) / canvasWidth) * 100 * aspectBegin;
-			el.height = heightBegin + ((e.pageX - dragBeginX) / canvasHeight) * 100;
+			el.width =
+				widthBegin +
+				((e.pageX - dragBeginX) / canvasWidth) * 100 * aspectBegin;
+			el.height =
+				heightBegin + ((e.pageX - dragBeginX) / canvasHeight) * 100;
 		}
 
 		return false;
@@ -62,13 +70,19 @@ Author: Martin Bykov
 		el.y = yBegin + ((e.pageY - dragBeginY) / canvasHeight) * 100;
 
 		//x snap
-		if(el.x < (50-el.width/2)+RESIN_MAX_SNAP && el.x > (50-el.width/2)-RESIN_MAX_SNAP) {
-			el.x = 50-(el.width/2);	
+		if (
+			el.x < 50 - el.width / 2 + RESIN_MAX_SNAP &&
+			el.x > 50 - el.width / 2 - RESIN_MAX_SNAP
+		) {
+			el.x = 50 - el.width / 2;
 		}
 
 		//y snap
-		if(el.y < (50-el.height/2)+RESIN_MAX_SNAP && el.y > (50-el.height/2)-RESIN_MAX_SNAP) {
-			el.y = 50-(el.height/2);	
+		if (
+			el.y < 50 - el.height / 2 + RESIN_MAX_SNAP &&
+			el.y > 50 - el.height / 2 - RESIN_MAX_SNAP
+		) {
+			el.y = 50 - el.height / 2;
 		}
 
 		return false;
@@ -100,10 +114,16 @@ Author: Martin Bykov
 	});
 
 	$effect(() => {
-		el.x = Math.max(0, Math.min(el.x, 100-el.width));
-		el.y = Math.max(0, Math.min(el.y, 100-el.height));
-		el.width = Math.max(RESIN_MIN_ELEMENT_SIZE, Math.min(el.width, 100-el.x));
-		el.height = Math.max(RESIN_MIN_ELEMENT_SIZE, Math.min(el.height, 100-el.y));
+		el.x = Math.max(0, Math.min(el.x, 100 - el.width));
+		el.y = Math.max(0, Math.min(el.y, 100 - el.height));
+		el.width = Math.max(
+			RESIN_MIN_ELEMENT_SIZE,
+			Math.min(el.width, 100 - el.x),
+		);
+		el.height = Math.max(
+			RESIN_MIN_ELEMENT_SIZE,
+			Math.min(el.height, 100 - el.y),
+		);
 	});
 </script>
 
@@ -122,7 +142,7 @@ Author: Martin Bykov
 >
 	<button
 		class="
-	h-full w-full overflow-hidden absolute z-36 top-0 left-0
+	absolute top-0 left-0 z-36 h-full w-full overflow-hidden
 	"
 		id={el.uuid}
 		style="
@@ -136,23 +156,23 @@ Author: Martin Bykov
 			else uuidVariable = el.uuid;
 		}}
 		ondragstart={(e) => {
-		e.stopPropagation();
-		isDraggingPosition = true;
-		xBegin = el.x;
-		yBegin = el.y;
-	}}
-	ondragend={() => {
-		isDraggingPosition = false;
-	}}
-	draggable="true"
+			e.stopPropagation();
+			isDraggingPosition = true;
+			xBegin = el.x;
+			yBegin = el.y;
+		}}
+		ondragend={() => {
+			isDraggingPosition = false;
+		}}
+		draggable="true"
 		aria-label="RESIN ELEMENT"
 	>
-		<div class="w-full h-full"></div>
+		<div class="h-full w-full"></div>
 	</button>
 
 	{#if uuidVariable == el.uuid}
 		<div
-			class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-2xl opacity-100! text-violet-700"
+			class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-2xl text-violet-700 opacity-100!"
 			role="main"
 			ondragstart={(e) => {
 				e.stopPropagation();

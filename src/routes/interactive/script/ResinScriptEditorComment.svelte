@@ -6,20 +6,23 @@ Author: Martin Bykov
 
 -->
 <script lang="ts">
-	import { RESIN_MIN_COMMENT_SIZE_PX, type RScriptComment } from "$lib/interactive/script/comment.svelte";
+	import {
+		RESIN_MIN_COMMENT_SIZE_PX,
+		type RScriptComment,
+	} from '$lib/interactive/script/comment.svelte';
 
 	let {
 		comment,
-		uuid = $bindable("")
-	} : {
-		comment: RScriptComment,
-		uuid: string
+		uuid = $bindable(''),
+	}: {
+		comment: RScriptComment;
+		uuid: string;
 	} = $props();
 </script>
 
 <button
 	class="
-absolute z-39 flex flex-row rounded-lg p-2 font-medium items-center
+absolute z-39 flex flex-row items-center rounded-lg p-2 font-medium
 "
 	style="
 	background-color: #ffd9b7;
@@ -32,9 +35,9 @@ absolute z-39 flex flex-row rounded-lg p-2 font-medium items-center
 	min-width:        {RESIN_MIN_COMMENT_SIZE_PX}px;
 	min-height:       {RESIN_MIN_COMMENT_SIZE_PX}px;
 "
-onclick={() => {
-	uuid = comment.uuid;
-}}
+	onclick={() => {
+		uuid = comment.uuid;
+	}}
 >
 	{comment.text}
 </button>

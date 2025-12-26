@@ -58,7 +58,8 @@ Author: Martin Bykov
 			elementHeightShowValue = heightBegin + (e.pageY - dragBeginY) * 2;
 			el.aspect = elementHeightShowValue / elementWidthShowValue;
 		} else {
-			elementWidthShowValue = widthBegin + (e.pageX - dragBeginX) * 2 * el.aspect;
+			elementWidthShowValue =
+				widthBegin + (e.pageX - dragBeginX) * 2 * el.aspect;
 			elementHeightShowValue = heightBegin + (e.pageX - dragBeginX) * 2;
 		}
 	};
@@ -78,15 +79,23 @@ Author: Martin Bykov
 		widthMax = rect.width;
 		heightMax = rect.height;
 
-		new ResizeObserver((data: ResizeObserverEntry[], observer: ResizeObserver) => {
-			widthMax =  data[0].contentRect.width;
-			heightMax = data[0].contentRect.height;
+		new ResizeObserver(
+			(data: ResizeObserverEntry[], observer: ResizeObserver) => {
+				widthMax = data[0].contentRect.width;
+				heightMax = data[0].contentRect.height;
 
-			elementWidthShowValue = Math.min(elementWidthShowValue, widthMax);
-			elementHeightShowValue = Math.min(elementHeightShowValue, heightMax);
+				elementWidthShowValue = Math.min(
+					elementWidthShowValue,
+					widthMax,
+				);
+				elementHeightShowValue = Math.min(
+					elementHeightShowValue,
+					heightMax,
+				);
 
-			observer.observe(elem);
-		}).observe(elem);
+				observer.observe(elem);
+			},
+		).observe(elem);
 
 		addEventListener('mousemove', mmHandler);
 		addEventListener('dragover', odoHandler);
@@ -102,11 +111,19 @@ Author: Martin Bykov
 		removeEventListener('keyup', keyHandler);
 	});
 
-	let gcdAspect = $derived(gcd(elementWidthShowValue, elementHeightShowValue));
+	let gcdAspect = $derived(
+		gcd(elementWidthShowValue, elementHeightShowValue),
+	);
 
 	$effect(() => {
-		elementWidthShowValue = Math.min(Math.max(0, elementWidthShowValue), widthMax);
-		elementHeightShowValue = Math.min(Math.max(0, elementHeightShowValue), heightMax);
+		elementWidthShowValue = Math.min(
+			Math.max(0, elementWidthShowValue),
+			widthMax,
+		);
+		elementHeightShowValue = Math.min(
+			Math.max(0, elementHeightShowValue),
+			heightMax,
+		);
 		el.aspect = elementWidthShowValue / elementHeightShowValue;
 	});
 </script>
@@ -115,8 +132,12 @@ Author: Martin Bykov
 	<title>RESIN</title>
 </svelte:head>
 
-<div class="relative flex h-screen max-h-screen min-h-screen w-full grow flex-row">
-	<div class="absolute top-2 left-3/10 flex w-fit max-w-1/2 flex-col gap-0 bg-black/40 z-50 text-xs">
+<div
+	class="relative flex h-screen max-h-screen min-h-screen w-full grow flex-row"
+>
+	<div
+		class="absolute top-2 left-3/10 z-50 flex w-fit max-w-1/2 flex-col gap-0 bg-black/40 text-xs"
+	>
 		<div class="flex flex-row gap-2">
 			<span>
 				Canvas width: {elementWidthShowValue}px
@@ -160,7 +181,8 @@ Author: Martin Bykov
 			<div class="flex flex-row gap-2">
 				Aspect ratio: {el.aspect.toFixed(2)}:1
 				<span class="italic opacity-70"
-					>{elementWidthShowValue / gcdAspect}:{elementHeightShowValue / gcdAspect}</span
+					>{elementWidthShowValue /
+						gcdAspect}:{elementHeightShowValue / gcdAspect}</span
 				>
 			</div>
 			<div class="flex flex-row items-center gap-2">
@@ -229,7 +251,7 @@ Author: Martin Bykov
 				{/key}
 			</span>
 			<div
-				class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-emerald-500 text-2xl"
+				class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-2xl text-emerald-500"
 				role="main"
 				ondragstart={() => {
 					isDragging = true;
@@ -248,10 +270,10 @@ Author: Martin Bykov
 		</div>
 	</div>
 	{#if selectedElementUuid != ''}
-		<ResinSidebar 
+		<ResinSidebar
 			el={el.getElementByUuid(selectedElementUuid) as RElement}
 			{mousePosX}
 			{mousePosY}
-		 />
+		/>
 	{/if}
 </div>

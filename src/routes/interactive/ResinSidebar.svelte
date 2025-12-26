@@ -7,7 +7,7 @@
 	let {
 		el,
 		mousePosX,
-		mousePosY
+		mousePosY,
 	}: {
 		el: RElement;
 		mousePosX: number;
@@ -25,7 +25,11 @@
 	<span class="flex w-full flex-row items-center gap-2">
 		Name:
 		<div class="grow"></div>
-		<input type="text" bind:value={el.name} class="input-text-resin" />
+		<input
+			type="text"
+			bind:value={el.name}
+			class="input-text-resin"
+		/>
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
@@ -131,8 +135,8 @@
 </div>
 
 <ResinModal bind:showModal={showScriptingModal}>
-	<ResinScriptEditor 
-		bind:closeModal={showScriptingModal} 
+	<ResinScriptEditor
+		bind:closeModal={showScriptingModal}
 		{mousePosX}
 		{mousePosY}
 	/>

@@ -21,7 +21,7 @@ Author: Martin Bykov
 
 <button
 	class="
-	flex flex-row gap-2 rounded-lg p-2 items-end
+	flex flex-row items-end gap-2 rounded-lg p-2
 	{uuidVariable == el.uuid ? 'bg-violet-800' : 'bg-neutral-500'}
 	hover:bg-violet-800
 	"
@@ -31,7 +31,7 @@ Author: Martin Bykov
 	}}
 >
 	{el.name}
-	<span class="italic opacity-70 text-sm font-light">{getType(el)}</span>
+	<span class="text-sm font-light italic opacity-70">{getType(el)}</span>
 	<div class="grow"></div>
 	<div
 		class=""

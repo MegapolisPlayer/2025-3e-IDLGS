@@ -1,11 +1,7 @@
 //RESIN script variable operations
 
-import { RScriptBlock } from "../block.svelte";
+import { RScriptBlock } from '../block.svelte';
 
-export class RScriptBlockVariableRead extends RScriptBlock {
+export class RScriptBlockVariableRead extends RScriptBlock {}
 
-};
-
-export class RScriptBlockVariableWrite extends RScriptBlock {
-
-};
+export class RScriptBlockVariableWrite extends RScriptBlock {}

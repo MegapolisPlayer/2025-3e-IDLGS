@@ -17,9 +17,9 @@
 	import type { RInteractive } from '$lib/interactive/interactive.svelte';
 
 	let {
-		el
+		el,
 	}: {
-		el: RInteractive
+		el: RInteractive;
 	} = $props();
 </script>
 

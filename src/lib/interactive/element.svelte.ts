@@ -6,7 +6,7 @@
 export const RESIN_MIN_ELEMENT_SIZE = 2;
 
 export class RElement {
-	name: string = $state("");
+	name: string = $state('');
 	x: number = $state(0);
 	y: number = $state(0);
 	width: number = $state(0);

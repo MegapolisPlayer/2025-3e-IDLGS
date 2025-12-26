@@ -18,11 +18,11 @@ Author: Martin Bykov
 	let {
 		closeModal = $bindable(),
 		mousePosX,
-		mousePosY
+		mousePosY,
 	}: {
 		closeModal: boolean;
 		mousePosX: number;
-		mousePosY: number; 
+		mousePosY: number;
 	} = $props();
 
 	let script: RProgram = $state(new RProgram());
@@ -36,10 +36,28 @@ Author: Martin Bykov
 
 	//TODO remove
 	let test = $state(
-		new RScriptBlock('testing block 1', 10, 10, 30, 10, '#ff0000', '#ffffff', true)
+		new RScriptBlock(
+			'testing block 1',
+			10,
+			10,
+			30,
+			10,
+			'#ff0000',
+			'#ffffff',
+			true,
+		),
 	);
 	let test2 = $state(
-		new RScriptBlock('testing block 2', 50, 50, 20, 10, '#00ff00', '#ffffff', false)
+		new RScriptBlock(
+			'testing block 2',
+			50,
+			50,
+			20,
+			10,
+			'#00ff00',
+			'#ffffff',
+			false,
+		),
 	);
 
 	let sortedX = $derived(script.blocks.toSorted((a, b) => a.x - b.x));
@@ -55,7 +73,7 @@ Author: Martin Bykov
 		script.addBlock(test);
 		script.addBlock(test2);
 
-		script.addComment(new RScriptComment("blabla", 80, 10, 5, 5))
+		script.addComment(new RScriptComment('blabla', 80, 10, 5, 5));
 	});
 </script>
 
@@ -63,16 +81,16 @@ Author: Martin Bykov
 	<ResinElementSelect />
 	<div class="flex grow flex-col gap-2">
 		<h2>Workspace</h2>
-		<div 
+		<div
 			class="relative flex grow flex-col rounded-2xl bg-neutral-600 p-5"
 			bind:clientWidth={editorWidth}
 			bind:clientHeight={editorHeight}
-			>
+		>
 			<!-- blocks -->
 			{#each script.blocks as block, i (block.uuid)}
-				<ResinScriptBlock 
-					bind:block={script.blocks[i]} 
-					bind:uuid={selectedBlockUuid} 
+				<ResinScriptBlock
+					bind:block={script.blocks[i]}
+					bind:uuid={selectedBlockUuid}
 					{editorWidth}
 					{editorHeight}
 					{mousePosX}
@@ -83,11 +101,17 @@ Author: Martin Bykov
 
 			<!-- comments -->
 			{#each script.comments as comment (comment.uuid)}
-				<ResinScriptEditorComment {comment} bind:uuid={selectedCommentUuid} />
+				<ResinScriptEditorComment
+					{comment}
+					bind:uuid={selectedCommentUuid}
+				/>
 			{/each}
 
 			<!-- comment connection layer -->
-			<canvas id={commentConnectionCanvasId} class="z-10 w-full h-full absolute top-0 left-0">
+			<canvas
+				id={commentConnectionCanvasId}
+				class="absolute top-0 left-0 z-10 h-full w-full"
+			>
 				Canvas not supported.
 			</canvas>
 		</div>
@@ -105,7 +129,10 @@ Author: Martin Bykov
 			</button>
 			<div class="grow"></div>
 			<!-- TODO confirm modal -->
-			<button class="button-violet group" onclick={() => (closeModal = false)}>
+			<button
+				class="button-violet group"
+				onclick={() => (closeModal = false)}
+			>
 				<i class="ri-delete-bin-line not-group-hover:hidden"></i>
 				<i class="ri-delete-bin-fill group-hover:hidden"></i>
 				Discard changes
