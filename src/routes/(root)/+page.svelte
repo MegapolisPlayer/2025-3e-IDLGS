@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Head from './Head.svelte';
-	import About from './About.svelte';
+	import Head from './components/Head.svelte';
+	import About from './components/About.svelte';
 	import { m } from '$lib/paraglide/messages';
 </script>
 

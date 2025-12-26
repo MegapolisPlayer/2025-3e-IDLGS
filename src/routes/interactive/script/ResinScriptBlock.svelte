@@ -110,7 +110,7 @@ absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 		}}
 		draggable="true"
 	>
-		<div class="flex h-full w-full flex-row items-center gap-2">
+		<div class="flex h-full w-full flex-row items-center gap-2 grow">
 			<div class="grow-2"></div>
 			<div class="z-42 grow">{block.text}</div>
 			<div class="grow-7"></div>
@@ -121,7 +121,7 @@ absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 		class="absolute top-0 left-0 z-40 h-full w-full"
 		>Canvas not supported.</canvas
 	>
-	<div class="absolute right-2 bottom-2 z-41 flex flex-row gap-2 text-2xl">
+	<div class="absolute right-2 bottom-2 flex flex-row gap-2 text-2xl">
 		<!-- add comment -->
 		<button
 			aria-label={m.addCommentToScriptBlock()}
@@ -130,8 +130,8 @@ absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 			}}
 			class="button-none h-fit w-fit"
 		>
-			<i class="ri-chat-4-line"></i>
+			<i class="ri-chat-4-line z-41"></i>
 		</button>
-		<i class="ri-drag-move-2-line"></i>
+		<i class="ri-drag-move-2-line z-40!"></i>
 	</div>
 </div>

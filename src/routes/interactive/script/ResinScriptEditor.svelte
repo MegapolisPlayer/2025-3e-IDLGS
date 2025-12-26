@@ -7,6 +7,7 @@ Author: Martin Bykov
 -->
 
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages';
 	import { RScriptBlock } from '$lib/interactive/script/block.svelte';
 	import { onMount } from 'svelte';
 	import ResinScriptBlock from './ResinScriptBlock.svelte';
@@ -80,7 +81,7 @@ Author: Martin Bykov
 <div class="flex w-full grow flex-row gap-2">
 	<ResinElementSelect />
 	<div class="flex grow flex-col gap-2">
-		<h2>Workspace</h2>
+		<h2>{m.scriptWorkspace()}</h2>
 		<div
 			class="relative flex grow flex-col rounded-2xl bg-neutral-600 p-5"
 			bind:clientWidth={editorWidth}
@@ -120,12 +121,12 @@ Author: Martin Bykov
 			<button class="button-green group">
 				<i class="ri-save-3-line not-group-hover:hidden"></i>
 				<i class="ri-save-3-fill group-hover:hidden"></i>
-				Validate and save
+				{m.validateAndSave()}
 			</button>
 			<button class="button-violet group">
 				<i class="ri-save-3-line not-group-hover:hidden"></i>
 				<i class="ri-save-3-fill group-hover:hidden"></i>
-				Help and documentation
+				{m.helpAndDocumentation()}
 			</button>
 			<div class="grow"></div>
 			<!-- TODO confirm modal -->
@@ -135,7 +136,7 @@ Author: Martin Bykov
 			>
 				<i class="ri-delete-bin-line not-group-hover:hidden"></i>
 				<i class="ri-delete-bin-fill group-hover:hidden"></i>
-				Discard changes
+				{m.discardChanges()}
 			</button>
 		</div>
 	</div>

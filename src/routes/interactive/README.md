@@ -9,3 +9,6 @@ A self-contained interactive element and exercise system used in the textbook fo
 ## Features
 
 TODO
+
+## Notes
+Svelte components used in RESIN are often separate from the main textbook - this is intentional and is implemented to allow for the future separation of RESIN as a standalone library for use in other contexts.

@@ -5,7 +5,13 @@ import { describe, it, expect } from 'vitest';
 //https://developers.cloudflare.com/workers-ai/platform/limits/
 //check for errors, response to prompts
 
-describe('sum test', () => {
+describe('AI tests - pipeline', () => {
+	it('adds 1 + 2 to equal 3', () => {
+		expect(1 + 2).toBe(3);
+	});
+});
+
+describe('AI tests - prompted', () => {
 	it('adds 1 + 2 to equal 3', () => {
 		expect(1 + 2).toBe(3);
 	});

@@ -6,11 +6,6 @@ export enum QuestionTypeEnum {
 	REMOVEWRONG = 3, //nehodici se skrtnete
 }
 
-export type Message = {
-	role: 'developer' | 'user' | 'assistant';
-	content: string;
-};
-
 export type UserType = {
 	uuid: string;
 	email: string;

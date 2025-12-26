@@ -7,7 +7,7 @@ Author: Martin Bykov
 -->
 
 <script lang="ts">
-	//TODO translations
+	import { m } from '$lib/paraglide/messages';
 
 	import { browser } from '$app/environment';
 	import { RInteractive } from '$lib/interactive/interactive.svelte';
@@ -27,6 +27,8 @@ Author: Martin Bykov
 
 	let elementWidthShowValue = $state(0);
 	let elementHeightShowValue = $state(0);
+
+	let snappingAllowed = $state(true);
 
 	let selectedElementUuid = $state('');
 
@@ -153,14 +155,14 @@ Author: Martin Bykov
 		</div>
 	</div>
 	<div
-		class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5"
+		class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5 max-w-3/10"
 	>
-		<h2>RESIN interactive element builder</h2>
+		<h2>RESIN {m.interactiveElementEditor()}</h2>
 
 		<ResinElementAddition {el} />
 
 		<div class="flex grow flex-col gap-2 rounded-lg bg-neutral-600 p-5">
-			<h3>Current elements</h3>
+			<h3>{m.currentlyAddedElements()}</h3>
 			{#key el}
 				{#each el?.elements as element (element.uuid)}
 					<ResinListElement
@@ -171,22 +173,22 @@ Author: Martin Bykov
 					<div
 						class="flex flex-col grow w-full justify-center items-center"
 					>
-						No elements yet.
+						{m.noElementsYetAddSome()}
 					</div>
 				{/each}
 			{/key}
 		</div>
 		<div class="flex grow flex-col gap-2 rounded-lg bg-neutral-600 p-5">
-			<h3>Manage RESIN</h3>
+			<h3>{m.manageElement()}</h3>
 			<div class="flex flex-row gap-2">
-				Aspect ratio: {el.aspect.toFixed(2)}:1
+				{m.aspectRatio()} {el.aspect.toFixed(2)}:1
 				<span class="italic opacity-70"
 					>{elementWidthShowValue /
 						gcdAspect}:{elementHeightShowValue / gcdAspect}</span
 				>
 			</div>
 			<div class="flex flex-row items-center gap-2">
-				Width:
+				{m.width()}:
 				<input
 					type="number"
 					min="0"
@@ -198,7 +200,7 @@ Author: Martin Bykov
 				px
 			</div>
 			<div class="flex flex-row items-center gap-2">
-				Height:
+				{m.height()}:
 				<input
 					type="number"
 					min="0"
@@ -209,19 +211,35 @@ Author: Martin Bykov
 				/>
 				px
 			</div>
+			<!-- TODO implement -->
+			<div class="flex flex-row items-center gap-2 items-center">
+				{m.snapping()}:
+				<input
+					type="checkbox"
+					bind:checked={snappingAllowed}
+					name="snapping"
+					class="input-text-resin"
+				/>
+			</div>
 			<div class="grow"></div>
-			<div class="grid grid-cols-2 gap-2">
+			<div class="grid grid-cols-3 gap-2">
 				<button class="button-violet group">
-					<i class="ri-import-line text-xl not-group-hover:hidden"
-					></i>
+					<i class="ri-import-line text-xl not-group-hover:hidden"></i>
 					<i class="ri-import-fill text-xl group-hover:hidden"></i>
-					Import
+					{m.import()}
 				</button>
 				<button class="button-green group">
-					<i class="ri-export-line text-xl not-group-hover:hidden"
-					></i>
+					<i class="ri-export-line text-xl not-group-hover:hidden"></i>
 					<i class="ri-export-fill text-xl group-hover:hidden"></i>
-					Export
+					{m.export()}
+				</button>
+				<!-- TODO confirmation modal -->
+				<button class="button-green group" onclick={() => {
+					el = new RInteractive();
+				}}>
+					<i class="ri-delete-bin-2-line text-xl not-group-hover:hidden"></i>
+					<i class="ri-delete-bin-2-fill text-xl group-hover:hidden"></i>
+					{m.clear()}
 				</button>
 			</div>
 		</div>
@@ -274,6 +292,8 @@ Author: Martin Bykov
 			el={el.getElementByUuid(selectedElementUuid) as RElement}
 			{mousePosX}
 			{mousePosY}
+			canvasX={elementWidthShowValue}
+			canvasY={elementHeightShowValue}
 		/>
 	{/if}
 </div>

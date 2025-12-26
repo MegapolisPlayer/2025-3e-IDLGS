@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages';
 	import type { RElement } from '$lib/interactive/element.svelte';
 	import { getType } from '$lib/interactive/interactive.svelte';
 	import ResinModal from './ResinModal.svelte';
@@ -8,22 +9,31 @@
 		el,
 		mousePosX,
 		mousePosY,
+		canvasX,
+		canvasY,
 	}: {
 		el: RElement;
 		mousePosX: number;
 		mousePosY: number;
+		canvasX: number;
+		canvasY: number;
 	} = $props();
 
 	let showScriptingModal = $state(false);
+
+	let maxRoundnessLimit = $derived(Math.trunc(Math.min(
+		el.width*0.01*canvasX,
+		el.height*0.01*canvasY
+	)/2));
 </script>
 
 <div
-	class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5"
+	class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5 max-w-2/10 *:w-full *:max-w-full"
 >
-	<h3>Manage element</h3>
+	<h3>{m.manageElement()}</h3>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Name:
+		{m.nameOfElement()}:
 		<div class="grow"></div>
 		<input
 			type="text"
@@ -33,7 +43,7 @@
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Type:
+		{m.typeOfElement()}:
 		<div class="grow"></div>
 		{getType(el)}
 	</span>
@@ -46,39 +56,39 @@
 	>
 		<i class="ri-code-box-line text-xl not-group-hover:hidden"></i>
 		<i class="ri-code-box-fill text-xl group-hover:hidden"></i>
-		Open script
+		{m.openElementScriptEditor()}
 	</button>
 
-	<h3>Size information</h3>
+	<h3>{m.sizeAndPosition()}</h3>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Width:
+		{m.width()}:
 		<div class="grow"></div>
 		{el.width.toFixed()}%
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Height:
+		{m.height()}:
 		<div class="grow"></div>
 		{el.height.toFixed()}%
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Leftmost X:
+		{m.leftmostX()}:
 		<div class="grow"></div>
 		{el.x.toFixed()}%
 	</span>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Topmost Y:
+		{m.topmostY()}:
 		<div class="grow"></div>
 		{el.y.toFixed()}%
 	</span>
 
-	<h3>Graphical settings</h3>
+	<h3>{m.appearance()}</h3>
 
 	<span class="flex w-full flex-row items-center gap-2">
-		Background color
+		{m.backgroundColor()}
 		<div class="grow"></div>
 		<input
 			type="color"
@@ -86,47 +96,57 @@
 		/>
 	</span>
 
-	<span class="flex w-full flex-row items-center gap-2">
-		Foreground color
+	<div class="flex w-full flex-row items-center gap-2">
+		{m.textColor()}
 		<div class="grow"></div>
 		<input
 			type="color"
 			bind:value={el.fgcolor}
 		/>
-	</span>
+	</div>
 
-	<!-- TODO limit according to size -->
-	<span class="flex w-full flex-row items-center gap-2">
-		Roundness
-		<div class="grow"></div>
+	<div class="flex w-full flex-row items-center gap-2 max-w-full">
+		<span>
+			{m.roundness()}
+		</span>
+		<span>
+			{el.rounded}px/{maxRoundnessLimit}px
+		</span>
 		<input
 			type="range"
+			class="p-0 w-fit! grow!"
 			min="0"
-			max="100"
+			max={maxRoundnessLimit}
 			bind:value={el.rounded}
 		/>
-	</span>
+	</div>
 
-	<span class="flex w-full flex-row items-center gap-2">
-		Opacity
-		<div class="grow"></div>
+	<div class="flex w-full flex-row items-center gap-2">
+		<span>
+			{m.opacity()}
+		</span>
+		<span>
+			{Math.round(el.opacity*100)}%
+		</span>
 		<input
 			type="range"
+			class="p-0 w-fit! grow!"
 			min="0"
 			max="1"
 			step="0.01"
 			bind:value={el.opacity}
 		/>
-	</span>
+	</div>
 
-	<span class="flex w-full flex-row items-center gap-2">
-		Is visible?
+	<div class="flex w-full flex-row items-center gap-2">
+		{m.visible()}?
 		<div class="grow"></div>
 		<input
 			type="checkbox"
+			class="input-checkbox"
 			bind:checked={el.visible}
 		/>
-	</span>
+	</div>
 
 	<div class="grow"></div>
 	<p class="italic opacity-70">

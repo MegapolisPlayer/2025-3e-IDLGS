@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Card from './components/Card.svelte';
+	import Card from './Card.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let ready = $state(false);
 
@@ -32,10 +33,9 @@
 
 			<div class="grow"></div>
 
-			<h5 class="flex flex-col items-center gap-2 text-7xl font-bold">
-				<span>Electronic All-in-One</span>
-				<!-- TODO other messages: exercise book etc. -->
-				<span class="text-emerald-500"> Digital Textbook </span>
+			<h5 class="flex flex-col items-center gap-2">
+				<span class="text-4xl font-medium leading-9 p-0 m-0">{m.electronicIntegratedAiPowered()}</span>
+				<span class="text-emerald-500 text-7xl font-bold">{m.learningAndGradingSystem()}</span>
 			</h5>
 			<p class="w-1/2 text-center text-2xl">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
@@ -47,13 +47,13 @@
 			<!-- abstract + hover effects -->
 			<div class="grid grid-cols-2 gap-4 *:text-xl">
 				<a
-					class="flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-emerald-500 text-emerald-500"
+					class="button-primary button"
 					href="/login"
 				>
 					Log in
 				</a>
 				<a
-					class="flex flex-col items-center justify-center gap-2 rounded-lg bg-emerald-500 p-3 font-medium text-neutral-100"
+					class="button-violet button"
 					href="/contact"
 				>
 					Request a demo

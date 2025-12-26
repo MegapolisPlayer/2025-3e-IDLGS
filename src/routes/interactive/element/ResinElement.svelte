@@ -7,7 +7,10 @@ Author: Martin Bykov
 -->
 
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages';
+
 	//TODO snap to 100%
+	//TODO add keyboard movement controls
 
 	import { browser } from '$app/environment';
 	import {
@@ -185,7 +188,7 @@ Author: Martin Bykov
 				isDragging = false;
 			}}
 			draggable="true"
-			aria-label="Element size"
+			aria-label={m.elementSize()}
 		>
 			<i class="ri-drag-move-2-line"></i>
 		</div>
