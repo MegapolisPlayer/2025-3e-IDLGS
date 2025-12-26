@@ -53,8 +53,10 @@ const handleDatabase: Handle = async ({ event, resolve }) => {
 
 //dev only
 const handleDefaultUser: Handle = async ({ event, resolve }) => {
-	if(env.DEV == "true") {
-		if ((await event.locals.db.select().from(dataSchema.user)).length == 0) {
+	if (env.DEV == 'true') {
+		if (
+			(await event.locals.db.select().from(dataSchema.user)).length == 0
+		) {
 			await createUser(
 				event.locals.db,
 				env.DEFAULT_EMAIL,
@@ -69,6 +71,11 @@ const handleDefaultUser: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-export const handle: Handle = sequence(handleParaglide, handleSecurity, handleDatabase, handleDefaultUser);
+export const handle: Handle = sequence(
+	handleParaglide,
+	handleSecurity,
+	handleDatabase,
+	handleDefaultUser,
+);
 
 export const init: ServerInit = async () => {};

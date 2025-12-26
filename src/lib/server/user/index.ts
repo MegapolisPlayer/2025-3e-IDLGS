@@ -6,13 +6,17 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import type { DBType } from '../db/types';
 
-export const setPassword = async (db: DBType, password: string): Promise<void> => {
+export const setPassword = async (
+	db: DBType,
+	password: string,
+): Promise<void> => {
 	const salt = crypto.randomUUID();
 	//cloudflare workers has 100000 iteration limit
 	const iterations = Math.trunc(9000 + Math.random() * 90000);
 
 	await checkSetting(
-		db, 'password',
+		db,
+		'password',
 		crypto
 			.pbkdf2Sync(password, salt, iterations, 64, 'sha512')
 			.toString('hex'),

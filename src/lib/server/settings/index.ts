@@ -12,7 +12,11 @@ export const getSetting = async (db: DBType, key: string): Promise<string> => {
 	return value.length === 0 ? '' : value[0].value;
 };
 
-export const setSetting = async (db: DBType, key: string, value: string): Promise<void> => {
+export const setSetting = async (
+	db: DBType,
+	key: string,
+	value: string,
+): Promise<void> => {
 	//get count first
 
 	const len = (
@@ -41,7 +45,7 @@ export const setSetting = async (db: DBType, key: string, value: string): Promis
 };
 
 export const checkSetting = async (
-	db: DBType, 
+	db: DBType,
 	key: string,
 	value: string,
 ): Promise<void> => {
