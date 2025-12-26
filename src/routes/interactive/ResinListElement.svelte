@@ -12,7 +12,7 @@ Author: Martin Bykov
 
 	let {
 		el = $bindable(),
-		uuidVariable = $bindable()
+		uuidVariable = $bindable(),
 	}: {
 		el: RElement;
 		uuidVariable: string;

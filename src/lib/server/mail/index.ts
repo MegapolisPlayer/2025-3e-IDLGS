@@ -3,7 +3,10 @@ import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { error } from '@sveltejs/kit';
 import { getSetting } from '../settings';
 
-type MailerType = nodemailer.Transporter<SMTPTransport.SentMessageInfo, SMTPTransport.Options>;
+type MailerType = nodemailer.Transporter<
+	SMTPTransport.SentMessageInfo,
+	SMTPTransport.Options
+>;
 export let transporter: MailerType | undefined = undefined;
 
 export const initTransporter = async () => {
@@ -19,9 +22,9 @@ export const initTransporter = async () => {
 			user: await getSetting('emailAddress'),
 			clientId: await getSetting('emailId'),
 			clientSecret: await getSetting('emailClientSecret'),
-			refreshToken: await getSetting('emailClientRef')
+			refreshToken: await getSetting('emailClientRef'),
 			//access token not required
-		}
+		},
 	});
 
 	transporter.on('token', (t) => {
@@ -43,7 +46,10 @@ export const verifyTransporter = async (): Promise<boolean> => {
 	return true;
 };
 
-export const sendMail = async (subject: string, message: string): Promise<boolean> => {
+export const sendMail = async (
+	subject: string,
+	message: string,
+): Promise<boolean> => {
 	if (!(await verifyTransporter())) return false;
 
 	const emailData = {
@@ -51,7 +57,7 @@ export const sendMail = async (subject: string, message: string): Promise<boolea
 		to: await getSetting('emailTarget'),
 		subject: '[PERSONALWEB] ' + subject,
 		html: message,
-		text: message
+		text: message,
 	};
 
 	try {

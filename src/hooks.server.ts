@@ -3,13 +3,16 @@ import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
 import { createUser } from '$lib/server/user';
 import { env } from '$env/dynamic/private';
+import { db } from '$lib/server/db';
+import * as dataSchema from '$lib/server/db/schema.js';
 
 const handleParaglide: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
 		event.request = request;
 
 		return resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale)
+			transformPageChunk: ({ html }) =>
+				html.replace('%paraglide.lang%', locale),
 		});
 	});
 
@@ -23,23 +26,27 @@ const securityHeaders = {
 	'Cross-Origin-Opener-Policy': 'same-origin',
 	'X-Frame-Options': 'SAMEORIGIN',
 	'X-Content-Type-Options': 'nosniff',
-	'Referrer-Policy': 'strict-origin-when-cross-origin'
+	'Referrer-Policy': 'strict-origin-when-cross-origin',
 };
 
 const handleSecurity: Handle = async ({ event, resolve }) => {
 	const response = await resolve(event);
-	Object.entries(securityHeaders).forEach(([header, value]) => response.headers.set(header, value));
+	Object.entries(securityHeaders).forEach(([header, value]) =>
+		response.headers.set(header, value),
+	);
 	return response;
 };
 
 export const handle: Handle = sequence(handleParaglide, handleSecurity);
 
 export const init: ServerInit = async () => {
-	await createUser(
-		env.DEFAULT_EMAIL,
-		env.DEFAULT_PASSWORD,
-		new Date(2008, 4, 25, 5, 31, 0, 0),
-		'pl',
-		true
-	);
+	if ((await db.select().from(dataSchema.user)).length == 0) {
+		await createUser(
+			env.DEFAULT_EMAIL,
+			env.DEFAULT_PASSWORD,
+			new Date(2008, 4, 25, 5, 31, 0, 0),
+			'pl',
+			true,
+		);
+	}
 };

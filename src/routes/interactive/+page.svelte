@@ -64,7 +64,9 @@ Author: Martin Bykov
 	onMount(() => {
 		if (!browser) return;
 
-		let rect = document.getElementById('workspace')?.getBoundingClientRect();
+		let rect = document
+			.getElementById('workspace')
+			?.getBoundingClientRect();
 		if (!rect) throw Error('No workspace element found!');
 
 		elementWidthShowValue = rect.width / 3;
@@ -103,9 +105,13 @@ Author: Martin Bykov
 			<div>{el.parsed}</div>
 		</div>
 	</div>
-	<div class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5">
+	<div
+		class="flex max-h-screen flex-col gap-2 overflow-hidden bg-neutral-500 p-5"
+	>
 		<h2>RESIN interactive element builder</h2>
-		<div class="flex max-h-1/3 grow flex-col gap-2 rounded-lg bg-neutral-600 p-5">
+		<div
+			class="flex max-h-1/3 grow flex-col gap-2 rounded-lg bg-neutral-600 p-5"
+		>
 			<h3>Add new elements</h3>
 			<div class="grid grid-cols-3 gap-2 overflow-scroll">
 				<ResinItemSelect
@@ -212,9 +218,16 @@ Author: Martin Bykov
 			<h3>Current elements</h3>
 			{#key el}
 				{#each el?.elements as element (element.uuid)}
-					<ResinListElement el={element} bind:uuidVariable={selectedElementUuid} />
+					<ResinListElement
+						el={element}
+						bind:uuidVariable={selectedElementUuid}
+					/>
 				{:else}
-					<div class="flex flex-col grow w-full justify-center items-center">No elements yet.</div>
+					<div
+						class="flex flex-col grow w-full justify-center items-center"
+					>
+						No elements yet.
+					</div>
 				{/each}
 			{/key}
 		</div>
@@ -224,12 +237,14 @@ Author: Martin Bykov
 			<div class="grow"></div>
 			<div class="grid grid-cols-2 gap-2">
 				<button class="button-violet group">
-					<i class="ri-import-line text-xl not-group-hover:hidden"></i>
+					<i class="ri-import-line text-xl not-group-hover:hidden"
+					></i>
 					<i class="ri-import-fill text-xl group-hover:hidden"></i>
 					Import
 				</button>
 				<button class="button-green group">
-					<i class="ri-export-line text-xl not-group-hover:hidden"></i>
+					<i class="ri-export-line text-xl not-group-hover:hidden"
+					></i>
 					<i class="ri-export-fill text-xl group-hover:hidden"></i>
 					Export
 				</button>
@@ -289,6 +304,8 @@ Author: Martin Bykov
 		</div>
 	</div>
 	{#if selectedElementUuid != ''}
-		<ResinSidebar el={el.getElementByUuid(selectedElementUuid) as RElement} />
+		<ResinSidebar
+			el={el.getElementByUuid(selectedElementUuid) as RElement}
+		/>
 	{/if}
 </div>

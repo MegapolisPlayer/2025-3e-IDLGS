@@ -10,7 +10,7 @@ Author: Martin Bykov
 	import ResinScriptBlock from './ResinScriptBlock.svelte';
 
 	let {
-		closeModal = $bindable()
+		closeModal = $bindable(),
 	}: {
 		closeModal: boolean;
 	} = $props();
@@ -26,7 +26,9 @@ Author: Martin Bykov
 		<!-- TODO all blocks, categories -->
 	</div>
 
-	<div class="relative flex w-full grow flex-col rounded-2xl bg-neutral-600 p-5">
+	<div
+		class="relative flex w-full grow flex-col rounded-2xl bg-neutral-600 p-5"
+	>
 		<!-- TODO -->
 
 		<ResinScriptBlock />
@@ -45,7 +47,10 @@ Author: Martin Bykov
 		</button>
 		<div class="grow"></div>
 		<!-- TODO confirm modal -->
-		<button class="button-violet group" onclick={() => (closeModal = false)}>
+		<button
+			class="button-violet group"
+			onclick={() => (closeModal = false)}
+		>
 			<i class="ri-delete-bin-line not-group-hover:hidden"></i>
 			<i class="ri-delete-bin-fill group-hover:hidden"></i>
 			Discard changes

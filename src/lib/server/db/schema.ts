@@ -1,4 +1,12 @@
-import { pgTable, text, integer, timestamp, date, boolean, check } from 'drizzle-orm/pg-core';
+import {
+	pgTable,
+	text,
+	integer,
+	timestamp,
+	date,
+	boolean,
+	check,
+} from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 
 export const user = pgTable('user', {
@@ -16,13 +24,14 @@ export const user = pgTable('user', {
 	birthday: date('birthday')
 		.notNull()
 		.$defaultFn(
-			() => `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+			() =>
+				`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
 		),
 	lang: text('lang').notNull().default('en'),
 	streak: integer('streak').notNull().default(0),
 	verified: boolean('verified').notNull().default(false),
 	extended: boolean('extended').notNull().default(false),
-	admin: boolean('admin').notNull().default(false)
+	admin: boolean('admin').notNull().default(false),
 });
 
 export const userVerification = pgTable('userVerification', {
@@ -32,7 +41,7 @@ export const userVerification = pgTable('userVerification', {
 		.$defaultFn(() => crypto.randomUUID()),
 	user: integer('user')
 		.references(() => user.id)
-		.notNull()
+		.notNull(),
 });
 
 export const userSession = pgTable('userSession', {
@@ -43,7 +52,7 @@ export const userSession = pgTable('userSession', {
 	user: integer('user')
 		.references(() => user.id)
 		.notNull(),
-	expiresAt: timestamp('expiresAt').notNull()
+	expiresAt: timestamp('expiresAt').notNull(),
 });
 
 //only for admin
@@ -52,7 +61,7 @@ export const blog = pgTable('blog', {
 	text: text('text').notNull().default(''),
 	author: integer('user')
 		.references(() => user.id)
-		.notNull()
+		.notNull(),
 });
 
 export const grade = pgTable(
@@ -65,12 +74,12 @@ export const grade = pgTable(
 			.notNull(),
 		user: integer('user')
 			.references(() => user.id)
-			.notNull()
+			.notNull(),
 	},
 	(table) => [
 		check('percentageMin', sql`${table.percenage} > 0`),
-		check('percentageMax', sql`${table.percenage} <= 100`)
-	]
+		check('percentageMax', sql`${table.percenage} <= 100`),
+	],
 );
 
 export const percentageGradeValue = pgTable(
@@ -81,18 +90,19 @@ export const percentageGradeValue = pgTable(
 			.references(() => course.id)
 			.notNull(),
 		min: integer('min').notNull().default(0),
-		max: integer('max').notNull().default(0)
+		max: integer('max').notNull().default(0),
 	},
 	(table) => [
 		check('percentageMin', sql`${table.min} >= 0`),
-		check('percentageMax', sql`${table.min} <= 100`)
-	]
+		check('percentageMax', sql`${table.min} <= 100`),
+	],
 );
 
 export const course = pgTable('course', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	name: text('name').notNull().default(''),
-	surname: text('surname').notNull().default(''),
+	description: text('description').notNull().default(''),
+	subject: text('subject').notNull().default(''),
 	textbook: integer('textbook')
 		.notNull()
 		.references(() => textbook.id),
@@ -101,7 +111,10 @@ export const course = pgTable('course', {
 		.$defaultFn(() => new Date()),
 	modifiedAt: timestamp('modifiedAt')
 		.notNull()
-		.$defaultFn(() => new Date())
+		.$defaultFn(() => new Date()),
+	red: integer('red').notNull().default(255),
+	green: integer('green').notNull().default(255),
+	blue: integer('blue').notNull().default(255),
 });
 
 export const textbook = pgTable('textbook', {
@@ -109,14 +122,18 @@ export const textbook = pgTable('textbook', {
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
+	name: text('name').notNull().default(''),
 	description: text('description').notNull().default(''),
 	summary: text('summary').notNull().default(''),
+	red: integer('red').notNull().default(255),
+	green: integer('green').notNull().default(255),
+	blue: integer('blue').notNull().default(255),
 	createdAt: timestamp('createdAt')
 		.notNull()
 		.$defaultFn(() => new Date()),
 	modifiedAt: timestamp('modifiedAt')
 		.notNull()
-		.$defaultFn(() => new Date())
+		.$defaultFn(() => new Date()),
 });
 
 export const userCourseLinker = pgTable('userCourseLinker', {
@@ -127,7 +144,7 @@ export const userCourseLinker = pgTable('userCourseLinker', {
 		.notNull(),
 	user: integer('user')
 		.references(() => user.id)
-		.notNull()
+		.notNull(),
 });
 
 export const userTextbookLinker = pgTable('userCourseLinker', {
@@ -139,14 +156,14 @@ export const userTextbookLinker = pgTable('userCourseLinker', {
 		.notNull(),
 	user: integer('user')
 		.references(() => user.id)
-		.notNull()
+		.notNull(),
 });
 
 export const assignment = pgTable('assignment', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	deadline: timestamp('deadline')
 		.notNull()
-		.$defaultFn(() => new Date())
+		.$defaultFn(() => new Date()),
 });
 
 export const assignmentComment = pgTable('assignmentComment', {
@@ -157,7 +174,7 @@ export const assignmentComment = pgTable('assignmentComment', {
 	createdAt: timestamp('createdAt')
 		.notNull()
 		.$defaultFn(() => new Date()),
-	comment: text('comment').notNull().default('')
+	comment: text('comment').notNull().default(''),
 });
 
 export const question = pgTable('question', {
@@ -171,7 +188,7 @@ export const question = pgTable('question', {
 		.references(() => course.id)
 		.notNull(),
 	reportCount: integer('reportCount').notNull().default(0),
-	ai: boolean('ai').notNull().default(false)
+	ai: boolean('ai').notNull().default(false),
 });
 
 export const courseCodes = pgTable('courseCode', {
@@ -183,7 +200,7 @@ export const courseCodes = pgTable('courseCode', {
 	infinite: boolean('infinite').notNull().default(false),
 	course: integer('course')
 		.references(() => course.id)
-		.notNull()
+		.notNull(),
 });
 
 export const image = pgTable('image', {
@@ -192,7 +209,7 @@ export const image = pgTable('image', {
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
 	link: text('link').notNull().default(''),
-	alt: text('alt').notNull().default('')
+	alt: text('alt').notNull().default(''),
 });
 
 export const chapter = pgTable('chapter', {
@@ -200,9 +217,11 @@ export const chapter = pgTable('chapter', {
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
+	name: text('name').notNull(),
+	summary: text('summary').notNull(),
 	textbook: integer('textbook')
 		.references(() => textbook.id)
-		.notNull()
+		.notNull(),
 });
 
 export const article = pgTable('article', {
@@ -212,14 +231,16 @@ export const article = pgTable('article', {
 		.$defaultFn(() => crypto.randomUUID()),
 	chapter: integer('chapter')
 		.references(() => chapter.id)
-		.notNull()
+		.notNull(),
+	name: text('name').notNull(),
+	text: text('text').notNull(),
 });
 
 export const audio = pgTable('article', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	uuid: text('uuid')
 		.notNull()
-		.$defaultFn(() => crypto.randomUUID())
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const interactiveElement = pgTable('interactiveElement', {
@@ -227,17 +248,17 @@ export const interactiveElement = pgTable('interactiveElement', {
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
-	rawData: text('rawData').notNull().default('')
+	rawData: text('rawData').notNull().default(''),
 });
 
 export const setting = pgTable('setting', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	key: text('key').notNull().default(''),
-	value: text('value').notNull().default('')
+	value: text('value').notNull().default(''),
 });
 
 export const school = pgTable('school', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	name: text('name').notNull().default(''),
-	productkey: text('productkey').notNull().default('')
+	productkey: text('productkey').notNull().default(''),
 });

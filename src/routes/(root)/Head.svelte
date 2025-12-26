@@ -21,7 +21,10 @@
 			<div
 				class="absolute z-1! h-[90lvh] max-h-[90lvh] min-h-[90lvh] w-screen max-w-screen min-w-screen"
 			>
-				<img src="./testimage.jpg" alt="BG" />
+				<img
+					src="./testimage.jpg"
+					alt="BG"
+				/>
 			</div>
 
 			<!-- cover -->
@@ -35,9 +38,10 @@
 				<span class="text-emerald-500"> Digital Textbook </span>
 			</h5>
 			<p class="w-1/2 text-center text-2xl">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi iusto porro nostrum dolore
-				labore facilis obcaecati consectetur, exercitationem nesciunt dignissimos adipisci ullam
-				deleniti doloribus, at et necessitatibus sint dolor placeat!
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+				iusto porro nostrum dolore labore facilis obcaecati consectetur,
+				exercitationem nesciunt dignissimos adipisci ullam deleniti
+				doloribus, at et necessitatibus sint dolor placeat!
 			</p>
 
 			<!-- abstract + hover effects -->
@@ -61,13 +65,24 @@
 		grid w-2/3 grid-cols-3 gap-8
 	"
 			>
-				<Card delay={100} text="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
+				<Card
+					delay={100}
+					perspective={false}
+					>orem ipsum dolor sit amet consectetur adipisicing elit."</Card
+				>
 				<Card
 					delay={600}
-					text="Eum veritatis praesentium sint eveniet hic ipsum, dolor voluptate vitae, neque magnam ea
-			exercitationem"
-				/>
-				<Card delay={1100} text="enim tempora est minus delectus. Autem, assumenda quod!" />
+					perspective={false}
+				>
+					Eum veritatis praesentium sint eveniet hic ipsum, dolor
+					voluptate vitae, neque magnam ea exercitationem
+				</Card>
+				<Card
+					delay={1100}
+					perspective={false}
+				>
+					enim tempora est minus delectus. Autem, assumenda quod
+				</Card>
 			</div>
 
 			<div class="grow"></div>

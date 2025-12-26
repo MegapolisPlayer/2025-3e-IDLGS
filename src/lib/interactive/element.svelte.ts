@@ -24,7 +24,7 @@ export class RElement {
 		bgcolor: string,
 		fgcolor: string,
 		rounded: number,
-		opacity: number
+		opacity: number,
 	) {
 		this.x = x;
 		this.y = y;
@@ -48,7 +48,7 @@ export class RElement {
 			fgcolor: this.fgcolor,
 			rounded: this.rounded,
 			opacity: this.opacity,
-			uuid: this.uuid
+			uuid: this.uuid,
 		};
 	}
 }

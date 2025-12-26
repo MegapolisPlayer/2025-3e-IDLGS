@@ -38,10 +38,20 @@ export class RInteractive {
 		bgcolor: string,
 		fgcolor: string,
 		rounded: number,
-		opacity: number
+		opacity: number,
 	) {
 		this.elements.push(
-			new RElement(x, y, width, height, visible, bgcolor, fgcolor, rounded, opacity)
+			new RElement(
+				x,
+				y,
+				width,
+				height,
+				visible,
+				bgcolor,
+				fgcolor,
+				rounded,
+				opacity,
+			),
 		);
 	}
 	addElementDone(el: RElement) {
@@ -56,7 +66,7 @@ export class RInteractive {
 		return JSON.stringify({
 			elements: this.elements.map((v) => v.toObject()),
 			bgcolor: this.bgcolor,
-			aspect: this.aspect
+			aspect: this.aspect,
 		});
 	});
 }
@@ -72,8 +82,10 @@ export const getType = (el: RElement) => {
 	else if (el instanceof RElementEmbedFrame) return 'RElementEmbedFrame';
 	else if (el instanceof RElementGraph) return 'RElementGraph';
 	else if (el instanceof RElementImage) return 'RElementImage';
-	else if (el instanceof RElementInputTextArea) return 'RElementInputTextArea';
-	else if (el instanceof RElementInputTextSmall) return 'RElementInputTextSmall';
+	else if (el instanceof RElementInputTextArea)
+		return 'RElementInputTextArea';
+	else if (el instanceof RElementInputTextSmall)
+		return 'RElementInputTextSmall';
 	else if (el instanceof RElementLetterInput) return 'RElementLetterInput';
 	else if (el instanceof RElementText) return 'RElementText';
 	else if (el instanceof RElementVideoPlayer) return 'RElementVideoPlayer';
