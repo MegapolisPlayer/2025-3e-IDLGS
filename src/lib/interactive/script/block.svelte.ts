@@ -37,6 +37,9 @@ export class RScriptBlock {
 	text: string = $state("");
 	uuid: string = $state("");
 
+	commentId: number = $state(0);
+	connectedInTree: boolean = $state(false);
+
 	constructor(
 		text: string,
 		x: number,

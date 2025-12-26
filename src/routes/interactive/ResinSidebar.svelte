@@ -5,9 +5,13 @@
 	import ResinScriptEditor from './script/ResinScriptEditor.svelte';
 
 	let {
-		el
+		el,
+		mousePosX,
+		mousePosY
 	}: {
 		el: RElement;
+		mousePosX: number;
+		mousePosY: number;
 	} = $props();
 
 	let showScriptingModal = $state(false);
@@ -105,5 +109,9 @@
 </div>
 
 <ResinModal bind:showModal={showScriptingModal}>
-	<ResinScriptEditor bind:closeModal={showScriptingModal} />
+	<ResinScriptEditor 
+		bind:closeModal={showScriptingModal} 
+		{mousePosX}
+		{mousePosY}
+	/>
 </ResinModal>

@@ -39,6 +39,9 @@
 	button {
 		@apply flex flex-row items-center justify-center gap-1 rounded-lg p-3 font-medium hover:brightness-80 active:brightness-60;
 	}
+	.button-none {
+		@apply p-0! gap-1;
+	}
 	.button-primary {
 		@apply bg-linear-to-tr from-violet-700 to-emerald-500 text-white!;
 	}

@@ -12,6 +12,7 @@ Author: Martin Bykov
 	import { browser } from '$app/environment';
 	import { RESIN_MIN_ELEMENT_SIZE, type RElement } from '$lib/interactive/element.svelte';
 	import { onDestroy, onMount } from 'svelte';
+	import { RESIN_MAX_SNAP } from '$lib/interactive/interactive.svelte';
 
 	let {
 		el = $bindable(),
@@ -59,6 +60,16 @@ Author: Martin Bykov
 
 		el.x = xBegin + ((e.pageX - dragBeginX) / canvasWidth) * 100;
 		el.y = yBegin + ((e.pageY - dragBeginY) / canvasHeight) * 100;
+
+		//x snap
+		if(el.x < (50-el.width/2)+RESIN_MAX_SNAP && el.x > (50-el.width/2)-RESIN_MAX_SNAP) {
+			el.x = 50-(el.width/2);	
+		}
+
+		//y snap
+		if(el.y < (50-el.height/2)+RESIN_MAX_SNAP && el.y > (50-el.height/2)-RESIN_MAX_SNAP) {
+			el.y = 50-(el.height/2);	
+		}
 
 		return false;
 	};
@@ -108,20 +119,10 @@ Author: Martin Bykov
 		border-radius:    {el.rounded}px;
 		"
 	role="main"
-	ondragstart={(e) => {
-		e.stopPropagation();
-		isDraggingPosition = true;
-		xBegin = el.x;
-		yBegin = el.y;
-	}}
-	ondragend={() => {
-		isDraggingPosition = false;
-	}}
-	draggable="true"
 >
 	<button
 		class="
-	h-full w-full overflow-hidden
+	h-full w-full overflow-hidden absolute z-36 top-0 left-0
 	"
 		id={el.uuid}
 		style="
@@ -134,18 +135,24 @@ Author: Martin Bykov
 			if (uuidVariable == el.uuid) uuidVariable = '';
 			else uuidVariable = el.uuid;
 		}}
+		ondragstart={(e) => {
+		e.stopPropagation();
+		isDraggingPosition = true;
+		xBegin = el.x;
+		yBegin = el.y;
+	}}
+	ondragend={() => {
+		isDraggingPosition = false;
+	}}
+	draggable="true"
 		aria-label="RESIN ELEMENT"
 	>
-		
-
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque fugiat dignissimos, facilis et
-		suscipit repudiandae molestias placeat sint. Ad voluptates tempora mollitia illo quas error
-		commodi modi minus fuga repudiandae.
+		<div class="w-full h-full"></div>
 	</button>
 
 	{#if uuidVariable == el.uuid}
 		<div
-			class="absolute right-10 bottom-10 z-50 flex flex-row items-center gap-0 rounded-full bg-emerald-500 text-2xl opacity-100!"
+			class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-2xl opacity-100! text-violet-700"
 			role="main"
 			ondragstart={(e) => {
 				e.stopPropagation();
@@ -158,9 +165,9 @@ Author: Martin Bykov
 				isDragging = false;
 			}}
 			draggable="true"
+			aria-label="Element size"
 		>
 			<i class="ri-drag-move-2-line"></i>
-			<span class="p-1 text-base"> Element size </span>
 		</div>
 	{/if}
 </div>

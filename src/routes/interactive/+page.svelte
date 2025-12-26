@@ -218,7 +218,7 @@ Author: Martin Bykov
 				{/key}
 			</span>
 			<div
-				class="absolute right-10 bottom-10 z-40 flex flex-row items-center gap-0 rounded-full bg-violet-700 text-2xl"
+				class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-emerald-500 text-2xl"
 				role="main"
 				ondragstart={() => {
 					isDragging = true;
@@ -233,11 +233,14 @@ Author: Martin Bykov
 				}}
 			>
 				<i class="ri-drag-move-2-line"></i>
-				<span class="p-1 text-base"> Canvas size </span>
 			</div>
 		</div>
 	</div>
 	{#if selectedElementUuid != ''}
-		<ResinSidebar el={el.getElementByUuid(selectedElementUuid) as RElement} />
+		<ResinSidebar 
+			el={el.getElementByUuid(selectedElementUuid) as RElement}
+			{mousePosX}
+			{mousePosY}
+		 />
 	{/if}
 </div>

@@ -38,3 +38,5 @@ onclick={() => {
 >
 	{comment.text}
 </button>
+
+<!-- TODO connect to specific block -->

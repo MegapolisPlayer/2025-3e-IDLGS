@@ -20,16 +20,16 @@ import { RElementLetterInput } from './elements/letterinput';
 import { RElementText } from './elements/text';
 import { RElementVideoPlayer } from './elements/video';
 import type { RScriptBlock } from './script/block.svelte';
-import { RScriptBlockVariableDefinition } from './script/blocks/variable';
+import { RScriptBlockVariableRead, RScriptBlockVariableWrite } from './script/blocks/variable';
 import { RProgram } from './script/program.svelte';
 
 export const RESIN_MAX_ELEMENTS = 1000;
+export const RESIN_MAX_SNAP = 5;
 
 //main element class
 //array is polymorphic
 export class RInteractive {
 	elements: RElement[] = $state([]);
-	blocks: RScriptBlock[] = $state([]);
 	bgcolor = $state('#dddddd');
 
 	//aspect ratio as x/y
@@ -73,26 +73,10 @@ export class RInteractive {
 }
 
 export const getType = (el: RElement) => {
-	if (el instanceof RElementAIChat) return 'RElementAIChat';
-	else if (el instanceof RElementArrowPoint) return 'RElementArrowPoint';
-	else if (el instanceof RElementAudioPlayer) return 'RElementAudioPlayer';
-	else if (el instanceof RElementCard) return 'RElementCard';
-	else if (el instanceof RElementCartesian) return 'RElementCartesian';
-	else if (el instanceof RElementCheckbox) return 'RElementCheckbox';
-	else if (el instanceof RElementCodeInput) return 'RElementCodeInput';
-	else if (el instanceof RElementEmbedFrame) return 'RElementEmbedFrame';
-	else if (el instanceof RElementGraph) return 'RElementGraph';
-	else if (el instanceof RElementImage) return 'RElementImage';
-	else if (el instanceof RElementInputTextArea) return 'RElementInputTextArea';
-	else if (el instanceof RElementInputTextSmall) return 'RElementInputTextSmall';
-	else if (el instanceof RElementLetterInput) return 'RElementLetterInput';
-	else if (el instanceof RElementText) return 'RElementText';
-	else if (el instanceof RElementVideoPlayer) return 'RElementVideoPlayer';
-	else return 'RElement?';
+	return el.constructor.name;
 };
 
 
 export const getBlockType = (b: RScriptBlock) => {
-	if(b instanceof RScriptBlockVariableDefinition) return 'RScriptBlockVariableDefinition';
-	//TODO
+	return b.constructor.name;
 };
