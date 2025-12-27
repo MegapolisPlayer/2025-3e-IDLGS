@@ -33,7 +33,7 @@
 
 				<WideCard>
 					<div
-						class="grid w-full grid-cols-2 gap-10 *:flex *:flex-col *:gap-2 min-h-[30vh]"
+						class="grid min-h-[30vh] w-full grid-cols-2 gap-10 *:flex *:flex-col *:gap-2"
 					>
 						<div>
 							<div

@@ -69,7 +69,9 @@
 
 			<PasswordInput formName="password" />
 
-			<div class="flex w-full flex-row items-center gap-2 text-emerald-500 font-medium">
+			<div
+				class="flex w-full flex-row items-center gap-2 font-medium text-emerald-500"
+			>
 				<input
 					name="remember"
 					type="checkbox"
@@ -81,7 +83,6 @@
 			{#if ready}
 				<div use:turnstile></div>
 			{/if}
-
 
 			<Button
 				emoji="login-box"
@@ -103,16 +104,17 @@
 				{m.signUp()}
 			</Button>
 
-			<HorizontalLine 
-				color="rgb(0, 128, 0)"
-			/>
+			<HorizontalLine color="rgb(0, 128, 0)" />
 
 			<div
 				class="flex w-full flex-row items-center justify-center gap-2 text-sm text-emerald-500"
 			>
 				<span class="font-medium">
-					{m.forgotPassword()} 
-					<a href="/forgot/" class="text-violet-700">
+					{m.forgotPassword()}
+					<a
+						href="/forgot/"
+						class="text-violet-700"
+					>
 						{m.reset()}
 					</a>
 				</span>

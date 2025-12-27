@@ -11,7 +11,7 @@
 		delay = 0,
 		perspective,
 		onclick = () => {},
-		forceSquare = true
+		forceSquare = true,
 	} = $props();
 
 	let rect: DOMRect | undefined = $state(undefined);

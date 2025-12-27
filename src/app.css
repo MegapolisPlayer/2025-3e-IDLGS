@@ -84,7 +84,7 @@
 	}
 
 	nav a {
-		@apply  text-emerald-500 decoration-emerald-500;
+		@apply text-emerald-500 decoration-emerald-500;
 	}
 
 	nav a:hover {

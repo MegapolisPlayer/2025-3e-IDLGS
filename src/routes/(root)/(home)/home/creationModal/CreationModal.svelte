@@ -16,7 +16,7 @@
 	} = $props();
 
 	let stage = $state(0);
-	let selected = $state("");
+	let selected = $state('');
 </script>
 
 <Modal
@@ -25,11 +25,14 @@
 >
 	{#if stage == 0}
 		<!-- both -->
-		<SelectType bind:value={selected} bind:stage />
+		<SelectType
+			bind:value={selected}
+			bind:stage
+		/>
 	{/if}
-	
+
 	<!-- course only -->
-	{#if selected=="course"}
+	{#if selected == 'course'}
 		{#if stage == 1}
 			<CourseTextbookSelect />
 		{:else if stage == 2}
@@ -40,16 +43,16 @@
 	{/if}
 
 	<!-- textbook only -->
-	 {#if selected=="textbook"}
+	{#if selected == 'textbook'}
 		{#if stage == 2}
 			<TextbookBasicInfo />
 		{:else if stage == 3}
 			<TextbookArticles />
 		{/if}
-	 {/if}
+	{/if}
 
 	<!-- both -->
-	 {#if stage == 4}
+	{#if stage == 4}
 		<Ownership />
 	{:else if stage == 5}
 		<Review />

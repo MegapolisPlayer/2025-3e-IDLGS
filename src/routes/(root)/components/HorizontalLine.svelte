@@ -1,6 +1,6 @@
 <script lang="ts">
 	let {
-		text = "",
+		text = '',
 		color,
 	}: {
 		text?: string;

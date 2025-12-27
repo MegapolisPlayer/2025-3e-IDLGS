@@ -18,14 +18,14 @@
 	class="fixed top-0 left-0 z-50! flex h-[10lvh] w-full flex-col items-center justify-center bg-violet-700 max-lg:hidden print:hidden"
 >
 	<div
-		class="fixed z-40! flex w-8/10 flex-row items-center gap-10 text-white! font-medium"
+		class="fixed z-40! flex w-8/10 flex-row items-center gap-10 font-medium text-white!"
 	>
 		<Logo whiteBackground={false} />
 
 		<LangDropdown
 			css="button-transparent"
-			cssLocal={""}
-			cssSelector={"text-violet-700 hover:text-emerald-500 bg-white hover:bg-emerald-500 hover:text-white"}
+			cssLocal={''}
+			cssSelector={'text-violet-700 hover:text-emerald-500 bg-white hover:bg-emerald-500 hover:text-white'}
 			bind:langValue={value}
 		/>
 
