@@ -70,14 +70,14 @@ PLEASE follow ALL formats so that parsing is not too painful for the developers.
 //source from CF workers - https://developers.cloudflare.com/workers-ai/models/
 //max limit 10000 Neurons a day!
 //Qwen works well and is cheap for the 30b params (4600/Million input tokens, 30000/Million output tokens AND 30B params)
-export const CF_MODEL_ID = "@cf/qwen/qwen3-30b-a3b-fp8";
+export const CF_MODEL_ID = '@cf/qwen/qwen3-30b-a3b-fp8';
 
 //type and lang filled in
 export const QUESTION_PROMPT = `
 Generate a question of type %%TYPE%% from this paragraph, in %%LANG%%.
 Question list:
 %%QUESTIONS%%
-`
+`;
 
 /*  
 test paragraph by Kira + prompt

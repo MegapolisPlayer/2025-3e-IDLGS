@@ -190,7 +190,7 @@ export const question = pgTable('question', {
 	reportCount: integer('reportCount').notNull().default(0),
 	ai: boolean('ai').notNull().default(false),
 	//aiTextRepresentation
-	aitr: text('aitr').notNull().default(""),
+	aitr: text('aitr').notNull().default(''),
 });
 
 export const courseCodes = pgTable('courseCode', {

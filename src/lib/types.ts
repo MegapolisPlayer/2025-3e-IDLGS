@@ -53,8 +53,16 @@ export type CourseType = {
 //Question generation
 
 export type AIMessageType = {
-	role: "system" | "user";
+	role: 'system' | 'user';
 	content: string;
 };
 
-export type AIGenerationQuestionType = "QT:ABC" | "QT:ABCD" | "QT:ABCDE" | "QT:ABCDEF" | "QT:TF" | "QT:FILL" | "QT:OPEN" | "QT:CROSS";
+export type AIGenerationQuestionType =
+	| 'QT:ABC'
+	| 'QT:ABCD'
+	| 'QT:ABCDE'
+	| 'QT:ABCDEF'
+	| 'QT:TF'
+	| 'QT:FILL'
+	| 'QT:OPEN'
+	| 'QT:CROSS';
