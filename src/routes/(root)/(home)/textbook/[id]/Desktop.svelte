@@ -12,14 +12,12 @@
 </script>
 
 <!-- TODO finish, this is just desktop UI mockup -->
-<div class="
-	relative flex grow flex-row justify-center w-full max-lg:hidden
-	*:flex *:flex-col
-">
-	<div class="min-w-1/5 bg-red-900">
-		Sidebar
-	</div>
-	<div class="bg-green-900 grow">
-		Article
-	</div>
+<div
+	class="
+	relative flex w-full grow flex-row justify-center *:flex
+	*:flex-col max-lg:hidden
+"
+>
+	<div class="min-w-1/5 bg-red-900">Sidebar</div>
+	<div class="grow bg-green-900">Article</div>
 </div>

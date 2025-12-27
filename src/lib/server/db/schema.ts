@@ -32,8 +32,12 @@ export const user = pgTable('user', {
 	verified: boolean('verified').notNull().default(false),
 	extended: boolean('extended').notNull().default(false),
 	admin: boolean('admin').notNull().default(false),
-	readOnlyKey: text('readOnlyKey').notNull().$defaultFn(() => crypto.randomUUID()),
-	apiKey: text('apiKey').notNull().$defaultFn(() => crypto.randomUUID()),
+	readOnlyKey: text('readOnlyKey')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
+	apiKey: text('apiKey')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const userVerification = pgTable('userVerification', {
@@ -214,7 +218,7 @@ export const image = pgTable('image', {
 		.$defaultFn(() => crypto.randomUUID()),
 	link: text('link').notNull().default(''),
 	alt: text('alt').notNull().default(''),
-	refCount: integer('refCount').notNull().default(1)
+	refCount: integer('refCount').notNull().default(1),
 });
 
 export const chapter = pgTable('chapter', {

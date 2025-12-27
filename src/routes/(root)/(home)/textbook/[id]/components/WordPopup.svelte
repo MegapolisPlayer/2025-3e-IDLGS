@@ -2,6 +2,4 @@
 	//TODO kira wanted this
 </script>
 
-<div class="flex flex-row gap-2">
-
-</div>
+<div class="flex flex-row gap-2"></div>
