@@ -1,7 +1,7 @@
 import type { UserType } from '$lib/types';
 import { checkSetting } from '../settings';
 import * as crypto from 'node:crypto';
-import * as dataSchema from '$lib/server/db/schema.js';
+import { schema } from '$lib/server/db/mainSchema';
 import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import type { DBType } from '../db/types';
@@ -70,6 +70,9 @@ export const hashPassword = (
 export const createUser = async (
 	db: DBType,
 	email: string,
+	name: string,
+	surname: string,
+	degree: string,
 	password: string,
 	birthday: Date,
 	lang: string,
@@ -79,9 +82,12 @@ export const createUser = async (
 
 	return (
 		await db
-			.insert(dataSchema.user)
+			.insert(schema.user)
 			.values({
-				email: email,
+				name,
+				surname,
+				degree,
+				email,
 				password: pass.password,
 				salt: pass.salt,
 				iterations: pass.amount,
@@ -103,23 +109,23 @@ export const getUser = async (
 
 	const token = await event.locals.db
 		.select()
-		.from(dataSchema.userSession)
-		.where(eq(dataSchema.userSession.token, cookie))
+		.from(schema.userSession)
+		.where(eq(schema.userSession.token, cookie))
 		.limit(1);
 	if (token.length == 0) return undefined;
 
 	if (token[0].expiresAt <= new Date()) {
 		await event.locals.db
-			.delete(dataSchema.userSession)
-			.where(eq(dataSchema.userSession.token, cookie));
+			.delete(schema.userSession)
+			.where(eq(schema.userSession.token, cookie));
 		return undefined;
 	}
 
 	return (
 		await event.locals.db
 			.select()
-			.from(dataSchema.user)
-			.where(eq(dataSchema.user.id, token[0].user))
+			.from(schema.user)
+			.where(eq(schema.user.id, token[0].user))
 	)[0];
 };
 

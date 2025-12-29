@@ -1,4 +1,4 @@
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
-import * as dataSchema from '$lib/server/db/schema';
+import { schema } from '$lib/server/db/mainSchema';
 
-export type DBType = PostgresJsDatabase<typeof dataSchema>;
+export type DBType = PostgresJsDatabase<typeof schema>;

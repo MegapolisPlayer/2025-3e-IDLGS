@@ -27,8 +27,8 @@
 	{onclick}
 >
 	<div class="flex w-full grow flex-col">
-		<h2></h2>
-		<p></p>
+		<h2 class="w-full text-xl">{textbook.name}</h2>
+		<p class="w-full text-sm opacity-70">{textbook.description}</p>
 	</div>
 </Card>
 

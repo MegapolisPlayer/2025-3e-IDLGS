@@ -1,15 +1,19 @@
-import * as dataSchema from '$lib/server/db/schema.js';
+import { schema } from '$lib/server/db/mainSchema';
 import { fail, redirect } from '@sveltejs/kit';
 import { getUser } from '$lib/server/user/index.js';
+import { loadCourses } from '$lib/server/loaders/course.js';
+import { loadTextbooks } from '$lib/server/loaders/textbook.js';
 
 export const load = async (event) => {
-	if (!(await event.parent()).user) {
+	const user = (await event.parent()).user;
+
+	if (!user) {
 		redirect(303, '/login');
 	}
 
 	return {
-		//TODO fix and abstract to loadCourses function
-		courses: await event.locals.db.select().from(dataSchema.course),
+		courses: await loadCourses(user),
+		textbooks: await loadTextbooks(user),
 	};
 };
 

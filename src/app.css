@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Finlandica:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Finlandica:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
@@ -8,11 +7,12 @@
 	--font-finland: 'Finlandica', sans-serif;
 	--font-inter: 'Inter', sans-serif;
 	--font-anon: 'Anonymous Pro', monospace;
+	--font-lexend: 'Lexend', sans-serif;
 }
 
 @layer base {
 	:root {
-		@apply font-inter font-light wrap-break-word text-white max-lg:text-lg;
+		@apply font-lexend font-light wrap-break-word text-white max-lg:text-lg;
 	}
 }
 
@@ -55,12 +55,15 @@
 	.button-green {
 		@apply bg-emerald-500 text-white!;
 	}
+	.button-white {
+		@apply bg-white text-violet-700;
+	}
 	.button-transparent {
 		@apply bg-transparent font-light;
 	}
 
 	.input-text {
-		@apply w-full rounded-lg border-2 border-emerald-500 bg-black/20 text-violet-700 placeholder:font-light! placeholder:text-violet-700/50;
+		@apply rounded-lg border-0 bg-neutral-700/20 text-white placeholder:font-light! placeholder:text-white placeholder:opacity-80 backdrop:blur-2xl;
 	}
 	.input-checkbox {
 		@apply appearance-auto rounded-lg bg-white! text-violet-700 accent-violet-700 outline-0 hover:brightness-80;
@@ -83,11 +86,18 @@
 		@apply underline decoration-dotted decoration-1;
 	}
 
-	nav a {
+	nav#loggedOutNavbar a {
 		@apply text-emerald-500 decoration-emerald-500;
 	}
 
-	nav a:hover {
+	nav#loggedOutNavbar a:hover {
 		@apply text-violet-700 decoration-violet-700;
+	}
+
+	nav#loggedInNavbar a {
+		@apply text-white decoration-white;
+	}
+	nav#loggedInNavbar a:hover {
+		@apply text-emerald-500 decoration-emerald-500;
 	}
 }

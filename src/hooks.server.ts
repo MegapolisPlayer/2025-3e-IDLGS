@@ -3,7 +3,7 @@ import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
 import { createUser } from '$lib/server/user';
 import { env } from '$env/dynamic/private';
-import * as dataSchema from '$lib/server/db/schema.js';
+import { schema } from '$lib/server/db/mainSchema';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
@@ -45,7 +45,7 @@ const handleDatabase: Handle = async ({ event, resolve }) => {
 			max: 1,
 			max_lifetime: 60,
 		}),
-		{ schema: dataSchema },
+		{ schema: schema },
 	);
 
 	return resolve(event);
@@ -54,12 +54,13 @@ const handleDatabase: Handle = async ({ event, resolve }) => {
 //dev only
 const handleDefaultUser: Handle = async ({ event, resolve }) => {
 	if (env.DEV == 'true') {
-		if (
-			(await event.locals.db.select().from(dataSchema.user)).length == 0
-		) {
+		if ((await event.locals.db.select().from(schema.user)).length == 0) {
 			await createUser(
 				event.locals.db,
 				env.DEFAULT_EMAIL,
+				'IDLGS',
+				'Administration',
+				'',
 				env.DEFAULT_PASSWORD,
 				new Date(2008, 4, 25, 5, 31, 0, 0),
 				'pl',

@@ -7,6 +7,8 @@
 	import PasswordInput from '../../components/PasswordInput.svelte';
 	import { browser } from '$app/environment';
 	import { getLocale } from '$lib/paraglide/runtime';
+	import Card from '../../components/Card.svelte';
+	import WordBackground from '../../components/WordBackground.svelte';
 
 	let ready = $state(false);
 
@@ -20,7 +22,7 @@
 			const id = window.turnstile.render(node, {
 				sitekey: '0x4AAAAAABlMZWB6LlSqCWXH',
 				size: 'flexible',
-				theme: 'light',
+				theme: 'dark',
 				'refresh-timeout': 'auto',
 				'refresh-expired': 'auto',
 				language: getLocale() as string,
@@ -50,75 +52,88 @@
 {#key ready}
 	<div
 		data-sveltekit-reload
-		class="flex w-full grow flex-col items-center justify-center gap-2 bg-linear-to-tr from-emerald-500 to-violet-700 p-10"
+		class="relative flex w-full grow flex-col items-center justify-center gap-2 bg-linear-to-tr from-emerald-500 to-violet-700 p-10"
 	>
-		<form
-			class="flex flex-col gap-2 rounded-2xl border border-emerald-500 bg-white p-5 shadow-lg max-lg:min-w-9/10 lg:min-w-1/3"
-			method="post"
-			action="?/login"
-			use:enhance
+		<WordBackground />
+		<Card
+			css="max-lg:min-w-9/10 lg:min-w-1/3 z-11"
+			perspective={false}
+			forceSquare={false}
+			padding="p-3"
 		>
-			<h2 class="text-violet-700">{m.login()}</h2>
-
-			<input
-				name="email"
-				type="text"
-				class="input-text"
-				placeholder={m.enterYourEmail()}
-			/>
-
-			<PasswordInput formName="password" />
-
-			<div
-				class="flex w-full flex-row items-center gap-2 font-medium text-emerald-500"
+			<form
+				class="flex w-full grow flex-col gap-2"
+				method="post"
+				action="?/login"
+				use:enhance
 			>
+				<h2 class="w-full text-left text-white">{m.login()}</h2>
+
 				<input
-					name="remember"
-					type="checkbox"
-					class="input-checkbox"
+					name="email"
+					type="text"
+					class="input-text w-full"
+					placeholder={m.enterYourEmail()}
 				/>
-				<label for="remember">{m.rememberMe()}</label>
-			</div>
 
-			{#if ready}
-				<div use:turnstile></div>
-			{/if}
+				<PasswordInput
+					formName="password"
+					cssClass="w-full"
+				/>
 
-			<Button
-				emoji="login-box"
-				btn="button-primary"
-				type="submit"
-			>
-				{m.login()}
-			</Button>
+				<div
+					class="flex w-full flex-row items-center gap-2 font-medium text-white"
+				>
+					<input
+						name="remember"
+						type="checkbox"
+						class="input-checkbox"
+					/>
+					<label for="remember">{m.rememberMe()}</label>
+				</div>
 
-			<HorizontalLine
-				text={m.orIfYouDontHaveAnAccount()}
-				color="rgb(0, 128, 0)"
-			/>
+				{#if ready}
+					{#key ready}
+						<div use:turnstile></div>
+					{/key}
+				{/if}
 
-			<Button
-				emoji="user-add"
-				btn="button-green"
-			>
-				{m.signUp()}
-			</Button>
+				<Button
+					emoji="login-box"
+					btn="button-primary"
+					type="submit"
+				>
+					{m.login()}
+				</Button>
 
-			<HorizontalLine color="rgb(0, 128, 0)" />
+				<HorizontalLine
+					text={m.orIfYouDontHaveAnAccount()}
+					color="rgb(255, 255, 255)"
+				/>
 
-			<div
-				class="flex w-full flex-row items-center justify-center gap-2 text-sm text-emerald-500"
-			>
-				<span class="font-medium">
-					{m.forgotPassword()}
-					<a
-						href="/forgot/"
-						class="text-violet-700"
-					>
-						{m.reset()}
-					</a>
-				</span>
-			</div>
-		</form>
+				<Button
+					emoji="user-add"
+					btn="button-violet"
+				>
+					{m.signUp()}
+				</Button>
+
+				<HorizontalLine color="rgb(255, 255, 255)" />
+
+				<div
+					class="flex w-full flex-row items-center justify-center gap-2 text-sm text-white"
+				>
+					<span class="font-medium">
+						{m.forgotPassword()}
+						<a
+							href="/forgot/"
+							class="text-violet-300"
+						>
+							{m.reset()}
+						</a>
+					</span>
+				</div>
+			</form>
+		</Card>
 	</div>
 {/key}

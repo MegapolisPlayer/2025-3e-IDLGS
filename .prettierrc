@@ -7,7 +7,7 @@
 	"experimentalOperatorPosition": "end",
 	"experimentalTernaries": false,
 	"singleQuote": true,
-	"jsxSingleQuote": false,
+	"jsxSingleQuote": true,
 	"quoteProps": "as-needed",
 	"trailingComma": "all",
 	"singleAttributePerLine": true,
@@ -20,10 +20,7 @@
 	"tabWidth": 4,
 	"useTabs": true,
 	"embeddedLanguageFormatting": "auto",
-	"plugins": [
-		"prettier-plugin-svelte",
-		"prettier-plugin-tailwindcss"
-	],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"overrides": [
 		{
 			"files": "*.svelte",

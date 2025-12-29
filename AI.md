@@ -1,5 +1,7 @@
 # DO NOT USE AI FOR GENERATING FULL CODE!
+
 ### Allowed (and encouraged!) uses are:
+
 - Generating boilerplate code
 - Generating translations (messages/XX.json stuff)
 - Generating tests (but check them!)
@@ -7,6 +9,7 @@
 - Bugfixing and brainstorming
 
 ### Forbidden uses are:
+
 - Generating full code files
 - Generating complex algorithms
 - Any use that results in unreviewed code being merged into the codebase

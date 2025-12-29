@@ -7,6 +7,7 @@ Author: Martin Bykov
 -->
 
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import type { RScriptBlock } from '$lib/interactive/script/block.svelte';
 	import type { RProgram } from '$lib/interactive/script/program.svelte';
 	import { m } from '$lib/paraglide/messages';
@@ -55,6 +56,8 @@ Author: Martin Bykov
 	};
 
 	onMount(() => {
+		if (!browser) return;
+
 		canvas = document.getElementById(id) as HTMLCanvasElement;
 		context = canvas.getContext('2d') as CanvasRenderingContext2D;
 
@@ -76,6 +79,8 @@ Author: Martin Bykov
 		addEventListener('dragover', odoHandler);
 	});
 	onDestroy(() => {
+		if (!browser) return;
+
 		removeEventListener('dragover', odoHandler);
 	});
 </script>

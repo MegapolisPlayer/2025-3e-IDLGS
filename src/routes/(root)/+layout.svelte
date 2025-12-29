@@ -12,8 +12,8 @@
 	class="flex min-h-screen w-screen max-w-screen min-w-screen grow flex-col overflow-x-hidden overflow-y-scroll"
 >
 	{#if data.user}
-		<NavbarLoggedIn />
-		<NavbarLoggedInMobile />
+		<NavbarLoggedIn user={data.user} />
+		<NavbarLoggedInMobile user={data.user} />
 	{:else}
 		<Navbar />
 		<NavbarMobile />

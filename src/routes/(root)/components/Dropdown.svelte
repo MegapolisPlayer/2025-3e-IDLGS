@@ -29,9 +29,9 @@
 			<i class="ri-{icon}-fill group-hover:hidden"></i>
 			{content}
 			{#if inUse}
-				<i class="ri-arrow-up-fill"></i>
+				<i class="ri-arrow-up-s-fill"></i>
 			{:else}
-				<i class="ri-arrow-down-fill"></i>
+				<i class="ri-arrow-down-s-fill"></i>
 			{/if}
 
 			<div

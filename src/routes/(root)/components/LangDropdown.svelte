@@ -1,16 +1,16 @@
 <script lang="ts">
 	import Dropdown from './Dropdown.svelte';
 	import { m } from '$lib/paraglide/messages';
-	import { locales } from '$lib/paraglide/runtime';
+	import { getLocale, locales } from '$lib/paraglide/runtime';
 
 	let { langValue = $bindable(''), css, cssLocal, cssSelector } = $props();
 </script>
 
 <Dropdown
-	icon="global"
+	icon=""
 	downDirection={true}
-	css="{css} font-medium"
-	content={m.language()}
+	css="{css} font-medium ps-0! pe-0!"
+	content={m.languageName({}, { locale: getLocale() })}
 >
 	<ul
 		class="flex w-full grow flex-col rounded-lg {cssLocal} font-medium! **:font-medium!"

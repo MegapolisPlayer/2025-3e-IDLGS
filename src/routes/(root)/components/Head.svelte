@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Card from './Card.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import Button from './Button.svelte';
+	import { goto } from '$app/navigation';
+	import { fade, slide } from 'svelte/transition';
+	import LearnMoreHeadCard from './LearnMoreHeadCard.svelte';
 
 	let ready = $state(false);
 
@@ -10,17 +13,15 @@
 	});
 </script>
 
-<!-- TODO abstract common elements into classes, make page for testing!!! -->
-<!-- TODO transitions -->
-
+<!-- 94svh because header is 6svh -->
 {#if ready}
 	{#key ready}
 		<div
-			class="relative flex h-[90lvh] w-full flex-col items-center justify-center gap-6 overflow-hidden bg-violet-800 text-neutral-100 *:z-3"
+			class="relative flex h-[94svh] w-full flex-col items-center justify-center gap-6 overflow-hidden bg-violet-800 text-neutral-100 *:z-3"
 		>
 			<!-- bg image -->
 			<div
-				class="absolute z-1! h-[90lvh] max-h-[90lvh] min-h-[90lvh] w-screen max-w-screen min-w-screen"
+				class="absolute z-1! h-[94svh] max-h-[94svh] min-h-[94svh] w-screen max-w-screen min-w-screen"
 			>
 				<img
 					src="./testimage.jpg"
@@ -34,34 +35,83 @@
 			<div class="grow"></div>
 
 			<h5 class="flex flex-col items-center gap-2">
-				<span class="m-0 p-0 text-4xl leading-9 font-medium"
-					>{m.electronicIntegratedAiPowered()}</span
+				<span
+					class="m-0 p-0 text-4xl leading-9 font-medium"
+					in:fade|global={{ duration: 500, delay: 100 }}
 				>
-				<span class="text-7xl font-bold text-emerald-500"
-					>{m.learningAndGradingSystem()}</span
+					{m.fullyDigitalIntegratedAiPowered()}
+				</span>
+				<span
+					class="flex flex-row gap-4 text-7xl font-bold text-white **:decoration-5"
+					in:fade|global={{ duration: 500, delay: 500 }}
 				>
+					<!-- always 3 words -->
+					<span
+						class="underline decoration-violet-700 decoration-dashed"
+					>
+						{m.textbookAndClassroom().split(' ')[0]}
+					</span>
+					<span>
+						{m.textbookAndClassroom().split(' ')[1]}
+					</span>
+					<span
+						class="underline decoration-emerald-500 decoration-dotted"
+					>
+						{m.textbookAndClassroom().split(' ')[2]}
+					</span>
+				</span>
 			</h5>
-			<p class="w-1/2 text-center text-2xl">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-				iusto porro nostrum dolore labore facilis obcaecati consectetur,
-				exercitationem nesciunt dignissimos adipisci ullam deleniti
-				doloribus, at et necessitatibus sint dolor placeat!
+			<p class="flex flex-row gap-2 text-center text-2xl">
+				<span in:slide|global={{ duration: 500, delay: 600 }}>
+					{m.easyToUse()}.
+				</span>
+				<span in:slide|global={{ duration: 500, delay: 900 }}>
+					{m.powerful()}.
+				</span>
+				<span in:slide|global={{ duration: 500, delay: 1200 }}>
+					{m.flexible()}.
+				</span>
+				<span in:slide|global={{ duration: 500, delay: 1500 }}>
+					{m.withAI()}.
+				</span>
+				<span
+					in:slide|global={{ duration: 500, delay: 2000 }}
+					class="font-bold"
+				>
+					{m.forAll()}.
+				</span>
 			</p>
 
 			<!-- abstract + hover effects -->
 			<div class="grid grid-cols-2 gap-4 *:text-xl">
-				<a
-					class="button-primary button"
-					href="/login"
+				<span
+					class="*:h-full *:w-full"
+					in:fade|global={{ duration: 500, delay: 600 }}
 				>
-					Log in
-				</a>
-				<a
-					class="button-violet button"
-					href="/contact"
+					<Button
+						emoji="login-box"
+						btn="button-primary"
+						onclick={() => {
+							goto('/login');
+						}}
+					>
+						{m.login()}
+					</Button>
+				</span>
+				<span
+					class="*:h-full *:w-full"
+					in:fade|global={{ duration: 500, delay: 1100 }}
 				>
-					Request a demo
-				</a>
+					<Button
+						emoji="survey"
+						btn="button-violet"
+						onclick={() => {
+							goto('/#contact');
+						}}
+					>
+						{m.requestADemo()}
+					</Button>
+				</span>
 			</div>
 
 			<div
@@ -69,24 +119,21 @@
 		grid w-2/3 grid-cols-3 gap-8
 	"
 			>
-				<Card
-					delay={100}
-					perspective={true}
-					>orem ipsum dolor sit amet consectetur adipisicing elit."</Card
-				>
-				<Card
-					delay={600}
-					perspective={true}
-				>
-					Eum veritatis praesentium sint eveniet hic ipsum, dolor
-					voluptate vitae, neque magnam ea exercitationem
-				</Card>
-				<Card
-					delay={1100}
-					perspective={true}
-				>
-					enim tempora est minus delectus. Autem, assumenda quod
-				</Card>
+				<LearnMoreHeadCard
+					delay={2500}
+					title={m.innovative()}
+					text={m.innovativeTextMicrolearningPsychologyMotivation()}
+				/>
+				<LearnMoreHeadCard
+					delay={3000}
+					title={m.designedWithCare()}
+					text={m.designedWithCareText()}
+				/>
+				<LearnMoreHeadCard
+					delay={3500}
+					title={m.AIPowered()}
+					text={m.AIPoweredTextQuestionGenerationTestGenerationAntiCheatingRephrasing()}
+				/>
 			</div>
 
 			<div class="grow"></div>

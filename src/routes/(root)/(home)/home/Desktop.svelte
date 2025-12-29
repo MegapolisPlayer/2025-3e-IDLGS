@@ -6,6 +6,7 @@
 	import { writeDays } from '$lib/plural';
 	import CreationModal from './creationModal/CreationModal.svelte';
 	import CourseCard from './components/CourseCard.svelte';
+	import type { CourseType, TextbookType, UserType } from '$lib/types';
 
 	let ready = $state(false);
 	let creationModal = $state(false);
@@ -14,7 +15,17 @@
 		ready = true;
 	});
 
-	let { data } = $props();
+	let {
+		data,
+	}: {
+		data: {
+			courses: CourseType[];
+			textbooks: TextbookType[];
+			user: UserType;
+		};
+	} = $props();
+
+	let searchValue = $state('');
 </script>
 
 {#if ready}
@@ -28,7 +39,7 @@
 			<div class="z-3 flex w-3/4 grow flex-col gap-2">
 				<div class="min-h-[5vh]"></div>
 				<h2 class="w-full text-left">
-					{m.welcomeBackMessageName({ name: 'NAME TODO' })}
+					{m.welcomeBackMessageName({ name: data.user.name })}
 				</h2>
 
 				<WideCard>
@@ -68,13 +79,23 @@
 				</WideCard>
 
 				<div class="h-[5vh]"></div>
-				<h2 class="w-full text-left">{m.coursesAndTextbooks()}</h2>
+				<div class="flex w-full grow flex-row gap-2">
+					<h2 class="text-left">{m.coursesAndTextbooks()}</h2>
+					<div class="grow"></div>
+					<input
+						type="text"
+						bind:value={searchValue}
+						class="input-text w-2/5"
+						placeholder={m.searchCoursesAndTextbooks()}
+					/>
+				</div>
 				<div class="grid grid-cols-4 gap-2">
 					<Card
 						perspective={false}
 						onclick={() => {
 							creationModal = true;
 						}}
+						hover={true}
 					>
 						<div
 							class="group flex w-full grow flex-col items-center justify-center gap-2"
@@ -93,11 +114,7 @@
 						</div>
 					</Card>
 
-					<!-- TEMP list of cards -->
-					{#each { length: 15 } as a, i (i)}
-						<!-- temp eslint workaround TODO remove -->
-						<span class="hidden">{a}</span>
-
+					{#each data.courses as course, i (course.uuid)}
 						<CourseCard
 							perspective={false}
 							delay={i * 100}

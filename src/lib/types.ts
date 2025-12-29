@@ -10,6 +10,10 @@ export type UserType = {
 	verified: boolean;
 	extended: boolean;
 	admin: boolean;
+	name: string;
+	surname: string;
+	degree: string;
+	background: number;
 };
 
 export type TextbookType = {

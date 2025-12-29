@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-	import Card from '../../../components/Card.svelte';
-	import HoverEmoji from '../../../components/HoverEmoji.svelte';
+	import Card from '../../../../components/Card.svelte';
+	import HoverEmoji from '../../../../components/HoverEmoji.svelte';
 
 	let { value = $bindable(''), stage = $bindable(0) } = $props();
 </script>
@@ -17,6 +17,7 @@
 		<Card
 			perspective={false}
 			forceSquare={false}
+			hover={true}
 			onclick={() => {
 				value = 'course';
 				stage = 1;
@@ -29,6 +30,7 @@
 		<Card
 			perspective={false}
 			forceSquare={false}
+			hover={true}
 			onclick={() => {
 				value = 'textbook';
 				stage = 2;

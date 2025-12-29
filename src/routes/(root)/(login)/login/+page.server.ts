@@ -5,7 +5,7 @@ import {
 } from '$lib/server/user/index.js';
 import { fail, redirect } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
-import * as dataSchema from '$lib/server/db/schema.js';
+import { schema } from '$lib/server/db/mainSchema';
 import { eq } from 'drizzle-orm';
 import { EMAIL_REGEX } from '$lib/server/user/index.js';
 import * as crypto from 'node:crypto';
@@ -45,8 +45,8 @@ export const actions = {
 		const user = (
 			await event.locals.db
 				.select()
-				.from(dataSchema.user)
-				.where(eq(dataSchema.user.email, email))
+				.from(schema.user)
+				.where(eq(schema.user.email, email))
 				.limit(1)
 		)[0];
 
@@ -59,7 +59,7 @@ export const actions = {
 
 		const session = (
 			await event.locals.db
-				.insert(dataSchema.userSession)
+				.insert(schema.userSession)
 				.values({
 					user: user.id,
 					expiresAt: new Date(

@@ -1,10 +1,10 @@
-import { defineConfig } from 'drizzle-kit'; 
+import { defineConfig } from 'drizzle-kit';
 
-if (!process.env.DATABASE_URL) throw Error("DATABASE_URL not set!");
+if (!process.env.DATABASE_URL) throw Error('DATABASE_URL not set!');
 
 export default defineConfig({
 	out: './drizzle',
-	schema: './src/lib/server/db/schema.ts',
+	schema: './src/lib/server/db/schema',
 	dialect: 'postgresql',
 	verbose: true,
 	strict: true,

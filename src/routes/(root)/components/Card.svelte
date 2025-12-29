@@ -12,6 +12,9 @@
 		perspective,
 		onclick = () => {},
 		forceSquare = true,
+		hover = false,
+		css = '',
+		padding = 'p-2',
 	} = $props();
 
 	let rect: DOMRect | undefined = $state(undefined);
@@ -45,14 +48,16 @@
 
 	onMount(() => {
 		if (!browser) return;
-		let el = document.getElementById(value) as HTMLElement;
+		let el = document.getElementById(value);
+		if (!el) return;
 		el.addEventListener('mousemove', mouseMoveEventHandler);
 		el.addEventListener('mouseleave', mouseLeaveEventHandler);
 		el.addEventListener('mouseenter', mouseEnterEventHandler);
 	});
 	onDestroy(() => {
 		if (!browser) return;
-		let el = document.getElementById(value) as HTMLElement;
+		let el = document.getElementById(value);
+		if (!el) return;
 		el.removeEventListener('mousemove', mouseMoveEventHandler);
 		el.removeEventListener('mouseleave', mouseLeaveEventHandler);
 		el.removeEventListener('mouseenter', mouseEnterEventHandler);
@@ -65,7 +70,8 @@
 	flex {forceSquare ? 'aspect-square' : ''} flex-col gap-2
 	overflow-hidden rounded-lg
 	border-2 shadow perspective-[1600px]
-	hover:border-neutral-300!
+	{hover ? 'hover:border-neutral-300!' : ''}
+	{css}
 	"
 	style="background-color: rgb({r} {g} {b} / 30%); border-color: rgb({r} {g} {b} / 30%); {perspective
 		? `transform: rotateX(${yRotation}deg) rotateY(${xRotation}deg) translateZ(0);`
@@ -73,7 +79,10 @@
 	in:fly|global={{ x: 0, y: 100, opacity: 0, duration: 500, delay: delay }}
 >
 	<button
-		class="flex w-full grow flex-col rounded-lg p-2 backdrop-blur-2xl hover:backdrop-brightness-120"
+		class="
+		flex w-full grow flex-col rounded-lg {padding} backdrop-blur-2xl hover:brightness-100!
+		{hover ? 'hover:backdrop-brightness-120' : ''}
+		"
 		onclick={() => {
 			onclick();
 		}}

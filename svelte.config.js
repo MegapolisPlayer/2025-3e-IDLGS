@@ -6,7 +6,7 @@ const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
-	kit: { 
+	kit: {
 		csp: {
 			directives: {
 				'default-src': ['none'],
@@ -18,24 +18,31 @@ const config = {
 				'style-src': ['self', 'fonts.googleapis.com', 'unsafe-inline'],
 				'frame-ancestors': ['none'],
 				'connect-src': ['self', 'notifications.martinbykov.eu'],
-				'frame-src': ['*.cloudflare.com', 'www.youtube-nocookie.com', 'youtube-nocookie.com', 'youtube.com', 'www.youtube.com', 'consent.youtube.com'],
+				'frame-src': [
+					'*.cloudflare.com',
+					'www.youtube-nocookie.com',
+					'youtube-nocookie.com',
+					'youtube.com',
+					'www.youtube.com',
+					'consent.youtube.com',
+				],
 				'media-src': ['self'],
-				'base-uri': ['self']
+				'base-uri': ['self'],
 			},
 			// must be specified with either the `report-uri` or `report-to` directives, or both
 			reportOnly: {
-				'report-uri': ['/']
+				'report-uri': ['/'],
 			},
 			mode: 'auto',
 		},
 		adapter: adapter({
-			config: "wrangler.jsonc",
-			fallback: "plaintext",
+			config: 'wrangler.jsonc',
+			fallback: 'plaintext',
 		}),
 		csrf: {
-			trustedOrigins: ['*.gyarab.cz', '*.martinbykov.eu']
-		}
-	}
+			trustedOrigins: ['*.gyarab.cz', '*.martinbykov.eu'],
+		},
+	},
 };
 
 export default config;
