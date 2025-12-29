@@ -20,8 +20,8 @@
 	let stage = $state(0);
 	let selected = $state('');
 
-	let name: string = $state("");
-	let description: string = $state("");
+	let name: string = $state('');
+	let description: string = $state('');
 	let red: number = $state(0);
 	let green: number = $state(0);
 	let blue: number = $state(0);
@@ -45,28 +45,68 @@
 			{#if stage == 1}
 				<CourseTextbookSelect bind:step={stage} />
 			{:else if stage == 2}
-				<CourseBasicInfo bind:step={stage} bind:name bind:red bind:green bind:blue bind:description/>
+				<CourseBasicInfo
+					bind:step={stage}
+					bind:name
+					bind:red
+					bind:green
+					bind:blue
+					bind:description
+				/>
 			{:else if stage == 3}
-				<CourseGrading bind:step={stage} {name} {red} {green} {blue} {description} />
+				<CourseGrading
+					bind:step={stage}
+					{name}
+					{red}
+					{green}
+					{blue}
+					{description}
+				/>
 			{/if}
-		<!-- textbook only -->
+			<!-- textbook only -->
 		{:else if selected == 'textbook'}
 			{#if stage == 2}
-				<TextbookBasicInfo bind:step={stage} bind:name bind:red bind:green bind:blue bind:description />
+				<TextbookBasicInfo
+					bind:step={stage}
+					bind:name
+					bind:red
+					bind:green
+					bind:blue
+					bind:description
+				/>
 			{:else if stage == 3}
-				<TextbookArticles bind:step={stage} {name} {red} {green} {blue} {description} />
+				<TextbookArticles
+					bind:step={stage}
+					{name}
+					{red}
+					{green}
+					{blue}
+					{description}
+				/>
 			{/if}
-		{:else}
-			{#if stage != 0 && stage < 4}
-				INVALID SITUATION.
-			{/if}
+		{:else if stage != 0 && stage < 4}
+			INVALID SITUATION.
 		{/if}
 
 		<!-- both -->
 		{#if stage == 4}
-			<Ownership bind:step={stage} {name} {red} {green} {blue} {description} />
+			<Ownership
+				bind:step={stage}
+				{name}
+				{red}
+				{green}
+				{blue}
+				{description}
+			/>
 		{:else if stage == 5}
-			<Review bind:step={stage} {name} {red} {green} {blue} {description} />
+			<Review
+				bind:step={stage}
+				{name}
+				{red}
+				{green}
+				{blue}
+				{description}
+			/>
 		{/if}
 	</Modal>
 {/key}

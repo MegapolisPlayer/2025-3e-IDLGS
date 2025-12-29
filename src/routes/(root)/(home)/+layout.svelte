@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="z-10 relative flex w-full grow flex-col items-center justify-center min-w-screen {getImageBackgroundClass(
+	class="relative z-10 flex w-full min-w-screen grow flex-col items-center justify-center {getImageBackgroundClass(
 		data.user as UserType,
 	)} max-xl:hidden"
 >

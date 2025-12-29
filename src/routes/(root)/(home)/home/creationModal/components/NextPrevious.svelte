@@ -7,7 +7,7 @@
 		maxStep,
 		onclickLast,
 		onclickNext,
-		disableConditionNext
+		disableConditionNext,
 	}: {
 		currentStep: number;
 		maxStep: number;

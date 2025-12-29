@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { ABOUT_ANIMATION_FIRST, isInViewport, ABOUT_ANIMATION_SECOND } from '$lib';
+	import {
+		ABOUT_ANIMATION_FIRST,
+		isInViewport,
+		ABOUT_ANIMATION_SECOND,
+	} from '$lib';
 	import { m } from '$lib/paraglide/messages';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';

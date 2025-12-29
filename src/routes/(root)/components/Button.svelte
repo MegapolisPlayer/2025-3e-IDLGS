@@ -23,7 +23,7 @@
 
 <button
 	class="{btn} group"
-	disabled={disabled}
+	{disabled}
 	{type}
 	{onclick}
 >

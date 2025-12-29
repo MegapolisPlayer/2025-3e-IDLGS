@@ -57,7 +57,7 @@
 {#if ready}
 	{#key ready}
 		<div
-			class="flex grow flex-col items-center justify-center max-xl:hidden w-full"
+			class="flex w-full grow flex-col items-center justify-center max-xl:hidden"
 		>
 			<div class="z-3 flex w-3/4 grow flex-col gap-2">
 				<div class="min-h-[5vh]"></div>

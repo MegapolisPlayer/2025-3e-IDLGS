@@ -4,7 +4,8 @@ import type { DBType } from '../db/types';
 import { eq } from 'drizzle-orm';
 
 export const loadTextbooks = async (
-	db: DBType, user: UserType,
+	db: DBType,
+	user: UserType,
 ): Promise<TextbookType[]> => {
 	return db
 		.select({
@@ -21,7 +22,7 @@ export const loadTextbooks = async (
 		.from(schema.textbook)
 		.innerJoin(
 			schema.userTextbookLinker,
-			eq(schema.textbook.id, schema.userTextbookLinker.textbook) //join condition
+			eq(schema.textbook.id, schema.userTextbookLinker.textbook), //join condition
 		)
 		.where(eq(schema.userTextbookLinker.user, user.id));
 };

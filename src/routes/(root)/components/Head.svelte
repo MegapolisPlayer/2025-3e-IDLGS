@@ -5,8 +5,8 @@
 	import { goto } from '$app/navigation';
 	import { fade, slide } from 'svelte/transition';
 	import LearnMoreHeadCard from './LearnMoreHeadCard.svelte';
-	import { getImageBackgroundClassRaw } from "$lib";
-	import { getLocale } from "$lib/paraglide/runtime";
+	import { getImageBackgroundClassRaw } from '$lib';
+	import { getLocale } from '$lib/paraglide/runtime';
 
 	let ready = $state(false);
 
@@ -23,7 +23,9 @@
 		>
 			<!-- bg image -->
 			<div
-				class="absolute z-1! h-[94svh] max-h-[94svh] min-h-[94svh] w-screen max-w-screen min-w-screen {getImageBackgroundClassRaw(1)}"
+				class="absolute z-1! h-[94svh] max-h-[94svh] min-h-[94svh] w-screen max-w-screen min-w-screen {getImageBackgroundClassRaw(
+					1,
+				)}"
 			></div>
 
 			<!-- cover -->
@@ -55,7 +57,7 @@
 						class="underline decoration-emerald-500 decoration-dotted"
 					>
 						{m.textbookAndClassroom().split(' ').slice(2).join(' ')}
-				</span>
+					</span>
 				</span>
 			</h5>
 			<p class="flex flex-row gap-2 text-center text-2xl">
