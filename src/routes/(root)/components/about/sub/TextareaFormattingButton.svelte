@@ -2,7 +2,7 @@
 	let {
 		message,
 		emoji,
-		onclick
+		onclick,
 	}: {
 		message: string;
 		emoji: string;
@@ -11,13 +11,9 @@
 </script>
 
 <button
-	class="p-0 bg-transparent! flex flex-col justify-center items-center text-xl font-bold"
+	class="flex flex-col items-center justify-center bg-transparent! p-0 text-xl font-bold"
 	aria-label={message}
-	onclick={onclick}
+	{onclick}
 >
 	<i class="ri-{emoji}"></i>
 </button>
-
-
-
-

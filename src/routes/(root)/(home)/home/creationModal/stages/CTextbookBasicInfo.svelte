@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import NextPrevious from '../components/NextPrevious.svelte';
-	import Textarea from "$component/Textarea.svelte"
+	import Textarea from '$component/Textarea.svelte';
 
 	let {
 		step = $bindable(0),
@@ -40,7 +40,7 @@
 	</div>
 	<div class="flex grow flex-col gap-2">
 		<h2 class="text-xl">{m.textbookDescription()}:</h2>
-		<Textarea 
+		<Textarea
 			bind:value={description}
 			placeholder={m.enterTextbookDescription()}
 		/>

@@ -8,7 +8,7 @@
 		onclickLast,
 		onclickNext,
 		disableConditionNext,
-		message = ""
+		message = '',
 	}: {
 		currentStep: number;
 		maxStep: number;

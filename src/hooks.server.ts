@@ -77,4 +77,4 @@ export const handle: Handle = sequence(
 	handleDefaultUser,
 );
 
-export const init: ServerInit = async () => { };
+export const init: ServerInit = async () => {};

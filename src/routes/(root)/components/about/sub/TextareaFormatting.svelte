@@ -1,25 +1,29 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
-	import TextareaFormattingButton from "./TextareaFormattingButton.svelte";
+	import { m } from '$lib/paraglide/messages';
+	import TextareaFormattingButton from './TextareaFormattingButton.svelte';
 
 	let {
-		value = $bindable(""),
+		value = $bindable(''),
 		preview = $bindable(false),
-		element = $bindable()
+		element = $bindable(),
 	}: {
 		value: string;
 		preview: boolean;
-		element: HTMLTextAreaElement
+		element: HTMLTextAreaElement;
 	} = $props();
 
 	let cursorBeginning = $derived(element.selectionStart);
 	let cursorEnd = $derived(element.selectionEnd);
 </script>
 
-<div class="items-center flex flex-row gap-0 w-full overflow-x-scroll overflow-y-hidden flex-nowrap">
-	<button onclick={() => {
-		preview = !preview;
-	}}>
+<div
+	class="flex w-full flex-row flex-nowrap items-center gap-0 overflow-x-scroll overflow-y-hidden"
+>
+	<button
+		onclick={() => {
+			preview = !preview;
+		}}
+	>
 		{#if !preview}
 			<i class="ri-eye-line"></i>
 			{m.preview()}
@@ -28,88 +32,88 @@
 			{m.edit()}
 		{/if}
 	</button>
-	
-	<TextareaFormattingButton 
+
+	<TextareaFormattingButton
 		message={m.bold()}
 		emoji="bold"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.italic()}
 		emoji="italic"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.underline()}
 		emoji="underline"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.subscript()}
 		emoji="subscript-2"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.superscript()}
 		emoji="superscript-2"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.strikethrough()}
 		emoji="strikethrough"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.alignLeft()}
 		emoji="align-left"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.alignCenter()}
 		emoji="align-center"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.alignRight()}
 		emoji="align-right"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.header1()}
 		emoji="h-1"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.header2()}
 		emoji="h-2"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.header3()}
 		emoji="h-3"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.quote()}
 		emoji="double-quotes-l"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.codeBlock()}
 		emoji="code-view"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.orderedList()}
 		emoji="list-ordered"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.unorderedList()}
 		emoji="list-unordered"
 		onclick={() => {}}
 	/>
-	<TextareaFormattingButton 
+	<TextareaFormattingButton
 		message={m.link()}
 		emoji="link"
 		onclick={() => {}}

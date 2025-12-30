@@ -7,9 +7,7 @@
 
 <div class="flex w-full grow flex-col gap-2">
 	<h2>{m.textbookChaptersAndArticles()}</h2>
-	<div class="flex flex-col gap-2 grow">
-
-	</div>
+	<div class="flex grow flex-col gap-2"></div>
 	<NextPrevious
 		currentStep={2}
 		maxStep={4}
