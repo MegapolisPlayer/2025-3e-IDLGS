@@ -48,8 +48,8 @@ absolute z-39 flex flex-row items-center overflow-hidden rounded-lg p-2 font-med
 <Dragger
 	bind:x={comment.x}
 	bind:y={comment.y}
-	bind:width={editorWidth}
-	bind:height={editorHeight}
+	width={editorWidth}
+	height={editorHeight}
 	snappingFunction={() => {}}
 	element={commentElement}
 />
