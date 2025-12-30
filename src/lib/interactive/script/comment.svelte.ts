@@ -1,5 +1,3 @@
-export const RESIN_MIN_COMMENT_SIZE_PX = 200;
-
 export class RScriptComment {
 	uuid: string = $state('');
 	text: string = $state('');

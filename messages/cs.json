@@ -146,5 +146,7 @@
 	"administration": "Administrace",
 	"help": "Nápověda",
 	"mainHelpPage": "Hlavní stránka nápovědy",
-	"moreInformation": "Více informací"
+	"moreInformation": "Více informací",
+	"compileAndExport": "Kompilovat a exportovat",
+	"pressShiftToMaintainAspectRatio": "Stiskněte Shift pro zachování poměru stran"
 }

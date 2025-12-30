@@ -1,17 +1,5 @@
-<!--
-
-RESIN
-Graphical representation of a single RElement.
-Author: Martin Bykov
-
--->
-
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-
-	//TODO snap to 100%
-	//TODO add keyboard movement controls
-
 	import { browser } from '$app/environment';
 	import {
 		RESIN_MIN_ELEMENT_SIZE,
@@ -19,77 +7,26 @@ Author: Martin Bykov
 	} from '$lib/interactive/element.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { RESIN_MAX_SNAP } from '$lib/interactive/interactive.svelte';
+	import Dragger from '../components/Dragger.svelte';
 
 	let {
 		el = $bindable(),
 		uuidVariable = $bindable(),
-		mousePosX,
-		mousePosY,
 		canvasWidth,
 		canvasHeight,
+		snappingAllowed,
 	}: {
 		el: RElement;
 		uuidVariable: string;
-		mousePosX: number;
-		mousePosY: number;
 		canvasWidth: number;
 		canvasHeight: number;
+		snappingAllowed: boolean;
 	} = $props();
 
-	let dragBeginX = $derived(mousePosX);
-	let dragBeginY = $derived(mousePosY);
-	let widthBegin = $state(0);
-	let heightBegin = $state(0);
-	let aspectBegin = $state(0);
-	let xBegin = $state(0);
-	let yBegin = $state(0);
-	let isDragging = $state(false);
-	let isDraggingPosition = $state(false);
-	let shiftPressed = $state(false);
-
-	const odoHandler = (e: DragEvent) => {
-		if (!isDragging) return;
-
-		if (!shiftPressed) {
-			el.width =
-				widthBegin + ((e.pageX - dragBeginX) / canvasWidth) * 100;
-			el.height =
-				heightBegin + ((e.pageY - dragBeginY) / canvasHeight) * 100;
-		} else {
-			el.width =
-				widthBegin +
-				((e.pageX - dragBeginX) / canvasWidth) * 100 * aspectBegin;
-			el.height =
-				heightBegin + ((e.pageX - dragBeginX) / canvasHeight) * 100;
-		}
-
-		return false;
-	};
-
-	const odoPosHandler = (e: DragEvent) => {
-		if (!isDraggingPosition) return;
-
-		el.x = xBegin + ((e.pageX - dragBeginX) / canvasWidth) * 100;
-		el.y = yBegin + ((e.pageY - dragBeginY) / canvasHeight) * 100;
-
-		//x snap
-		if (
-			el.x < 50 - el.width / 2 + RESIN_MAX_SNAP &&
-			el.x > 50 - el.width / 2 - RESIN_MAX_SNAP
-		) {
-			el.x = 50 - el.width / 2;
-		}
-
-		//y snap
-		if (
-			el.y < 50 - el.height / 2 + RESIN_MAX_SNAP &&
-			el.y > 50 - el.height / 2 - RESIN_MAX_SNAP
-		) {
-			el.y = 50 - el.height / 2;
-		}
-
-		return false;
-	};
+	let elementElement: HTMLElement | undefined = $state(undefined);
+	let sizeElement: HTMLElement | undefined = $state(undefined);
+	let aspectBegin: number = $state(0);
+	let shiftPressed: boolean = $state(false);
 
 	const keyHandler = (e: KeyboardEvent) => {
 		shiftPressed = e.shiftKey;
@@ -98,20 +35,14 @@ Author: Martin Bykov
 	onMount(() => {
 		if (!browser) return;
 
-		widthBegin = el.width;
-		heightBegin = el.height;
-		aspectBegin = widthBegin / heightBegin;
+		aspectBegin = el.width / el.height;
 
-		addEventListener('dragover', odoHandler);
-		addEventListener('dragover', odoPosHandler);
 		addEventListener('keydown', keyHandler);
 		addEventListener('keyup', keyHandler);
 	});
 	onDestroy(() => {
 		if (!browser) return;
 
-		removeEventListener('dragover', odoHandler);
-		removeEventListener('dragover', odoPosHandler);
 		removeEventListener('keydown', keyHandler);
 		removeEventListener('keyup', keyHandler);
 	});
@@ -131,6 +62,7 @@ Author: Martin Bykov
 </script>
 
 <div
+	bind:this={elementElement}
 	class="absolute z-35 {el.visible ? '' : 'hidden'} 	{el.uuid === uuidVariable
 		? 'border-2 border-violet-700'
 		: ''}"
@@ -141,7 +73,6 @@ Author: Martin Bykov
 		height:           {el.height}%;
 		border-radius:    {el.rounded}px;
 		"
-	role="main"
 >
 	<button
 		class="
@@ -158,39 +89,68 @@ Author: Martin Bykov
 			if (uuidVariable == el.uuid) uuidVariable = '';
 			else uuidVariable = el.uuid;
 		}}
-		ondragstart={(e) => {
-			e.stopPropagation();
-			isDraggingPosition = true;
-			xBegin = el.x;
-			yBegin = el.y;
-		}}
-		ondragend={() => {
-			isDraggingPosition = false;
-		}}
-		draggable="true"
-		aria-label="RESIN ELEMENT"
+		aria-label={"RESIN"}
 	>
 		<div class="h-full w-full"></div>
 	</button>
-
 	{#if uuidVariable == el.uuid}
 		<div
 			class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-2xl text-violet-700 opacity-100!"
-			role="main"
-			ondragstart={(e) => {
-				e.stopPropagation();
-				isDragging = true;
-				widthBegin = el.width;
-				heightBegin = el.height;
-				aspectBegin = widthBegin / heightBegin;
-			}}
-			ondragend={() => {
-				isDragging = false;
-			}}
-			draggable="true"
 			aria-label={m.elementSize()}
+			bind:this={sizeElement}
 		>
 			<i class="ri-drag-move-2-line"></i>
 		</div>
 	{/if}
 </div>
+
+<Dragger
+	bind:x={el.x}
+	bind:y={el.y}
+	width={canvasWidth}
+	height={canvasHeight}
+	overrideDragFunction={(dx, dy) => {
+		el.x += dx;
+		el.y += dy;
+	}}
+	snappingFunction={() => {
+		if (snappingAllowed) {
+			//x snap
+			if (
+				el.x < 50 - el.width / 2 + RESIN_MAX_SNAP &&
+				el.x > 50 - el.width / 2 - RESIN_MAX_SNAP
+			) {
+				el.x = 50 - el.width / 2;
+			}
+
+			//y snap
+			if (
+				el.y < 50 - el.height / 2 + RESIN_MAX_SNAP &&
+				el.y > 50 - el.height / 2 - RESIN_MAX_SNAP
+			) {
+				el.y = 50 - el.height / 2;
+			}
+		}
+	}}
+	element={elementElement}
+/>
+
+<Dragger
+	bind:x={el.width}
+	bind:y={el.height}
+	width={canvasWidth}
+	height={canvasHeight}
+	overrideDragFunction={(dx, dy) => {
+		console.log(shiftPressed);
+		if (!shiftPressed) {
+			el.width += dx;
+			el.height += dy;
+			aspectBegin = el.width/el.height;
+		} else {
+			el.width += dx * aspectBegin;
+			el.height += dx;
+		}
+	}}
+	element={sizeElement}
+/>
+

@@ -146,5 +146,7 @@
 	"administration": "Администрирование",
 	"help": "Помощь",
 	"mainHelpPage": "Главная страница помощи",
-	"moreInformation": "Больше информации"
+	"moreInformation": "Больше информации",
+	"compileAndExport": "Компилировать и экспортировать",
+	"pressShiftToMaintainAspectRatio": "Нажмите Shift, чтобы сохранить соотношение сторон"
 }

@@ -27,7 +27,7 @@ import {
 import { RProgram } from './script/program.svelte';
 
 export const RESIN_MAX_ELEMENTS = 1000;
-export const RESIN_MAX_SNAP = 5;
+export const RESIN_MAX_SNAP = 2;
 
 //main element class
 //array is polymorphic

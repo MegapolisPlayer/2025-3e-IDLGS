@@ -146,5 +146,7 @@
 	"administration": "Verwaltung",
 	"help": "Hilfe",
 	"mainHelpPage": "Haupt-Hilfeseite",
-	"moreInformation": "Weitere Informationen"
+	"moreInformation": "Weitere Informationen",
+	"compileAndExport": "Kompilieren und exportieren",
+	"pressShiftToMaintainAspectRatio": "Drücken Sie Shift, um das Seitenverhältnis beizubehalten"
 }

@@ -146,5 +146,7 @@
 	"administration": "Administration",
 	"help": "Help",
 	"mainHelpPage": "Main Help Page",
-	"moreInformation": "More Information"
+	"moreInformation": "More Information",
+	"compileAndExport": "Compile and Export",
+	"pressShiftToMaintainAspectRatio": "Press Shift to maintain aspect ratio"
 }

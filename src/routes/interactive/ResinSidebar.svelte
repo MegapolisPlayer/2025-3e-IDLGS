@@ -7,16 +7,14 @@
 
 	let {
 		el,
-		mousePosX,
-		mousePosY,
 		canvasX,
 		canvasY,
+		snappingAllowed
 	}: {
 		el: RElement;
-		mousePosX: number;
-		mousePosY: number;
 		canvasX: number;
 		canvasY: number;
+		snappingAllowed: boolean;
 	} = $props();
 
 	let showScriptingModal = $state(false);
@@ -158,7 +156,6 @@
 <ResinModal bind:showModal={showScriptingModal}>
 	<ResinScriptEditor
 		bind:closeModal={showScriptingModal}
-		{mousePosX}
-		{mousePosY}
+		{snappingAllowed}
 	/>
 </ResinModal>

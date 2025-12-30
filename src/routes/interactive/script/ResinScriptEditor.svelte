@@ -1,11 +1,3 @@
-<!--
-
-RESIN
-Script editor window
-Author: Martin Bykov
-
--->
-
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import { RScriptBlock } from '$lib/interactive/script/block.svelte';
@@ -13,17 +5,16 @@ Author: Martin Bykov
 	import ResinScriptBlock from './ResinScriptBlock.svelte';
 	import { RProgram } from '$lib/interactive/script/program.svelte';
 	import { RScriptComment } from '$lib/interactive/script/comment.svelte';
-	import ResinElementSelect from './ResinElementSelect.svelte';
+	import ResinElementSelect from './ResinScriptBlockSelect.svelte';
 	import ResinScriptEditorComment from './ResinScriptEditorComment.svelte';
+	import ResinScriptBlockAddition from './ResinScriptBlockAddition.svelte';
 
 	let {
 		closeModal = $bindable(),
-		mousePosX,
-		mousePosY,
+		snappingAllowed,
 	}: {
 		closeModal: boolean;
-		mousePosX: number;
-		mousePosY: number;
+		snappingAllowed: boolean;
 	} = $props();
 
 	let script: RProgram = $state(new RProgram());
@@ -79,7 +70,7 @@ Author: Martin Bykov
 </script>
 
 <div class="flex w-full grow flex-row gap-2">
-	<ResinElementSelect />
+	<ResinScriptBlockAddition />
 	<div class="flex grow flex-col gap-2">
 		<h2>{m.scriptWorkspace()}</h2>
 		<div
@@ -94,17 +85,18 @@ Author: Martin Bykov
 					bind:uuid={selectedBlockUuid}
 					{editorWidth}
 					{editorHeight}
-					{mousePosX}
-					{mousePosY}
 					bind:program={script}
+					{snappingAllowed}
 				/>
 			{/each}
 
 			<!-- comments -->
-			{#each script.comments as comment (comment.uuid)}
+			{#each script.comments as comment, i (comment.uuid)}
 				<ResinScriptEditorComment
-					{comment}
+					bind:comment={script.comments[i]}
 					bind:uuid={selectedCommentUuid}
+					{editorWidth}
+					{editorHeight}
 				/>
 			{/each}
 

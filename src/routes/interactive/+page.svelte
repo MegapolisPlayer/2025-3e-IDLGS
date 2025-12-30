@@ -19,70 +19,73 @@ Author: Martin Bykov
 	import { RElement } from '$lib/interactive/element.svelte';
 	import ResinElementAddition from './element/ResinElementAddition.svelte';
 	import { gcd } from '$lib/math';
+	import Dragger from './components/Dragger.svelte';
 
 	let el: RInteractive = $state(new RInteractive());
 
-	let mousePosX = $state(0);
-	let mousePosY = $state(0);
+	let ro: ResizeObserver | undefined = $state(undefined);
 
-	let elementWidthShowValue = $state(0);
-	let elementHeightShowValue = $state(0);
+	let workspaceElement: HTMLDivElement | undefined = $state(undefined);
+	let dragSizeElement: HTMLDivElement | undefined = $state(undefined);
 
-	let snappingAllowed = $state(true);
+	let elementWidthShowValue: number = $state(0);
+	let elementHeightShowValue: number = $state(0);
 
-	let selectedElementUuid = $state('');
+	let snappingAllowed: boolean = $state(true);
 
-	let dragBeginX = $derived(mousePosX);
-	let dragBeginY = $derived(mousePosY);
-	let widthBegin = $state(0);
-	let heightBegin = $state(0);
-	let isDragging = $state(false);
+	let selectedElementUuid: string = $state('');
 
-	let shiftPressed = $state(false);
+	let dragBeginX: number = $state(0);
+	let dragBeginY: number = $state(0);
 
-	let widthMax = $state(0);
-	let heightMax = $state(0);
+	let shiftPressed: boolean = $state(false);
+
+	let widthMax: number = $state(0);
+	let heightMax: number = $state(0);
 
 	const keyHandler = (e: KeyboardEvent) => {
 		shiftPressed = e.shiftKey;
 	};
 
-	const mmHandler = (e: MouseEvent) => {
-		mousePosX = e.pageX;
-		mousePosY = e.pageY;
-	};
-
-	const odoHandler = (e: DragEvent) => {
-		if (!isDragging) return;
-
-		if (!shiftPressed) {
-			elementWidthShowValue = widthBegin + (e.pageX - dragBeginX) * 2;
-			elementHeightShowValue = heightBegin + (e.pageY - dragBeginY) * 2;
-			el.aspect = elementHeightShowValue / elementWidthShowValue;
-		} else {
-			elementWidthShowValue =
-				widthBegin + (e.pageX - dragBeginX) * 2 * el.aspect;
-			elementHeightShowValue = heightBegin + (e.pageX - dragBeginX) * 2;
+	const keyDownHandler = (e: KeyboardEvent) => {
+		if (selectedElementUuid) {
+			let elem = el.getElementByUuid(selectedElementUuid);
+			if(elem) {
+				switch (e.key) {
+					case 'ArrowLeft':
+						elem.x--;
+						break;
+					case 'ArrowUp':
+						elem.y--;
+						break;
+					case 'ArrowRight':
+						elem.x++;
+						break;
+					case 'ArrowDown':
+						elem.y++;
+						break;
+					case 'Escape':
+						selectedElementUuid = '';
+						break;
+				}
+			}
 		}
-	};
+	}
 
 	onMount(() => {
 		if (!browser) return;
-
-		const elem = document.getElementById('workspace');
-		if (!elem) throw Error('No workspace element found!');
-		const rect = elem.getBoundingClientRect();
+		if(!workspaceElement || !dragSizeElement) return;
+		
+		const rect = workspaceElement.getBoundingClientRect();
 
 		elementWidthShowValue = rect.width / 3;
 		elementHeightShowValue = rect.height / 3;
-		widthBegin = elementWidthShowValue;
-		heightBegin = elementHeightShowValue;
 
 		widthMax = rect.width;
 		heightMax = rect.height;
 
-		new ResizeObserver(
-			(data: ResizeObserverEntry[], observer: ResizeObserver) => {
+		ro = new ResizeObserver(
+			(data: ResizeObserverEntry[]) => {
 				widthMax = data[0].contentRect.width;
 				heightMax = data[0].contentRect.height;
 
@@ -94,23 +97,23 @@ Author: Martin Bykov
 					elementHeightShowValue,
 					heightMax,
 				);
-
-				observer.observe(elem);
 			},
-		).observe(elem);
+		);
+		
+		ro.observe(workspaceElement);
 
-		addEventListener('mousemove', mmHandler);
-		addEventListener('dragover', odoHandler);
 		addEventListener('keydown', keyHandler);
+		addEventListener('keydown', keyDownHandler);
 		addEventListener('keyup', keyHandler);
 	});
 	onDestroy(() => {
 		if (!browser) return;
 
-		removeEventListener('mousemove', mmHandler);
-		removeEventListener('dragover', odoHandler);
 		removeEventListener('keydown', keyHandler);
+		removeEventListener('keydown', keyDownHandler);
 		removeEventListener('keyup', keyHandler);
+
+		ro?.disconnect();
 	});
 
 	let gcdAspect = $derived(
@@ -212,29 +215,22 @@ Author: Martin Bykov
 				/>
 				px
 			</div>
-			<!-- TODO implement -->
 			<div class="flex flex-row items-center gap-2">
 				{m.snapping()}:
 				<input
 					type="checkbox"
 					bind:checked={snappingAllowed}
 					name="snapping"
-					class="input-text-resin"
+					class="input-checkbox"
 				/>
 			</div>
 			<div class="grow"></div>
-			<div class="grid grid-cols-3 gap-2">
+			<div class="grid grid-cols-2 gap-2">
 				<button class="button-violet group">
 					<i class="ri-import-line text-xl not-group-hover:hidden"
 					></i>
 					<i class="ri-import-fill text-xl group-hover:hidden"></i>
 					{m.import()}
-				</button>
-				<button class="button-green group">
-					<i class="ri-export-line text-xl not-group-hover:hidden"
-					></i>
-					<i class="ri-export-fill text-xl group-hover:hidden"></i>
-					{m.export()}
 				</button>
 				<!-- TODO confirmation modal -->
 				<button
@@ -250,11 +246,23 @@ Author: Martin Bykov
 					></i>
 					{m.clear()}
 				</button>
+				<button class="button-green group">
+					<i class="ri-export-line text-xl not-group-hover:hidden"
+					></i>
+					<i class="ri-export-fill text-xl group-hover:hidden"></i>
+					{m.export()}
+				</button>
+				<button class="button-violet group">
+					<i class="ri-cpu-line text-xl not-group-hover:hidden"></i>
+					<i class="ri-cpu-fill text-xl group-hover:hidden"></i>
+					{m.compileAndExport()}
+				</button>
 			</div>
 		</div>
 	</div>
 	<div
 		id="workspace"
+		bind:this={workspaceElement}
 		class="flex grow-20 flex-col items-center justify-center gap-2 bg-linear-to-tr from-violet-700 to-emerald-500"
 	>
 		<div
@@ -269,28 +277,16 @@ Author: Martin Bykov
 						<ResinElement
 							bind:el={el.elements[i]}
 							bind:uuidVariable={selectedElementUuid}
-							{mousePosX}
-							{mousePosY}
 							canvasWidth={elementWidthShowValue}
 							canvasHeight={elementHeightShowValue}
+							{snappingAllowed}
 						/>
 					{/each}
 				{/key}
 			</span>
 			<div
-				class="absolute right-0 bottom-0 z-40 flex flex-row items-center gap-0 text-2xl text-emerald-500"
-				role="main"
-				ondragstart={() => {
-					isDragging = true;
-					dragBeginX = mousePosX;
-					dragBeginY = mousePosY;
-					widthBegin = elementWidthShowValue;
-					heightBegin = elementHeightShowValue;
-				}}
-				draggable="true"
-				ondragend={() => {
-					isDragging = false;
-				}}
+				class="absolute right-0 bottom-0 flex flex-row items-center gap-0 text-2xl text-emerald-500"
+				bind:this={dragSizeElement}
 			>
 				<i class="ri-drag-move-2-line"></i>
 			</div>
@@ -299,10 +295,25 @@ Author: Martin Bykov
 	{#if selectedElementUuid != ''}
 		<ResinSidebar
 			el={el.getElementByUuid(selectedElementUuid) as RElement}
-			{mousePosX}
-			{mousePosY}
 			canvasX={elementWidthShowValue}
 			canvasY={elementHeightShowValue}
+			{snappingAllowed}
 		/>
 	{/if}
 </div>
+
+<Dragger
+	bind:x={elementWidthShowValue}
+	bind:y={elementHeightShowValue}
+	overrideDragFunction={(dx, dy) => {
+		if (!shiftPressed) {
+			elementWidthShowValue += dx * 2;
+			elementHeightShowValue += dy * 2;
+			el.aspect = elementHeightShowValue / elementWidthShowValue;
+		} else {
+			elementWidthShowValue += dx * 2 * el.aspect;
+			elementHeightShowValue += dy * 2;
+		}
+	}}
+	element={dragSizeElement}
+/>

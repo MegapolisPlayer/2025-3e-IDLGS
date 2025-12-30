@@ -1,28 +1,32 @@
-<!--
-
-RESIN
-Comment in script editor window
-Author: Martin Bykov
-
--->
 <script lang="ts">
 	import {
-		RESIN_MIN_COMMENT_SIZE_PX,
 		type RScriptComment,
 	} from '$lib/interactive/script/comment.svelte';
+	import Dragger from '../components/DraggerRaw.svelte';
 
 	let {
-		comment,
+		comment = $bindable(),
 		uuid = $bindable(''),
+		editorWidth,
+		editorHeight
 	}: {
 		comment: RScriptComment;
 		uuid: string;
+		editorWidth: number;
+		editorHeight: number;
 	} = $props();
+
+	let commentElement: HTMLButtonElement | undefined = $state(undefined);
+
+	$effect(() => {
+		comment.x = Math.max(0, Math.min(comment.x, 100 - comment.width));
+		comment.y = Math.max(0, Math.min(comment.y, 100 - comment.height));
+	});
 </script>
 
 <button
 	class="
-absolute z-39 flex flex-row items-center rounded-lg p-2 font-medium
+absolute z-39 flex flex-row items-center rounded-lg p-2 font-medium overflow-hidden text-ellipsis
 "
 	style="
 	background-color: #ffd9b7;
@@ -32,14 +36,22 @@ absolute z-39 flex flex-row items-center rounded-lg p-2 font-medium
 	left:             {comment.x}%;
 	width:            {comment.width}%;
 	height:           {comment.height}%;
-	min-width:        {RESIN_MIN_COMMENT_SIZE_PX}px;
-	min-height:       {RESIN_MIN_COMMENT_SIZE_PX}px;
 "
 	onclick={() => {
 		uuid = comment.uuid;
 	}}
+	bind:this={commentElement}
 >
-	{comment.text}
+	<div class="w-full h-full flex flex-col gap-2 justify-center items-center">
+		{comment.text}
+	</div>
 </button>
 
-<!-- TODO connect to specific block -->
+<Dragger
+	bind:x={comment.x}
+	bind:y={comment.y}
+	bind:width={editorWidth}
+	bind:height={editorHeight}
+	snappingFunction={() => {}}
+	element={commentElement}
+/>

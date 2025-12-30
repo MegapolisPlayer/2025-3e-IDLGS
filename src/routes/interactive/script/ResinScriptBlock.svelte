@@ -1,87 +1,65 @@
-<!--
-
-RESIN
-Single script block
-Author: Martin Bykov
-
--->
-
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import type { RScriptBlock } from '$lib/interactive/script/block.svelte';
 	import type { RProgram } from '$lib/interactive/script/program.svelte';
 	import { m } from '$lib/paraglide/messages';
 	import { onDestroy, onMount } from 'svelte';
+	import Dragger from '../components/DraggerRaw.svelte';
 
 	let id = $state(crypto.randomUUID());
 	let canvas: HTMLCanvasElement | undefined = $state(undefined);
 	let context: CanvasRenderingContext2D | undefined = $state(undefined);
 
+	let element: HTMLElement | undefined = $state(undefined);
+
 	let {
 		block = $bindable(),
 		uuid = $bindable(''),
-		mousePosX,
-		mousePosY,
 		editorWidth,
 		editorHeight,
 		program = $bindable(),
+		snappingAllowed,
 	}: {
 		block: RScriptBlock;
 		uuid: string;
-		mousePosX: number;
-		mousePosY: number;
 		editorWidth: number;
 		editorHeight: number;
 		program: RProgram;
+		snappingAllowed: boolean;
 	} = $props();
 
-	let isDragging = $state(false);
-	let xBegin = $state(0);
-	let yBegin = $state(0);
-	let dragBeginX = $derived(mousePosX);
-	let dragBeginY = $derived(mousePosY);
+	let ro: ResizeObserver | undefined = $state(undefined);
 
-	program.blocks.toSorted((a, b) => a.x - b.x);
-
-	const odoHandler = (e: DragEvent) => {
-		if (!isDragging) return;
-
-		block.x = xBegin + ((e.pageX - dragBeginX) / editorWidth) * 100;
-		block.y = yBegin + ((e.pageY - dragBeginY) / editorHeight) * 100;
-
-		//snapping to all blocks TODO better than O(n2)
-		//
-
-		return false;
-	};
+	let collisionX = $derived(program.blocks.toSorted((a, b) => a.x - b.x));
+	let collisionY = $derived(program.blocks.toSorted((a, b) => a.y - b.y));
 
 	onMount(() => {
 		if (!browser) return;
 
-		canvas = document.getElementById(id) as HTMLCanvasElement;
-		context = canvas.getContext('2d') as CanvasRenderingContext2D;
+		context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+		if (!context) throw Error("Canvas doesn't canvas...");
 
-		new ResizeObserver(
-			(data: ResizeObserverEntry[], observer: ResizeObserver) => {
-				(canvas as HTMLCanvasElement).width = data[0].contentRect.width;
-				(canvas as HTMLCanvasElement).height =
-					data[0].contentRect.height;
+		ro = new ResizeObserver((data: ResizeObserverEntry[]) => {
+			(canvas as HTMLCanvasElement).width = data[0].contentRect.width;
+			(canvas as HTMLCanvasElement).height = data[0].contentRect.height;
 
-				context = canvas?.getContext('2d') as CanvasRenderingContext2D;
-				block.drawBackground(context);
+			context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+			block.drawBackground(context);
+		});
 
-				observer.observe(canvas as HTMLCanvasElement);
-			},
-		).observe(canvas);
+		if (canvas) ro.observe(canvas);
 
 		block.drawBackground(context);
-
-		addEventListener('dragover', odoHandler);
 	});
 	onDestroy(() => {
 		if (!browser) return;
 
-		removeEventListener('dragover', odoHandler);
+		ro?.disconnect();
+	});
+
+	$effect(() => {
+		block.x = Math.max(0, Math.min(block.x, 100 - block.width));
+		block.y = Math.max(0, Math.min(block.y, 100 - block.height));
 	});
 </script>
 
@@ -99,21 +77,11 @@ absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 "
 >
 	<button
+		bind:this={element}
 		onclick={() => {
 			uuid = block.uuid;
 		}}
 		class="absolute top-0 left-0 z-41 h-full w-full"
-		aria-label="RESIN SCRIPT BLOCK"
-		ondragstart={(e) => {
-			e.stopPropagation();
-			xBegin = block.x;
-			yBegin = block.y;
-			isDragging = true;
-		}}
-		ondragend={() => {
-			isDragging = false;
-		}}
-		draggable="true"
 	>
 		<div class="flex h-full w-full grow flex-row items-center gap-2">
 			<div class="grow-2"></div>
@@ -123,6 +91,7 @@ absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 	</button>
 	<canvas
 		{id}
+		bind:this={canvas}
 		class="absolute top-0 left-0 z-40 h-full w-full"
 		>Canvas not supported.</canvas
 	>
@@ -140,3 +109,16 @@ absolute z-40 flex flex-row items-center rounded-lg p-2 font-medium
 		<i class="ri-drag-move-2-line z-40!"></i>
 	</div>
 </div>
+
+<Dragger
+	bind:x={block.x}
+	bind:y={block.y}
+	width={editorWidth}
+	height={editorHeight}
+	snappingFunction={() => {
+		if (snappingAllowed) {
+			//TODO
+		}
+	}}
+	{element}
+/>
