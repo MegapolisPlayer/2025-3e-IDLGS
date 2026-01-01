@@ -8,8 +8,8 @@
 	import Review from './stages/FReview.svelte';
 	import TextbookArticles from './stages/DTextbookArticles.svelte';
 	import CourseTextbookSelect from './stages/BCourseTextbookSelect.svelte';
-	import { step } from '$lib/paraglide/messages';
-	import type { CourseType } from '$lib/types';
+
+	//this component stores the values which it then review submits to form action
 
 	let {
 		showModal = $bindable(),
@@ -22,15 +22,24 @@
 
 	let name: string = $state('');
 	let description: string = $state('');
-	let red: number = $state(0);
-	let green: number = $state(0);
-	let blue: number = $state(0);
+
+	//default values = tailwind's bg-violet-700
+	let red: number = $state(101);
+	let green: number = $state(7);
+	let blue: number = $state(207);
+
+	//course only
+
+	//textbook only
+	let articleNames: string[] = $state([]);
+	let chapterNames: string[] = $state([]);
 </script>
 
 {#key stage}
 	<Modal
 		bind:showModal
 		cssClass="bg-violet-700"
+		cssStyle="background-color: rgb({red}, {green}, {blue}) !important;"
 	>
 		{#if stage == 0}
 			<!-- both -->
@@ -56,11 +65,6 @@
 			{:else if stage == 3}
 				<CourseGrading
 					bind:step={stage}
-					{name}
-					{red}
-					{green}
-					{blue}
-					{description}
 				/>
 			{/if}
 			<!-- textbook only -->
@@ -77,11 +81,11 @@
 			{:else if stage == 3}
 				<TextbookArticles
 					bind:step={stage}
-					{name}
+					bind:articleNames
+					bind:chapterNames
 					{red}
 					{green}
 					{blue}
-					{description}
 				/>
 			{/if}
 		{:else if stage != 0 && stage < 4}
@@ -92,11 +96,6 @@
 		{#if stage == 4}
 			<Ownership
 				bind:step={stage}
-				{name}
-				{red}
-				{green}
-				{blue}
-				{description}
 			/>
 		{:else if stage == 5}
 			<Review
@@ -106,6 +105,7 @@
 				{green}
 				{blue}
 				{description}
+				type={selected}
 			/>
 		{/if}
 	</Modal>

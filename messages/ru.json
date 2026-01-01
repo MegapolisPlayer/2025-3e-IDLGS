@@ -169,5 +169,18 @@
 	"highlight": "Выделение",
 	"preview": "Предварительный просмотр",
 	"edit": "Редактировать",
-	"formattedUsingMarkdown": "Отформатировано с помощью Markdown"
+	"formattedUsingMarkdown": "Отформатировано с помощью Markdown",
+	"sendFeedback": "Отправить отзыв",
+	"summary": "Суммаризация",
+	"chapters": "Главы",
+	"articles": "Статьи",
+	"articleOverview": "Обзор статьи",
+	"noArticleSelected": "Статья не выбрана",
+	"noChapters": "Нет глав",
+	"noArticles": "Нет статей",
+	"delete": "Удалить",
+	"toCreateArticlesFirstAddAChapter": "Чтобы создать статьи, сначала добавьте главу",
+	"enterName": "Введите имя",
+	"selectItemByClickingOnIt": "Выберите элемент, кликнув по нему",
+	"deselectItemByClickingAnywhereElse": "Снимите выделение элемента, кликнув в любом другом месте"
 }

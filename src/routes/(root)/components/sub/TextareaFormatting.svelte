@@ -36,17 +36,26 @@
 	<TextareaFormattingButton
 		message={m.bold()}
 		emoji="bold"
-		onclick={() => {}}
+		onclick={() => {
+			value = 
+				value.slice(0, cursorBeginning) + '**' + value.slice(cursorBeginning, cursorEnd) + '**' + value.slice(cursorEnd);
+		}}
 	/>
 	<TextareaFormattingButton
 		message={m.italic()}
 		emoji="italic"
-		onclick={() => {}}
+		onclick={() => {
+			value = 
+				value.slice(0, cursorBeginning) + '*' + value.slice(cursorBeginning, cursorEnd) + '*' + value.slice(cursorEnd);
+		}}
 	/>
 	<TextareaFormattingButton
 		message={m.underline()}
 		emoji="underline"
-		onclick={() => {}}
+		onclick={() => {
+			value = 
+				value.slice(0, cursorBeginning) + '<u>' + value.slice(cursorBeginning, cursorEnd) + '</u>' + value.slice(cursorEnd);
+		}}
 	/>
 	<TextareaFormattingButton
 		message={m.subscript()}

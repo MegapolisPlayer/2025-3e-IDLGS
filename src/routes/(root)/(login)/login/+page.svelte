@@ -9,6 +9,7 @@
 	import { getLocale } from '$lib/paraglide/runtime';
 	import Card from '../../components/Card.svelte';
 	import WordBackground from '../../components/WordBackground.svelte';
+	import Form from '../../components/Form.svelte';
 
 	let ready = $state(false);
 
@@ -42,14 +43,9 @@
 	<title>
 		{m.login()} - {m.textbookNameShort()}
 	</title>
-	<script
-		src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-		async
-		defer
-	></script>
 </svelte:head>
 
-{#key ready}
+{#if ready}
 	<div
 		data-sveltekit-reload
 		class="relative flex w-full grow flex-col items-center justify-center gap-2 p-10"
@@ -61,11 +57,8 @@
 			forceSquare={false}
 			padding="p-3"
 		>
-			<form
-				class="flex w-full grow flex-col gap-2"
-				method="post"
+			<Form
 				action="?/login"
-				use:enhance
 			>
 				<h2 class="w-full text-left text-white">{m.login()}</h2>
 
@@ -92,11 +85,9 @@
 					<label for="remember">{m.rememberMe()}</label>
 				</div>
 
-				{#if ready}
-					{#key ready}
+					{#key ready && window.turnstile}
 						<div use:turnstile></div>
 					{/key}
-				{/if}
 
 				<Button
 					emoji="login-box"
@@ -133,7 +124,7 @@
 						</a>
 					</span>
 				</div>
-			</form>
+			</Form>
 		</Card>
 	</div>
-{/key}
+{/if}

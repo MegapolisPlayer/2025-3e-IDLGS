@@ -3,35 +3,37 @@
 	import HoverEmoji from './HoverEmoji.svelte';
 
 	let {
-		emoji,
+		emoji="",
 		children,
 		type = 'button',
 		btn,
 		onclick = () => {},
 		flip = false,
 		disabled = false,
+		cssClass = "",
 	}: {
-		emoji: string;
+		emoji?: string;
 		children: Snippet;
 		type?: 'button' | 'submit' | 'reset';
 		btn: string;
 		onclick?: (e: MouseEvent) => void;
 		flip?: boolean;
 		disabled?: boolean;
+		cssClass?: string;
 	} = $props();
 </script>
 
 <button
-	class="{btn} group"
+	class="{btn} group {cssClass}"
 	{disabled}
 	{type}
 	{onclick}
 >
-	{#if !flip}
+	{#if !flip && emoji.length > 0}
 		<HoverEmoji {emoji} />
 	{/if}
 	{@render children?.()}
-	{#if flip}
+	{#if flip && emoji.length > 0}
 		<HoverEmoji {emoji} />
 	{/if}
 </button>

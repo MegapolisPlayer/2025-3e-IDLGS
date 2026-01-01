@@ -169,5 +169,18 @@
 	"link": "Link",
 	"preview": "Podgląd",
 	"edit": "Edytuj",
-	"formattedUsingMarkdown": "Sformatowane za pomocą Markdown"
+	"formattedUsingMarkdown": "Sformatowane za pomocą Markdown",
+	"sendFeedback": "Wyślij opinię",
+	"summary": "Podsumowanie",
+	"chapters": "Rozdziały",
+	"articles": "Artykuły",
+	"articleOverview": "Przegląd artykułu",
+	"noArticleSelected": "Nie wybrano artykułu",
+	"noChapters": "Brak rozdziałów",
+	"noArticles": "Brak artykułów",
+	"delete": "Usuń",
+	"toCreateArticlesFirstAddAChapter": "Aby utworzyć artykuły, najpierw dodaj rozdział",
+	"enterName": "Wprowadź nazwę",
+	"selectChapterOrArticleByClickingOnIt": "Wybierz rozdział lub artykuł, klikając na niego",
+	"toAddOneEnterItsNameAndPressAddNew": "Aby dodać, wprowadź jego nazwę i naciśnij Dodaj nowe"
 }

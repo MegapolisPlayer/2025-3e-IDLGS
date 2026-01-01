@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
+	import Button from '../Button.svelte';
+	import FeedbackModal from './sub/FeedbackModal.svelte';
+
+	let showFeedbackModal = $state(false);
 </script>
 
 <div
@@ -22,5 +26,18 @@
 				{m.allRightsReserved()}
 			</div>
 		</div>
+		<div>
+			<Button
+				btn="button-transparent"
+				emoji="feedback"
+				onclick={() => {
+					showFeedbackModal = true;
+				}}
+			>
+				{m.sendFeedback()}
+			</Button>
+		</div>
 	</div>
 </div>
+
+<FeedbackModal bind:showModal={showFeedbackModal}/>

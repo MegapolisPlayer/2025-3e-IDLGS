@@ -1,6 +1,8 @@
 <script lang="ts">
-	import TextareaFormatting from './about/sub/TextareaFormatting.svelte';
+	import TextareaFormatting from './sub/TextareaFormatting.svelte';
 	import markdownit from 'markdown-it';
+	import hljs from 'highlight.js';
+	import { m } from '$lib/paraglide/messages';
 
 	let {
 		value = $bindable(''),
@@ -12,7 +14,16 @@
 		formatting?: boolean;
 	} = $props();
 
-	const md = markdownit();
+	const md = markdownit({
+		html: true,
+		linkify: true,
+		typographer: true,
+		xhtmlOut: true,
+		langPrefix: "language-",
+		highlight: (str: string, lang:string) => {
+			return hljs.highlightAuto(str, [lang]).value;
+		}
+	});
 
 	let element: HTMLTextAreaElement | undefined = $state(undefined);
 	let preview: boolean = $state(false);
@@ -29,8 +40,12 @@
 	{/if}
 
 	{#if preview}
-		<div class="input-text idlgsText w-full! grow! p-2">
+		<div class="input-text idlgsText w-full! grow! p-2 relative z-11">
 			{@html content}
+			<div class="absolute bottom-2 right-2 z-10 text-2xl opacity-30">
+				<i class="ri-eye-line"></i>
+				{m.preview()}
+			</div>
 		</div>
 	{/if}
 

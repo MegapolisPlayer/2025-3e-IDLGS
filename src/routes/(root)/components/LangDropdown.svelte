@@ -15,7 +15,7 @@
 	<ul
 		class="flex w-full grow flex-col rounded-lg {cssLocal} font-medium! **:font-medium!"
 	>
-		{#each locales as locale, i (i)}
+		{#each locales as locale (locale)}
 			<li
 				class="{cssSelector} w-full first:rounded-t-lg last:rounded-b-lg"
 			>

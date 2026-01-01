@@ -169,5 +169,18 @@
 	"highlight": "Zvýraznění",
 	"preview": "Náhled",
 	"edit": "Upravit",
-	"formattedUsingMarkdown": "Formátováno pomocí Markdown"
+	"formattedUsingMarkdown": "Formátováno pomocí Markdown",
+	"sendFeedback": "Odeslat zpětnou vazbu",
+	"summary": "Shrnutí",
+	"chapters": "Kapitoly",
+	"articles": "Články",
+	"articleOverview": "Přehled článku",
+	"noArticleSelected": "Není vybrán žádný článek",
+	"noChapters": "Žádné kapitoly",
+	"noArticles": "Žádné články",
+	"delete": "Smazat",
+	"toCreateArticlesFirstAddAChapter": "Chcete-li vytvořit články, nejprve přidejte kapitolu",
+	"enterName": "Zadejte název",
+	"selectChapterOrArticleByClickingOnIt": "Vyberte kapitolu nebo článek kliknutím na něj",
+	"toAddOneEnterItsNameAndPressAddNew": "Chcete-li přidat, zadejte jeho název a stiskněte Přidat nové"
 }

@@ -12,8 +12,12 @@
 		blue = $bindable(0),
 	} = $props();
 
-	let color = $state('#dd00dd');
-	$effect(() => {});
+	let color = $state('#6507cf'); //bg-violet-700
+	$effect(() => {
+		red = parseInt(color.slice(1, 3), 16);
+		green = parseInt(color.slice(3, 5), 16);
+		blue = parseInt(color.slice(5, 7), 16);
+	});
 </script>
 
 <div class="flex w-full grow flex-col gap-2">
@@ -33,6 +37,7 @@
 			type="color"
 			bind:value={color}
 			placeholder={m.enterTextbookName()}
+			class="input-color"
 		/>
 		<span class="opacity-50">
 			{color}
@@ -55,6 +60,5 @@
 			step = 3;
 		}}
 		disableConditionNext={description.length == 0 || name.length == 0}
-		message={m.youCanAlwaysChangeThisLater()}
 	/>
 </div>

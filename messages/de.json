@@ -169,5 +169,18 @@
 	"highlight": "Hervorheben",
 	"preview": "Vorschau",
 	"edit": "Bearbeiten",
-	"formattedUsingMarkdown": "Formatiert mit Markdown"
+	"formattedUsingMarkdown": "Formatiert mit Markdown",
+	"sendFeedback": "Feedback senden",
+	"summary": "Zusammenfassung",
+	"chapters": "Kapitel",
+	"articles": "Artikel",
+	"articleOverview": "Artikelübersicht",
+	"noArticleSelected": "Kein Artikel ausgewählt",
+	"noChapters": "Keine Kapitel",
+	"noArticles": "Keine Artikel",
+	"delete": "Löschen",
+	"toCreateArticlesFirstAddAChapter": "Um Artikel zu erstellen, fügen Sie zuerst ein Kapitel hinzu",
+	"enterName": "Name eingeben",
+	"selectChapterOrArticleByClickingOnIt": "Wählen Sie ein Kapitel oder einen Artikel durch Klicken darauf aus",
+	"toAddOneEnterItsNameAndPressAddNew": "Um einen hinzuzufügen, geben Sie seinen Namen ein und drücken Sie Neu hinzufügen"
 }

@@ -8,6 +8,13 @@
 	let { children, data } = $props();
 </script>
 
+<svelte:head>
+	<script
+		src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+		defer
+	></script>
+</svelte:head>
+
 <div
 	class="flex min-h-screen w-screen max-w-screen min-w-screen grow flex-col overflow-x-hidden overflow-y-scroll"
 >

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-	import Button from '../../../../components/Button.svelte';
+	import Button from '$component/Button.svelte';
 
 	let {
 		currentStep,
@@ -8,7 +8,7 @@
 		onclickLast,
 		onclickNext,
 		disableConditionNext,
-		message = '',
+		message = m.youCanAlwaysChangeThisLater(),
 	}: {
 		currentStep: number;
 		maxStep: number;

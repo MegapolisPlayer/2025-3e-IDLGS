@@ -8,6 +8,7 @@
 	import TextbookCard from './components/TextbookCard.svelte';
 	import WelcomeCard from './components/WelcomeCard.svelte';
 	import AdditionCard from './components/AdditionCard.svelte';
+	import LoadingAnimationHandler from '../../components/LoadingAnimationHandler.svelte';
 
 	let ready = $state(false);
 	let creationModal = $state(false);
@@ -57,11 +58,7 @@
 				</div>
 
 				{#await Promise.all([data.courses, data.textbooks])}
-					<div
-						class="flex w-full grow flex-col items-center justify-center"
-					>
-						<LoadingAnimation />
-					</div>
+					<LoadingAnimationHandler />
 				{:then [courses, textbooks]}
 					{@const allItems = [
 						...[...courses].map((v) => {

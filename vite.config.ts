@@ -4,9 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
-	server: {
-		allowedHosts: ['dgls.share.zrok.io'],
-	},
 	plugins: [
 		tailwindcss(),
 		sveltekit(),
@@ -39,4 +36,8 @@ export default defineConfig({
 			},
 		],
 	},
+	build: {
+		minify: "esbuild",
+		cssMinify: "esbuild",
+	}
 });

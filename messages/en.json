@@ -169,5 +169,18 @@
 	"highlight": "Highlight",
 	"preview": "Preview",
 	"edit": "Edit",
-	"formattedUsingMarkdown": "Formatted using Markdown"
+	"formattedUsingMarkdown": "Formatted using Markdown",
+	"sendFeedback": "Send Feedback",
+	"summary": "Summary",
+	"chapters": "Chapters",
+	"articles": "Articles",
+	"articleOverview": "Article Overview",
+	"noArticleSelected": "No Article Selected",
+	"noChapters": "No Chapters",
+	"noArticles": "No Articles",
+	"delete": "Delete",
+	"toCreateArticlesFirstAddAChapter": "To create articles, first add a chapter",
+	"enterName": "Enter Name",
+	"selectChapterOrArticleByClickingOnIt": "Select a chapter or article by clicking on it",
+	"toAddOneEnterItsNameAndPressAddNew": "To add one, enter its name and press Add New"
 }

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	let { children, showModal = $bindable(), cssClass = '' } = $props();
+	let { children, showModal = $bindable(), cssClass = '', cssStyle = '' } = $props();
 	let dialog: HTMLDialogElement | undefined = $state();
 	let clickable: HTMLDivElement | undefined = $state();
 
@@ -18,7 +18,7 @@
 </script>
 
 {#key showModal}
-	<div class="absolute! m-0! h-0! w-0! p-0! *:bg-transparent">
+	<div class="absolute! m-0! h-0! w-0! p-0! *:bg-transparent z-49!">
 		<dialog
 			transition:fade|global={{ duration: 250 }}
 			bind:this={dialog}
@@ -42,6 +42,7 @@
 						? cssClass
 						: 'bg-white!'} mt-5 mb-5 flex max-w-4/5 grow flex-col rounded-2xl text-left text-white max-xl:h-screen max-xl:w-screen max-xl:min-w-9/10 xl:max-h-[66svh] xl:min-w-2/3 xl:p-5
 			"
+				style="{cssStyle}"
 				>
 					{@render children?.()}
 				</div>
