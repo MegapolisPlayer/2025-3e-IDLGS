@@ -3,12 +3,12 @@
 	import NextPrevious from '../components/NextPrevious.svelte';
 
 	let {
-		step = $bindable(0), 
-		selectedTextbookUuid = $bindable("")
-	 }: {
+		step = $bindable(0),
+		selectedTextbookUuid = $bindable(''),
+	}: {
 		step: number;
 		selectedTextbookUuid: string;
-	 } = $props();
+	} = $props();
 </script>
 
 <div class="flex w-full grow flex-col gap-2">

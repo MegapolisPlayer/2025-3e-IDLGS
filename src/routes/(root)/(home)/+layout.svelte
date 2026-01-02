@@ -18,7 +18,7 @@
 		<div class="absolute z-2! h-full w-full bg-violet-900/60"></div>
 	{/if}
 
-	<div class="flex flex-col w-full grow z-3">
+	<div class="z-3 flex w-full grow flex-col">
 		{@render children?.()}
 	</div>
 </div>

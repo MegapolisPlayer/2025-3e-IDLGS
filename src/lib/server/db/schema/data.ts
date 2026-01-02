@@ -1,8 +1,4 @@
-import {
-	pgTable,
-	text,
-	integer,
-} from 'drizzle-orm/pg-core';
+import { pgTable, text, integer } from 'drizzle-orm/pg-core';
 
 export const image = pgTable('image', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),

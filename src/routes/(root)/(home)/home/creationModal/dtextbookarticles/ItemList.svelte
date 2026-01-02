@@ -73,20 +73,19 @@
 			{/if}
 		{/key}
 		<div class="flex w-full flex-row gap-2 p-2">
-				<input
-					type="text"
-					name="editvalue"
-					bind:value={inputValue}
-					class="input-text grow"
-					placeholder={m.enterName()}
-				/>
+			<input
+				type="text"
+				name="editvalue"
+				bind:value={inputValue}
+				class="input-text grow"
+				placeholder={m.enterName()}
+			/>
 			<Button
 				emoji={editMode != -1 ? 'save-3' : 'add-circle'}
 				onclick={() => {
-					if(editMode == -1) {
+					if (editMode == -1) {
 						items.push(inputValue);
-					}
-					else {
+					} else {
 						items[editMode] = inputValue;
 						editMode = -1;
 					}
@@ -94,7 +93,8 @@
 				}}
 				btn="button-transparent"
 				cssClass="flex flex-row gap-1 flex-nowrap min-w-fit bg-white"
-				disabled={editMode == -1 && inputValue.length === 0 || editMode != -1 && items[editMode].length === 0}
+				disabled={(editMode == -1 && inputValue.length === 0) ||
+					(editMode != -1 && items[editMode].length === 0)}
 			>
 				{#if editMode != -1}
 					{m.save()}

@@ -54,7 +54,12 @@ export const actions = {
 			.pbkdf2Sync(password, user.salt, user.iterations, 64, 'sha512')
 			.toString('hex');
 
-		if (!crypto.timingSafeEqual(Buffer.from(hashedPassword), Buffer.from(user.password))) {
+		if (
+			!crypto.timingSafeEqual(
+				Buffer.from(hashedPassword),
+				Buffer.from(user.password),
+			)
+		) {
 			return fail(401, {});
 		}
 

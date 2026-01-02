@@ -29,7 +29,7 @@
 	let blue: number = $state(207);
 
 	//course only
-	let selectedTextbookUuid: string = $state("");
+	let selectedTextbookUuid: string = $state('');
 
 	//textbook only
 	let articleNames: string[] = $state([]);
@@ -53,7 +53,10 @@
 		<!-- course only -->
 		{#if selected == 'course'}
 			{#if stage == 1}
-				<CourseTextbookSelect bind:step={stage} bind:selectedTextbookUuid />
+				<CourseTextbookSelect
+					bind:step={stage}
+					bind:selectedTextbookUuid
+				/>
 			{:else if stage == 2}
 				<CourseBasicInfo
 					bind:step={stage}
@@ -93,7 +96,10 @@
 
 		<!-- both -->
 		{#if stage == 4}
-			<Ownership bind:step={stage} {selected} />
+			<Ownership
+				bind:step={stage}
+				{selected}
+			/>
 		{:else if stage == 5}
 			<Review
 				bind:step={stage}

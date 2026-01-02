@@ -33,12 +33,12 @@
 	</div>
 	<div
 		class="
-		flex grow flex-row gap-4 justify-center w-full
+		flex w-full grow flex-row justify-center gap-4
 		*:flex *:flex-col *:gap-2
 	"
 		style="color: rgb({red}, {green}, {blue});"
 	>
-		<div class="grow w-5/11 min-w-5/11">
+		<div class="w-5/11 min-w-5/11 grow">
 			<h2 class="text-white!">{m.chapters()}</h2>
 			<ItemList
 				bind:items={chapterNames}
@@ -47,7 +47,7 @@
 				{m.noChapters()}
 			</ItemList>
 		</div>
-		<div class="grow w-5/11 min-w-5/11">
+		<div class="w-5/11 min-w-5/11 grow">
 			<h2 class="text-white!">{m.articles()}</h2>
 			{#if chapterNames.length > 0}
 				{#if selectedChapterName.length > 0}

@@ -15,4 +15,4 @@
 	let searchValue = $state('');
 </script>
 
-<div class="xl:hidden flex flex-col grow w-full"></div>
+<div class="flex w-full grow flex-col xl:hidden"></div>
