@@ -53,6 +53,8 @@ const handleDatabase: Handle = async ({ event, resolve }) => {
 
 //dev only
 const handleDefaultUser: Handle = async ({ event, resolve }) => {
+	if(!env.DEV || !env.DEFAULT_EMAIL || !env.DEFAULT_PASSWORD) throw Error("ENV vars not set!");
+
 	if ((await event.locals.db.select().from(schema.user)).length == 0) {
 		await createUser(
 			event.locals.db,
@@ -63,7 +65,7 @@ const handleDefaultUser: Handle = async ({ event, resolve }) => {
 			env.DEFAULT_PASSWORD,
 			new Date(2008, 4, 25, 5, 31, 0, 0),
 			'pl',
-			true,
+			true, true, true, true,
 		);
 	}
 
