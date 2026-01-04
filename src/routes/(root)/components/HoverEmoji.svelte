@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { emoji, disabled } = $props();
+	let { emoji, disabled = false } = $props();
 </script>
 
 {#if !disabled}
