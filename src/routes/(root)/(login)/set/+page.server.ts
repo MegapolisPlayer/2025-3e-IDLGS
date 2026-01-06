@@ -15,7 +15,6 @@ export const load = async (event) => {
 export const actions = {
 	setPassword: async (event) => {
 		return await formRunner(
-			event,
 			['password', 'rpassword'],
 			async (event, formData, cookies, user) => {
 				const password = formData.get('password')?.toString();

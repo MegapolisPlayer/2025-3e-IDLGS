@@ -58,7 +58,6 @@ const handleDefaultUser: Handle = async ({ event, resolve }) => {
 
 	if ((await event.locals.db.select().from(schema.user)).length == 0) {
 		await createUser(
-			event.locals.db,
 			env.DEFAULT_EMAIL,
 			'IDLGS',
 			'Administration',

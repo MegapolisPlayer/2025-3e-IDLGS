@@ -1,68 +1,93 @@
 <script lang="ts">
+	//TODO make selected users show up when going back a stage
+
 	import { m } from '$lib/paraglide/messages';
 	import TextInput from '$src/routes/(root)/components/TextInput.svelte';
-	import { onDestroy, onMount, untrack } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import NextPrevious from '../components/NextPrevious.svelte';
-	import type { UserType } from '$lib/types';
+	import type { UserTypeLimited } from '$lib/types';
 	import User from '../components/eownership/User.svelte';
 	import UserDropdown from '../components/eownership/UserDropdown.svelte';
+	import { untrack } from 'svelte';
 
 	let {
 		step = $bindable(0),
 		selected,
 		//uuids of users
 		selectedUsers = $bindable([]),
+		red,
+		green,
+		blue,
 	}: {
 		step: number;
 		selected: string;
 		selectedUsers: string[];
+		red: number;
+		green: number;
+		blue: number;
 	} = $props();
 
-	let secondsTimer: number = $state(0);
-	let secondsTimerInterval: NodeJS.Timeout | undefined = $state(undefined);
+	let ticksCounter: number = $state(0);
+	let ticksCounterInterval: NodeJS.Timeout | undefined = $state(undefined);
 
 	let query: string = $state('');
-	let hasFetched = $derived(query.length == 0);
+	let hasFetched = $derived(query.length < 3);
 	let lastKeystroke: number = $derived.by(() => {
 		if (query.length == 0) return 0;
 		let value = 0;
 		untrack(() => {
-			value = secondsTimer;
+			value = ticksCounter;
 		});
 		return value;
 	});
-	let usersList: Promise<{ users: UserType[] }> = $state(
+	let usersList: Promise<{ users: UserTypeLimited[] }> = $state(
 		new Promise((resolve) => {
 			resolve({ users: [] });
 		}),
 	);
-	let actualUsersList: UserType[] = $state([]); //selected users
+
+	//although this finding code is horribly inefficient it is simpler to manage and we won't have SO many users per course
+
+	let actualUsersList: Promise<UserTypeLimited[]> = $derived.by(async () => {
+		if (selectedUsers.length == 0) return [];
+
+		return usersList.then((v) => {
+			return v.users.filter((w) => selectedUsers.indexOf(w.uuid) != -1);
+		});
+	}); //selected users
 
 	onMount(() => {
-		secondsTimerInterval = setInterval(async () => {
-			if (secondsTimer - lastKeystroke > 2 && !hasFetched) {
-				//load data
+		ticksCounterInterval = setInterval(async () => {
+			ticksCounter++;
 
-				const response = await fetch('/home/creationModal/userList/', {
-					method: 'POST',
-					body: JSON.stringify({
-						query: query,
-					}),
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				});
+			//200ms after last keystroke
+			if (ticksCounter - lastKeystroke < 5 || hasFetched) return;
 
-				usersList = response.json() as Promise<{ users: UserType[] }>;
-				hasFetched = true;
-			}
+			//load data
+			const response = await fetch('/home/creationModal/userList/', {
+				method: 'POST',
+				body: JSON.stringify({
+					query: query,
+				}),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
 
-			secondsTimer++;
-		}, 1000);
+			usersList = response.json() as Promise<{
+				users: UserTypeLimited[];
+			}>;
+
+			hasFetched = true;
+		}, 100);
 	});
 	onDestroy(() => {
-		clearInterval(secondsTimerInterval);
+		clearInterval(ticksCounterInterval);
 	});
+
+	const onRewriteSelectedUser = (newValue: string) => {
+		selectedUsers.push(newValue);
+	};
 </script>
 
 <div class="flex w-full grow flex-col gap-2">
@@ -71,25 +96,43 @@
 			? m.addPeopleToCourse()
 			: m.addAuthorsToTextbook()}
 	</h2>
-	<div class="flex grow flex-col gap-2 rounded-lg bg-neutral-700/40">
+	<div class="flex grow flex-col gap-2 rounded-lg bg-neutral-700/40 p-2">
 		<span class="group relative flex w-full flex-col gap-2">
 			<TextInput
 				bind:value={query}
 				cssClass="w-full text-xl!"
 				placeholder={m.enterEmailNameOrSurnameOfUser()}
 			/>
-			<UserDropdown {usersList} />
+			<UserDropdown
+				{usersList}
+				bind:selectedUser={() => '', onRewriteSelectedUser}
+			/>
 		</span>
 
-		{#each actualUsersList as user (user.uuid)}
-			<User {user} />
-		{:else}
-			<div
-				class="flex flex-col gap-2 justify-center items-center grow w-full opacity-50"
-			>
-				{m.noUsersAddedYet()}
-			</div>
-		{/each}
+		{#key actualUsersList}
+			{#await actualUsersList then users}
+				{#each users as user (user.uuid)}
+					<User
+						{user}
+						{red}
+						{green}
+						{blue}
+						removeHandler={() => {
+							selectedUsers.splice(
+								selectedUsers.indexOf(user.uuid),
+								1,
+							);
+						}}
+					/>
+				{:else}
+					<div
+						class="flex flex-col gap-2 justify-center items-center grow w-full opacity-50"
+					>
+						{m.noUsersAddedYet()}
+					</div>
+				{/each}
+			{/await}
+		{/key}
 	</div>
 	<NextPrevious
 		currentStep={selected == 'course' ? 4 : 3}

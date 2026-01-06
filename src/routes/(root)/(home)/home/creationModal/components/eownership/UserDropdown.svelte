@@ -1,26 +1,26 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-	import type { UserType } from '$lib/types';
+	import type { UserTypeLimited } from '$lib/types';
 	import LoadingAnimationHandler from '$src/routes/(root)/components/LoadingAnimationHandler.svelte';
 	import UserSelector from './UserSelector.svelte';
 
 	let {
 		usersList,
+		selectedUser = $bindable('')
 	}: {
-		usersList: Promise<{ users: UserType[] }>;
+		usersList: Promise<{ users: UserTypeLimited[] }>,
+		selectedUser: string;
 	} = $props();
-
-	$inspect(usersList);
 </script>
 
 <div
-	class=" absolute bottom-0 left-0 flex w-full translate-y-full flex-col gap-2 rounded-lg bg-white p-2 not-group-focus-within:hidden"
+	class="z-15 absolute bottom-0 left-0 flex w-full translate-y-full flex-col gap-2 first:rounded-t-lg last:rounded-b-lg not-group-focus-within:hidden"
 >
 	{#await usersList}
-		<LoadingAnimationHandler />
+		<LoadingAnimationHandler text={false} />
 	{:then users}
 		{#each users.users as user (user.uuid)}
-			<UserSelector {user} />
+			<UserSelector {user} bind:output={selectedUser} />
 		{:else}
 			<div
 				class="flex flex-col justify-center items-center w-full grow text-neutral-700 opacity-50"

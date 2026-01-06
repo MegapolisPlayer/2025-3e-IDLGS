@@ -45,7 +45,8 @@
 
 				<div class="h-[5vh] min-h-[5vh]"></div>
 
-				<div class="flex h-fit w-full flex-row gap-2">
+				<div class="flex h-fit w-full flex-row gap-2 items-center">
+					<i class="ri-layout-grid-line"></i>
 					<h2 class="text-left">{m.coursesAndTextbooks()}</h2>
 					<div class="grow"></div>
 					<input
@@ -73,6 +74,7 @@
 					<div class="grid grid-cols-4 gap-2">
 						<AdditionCard onclick={() => (creationModal = true)} />
 
+						<!-- TODO replace with actual data -->
 						{#each allItems as item, i (item.uuid)}
 							{#if item.type == 'c'}
 								<CourseCard
@@ -104,6 +106,7 @@
 										blue: Math.random() * 100 + 125,
 										name: 'namam',
 										summary: '',
+										subject: 'ajnbl'
 									}}
 								/>
 							{/if}

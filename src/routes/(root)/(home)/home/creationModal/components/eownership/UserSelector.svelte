@@ -1,14 +1,30 @@
 <script lang="ts">
-	import type { UserType } from '$lib/types';
+	import type { UserTypeLimited } from '$lib/types';
 
 	let {
 		user,
+		output = $bindable(''),
 	}: {
-		user: UserType;
+		user: UserTypeLimited;
+		output: string;
 	} = $props();
 </script>
 
-<div class="flex w-full flex-row gap-2 text-black!">
-	<!-- TODO -->
-	{JSON.stringify(user)}
-</div>
+<button
+	class="
+	flex w-full flex-row items-center gap-1
+	text-black! bg-white hover:brightness-80! active:brightness-60!
+"
+	onclick={() => {
+		output = user.uuid;
+		(document.activeElement as HTMLElement).blur(); //remove focus and therefore close dropdown
+	}}
+>
+	{#if user.degree}
+		<span>{user.degree}</span>
+	{/if}
+	<span class="font-medium">{user.name}</span>
+	<span class="font-medium">{user.surname}</span>
+	<div class="grow"></div>
+	<span class="text-sm italic opacity-30">{user.uuid}</span>
+</button>

@@ -1,30 +1,8 @@
 import type { UserType } from '$lib/types';
-import { checkSetting } from '../settings';
 import * as crypto from 'node:crypto';
 import { schema } from '$lib/server/db/mainSchema';
-import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import type { DBType } from '../db/types';
-
-export const setPassword = async (
-	db: DBType,
-	password: string,
-): Promise<void> => {
-	const salt = crypto.randomUUID();
-	//cloudflare workers has 100000 iteration limit
-	const iterations = Math.trunc(9000 + Math.random() * 90000);
-
-	await checkSetting(
-		db,
-		'password',
-		crypto
-			.pbkdf2Sync(Buffer.from(password), salt, iterations, 64, 'sha512')
-			.toString('hex'),
-	);
-
-	await checkSetting(db, 'salt', salt);
-	await checkSetting(db, 'iterations', String(iterations));
-};
+import { getRequestEvent } from '$app/server';
 
 export const validateTurnstile = async (
 	ip: string,
@@ -68,7 +46,6 @@ export const hashPassword = (
 };
 
 export const createUser = async (
-	db: DBType,
 	email: string,
 	name: string,
 	surname: string,
@@ -81,6 +58,8 @@ export const createUser = async (
 	courses: boolean,
 	resin: boolean,
 ): Promise<UserType> => {
+	const db = getRequestEvent().locals.db;
+
 	const pass = hashPassword(password);
 
 	return (
@@ -105,9 +84,9 @@ export const createUser = async (
 	)[0];
 };
 
-export const getUser = async (
-	event: RequestEvent,
-): Promise<UserType | undefined> => {
+export const getUser = async (): Promise<UserType | undefined> => {
+	const event = getRequestEvent();
+
 	const cookie = event.cookies.get('session');
 	if (!cookie) {
 		return undefined;

@@ -50,7 +50,7 @@
 		@apply bg-linear-to-tr from-violet-800 to-emerald-600 text-white!;
 	}
 	.button-violet {
-		@apply bg-violet-900 text-white!;
+		@apply bg-violet-800 text-white!;
 	}
 	.button-green {
 		@apply bg-emerald-600 text-white!;

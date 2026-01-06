@@ -221,5 +221,12 @@
 	"passwordsMustBeEqual": "Пароли должны быть одинаковыми",
 	"enterEmailNameOrSurnameOfUser": "Введите электронную почту, имя или фамилию пользователя",
 	"noUsersAddedYet": "Пока нет добавленных пользователей",
-	"noUsersFound": "Пользователи не найдены"
+	"noUsersFound": "Пользователи не найдены",
+	"user": "Пользователь",
+	"editor": "Редактор",
+	"owner": "Владелец",
+	"remove": "Удалить",
+	"create": "Создать",
+	"textbookSubject": "Предмет учебника",
+	"enterTextbookSubject": "Введите предмет учебника"
 }

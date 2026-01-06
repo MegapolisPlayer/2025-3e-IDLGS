@@ -1,12 +1,14 @@
 import type { UserType, TextbookType } from '$lib/types';
 import { schema } from '$lib/server/db/mainSchema';
-import type { DBType } from '../db/types';
 import { eq } from 'drizzle-orm';
+import { getRequestEvent } from '$app/server';
+import { subject } from '../db/schema/misc';
 
 export const loadTextbooks = async (
-	db: DBType,
 	user: UserType,
 ): Promise<TextbookType[]> => {
+	const db = getRequestEvent().locals.db;
+
 	return db
 		.select({
 			uuid: schema.textbook.uuid,
@@ -18,6 +20,7 @@ export const loadTextbooks = async (
 			blue: schema.textbook.blue,
 			name: schema.textbook.name,
 			summary: schema.textbook.summary,
+			subject: schema.textbook.subject,
 		})
 		.from(schema.textbook)
 		.innerJoin(

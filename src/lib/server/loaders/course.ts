@@ -1,12 +1,13 @@
 import type { CourseType, UserType } from '$lib/types';
 import { schema } from '$lib/server/db/mainSchema';
-import type { DBType } from '../db/types';
 import { eq } from 'drizzle-orm';
+import { getRequestEvent } from '$app/server';
 
 export const loadCourses = async (
-	db: DBType,
 	user: UserType,
 ): Promise<CourseType[]> => {
+	const db = getRequestEvent().locals.db;
+
 	return db
 		.select({
 			uuid: schema.course.uuid,

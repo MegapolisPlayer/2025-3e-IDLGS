@@ -71,3 +71,5 @@ export const checkPassword = (
 		all: length && capital && lowercase && number && special,
 	};
 };
+
+export const MAX_TEXTBOOK_LETTERS = 50;

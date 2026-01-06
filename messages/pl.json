@@ -221,5 +221,12 @@
 	"passwordsMustBeEqual": "Hasła muszą być takie same",
 	"enterEmailNameOrSurnameOfUser": "Wprowadź e-mail, imię lub nazwisko użytkownika",
 	"noUsersAddedYet": "Jeszcze nie dodano użytkowników",
-	"noUsersFound": "Nie znaleziono użytkowników"
+	"noUsersFound": "Nie znaleziono użytkowników",
+	"user": "Użytkownik",
+	"editor": "Edytor",
+	"owner": "Właściciel",
+	"remove": "Usuń",
+	"create": "Utwórz",
+	"textbookSubject": "Przedmiot podręcznika",
+	"enterTextbookSubject": "Wprowadź przedmiot podręcznika"
 }

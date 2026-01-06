@@ -17,6 +17,7 @@ export const textbook = pgTable('textbook', {
 	modifiedAt: timestamp('modifiedAt')
 		.notNull()
 		.$defaultFn(() => new Date()),
+	subject: text('subject').notNull(),
 });
 
 export const chapter = pgTable('chapter', {

@@ -4,7 +4,7 @@ import { schema } from '$lib/server/db/mainSchema';
 import { or, sql } from 'drizzle-orm';
 
 export const POST = async (event) => {
-	return await apiRunner(event, async (event, user, data) => {
+	return await apiRunner(async (event, user, data) => {
 		const localData = data as {
 			query: string;
 		};

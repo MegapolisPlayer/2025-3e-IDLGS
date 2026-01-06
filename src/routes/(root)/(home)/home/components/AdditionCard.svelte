@@ -14,6 +14,7 @@
 	perspective={false}
 	{onclick}
 	hover={true}
+	css='w-[35svh] h-[35svh]'
 >
 	<div
 		class="group flex w-full grow flex-col items-center justify-center gap-2"

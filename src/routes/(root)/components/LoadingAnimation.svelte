@@ -7,6 +7,8 @@
 	let dots: number = $state(1);
 	let newMessage = $state(false);
 
+	let { text = true } = $props();
+
 	onMount(() => {
 		timeoutMessageChange = setTimeout(() => {
 			newMessage = true;
@@ -29,13 +31,15 @@
 		<i class="ri-circle-fill animate-bounce"></i>
 	</div>
 	<div class="flex flex-row gap-0">
-		<span>
-			{#if newMessage}
-				{m.itsTakingLongerThanExpected()}
-			{:else}
-				{m.loading()}
-			{/if}
-		</span>
+		{#if text}
+			<span>
+				{#if newMessage}
+					{m.itsTakingLongerThanExpected()}
+				{:else}
+					{m.loading()}
+				{/if}
+			</span>
+		{/if}
 		<span>
 			{#key dots}
 				{#each new Array(dots).fill('.') as dot, i (i)}

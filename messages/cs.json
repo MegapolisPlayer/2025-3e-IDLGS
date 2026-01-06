@@ -221,5 +221,12 @@
 	"passwordsMustBeEqual": "Hesla musí být stejná",
 	"enterEmailNameOrSurnameOfUser": "Zadejte e-mail, jméno nebo příjmení uživatele",
 	"noUsersAddedYet": "Ještě nebyli přidáni žádní uživatelé",
-	"noUsersFound": "Nebyli nalezeni žádní uživatelé"
+	"noUsersFound": "Nebyli nalezeni žádní uživatelé",
+	"user": "Uživatel",
+	"editor": "Editor",
+	"owner": "Vlastník",
+	"remove": "Odebrat",
+	"create": "Vytvořit",
+	"textbookSubject": "Předmět učebnice",
+	"enterTextbookSubject": "Zadejte předmět učebnice"
 }

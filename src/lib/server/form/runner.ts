@@ -2,6 +2,7 @@ import type { ActionFailure, Cookies, RequestEvent } from '@sveltejs/kit';
 import { getUser } from '$lib/server/user/index.js';
 import { error, fail } from '@sveltejs/kit';
 import type { UserType } from '$lib/types';
+import { getRequestEvent } from '$app/server';
 
 export const checkFormData = (formData: FormData, array: string[]): boolean => {
 	for (let i = 0; i < array.length; i++) {
@@ -11,7 +12,6 @@ export const checkFormData = (formData: FormData, array: string[]): boolean => {
 };
 
 export const formRunner = async (
-	event: RequestEvent,
 	requiredFields: string[],
 	runner: (
 		event: RequestEvent,
@@ -20,7 +20,9 @@ export const formRunner = async (
 		user: UserType,
 	) => Promise<ActionFailure | unknown>,
 ) => {
-	const user = await getUser(event);
+	const event = getRequestEvent();
+
+	const user = await getUser();
 	if (!user) return fail(401);
 
 	const formData = await event.request.formData();
@@ -33,14 +35,15 @@ export const formRunner = async (
 };
 
 export const apiRunner = async (
-	event: RequestEvent,
 	runner: (
 		event: RequestEvent,
 		user: UserType,
 		requestData: unknown,
 	) => Promise<Response>,
 ) => {
-	const user = await getUser(event);
+	const event = getRequestEvent();
+
+	const user = await getUser();
 	if (!user) return error(401);
 
 	const data = await event.request.json();

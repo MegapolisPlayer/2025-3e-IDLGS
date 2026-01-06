@@ -8,6 +8,7 @@
 		red = $bindable(0),
 		green = $bindable(0),
 		blue = $bindable(0),
+		subject = $bindable(''),
 	} = $props();
 </script>
 

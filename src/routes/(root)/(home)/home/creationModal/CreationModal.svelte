@@ -8,6 +8,7 @@
 	import Review from './stages/FReview.svelte';
 	import TextbookArticles from './stages/DTextbookArticles.svelte';
 	import CourseTextbookSelect from './stages/BCourseTextbookSelect.svelte';
+	import type { CourseGradeType } from '$lib/types';
 
 	//this component stores the values which it then review submits to form action
 
@@ -21,6 +22,7 @@
 	let selected = $state('');
 
 	let name: string = $state('');
+	let subject: string = $state('');
 	let description: string = $state('');
 
 	//default values = tailwind's bg-violet-900
@@ -32,6 +34,8 @@
 
 	//course only
 	let selectedTextbookUuid: string = $state('');
+	let courseGrades: CourseGradeType[] = $state([]);
+	let inviteCode: string = $state('');
 
 	//textbook only
 	let articleNames: string[] = $state([]);
@@ -67,6 +71,7 @@
 					bind:green
 					bind:blue
 					bind:description
+					bind:subject
 				/>
 			{:else if stage == 3}
 				<CourseGrading bind:step={stage} />
@@ -81,6 +86,7 @@
 					bind:green
 					bind:blue
 					bind:description
+					bind:subject
 				/>
 			{:else if stage == 3}
 				<TextbookArticles
@@ -92,8 +98,6 @@
 					{blue}
 				/>
 			{/if}
-		{:else if stage != 0 && stage < 4}
-			INVALID SITUATION.
 		{/if}
 
 		<!-- both -->
@@ -102,16 +106,25 @@
 				bind:step={stage}
 				{selected}
 				bind:selectedUsers
+				{red}
+				{green}
+				{blue}
 			/>
 		{:else if stage == 5}
 			<Review
 				bind:step={stage}
 				{name}
+				{subject}
 				{red}
 				{green}
 				{blue}
 				{description}
 				type={selected}
+				{selectedUsers}
+				{articleNames}
+				{chapterNames}
+				{courseGrades}
+				{inviteCode}
 			/>
 		{/if}
 	</Modal>

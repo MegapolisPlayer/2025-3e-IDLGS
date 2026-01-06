@@ -1,14 +1,15 @@
-import type { RequestEvent } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
+import { getRequestEvent } from '$app/server';
 
 //using my notifications.martinbykov.eu API, its HTTPS only -MB
 
 export const sendMail = async (
-	event: RequestEvent,
 	subject: string,
 	message: string,
 	target: string,
 ): Promise<boolean> => {
+	const event = getRequestEvent();
+
 	try {
 		const response = await event.fetch(
 			'https://notifications.martinbykov.eu/email',
@@ -32,4 +33,17 @@ export const sendMail = async (
 		console.log('SendMail failed: ', JSON.stringify(e));
 		return false;
 	}
+};
+
+//a very dangerous function indeed
+export const sendMailToAllUsers = async (
+	subject: string,
+	message: string,
+	target: string,
+): Promise<boolean>  => {
+	const event = getRequestEvent();
+
+	//TODO send mails to everyone in a for loop
+
+	return true;
 };

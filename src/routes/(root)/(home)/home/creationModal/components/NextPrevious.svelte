@@ -9,6 +9,7 @@
 		onclickNext,
 		disableConditionNext = false,
 		message = m.youCanAlwaysChangeThisLater(),
+		isLast = false,
 	}: {
 		currentStep: number;
 		maxStep: number;
@@ -16,6 +17,7 @@
 		onclickLast: () => void;
 		disableConditionNext?: boolean;
 		message?: string;
+		isLast?: boolean;
 	} = $props();
 </script>
 
@@ -52,13 +54,25 @@
 
 	<div class="grow"></div>
 
-	<Button
-		btn="button-white"
-		emoji="arrow-right-s"
-		flip={true}
-		onclick={onclickNext}
-		disabled={disableConditionNext}
-	>
-		{m.next()}
-	</Button>
+	{#if isLast}
+		<Button
+			btn="button-white"
+			emoji="check"
+			flip={true}
+			onclick={onclickNext}
+			disabled={disableConditionNext}
+		>
+			{m.create()}
+		</Button>
+	{:else}
+		<Button
+			btn="button-white"
+			emoji="arrow-right-s"
+			flip={true}
+			onclick={onclickNext}
+			disabled={disableConditionNext}
+		>
+			{m.next()}
+		</Button>
+	{/if}
 </div>

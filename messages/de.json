@@ -221,5 +221,12 @@
 	"passwordsMustBeEqual": "Passwörter müssen übereinstimmen",
 	"enterEmailNameOrSurnameOfUser": "Geben Sie die E-Mail, den Namen oder den Nachnamen des Benutzers ein",
 	"noUsersAddedYet": "Noch keine Benutzer hinzugefügt",
-	"noUsersFound": "Keine Benutzer gefunden"
+	"noUsersFound": "Keine Benutzer gefunden",
+	"user": "Benutzer",
+	"editor": "Editor",
+	"owner": "Eigentümer",
+	"remove": "Entfernen",
+	"create": "Erstellen",
+	"textbookSubject": "Lehrbuchfach",
+	"enterTextbookSubject": "Geben Sie das Lehrbuchfach ein"
 }

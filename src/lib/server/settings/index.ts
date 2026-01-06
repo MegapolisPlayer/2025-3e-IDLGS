@@ -1,8 +1,10 @@
 import { schema } from '$lib/server/db/mainSchema';
 import { eq, count } from 'drizzle-orm';
-import { type DBType } from '../db/types';
+import { getRequestEvent } from '$app/server';
 
-export const getSetting = async (db: DBType, key: string): Promise<string> => {
+export const getSetting = async (key: string): Promise<string> => {
+	const db = getRequestEvent().locals.db;
+	
 	const value = await db
 		.select()
 		.from(schema.setting)
@@ -13,10 +15,11 @@ export const getSetting = async (db: DBType, key: string): Promise<string> => {
 };
 
 export const setSetting = async (
-	db: DBType,
 	key: string,
 	value: string,
 ): Promise<void> => {
+	const db = getRequestEvent().locals.db;
+
 	//get count first
 
 	const len = (
@@ -45,10 +48,11 @@ export const setSetting = async (
 };
 
 export const checkSetting = async (
-	db: DBType,
 	key: string,
 	value: string,
 ): Promise<void> => {
+	const db = getRequestEvent().locals.db;
+
 	//get count first
 
 	const len = (

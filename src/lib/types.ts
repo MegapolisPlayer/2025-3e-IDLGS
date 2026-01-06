@@ -1,5 +1,7 @@
 //DB Types
 
+//Users
+
 export type UserType = {
 	id: number;
 	uuid: string;
@@ -29,7 +31,11 @@ export type UserTypeLimited = {
 	name: string;
 	surname: string;
 	degree: string;
+	isEditor?: boolean;
+	isOwner?: boolean;
 };
+
+//Textbooks
 
 export type TextbookType = {
 	uuid: string;
@@ -41,6 +47,7 @@ export type TextbookType = {
 	green: number;
 	blue: number;
 	name: string;
+	subject: string;
 };
 
 export type ChapterType = {
@@ -57,6 +64,8 @@ export type ArticleType = {
 	chapterId: number;
 };
 
+//Courses
+
 export type CourseType = {
 	uuid: string;
 	description: string;
@@ -67,6 +76,12 @@ export type CourseType = {
 	blue: number;
 	name: string;
 	subject: string;
+};
+
+export type CourseGradeType = {
+	min: number;
+	max: number;
+	name: string;
 };
 
 //Cloudflare AI workers

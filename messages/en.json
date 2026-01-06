@@ -221,5 +221,12 @@
 	"passwordsMustBeEqual": "Passwords must be equal",
 	"enterEmailNameOrSurnameOfUser": "Enter email, name, or surname of user",
 	"noUsersAddedYet": "No users added yet",
-	"noUsersFound": "No users found"
+	"noUsersFound": "No users found",
+	"user": "User",
+	"editor": "Editor",
+	"owner": "Owner",
+	"remove": "Remove",
+	"create": "Create",
+	"textbookSubject": "Textbook Subject",
+	"enterTextbookSubject": "Enter Textbook Subject"
 }

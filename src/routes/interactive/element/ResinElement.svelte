@@ -141,7 +141,6 @@
 	width={canvasWidth}
 	height={canvasHeight}
 	overrideDragFunction={(dx, dy) => {
-		console.log(shiftPressed);
 		if (!shiftPressed) {
 			el.width += dx;
 			el.height += dy;
