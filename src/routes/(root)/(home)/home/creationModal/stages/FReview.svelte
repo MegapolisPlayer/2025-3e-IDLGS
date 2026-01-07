@@ -51,27 +51,75 @@
 	}}
 >
 	<!-- inputs -->
-	<input type="hidden" name="name" value={name} />
-	<input type="hidden" name="description" value={description} />
-	<input type="hidden" name="subject" value={subject} />
-	<input type="hidden" name="red" value={red} />
-	<input type="hidden" name="green" value={green} />
-	<input type="hidden" name="blue" value={blue} />
-	<input type="hidden" name="users" value={JSON.stringify(selectedUsers)} />
-	<input type="hidden" name="roles" value={JSON.stringify(selectedUserRoles)} />
+	<input
+		type="hidden"
+		name="name"
+		value={name}
+	/>
+	<input
+		type="hidden"
+		name="description"
+		value={description}
+	/>
+	<input
+		type="hidden"
+		name="subject"
+		value={subject}
+	/>
+	<input
+		type="hidden"
+		name="red"
+		value={red}
+	/>
+	<input
+		type="hidden"
+		name="green"
+		value={green}
+	/>
+	<input
+		type="hidden"
+		name="blue"
+		value={blue}
+	/>
+	<input
+		type="hidden"
+		name="users"
+		value={JSON.stringify(selectedUsers)}
+	/>
+	<input
+		type="hidden"
+		name="roles"
+		value={JSON.stringify(selectedUserRoles)}
+	/>
 
 	{#if type == 'course'}
-		<input type="hidden" name="grades" value={JSON.stringify(courseGrades)} />
-		<input type="hidden" name="code" value={inviteCode} />
+		<input
+			type="hidden"
+			name="grades"
+			value={JSON.stringify(courseGrades)}
+		/>
+		<input
+			type="hidden"
+			name="code"
+			value={inviteCode}
+		/>
 	{:else}
-		<input type="hidden" name="articles" value={JSON.stringify(articleNames)} />
-		<input type="hidden" name="chapters" value={JSON.stringify(chapterNames)} />
+		<input
+			type="hidden"
+			name="articles"
+			value={JSON.stringify(articleNames)}
+		/>
+		<input
+			type="hidden"
+			name="chapters"
+			value={JSON.stringify(chapterNames)}
+		/>
 	{/if}
 
 	<h2 class="">{m.summary()}</h2>
 	<div class="flex grow flex-row">
 		<div class="flex h-full flex-col gap-2">
-			<Attribute 
+			<Attribute
 				{type}
 				value={name}
 				course={m.courseName()}
@@ -83,7 +131,7 @@
 				course={m.courseSubject()}
 				textbook={m.textbookSubject()}
 			/>
-			{#if type=='course'}
+			{#if type == 'course'}
 				<!-- TODO other attribs-->
 			{/if}
 			<Attribute

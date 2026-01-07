@@ -65,8 +65,12 @@
 	<div class="grow"></div>
 	<SelectionInput
 		bind:value={() => valueInput, onRewriteSelectedValue}
-		values={(type == 'course') ? ['none', 'teacher', 'owner'] : ['none', 'editor', 'owner']}
-		names={(type == 'course') ? [m.student(), m.teacher(), m.owner()] : [m.user(), m.editor(), m.owner()]}
+		values={type == 'course'
+			? ['none', 'teacher', 'owner']
+			: ['none', 'editor', 'owner']}
+		names={type == 'course'
+			? [m.student(), m.teacher(), m.owner()]
+			: [m.user(), m.editor(), m.owner()]}
 	/>
 	<div></div>
 	<Button

@@ -18,8 +18,16 @@ export const actions = {
 	createTextbook: async (event) => {
 		return await formRunner(
 			[
-				'name', 'description', 'subject', 'red', 'green', 'blue', 'users', 'roles',
-				'articles', 'chapters'
+				'name',
+				'description',
+				'subject',
+				'red',
+				'green',
+				'blue',
+				'users',
+				'roles',
+				'articles',
+				'chapters',
 			],
 			async (event, formData, cookies, user) => {
 				//await event.locals.db.insert(schema.textbook);
@@ -29,8 +37,16 @@ export const actions = {
 	createCourse: async (event) => {
 		return await formRunner(
 			[
-				'name', 'description', 'subject', 'red', 'green', 'blue', 'users', 'roles',
-				'grades', 'code'
+				'name',
+				'description',
+				'subject',
+				'red',
+				'green',
+				'blue',
+				'users',
+				'roles',
+				'grades',
+				'code',
 			],
 			async (event, formData, cookies, user) => {
 				//await event.locals.db.insert(schema.course);

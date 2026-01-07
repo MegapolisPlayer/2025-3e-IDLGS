@@ -18,7 +18,7 @@ export const subject = pgTable('subject', {
 });
 
 export const dailyChallenges = pgTable(
-	'dailyChallenges', 
+	'dailyChallenges',
 	{
 		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 		text: text('text').notNull().default(''),
@@ -32,5 +32,5 @@ export const dailyChallenges = pgTable(
 		check('paramMinCheck', sql`${table.paramMin} >= 0`),
 		check('paramMaxCheck', sql`${table.paramMax} <= 10`),
 		check('paramSanityCheck', sql`${table.paramMin} <= ${table.paramMax}`),
-	]
+	],
 );

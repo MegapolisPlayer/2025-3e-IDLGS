@@ -7,6 +7,7 @@ A self-contained interactive element and exercise system used in the textbook fo
 - As graded exercises that contribute to the student's overall grade in the course.
 
 ## Features
+
 - Support for many elements
 - A defined specification - an intermediate representation that is easy to parse, manipulate and platform-agnostic.
 - Support for both mobile and desktop platforms.

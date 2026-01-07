@@ -12,10 +12,10 @@
 	bind:showModal
 	{cssClass}
 >
-	<div class="flex flex-col w-full grow">
+	<div class="flex w-full grow flex-col">
 		<h2>{m.areYouSure()}</h2>
 		<p class="w-full">{text}</p>
-		<div class="grid grid-cols-2 gap-4 w-full">
+		<div class="grid w-full grid-cols-2 gap-4">
 			<Button
 				emoji="check"
 				btn="button-primary"
