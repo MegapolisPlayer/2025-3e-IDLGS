@@ -22,7 +22,7 @@
 				<i class="ri-settings-line"></i>
 				{m.websiteSettings()}
 			</h1>
-			<div class="flex flex-col grow w-full">
+			<div class="flex w-full grow flex-col">
 				<!-- TODO -->
 			</div>
 		</WideCard>
@@ -35,7 +35,7 @@
 				<i class="ri-group-line"></i>
 				{m.userManagement()}
 			</h1>
-			<div class="flex flex-col grow w-full">
+			<div class="flex w-full grow flex-col">
 				<!-- TODO -->
 			</div>
 		</WideCard>

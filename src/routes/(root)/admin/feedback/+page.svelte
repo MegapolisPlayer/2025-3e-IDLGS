@@ -3,6 +3,4 @@
 	//add end of day send all messages from here
 </script>
 
-<div>
-
-</div>
+<div></div>
