@@ -11,7 +11,7 @@
 	import AlertBox from '$src/routes/(root)/components/AlertBox.svelte';
 
 	let ready = $state(false);
-	let formMessage = $state("");
+	let formMessage = $state('');
 
 	onMount(() => {
 		ready = true;
@@ -45,9 +45,7 @@
 	</title>
 </svelte:head>
 
-<AlertBox 
-	bind:message={formMessage}
-/>
+<AlertBox bind:message={formMessage} />
 
 {#if ready}
 	<div
@@ -59,7 +57,7 @@
 			forceSquare={false}
 			padding="p-3"
 		>
-			<Form 
+			<Form
 				action="?/login"
 				failure={async () => {
 					formMessage = m.incorrectCredentials();
