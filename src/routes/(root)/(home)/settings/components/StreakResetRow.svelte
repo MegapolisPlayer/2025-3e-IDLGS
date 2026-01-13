@@ -7,7 +7,7 @@
 	let showModal = $state(false);
 </script>
 
-<Form 
+<Form
 	action="?/resetStreak"
 	cssClass="flex w-full flex-row items-center gap-2"
 >
@@ -27,8 +27,10 @@
 	>
 		{m.reset()}
 	</Button>
-	<DeleteModal 
+	<DeleteModal
 		bind:showModal
-		text={m.resettingYourStreakIsAnIrreversibleAction()+' '+m.areYouSure()}
+		text={m.resettingYourStreakIsAnIrreversibleAction() +
+			' ' +
+			m.areYouSure()}
 	/>
 </Form>

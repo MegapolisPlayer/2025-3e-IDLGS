@@ -146,7 +146,7 @@
 					onclick={(e) => {
 						e.stopPropagation();
 						year = year - 1;
-						if(year < 1900)	year = 1900;
+						if (year < 1900) year = 1900;
 					}}
 					emoji="arrow-left-s"
 					disabled={year <= 1900}
@@ -159,7 +159,8 @@
 					onclick={(e) => {
 						e.stopPropagation();
 						year = year + 1;
-						if(year > new Date().getFullYear())	year = new Date().getFullYear();
+						if (year > new Date().getFullYear())
+							year = new Date().getFullYear();
 					}}
 					emoji="arrow-right-s"
 					disabled={year >= new Date().getFullYear()}

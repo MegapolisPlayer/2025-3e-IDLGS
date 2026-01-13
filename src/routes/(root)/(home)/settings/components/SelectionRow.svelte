@@ -20,7 +20,10 @@
 </script>
 
 <div class="flex w-full flex-row items-center gap-2">
-	<HiddenInput {name} value={value} />
+	<HiddenInput
+		{name}
+		{value}
+	/>
 	<div class="text-lg">
 		{label}:
 	</div>

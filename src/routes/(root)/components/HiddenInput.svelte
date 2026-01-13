@@ -9,10 +9,15 @@
 
 	let element: HTMLInputElement;
 	$effect(() => {
-		if(value) {
+		if (value) {
 			element.dispatchEvent(new Event('change'));
 		}
 	});
 </script>
 
-<input bind:this={element} type="hidden" name="{name}" value="{value}" />
+<input
+	bind:this={element}
+	type="hidden"
+	{name}
+	{value}
+/>

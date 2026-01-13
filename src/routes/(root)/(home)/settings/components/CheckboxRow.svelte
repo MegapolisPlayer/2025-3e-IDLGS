@@ -18,7 +18,10 @@
 <div class="flex w-full flex-row items-center gap-2">
 	<!-- theoretically this is useless but it's more comfortable to use in the form actions this way -->
 	<!-- (no comparing to 'on' but 'true'/'false') -->
-	<HiddenInput {name} value={value} />
+	<HiddenInput
+		{name}
+		{value}
+	/>
 	<div class="text-lg">
 		{label}:
 	</div>

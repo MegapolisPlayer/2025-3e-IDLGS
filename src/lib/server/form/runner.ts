@@ -33,7 +33,7 @@ export const formRunner = async (
 	}
 
 	let object: { [key: string]: any } = {};
-	for(let i = 0; i < requiredFields.length; i++) {
+	for (let i = 0; i < requiredFields.length; i++) {
 		object[requiredFields[i]] = formData.get(requiredFields[i])?.toString();
 	}
 

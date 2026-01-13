@@ -1,10 +1,7 @@
 <script lang="ts">
 	import Button from '$component/Button.svelte';
 
-	let {
-		text,
-		emoji,
-	} = $props();
+	let { text, emoji } = $props();
 </script>
 
 <div class="flex w-full flex-row gap-2">

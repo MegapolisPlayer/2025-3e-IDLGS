@@ -7,7 +7,7 @@
 	let showModal = $state(false);
 </script>
 
-<Form 
+<Form
 	action="?/deleteAccount"
 	cssClass="flex w-full flex-row items-center gap-2"
 >
@@ -27,8 +27,10 @@
 	>
 		{m.delete()}
 	</Button>
-	<DeleteModal 
+	<DeleteModal
 		bind:showModal
-		text={m.deletingYourAccountIsAnIrreversibleAction()+' '+m.areYouSure()}
+		text={m.deletingYourAccountIsAnIrreversibleAction() +
+			' ' +
+			m.areYouSure()}
 	/>
 </Form>

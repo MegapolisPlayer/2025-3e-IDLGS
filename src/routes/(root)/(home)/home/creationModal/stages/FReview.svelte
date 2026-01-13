@@ -52,21 +52,57 @@
 	}}
 >
 	<!-- inputs -->
-	<HiddenInput name="name" value={name} />
-	<HiddenInput name="description" value={description} />
-	<HiddenInput name="subject" value={subject} />
-	<HiddenInput name="red" value={red} />
-	<HiddenInput name="green" value={green} />
-	<HiddenInput name="blue" value={blue} />
-	<HiddenInput name="users" value={JSON.stringify(selectedUsers)} />
-	<HiddenInput name="roles" value={JSON.stringify(selectedUserRoles)} />
+	<HiddenInput
+		name="name"
+		value={name}
+	/>
+	<HiddenInput
+		name="description"
+		value={description}
+	/>
+	<HiddenInput
+		name="subject"
+		value={subject}
+	/>
+	<HiddenInput
+		name="red"
+		value={red}
+	/>
+	<HiddenInput
+		name="green"
+		value={green}
+	/>
+	<HiddenInput
+		name="blue"
+		value={blue}
+	/>
+	<HiddenInput
+		name="users"
+		value={JSON.stringify(selectedUsers)}
+	/>
+	<HiddenInput
+		name="roles"
+		value={JSON.stringify(selectedUserRoles)}
+	/>
 
 	{#if type == 'course'}
-		<HiddenInput name="grades" value={JSON.stringify(courseGrades)} />
-		<HiddenInput name="inviteCode" value={inviteCode} />
+		<HiddenInput
+			name="grades"
+			value={JSON.stringify(courseGrades)}
+		/>
+		<HiddenInput
+			name="inviteCode"
+			value={inviteCode}
+		/>
 	{:else}
-		<HiddenInput name="chapters" value={JSON.stringify(chapterNames)} />
-		<HiddenInput name="articles" value={JSON.stringify(articleNames)} />
+		<HiddenInput
+			name="chapters"
+			value={JSON.stringify(chapterNames)}
+		/>
+		<HiddenInput
+			name="articles"
+			value={JSON.stringify(articleNames)}
+		/>
 	{/if}
 
 	<h2 class="">{m.summary()}</h2>

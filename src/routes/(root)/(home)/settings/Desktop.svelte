@@ -71,7 +71,7 @@
 								value={data.user.surname}
 								cssClass="text-lg"
 							/>
-							<DateRow 
+							<DateRow
 								label={m.birthDate()}
 								nameDay="day"
 								nameMonth="month"
@@ -93,7 +93,7 @@
 			<div class="h-[5vh] min-h-[5vh]"></div>
 			<WideCard>
 				<Form
-					action='?/editPersonalization'
+					action="?/editPersonalization"
 					success={async () => {
 						window.location.href = window.location.href;
 					}}
@@ -145,14 +145,14 @@
 
 			<WideCard>
 				{#if data.user.canChangeSettings}
-				<div class="flex w-full grow flex-col gap-2">
-					<h3 class="w-full text-left">
-						<i class="ri-wrench-line"></i>
-						{m.accountManagement()}
-					</h3>
-					<StreakResetRow />
-					<DeleteRow />
-				</div>
+					<div class="flex w-full grow flex-col gap-2">
+						<h3 class="w-full text-left">
+							<i class="ri-wrench-line"></i>
+							{m.accountManagement()}
+						</h3>
+						<StreakResetRow />
+						<DeleteRow />
+					</div>
 				{:else}
 					<DisallowedMessage />
 				{/if}
