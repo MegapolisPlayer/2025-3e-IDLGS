@@ -72,9 +72,11 @@
 				headers: {
 					'Content-Type': 'application/json',
 				},
-			}).then(async (res) => {
-				return (await res.json()).users as UserTypeLimited[];
-			}).finally(() => []);
+			})
+				.then(async (res) => {
+					return (await res.json()).users as UserTypeLimited[];
+				})
+				.finally(() => []);
 
 			hasFetched = true;
 		}, 100);
@@ -145,7 +147,9 @@
 			{/await}
 		{/key}
 	</div>
-	<div class="flex flex-row justify-center items-center opacity-50 w-full gap-1">
+	<div
+		class="flex w-full flex-row items-center justify-center gap-1 opacity-50"
+	>
 		{#if type == 'course'}
 			{m.selectUsersWhichWillHaveAccessToTheCourseExceptForYou()}.
 		{:else}
@@ -158,12 +162,12 @@
 			{m.youWillAlsoBeAddedAsTheOwnerOfTheBook()}.
 		{/if}
 	</div>
-	<div class="flex flex-row w-full items-center gap-2">
-		<CheckboxInput 
+	<div class="flex w-full flex-row items-center gap-2">
+		<CheckboxInput
 			bind:checked={internet}
 			label={m.publishTextbookOnTheInternet()}
 		/>
-		<p class="opacity-50 grow">
+		<p class="grow opacity-50">
 			{m.itWillBeVisibleToEveryoneAndWillShowUpInSearchEngines()}.
 		</p>
 	</div>

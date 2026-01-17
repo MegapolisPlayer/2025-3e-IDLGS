@@ -1,5 +1,5 @@
 import { schema } from '$lib/server/db/mainSchema';
-import { desc } from 'drizzle-orm'
+import { desc } from 'drizzle-orm';
 
 export const load = async (event) => {
 	return {
@@ -8,16 +8,10 @@ export const load = async (event) => {
 			.from(schema.user)
 			.orderBy(desc(schema.user.createdAt)),
 	};
-}
+};
 
 export const actions = {
-	deleteUser: async (event) => {
-	
-	},
-	updateUser: async (event) => {
-	
-	},
-	addUser: async (event) => {
-	
-	},
+	deleteUser: async (event) => {},
+	updateUser: async (event) => {},
+	addUser: async (event) => {},
 };

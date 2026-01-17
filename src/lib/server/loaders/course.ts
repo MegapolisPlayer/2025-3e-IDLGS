@@ -25,7 +25,5 @@ export const loadCourses = async (user: UserType): Promise<CourseType[]> => {
 		)
 		.where(eq(schema.userCourseLinker.user, user.id));
 
-	
-
 	return course;
 };

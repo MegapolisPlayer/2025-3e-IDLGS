@@ -4,14 +4,14 @@
 	import type { TextbookType } from '$lib/types';
 
 	let {
-		textbook
+		textbook,
 	}: {
-		textbook: TextbookType
+		textbook: TextbookType;
 	} = $props();
 </script>
 
-<div class="grow p-2 flex flex-col w-full items-center">
-	<div class="flex flex-col grow w-3/4">
+<div class="flex w-full grow flex-col items-center p-2">
+	<div class="flex w-3/4 grow flex-col">
 		<Content {textbook} />
 	</div>
 </div>

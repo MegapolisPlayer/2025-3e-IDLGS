@@ -56,7 +56,14 @@
 									m.doctorOfNaturalSciences(),
 									m.phdDegree(),
 								]}
-								values={['none', 'bc', 'mgr', 'ing', 'dr', 'rndr']}
+								values={[
+									'none',
+									'bc',
+									'mgr',
+									'ing',
+									'dr',
+									'rndr',
+								]}
 								initialValue={data.user.degree}
 							/>
 
@@ -161,7 +168,7 @@
 					<DisallowedMessage />
 				{/if}
 			</WideCard>
-			
+
 			<CardSeparator />
 		</div>
 	{/await}

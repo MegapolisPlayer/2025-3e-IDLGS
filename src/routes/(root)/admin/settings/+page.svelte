@@ -2,6 +2,4 @@
 	// TODO page deploy settings and stuff
 </script>
 
-<div>
-
-</div>
+<div></div>

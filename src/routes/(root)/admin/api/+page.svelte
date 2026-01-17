@@ -2,6 +2,4 @@
 	// TODO API management (on/off endpoints?)
 </script>
 
-<div>
-
-</div>
+<div></div>

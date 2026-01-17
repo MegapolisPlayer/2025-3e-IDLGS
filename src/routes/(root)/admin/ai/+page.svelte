@@ -2,6 +2,4 @@
 	// TODO AI playground
 </script>
 
-<div>
-
-</div>
+<div></div>

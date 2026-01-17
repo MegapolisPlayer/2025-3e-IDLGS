@@ -1,5 +1,5 @@
 //Anticheat on client
-import type { TestCheatingType } from "$lib/types";
+import type { TestCheatingType } from '$lib/types';
 
 export const enableAnticheatMode = () => {
 	//TODO

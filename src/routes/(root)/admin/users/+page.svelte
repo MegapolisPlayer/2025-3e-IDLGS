@@ -2,6 +2,4 @@
 	// TODO users list
 </script>
 
-<div>
-
-</div>
+<div></div>

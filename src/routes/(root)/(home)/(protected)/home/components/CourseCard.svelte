@@ -35,7 +35,7 @@
 	css="w-[35svh] h-[35svh]"
 >
 	<div class="relative flex w-full grow flex-col gap-2 p-2 text-left">
-		<h2 class="text-left text-xl flex flex-row items-center gap-2">
+		<h2 class="flex flex-row items-center gap-2 text-left text-xl">
 			<i class="ri-book-line text-3xl"></i>
 			{course.name}
 		</h2>

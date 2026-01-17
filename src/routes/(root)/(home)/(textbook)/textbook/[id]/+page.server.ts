@@ -13,14 +13,14 @@ export const load = async (event) => {
 	const textbookUuid = event.params.id;
 	const textbook = await loadSingleTextbook(user, textbookUuid);
 
-	if(!textbook && !user) {
+	if (!textbook && !user) {
 		redirect(303, '/login');
 	}
-	if(!textbook) {
+	if (!textbook) {
 		throw error(404, 'Not found');
 	}
 
 	return {
-		textbook
+		textbook,
 	};
-}
+};

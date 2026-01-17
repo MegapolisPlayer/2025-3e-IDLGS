@@ -18,7 +18,7 @@
 <div class="flex w-full grow flex-col gap-2">
 	<h2>{m.generalCourseSettings()}</h2>
 	<div class="grow"></div>
-	<NextPrevious 
+	<NextPrevious
 		currentStep={2}
 		maxStep={5}
 		onclickLast={() => {

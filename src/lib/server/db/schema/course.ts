@@ -21,9 +21,8 @@ export const grade = pgTable(
 		user: integer('user')
 			.references(() => user.id)
 			.notNull(),
-		assignment: integer('assignment')
-			.references(() => assignment.id)
-			// can be null
+		assignment: integer('assignment').references(() => assignment.id),
+		// can be null
 	},
 	(table) => [
 		check('percentageMin', sql`${table.percenage} > 0`),
@@ -108,7 +107,9 @@ export const assignmentComment = pgTable('assignmentComment', {
 		.notNull()
 		.$defaultFn(() => new Date()),
 	comment: text('comment').notNull().default(''),
-	author: integer('author').notNull().references(() => user.id),
+	author: integer('author')
+		.notNull()
+		.references(() => user.id),
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),

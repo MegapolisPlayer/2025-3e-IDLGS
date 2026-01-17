@@ -49,9 +49,14 @@ export const apiRunner = async (
 
 	const data = await event.request.json();
 
-	for(const field of requiredFields) {
+	for (const field of requiredFields) {
 		//empty string allowed
-		if(!(field in data) || data[field] === null || data[field] === undefined) return error(400);
+		if (
+			!(field in data) ||
+			data[field] === null ||
+			data[field] === undefined
+		)
+			return error(400);
 	}
 
 	const value = await runner(event, data, user);

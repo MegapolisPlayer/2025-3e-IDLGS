@@ -57,7 +57,7 @@ export const loadSingleTextbook = async (
 			or(
 				eq(schema.textbook.id, schema.userTextbookLinker.textbook),
 				eq(schema.textbook.public, true),
-			)//join condition
+			), //join condition
 		)
 		.where(
 			and(

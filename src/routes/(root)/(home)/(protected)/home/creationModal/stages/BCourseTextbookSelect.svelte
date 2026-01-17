@@ -22,36 +22,39 @@
 	let hasFetched = $derived(query.length < 3);
 	let lastKeystroke: number = $state(0);
 
-	let textbooks: Promise<TextbookType[]> = $state(new Promise((resolve) => {
-		resolve([]);
-	}));
+	let textbooks: Promise<TextbookType[]> = $state(
+		new Promise((resolve) => {
+			resolve([]);
+		}),
+	);
 
 	onMount(() => {
 		ticksCounterInterval = setInterval(() => {
 			ticksCounter++;
 
-			if (ticksCounter != 1 && (lastKeystroke + 2 > ticksCounter || hasFetched)) return;
+			if (
+				ticksCounter != 1 &&
+				(lastKeystroke + 2 > ticksCounter || hasFetched)
+			)
+				return;
 
 			//reload data
-			textbooks = (fetch(
-				'/home/creationModal/internalapi/getTextbooks',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						query: query,
-					}),
+			textbooks = fetch('/home/creationModal/internalapi/getTextbooks', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 				},
-			)
-			.then(async (res) => {
-				const rd =  (await res.json());
-				const data = rd.textbooks as TextbookType[];
-				console.log(rd, data);
-				return data;
+				body: JSON.stringify({
+					query: query,
+				}),
 			})
-			.finally(() => []));
+				.then(async (res) => {
+					const rd = await res.json();
+					const data = rd.textbooks as TextbookType[];
+					console.log(rd, data);
+					return data;
+				})
+				.finally(() => []);
 
 			hasFetched = true;
 		}, 100);
@@ -78,7 +81,9 @@
 	{:then textbooksActual}
 		{$inspect(textbooksActual)}
 		{#if textbooksActual.length > 0}
-			<div class="grid grow grid-cols-4 w-full gap-4 overflow-scroll max-h-full">
+			<div
+				class="grid max-h-full w-full grow grid-cols-4 gap-4 overflow-scroll"
+			>
 				{#each textbooksActual as item, i}
 					<TextbookCard
 						perspective={false}

@@ -61,7 +61,7 @@
 							cssClass=""
 							onclick={() => {
 								items.splice(i, 1);
-								if(selectedItem == item) {
+								if (selectedItem == item) {
 									selectedItem = '';
 								}
 								editMode = -1;

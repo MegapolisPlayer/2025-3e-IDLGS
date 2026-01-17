@@ -48,7 +48,10 @@
 					articleNames.push([]);
 				}}
 				additionalDelete={() => {
-					articleNames.splice(chapterNames.indexOf(selectedChapterName), 1);
+					articleNames.splice(
+						chapterNames.indexOf(selectedChapterName),
+						1,
+					);
 					selectedArticleName = '';
 				}}
 			>

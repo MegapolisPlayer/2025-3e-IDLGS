@@ -7,9 +7,9 @@
 	let showFeedbackModal = $state(false);
 
 	let {
-		user
+		user,
 	}: {
-		user: UserType | undefined
+		user: UserType | undefined;
 	} = $props();
 </script>
 

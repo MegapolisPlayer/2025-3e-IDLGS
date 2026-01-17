@@ -50,14 +50,16 @@
 		{placeholder}
 		bind:this={element}
 		maxlength={maxLength}
-		name={name}
+		{name}
 	></textarea>
 
 	{#if maxLength && !preview}
-		<div class="
+		<div
+			class="
 			absolute right-2 bottom-2 z-10 text-base opacity-50
-			{value.length >= maxLength ? 'text-red-700 font-medium' : ''}
-		">
+			{value.length >= maxLength ? 'font-medium text-red-700' : ''}
+		"
+		>
 			{value.length}/{maxLength}
 		</div>
 	{/if}

@@ -2,6 +2,4 @@
 	// TODO client popup
 </script>
 
-<div>
-
-</div>
+<div></div>

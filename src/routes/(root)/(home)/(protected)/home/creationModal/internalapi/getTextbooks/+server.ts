@@ -31,4 +31,4 @@ export const POST = async () => {
 			textbooks: result,
 		});
 	});
-}
+};

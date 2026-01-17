@@ -4,9 +4,7 @@
 </script>
 
 <div class="min-w-1/5 p-2">
-	<WideCard
-		cssAddition="grow"
-	>
+	<WideCard cssAddition="grow">
 		<h2>
 			{m.textbookContents()}
 		</h2>

@@ -49,10 +49,10 @@ export const actions = {
 				const users = JSON.parse(formData['users']) as string[];
 				const roles = JSON.parse(formData['roles']) as string[];
 
-				if(users.length !== roles.length) {
+				if (users.length !== roles.length) {
 					return fail(400);
 				}
-				if(users.indexOf(user.uuid) === -1) {
+				if (users.indexOf(user.uuid) === -1) {
 					users.push(user.uuid);
 					roles.push('owner');
 				}
@@ -60,15 +60,23 @@ export const actions = {
 				try {
 					await event.locals.db.transaction(async (tx) => {
 						//summary generated later
-						const textbook = (await tx.insert(schema.textbook).values({
-							name: formData['name'],
-							description: formData['description'],
-							subject: formData['subject'],
-							red: parseInt(formData['red']),
-							green: parseInt(formData['green']),
-							blue: parseInt(formData['blue']),
-							public: formData['internet'] === 'true' ? true : false,
-						}).returning({ id: schema.textbook.id }))[0].id;
+						const textbook = (
+							await tx
+								.insert(schema.textbook)
+								.values({
+									name: formData['name'],
+									description: formData['description'],
+									subject: formData['subject'],
+									red: parseInt(formData['red']),
+									green: parseInt(formData['green']),
+									blue: parseInt(formData['blue']),
+									public:
+										formData['internet'] === 'true'
+											? true
+											: false,
+								})
+								.returning({ id: schema.textbook.id })
+						)[0].id;
 
 						//chapters and articles
 						for (let i = 0; i < chapters.length; i++) {
@@ -82,28 +90,33 @@ export const actions = {
 								.returning({ id: schema.chapter.id });
 
 							for (const article of articles[i]) {
-								await tx
-									.insert(schema.article)
-									.values({
-										chapter: chapterInsert[0].id,
-										name: article,
-										text: '',
-									});
+								await tx.insert(schema.article).values({
+									chapter: chapterInsert[0].id,
+									name: article,
+									text: '',
+								});
 							}
 						}
 
-						const userIds = (await tx
-								.select({ id: schema.user.id, uuid: schema.user.uuid })
+						const userIds = (
+							await tx
+								.select({
+									id: schema.user.id,
+									uuid: schema.user.uuid,
+								})
 								.from(schema.user)
-								.where(inArray(schema.user.uuid, users))).map((u) => {
-									return {
-										user: u.id,
-										role: roles[users.indexOf(u.uuid)],
-										textbook: textbook,
-									}
-								});
-						
-						await tx.insert(schema.userTextbookLinker).values(userIds);
+								.where(inArray(schema.user.uuid, users))
+						).map((u) => {
+							return {
+								user: u.id,
+								role: roles[users.indexOf(u.uuid)],
+								textbook: textbook,
+							};
+						});
+
+						await tx
+							.insert(schema.userTextbookLinker)
+							.values(userIds);
 					});
 				} catch (e) {
 					writeLog(event, 'ERROR', 'DB failure.', user);

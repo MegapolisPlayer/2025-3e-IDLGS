@@ -13,7 +13,7 @@
 	import { isInQuery } from '$lib';
 	import { goto } from '$app/navigation';
 	import CardSeparator from '$component/CardSeparator.svelte';
-	
+
 	let ready = $state(false);
 	let creationModal = $state(false);
 	let successMessage = $state('');
@@ -73,14 +73,23 @@
 						...[...textbooks].map((v) => {
 							return { ...v, type: 't' as const };
 						}),
-					].sort(
-						(a, b) =>
-							b.modifiedAt.getTime() - a.modifiedAt.getTime(),
-					).filter(v => isInQuery(searchValue, v.name, v.description, v.subject))}
+					]
+						.sort(
+							(a, b) =>
+								b.modifiedAt.getTime() - a.modifiedAt.getTime(),
+						)
+						.filter((v) =>
+							isInQuery(
+								searchValue,
+								v.name,
+								v.description,
+								v.subject,
+							),
+						)}
 
 					{#if allItems.length === 0 && !data.user.canCreateCourses && !data.user.canCreateTextbooks}
 						<div
-							class="flex w-full grow flex-col items-center justify-center gap-2 text-lg opacity-70 font-light"
+							class="flex w-full grow flex-col items-center justify-center gap-2 text-lg font-light opacity-70"
 						>
 							{m.noCoursesOrTextbooksAvailableYet()}
 						</div>
@@ -98,14 +107,16 @@
 										perspective={false}
 										delay={i * 100}
 										course={item as CourseType}
-										onclick={() => goto(`/course/${item.uuid}`,)}
+										onclick={() =>
+											goto(`/course/${item.uuid}`)}
 									/>
 								{:else}
 									<TextbookCard
 										perspective={false}
 										delay={i * 100}
 										textbook={item as TextbookType}
-										onclick={() => goto(`/textbook/${item.uuid}`,)}
+										onclick={() =>
+											goto(`/textbook/${item.uuid}`)}
 									/>
 								{/if}
 							{/each}
@@ -120,10 +131,10 @@
 {/if}
 
 <CreationModal
-	bind:showModal={creationModal} 
+	bind:showModal={creationModal}
 	bind:message={successMessage}
 	bind:isError={isErrorMessage}
-	/>
+/>
 
 {#if isErrorMessage}
 	<AlertBox bind:message={successMessage} />

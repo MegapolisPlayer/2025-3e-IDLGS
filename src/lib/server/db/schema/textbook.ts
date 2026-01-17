@@ -1,4 +1,11 @@
-import { pgTable, text, integer, timestamp, check, boolean } from 'drizzle-orm/pg-core';
+import {
+	pgTable,
+	text,
+	integer,
+	timestamp,
+	check,
+	boolean,
+} from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 
 export const textbook = pgTable(

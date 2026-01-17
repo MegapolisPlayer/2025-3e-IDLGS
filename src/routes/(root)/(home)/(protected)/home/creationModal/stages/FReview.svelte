@@ -56,16 +56,18 @@
 	success={async () => {
 		showModal = false;
 		isError = false;
-		message = type == 'course' ?
-			m.courseCreatedSuccessfully() :
-			m.textbookCreatedSuccessfully();;
+		message =
+			type == 'course'
+				? m.courseCreatedSuccessfully()
+				: m.textbookCreatedSuccessfully();
 	}}
 	failure={async () => {
 		showModal = false;
 		isError = true;
-		message = type == 'course' ?
-			m.couldNotCreateCourse() :
-			m.couldNotCreateTextbook();
+		message =
+			type == 'course'
+				? m.couldNotCreateCourse()
+				: m.couldNotCreateTextbook();
 	}}
 >
 	<!-- inputs -->

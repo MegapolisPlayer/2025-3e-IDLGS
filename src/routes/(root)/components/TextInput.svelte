@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
-	import { onMount, onDestroy } from "svelte";
+	import { browser } from '$app/environment';
+	import { onMount, onDestroy } from 'svelte';
 
 	let {
 		cssClass = 'w-full',
@@ -8,17 +8,17 @@
 		label = '',
 		name = '',
 		placeholder = '',
-		onchange = undefined
+		onchange = undefined,
 	} = $props();
 
 	let element: HTMLInputElement | undefined = $state(undefined);
 
 	onMount(() => {
-		if(!browser || !onchange) return;
+		if (!browser || !onchange) return;
 		element?.addEventListener('change', onchange);
 	});
 	onDestroy(() => {
-		if(!browser || !onchange) return;
+		if (!browser || !onchange) return;
 		element?.removeEventListener('change', onchange);
 	});
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <div class="flex w-full grow flex-col xl:hidden"></div>

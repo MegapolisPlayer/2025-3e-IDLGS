@@ -13,17 +13,17 @@
 	} = $props();
 </script>
 
-<Modal 
+<Modal
 	bind:showModal
 	cssClass="bg-neutral-500/70 backdrop-blur border-neutral-500 border-2 h-fit"
 >
-	<Form 
+	<Form
 		cssClass="flex w-full grow flex-col gap-2"
 		action="/components/navbar/actions/feedback/?/sendFeedback"
 	>
 		<h2>{m.sendFeedback()}</h2>
 
-		<p class="w-full flex flex-row gap-1">
+		<p class="flex w-full flex-row gap-1">
 			{m.noticedAnIssueOrDoYouHaveASuggestion()}
 			{m.weWouldLoveToHearYourFeedback()}
 		</p>

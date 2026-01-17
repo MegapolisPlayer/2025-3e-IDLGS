@@ -63,7 +63,5 @@
 				<!-- TODO -->
 			</div>
 		</WideCard>
-
-
 	</div>
 </div>

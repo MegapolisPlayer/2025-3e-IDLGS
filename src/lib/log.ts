@@ -18,10 +18,7 @@ export const writeLog = (
 	);
 };
 
-export const writeLogDeleteAccount = (
-	event: RequestEvent,
-	user: UserType,
-) => {
+export const writeLogDeleteAccount = (event: RequestEvent, user: UserType) => {
 	const date = new Date();
 	console.log(
 		`[DATE ${date.getDate()}] [MONTH ${date.getMonth() + 1}] [YEAR ${date.getFullYear()}]`,
@@ -29,4 +26,4 @@ export const writeLogDeleteAccount = (
 		`[URL ${event.route.id}] [COUNTRY ${event.request.headers.get('CF-IPCountry')}]`,
 		`[UUID  ${user.uuid}] [ACCOUNT DELETED: EMAIL ${user.email} NAME ${user.name} SURNAME ${user.surname}]`,
 	);
-}
+};

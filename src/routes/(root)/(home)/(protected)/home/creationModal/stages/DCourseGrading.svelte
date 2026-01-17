@@ -10,7 +10,7 @@
 
 <div class="flex w-full grow flex-col gap-2">
 	<h2>{m.courseGrading()}</h2>
-	<div class="grow flex flex-col w-full items-center justify-center">
+	<div class="flex w-full grow flex-col items-center justify-center">
 		<p class="opacity-50">
 			{m.selectAGradingPreset()}
 		</p>
@@ -18,12 +18,12 @@
 			bind:value={selectedGradePreset}
 			names={[]}
 			values={[]}
-			/>
+		/>
 	</div>
-	<div class="grow-2 flex flex-col w-full">
+	<div class="flex w-full grow-2 flex-col">
 		<!-- TODO -->
 	</div>
-	<NextPrevious 
+	<NextPrevious
 		currentStep={3}
 		maxStep={5}
 		onclickLast={() => {

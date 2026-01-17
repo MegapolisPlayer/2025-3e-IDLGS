@@ -30,10 +30,12 @@
 	{delay}
 	{perspective}
 	{onclick}
-	css="{selected ? 'border-neutral-500! brightness-110' : ''} w-[35svh] h-[35svh]"
+	css="{selected
+		? 'border-neutral-500! brightness-110'
+		: ''} w-[35svh] h-[35svh]"
 >
 	<div class="relative flex w-full grow flex-col">
-		<h2 class="w-full text-left text-xl flex flex-row items-center gap-2">
+		<h2 class="flex w-full flex-row items-center gap-2 text-left text-xl">
 			<i class="ri-book-ai-line text-3xl"></i>
 			{textbook.name}
 		</h2>

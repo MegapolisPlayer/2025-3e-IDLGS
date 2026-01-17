@@ -5,15 +5,15 @@ import hljs from 'highlight.js';
 //config values
 
 export const MARKDOWN_CONFIG_OPTIONS = {
-		html: true,
-		linkify: true,
-		typographer: true,
-		xhtmlOut: true,
-		langPrefix: 'language-',
-		highlight: (str: string, lang: string) => {
-			return hljs.highlightAuto(str, [lang]).value;
-		},
-	};
+	html: true,
+	linkify: true,
+	typographer: true,
+	xhtmlOut: true,
+	langPrefix: 'language-',
+	highlight: (str: string, lang: string) => {
+		return hljs.highlightAuto(str, [lang]).value;
+	},
+};
 
 export const MAX_TEXTBOOK_LETTERS = 50;
 
@@ -34,7 +34,7 @@ export const ABOUT_ANIMATION_SECOND = {
 
 export const MAX_MESSAGE_LENGTH = 1000; //feedback message max length
 
-export const FEEDBACK_TARGET_MAIL = "martin.bykov.s@gyarab.cz";
+export const FEEDBACK_TARGET_MAIL = 'martin.bykov.s@gyarab.cz';
 
 export const getImageBackgroundClassRaw = (id: number) => {
 	switch (id) {
@@ -44,7 +44,7 @@ export const getImageBackgroundClassRaw = (id: number) => {
 };
 
 export const getImageBackgroundClass = (user: UserType) => {
-	if(!user) return '';
+	if (!user) return '';
 	return getImageBackgroundClassRaw(user.id);
 };
 
@@ -148,7 +148,7 @@ export const writeDegree = (degree: string) => {
 			return 'Ing.';
 		case 'dr':
 			return 'Ph.D.';
-		case 'rndr': 
+		case 'rndr':
 			return 'RNDr.';
 		default:
 			return '';
@@ -164,4 +164,4 @@ export const isInQuery = (query: string, ...strings: string[]): boolean => {
 	}
 
 	return false;
-}
+};
