@@ -79,7 +79,6 @@
 	{#await textbooks}
 		<LoadingAnimationHandler />
 	{:then textbooksActual}
-		{$inspect(textbooksActual)}
 		{#if textbooksActual.length > 0}
 			<div
 				class="grid max-h-full w-full grow grid-cols-4 gap-4 overflow-scroll"
