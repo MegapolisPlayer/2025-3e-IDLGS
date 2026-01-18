@@ -2,6 +2,7 @@
 	import { m } from '$lib/paraglide/messages';
 	import type { TextbookType } from '$lib/types';
 	import Card from '$component/Card.svelte';
+	import Button from '$src/routes/(root)/components/Button.svelte';
 
 	let {
 		textbook,
@@ -34,13 +35,20 @@
 		? 'border-neutral-500! brightness-110'
 		: ''} w-[35svh] h-[35svh]"
 >
-	<div class="relative flex w-full grow flex-col">
+	<div class="relative flex w-full grow flex-col p-2">
 		<h2 class="flex w-full flex-row items-center gap-2 text-left text-xl">
 			<i class="ri-book-ai-line text-3xl"></i>
 			{textbook.name}
 		</h2>
 		<p class="w-full text-left text-sm opacity-70">
-			{textbook.description}
+			{@html textbook.description}
 		</p>
 	</div>
+
+	<Button
+		emoji="arrow-right"
+		btn="button-primary w-full"
+	>
+		{m.open()}
+	</Button>
 </Card>

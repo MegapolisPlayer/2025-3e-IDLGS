@@ -1,0 +1,1 @@
+ALTER TABLE "assignment" ADD COLUMN "modifiedAt" timestamp NOT NULL;

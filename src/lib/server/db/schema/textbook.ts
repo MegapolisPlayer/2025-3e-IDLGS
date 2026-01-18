@@ -68,4 +68,7 @@ export const textbookWordDefinition = pgTable('textbookWordDefinition', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	word: text('word').notNull(),
 	description: text('description').notNull(),
+	textbook: integer('textbook')
+		.references(() => textbook.id, { onDelete: 'cascade' })
+		.notNull(),
 });

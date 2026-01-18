@@ -3,19 +3,14 @@
 	import Desktop from './Desktop.svelte';
 	import Mobile from './Mobile.svelte';
 
-	let {
-		data,
-	}: {
-		data: {};
-	} = $props();
+	let { data, children } = $props();
 </script>
 
 <svelte:head>
 	<title>
-		{m.myAssignments()} - {m.textbookNameShort()}
+		{data.textbook.name} - {m.textbook()} - {m.textbookNameShort()}
 	</title>
 </svelte:head>
 
-<!-- TODO -->
-<Desktop />
-<Mobile />
+<Desktop {data} {children} />
+<Mobile {data} {children} />

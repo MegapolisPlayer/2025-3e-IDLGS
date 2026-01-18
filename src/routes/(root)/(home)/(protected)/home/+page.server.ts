@@ -117,7 +117,7 @@ export const actions = {
 									roles[users.indexOf(u.uuid)] === 'editor',
 								textbook: textbook,
 							};
-						});
+						}).filter((link) => link.owner || link.editor);
 
 						await tx
 							.insert(schema.userTextbookLinker)
@@ -253,9 +253,10 @@ export const actions = {
 						return {
 							user: u.id,
 							teacher: roles[users.indexOf(u.uuid)] === 'teacher',
+							owner: roles[users.indexOf(u.uuid)] === 'owner',
 							course: course[0].id,
 						};
-					});
+					}).filter((link) => link.teacher || link.owner);
 
 					await tx.insert(schema.userCourseLinker).values(userIds);
 				});

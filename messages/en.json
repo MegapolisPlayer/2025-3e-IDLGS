@@ -314,5 +314,15 @@
 	"noInviteCodeExpiryDate": "No Invite Code Expiry Date",
 	"orSelectACustomColor": "or select a custom color",
 	"colorSelectionButton": "Color selection button",
-	"deleteGrade": "Delete Grade"
+	"deleteGrade": "Delete Grade",
+	"textbookAISummary": "Textbook AI Summary",
+	"thisTextbookIsEmptySoFar": "This textbook is empty so far.",
+	"addAChapter": "Add a chapter",
+	"addAnArticle": "Add an article",
+	"startReading": "Start reading",
+	"openWordDefinitions": "Open word definitions",
+	"definitionsOfTerms": "Definitions of Terms",
+	"alreadyPastDeadline": "Already past deadline",
+	"todayOrTomorrow": "Today or tomorrow",
+	"later": "Later"
 }

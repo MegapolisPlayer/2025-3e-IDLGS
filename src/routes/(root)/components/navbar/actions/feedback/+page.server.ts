@@ -28,7 +28,7 @@ export const actions = {
 				if (
 					await sendMail(
 						'[IDLGS/UČEBNICE] Nová zpětná vazba z učebnice',
-						md.render(message),
+						md.renderInline(message),
 						FEEDBACK_TARGET_MAIL,
 					)
 				) {

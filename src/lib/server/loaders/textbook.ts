@@ -1,14 +1,16 @@
-import type { UserType, TextbookType } from '$lib/types';
+import type { UserType, TextbookType, UserTypeLimited } from '$lib/types';
 import { schema } from '$lib/server/db/mainSchema';
 import { and, eq, or } from 'drizzle-orm';
 import { getRequestEvent } from '$app/server';
+import markdownit from 'markdown-it';
+import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
 
 export const loadTextbooks = async (
 	user: UserType,
 ): Promise<TextbookType[]> => {
 	const db = getRequestEvent().locals.db;
 
-	return db
+	const textbooks = db
 		.select({
 			uuid: schema.textbook.uuid,
 			description: schema.textbook.description,
@@ -28,17 +30,29 @@ export const loadTextbooks = async (
 			eq(schema.textbook.id, schema.userTextbookLinker.textbook), //join condition
 		)
 		.where(eq(schema.userTextbookLinker.user, user.id));
+
+	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
+
+	return textbooks.then((textbooksData) => {
+		for (let i = 0; i < textbooksData.length; i++) {
+			textbooksData[i].description = md.renderInline(textbooksData[i].description);
+		}
+		return textbooksData;
+	}).finally(() => [] as TextbookType[]);
 };
 
 //also checks permissions and if logged in
 export const loadSingleTextbook = async (
 	user: UserType | undefined,
 	textbookUuid: string,
+	authors: boolean = false,
+	chapters: boolean = false,
 ): Promise<TextbookType | null> => {
 	const db = getRequestEvent().locals.db;
 
-	const textbook = await db
+	let textbook = await db
 		.select({
+			id: schema.textbook.id,
 			uuid: schema.textbook.uuid,
 			description: schema.textbook.description,
 			createdAt: schema.textbook.createdAt,
@@ -72,6 +86,78 @@ export const loadSingleTextbook = async (
 
 	if (textbook.length === 0) {
 		return null;
+	}
+
+	if (authors) {
+		const authorsData = await db
+			.select({
+				uuid: schema.user.uuid,
+				email: schema.user.email,
+				name: schema.user.name,
+				surname: schema.user.surname,
+				degree: schema.user.degree,
+				editor: schema.userTextbookLinker.editor,
+				owner: schema.userTextbookLinker.owner,
+			})
+			.from(schema.user)
+			.innerJoin(
+				schema.userTextbookLinker,
+				eq(schema.user.id, schema.userTextbookLinker.user),
+			)
+			.where(
+				eq(
+					schema.userTextbookLinker.textbook,
+					textbook[0].id,
+				),
+			);
+		(textbook[0] as TextbookType).authors = authorsData.map((v) => {
+			return {
+				uuid: v.uuid!,
+				email: v.email!,
+				name: v.name!,
+				surname: v.surname!,
+				degree: v.degree!,
+				isEditor: v.editor!,
+				isTeacher: false,
+				isOwner: v.owner!,
+			} as UserTypeLimited;
+		});
+	}
+
+	if(chapters) {
+		const chaptersData = await db
+			.select({
+				id: schema.chapter.id,
+				uuid: schema.chapter.uuid,
+				name: schema.chapter.name,
+				summary: schema.chapter.summary,
+			})
+			.from(schema.chapter)
+			.where(
+				eq(
+					schema.chapter.textbook,
+					textbook[0].id,
+				),
+			);
+		(textbook[0] as TextbookType).chapters = chaptersData;
+		const chaptersIds = chaptersData.map((c) => c.id!);
+
+		//articles limited
+		for (let i = 0; i < (textbook[0] as TextbookType).chapters!.length; i++) {
+			const articlesData = await db
+				.select({
+					uuid: schema.article.uuid,
+					name: schema.article.name,
+				})
+				.from(schema.article)
+				.where(
+					eq(
+						schema.article.chapter,
+						chaptersIds[i],
+					),
+				);
+			(textbook[0] as TextbookType).chapters![i].articlesLimited = articlesData;
+		}
 	}
 
 	return textbook[0];

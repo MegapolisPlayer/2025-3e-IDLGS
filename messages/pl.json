@@ -314,5 +314,19 @@
 	"noInviteCodeExpiryDate": "Brak daty wygaśnięcia kodu zaproszenia",
 	"orSelectACustomColor": "lub wybierz inny kolor",
 	"colorSelectionButton": "Przycisk wyboru koloru",
-	"deleteGrade": "Usuń ocenę"
+	"deleteGrade": "Usuń ocenę",
+	"textbookAISummary": "Podsumowanie AI podręcznika",
+	"thisTextbookIsEmptySoFar": "Ten podręcznik jest jak dotąd pusty",
+	"addAChapter": "Dodaj rozdział",
+	"addAnArticle": "Dodaj artykuł",
+	"removeChapter": "Usuń rozdział",
+	"removeArticle": "Usuń artykuł",
+	"renameArticle": "Zmień nazwę artykułu",
+	"renameChapter": "Zmień nazwę rozdziału",
+	"startReading": "Zacznij czytać",
+	"openWordDefinitions": "Otwórz definicje słów",
+	"definitionsOfTerms": "Definicje terminów",
+	"alreadyPastDeadline": "Już po terminie",
+	"todayOrTomorrow": "Dzisiaj lub jutro",
+	"later": "Później"
 }

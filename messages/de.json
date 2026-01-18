@@ -314,5 +314,19 @@
 	"noInviteCodeExpiryDate": "Kein Ablaufdatum für den Einladungscode",
 	"orSelectACustomColor": "oder wählen Sie eine andere Farbe aus",
 	"colorSelectionButton": "Farb-Auswahlknopf",
-	"deleteGrade": "Note löschen"
+	"deleteGrade": "Note löschen",
+	"textbookAISummary": "KI-Zusammenfassung des Lehrbuchs",
+	"thisTextbookIsEmptySoFar": "Dieses Lehrbuch ist bisher leer",
+	"addAChapter": "Kapitel hinzufügen",
+	"addAnArticle": "Artikel hinzufügen",
+	"removeChapter": "Kapitel entfernen",
+	"removeArticle": "Artikel entfernen",
+	"renameChapter": "Kapitel umbenennen",
+	"renameArticle": "Artikel umbenennen",
+	"startReading": "Mit dem Lesen beginnen",
+	"openWordDefinitions": "Wortdefinitionen öffnen",
+	"definitionsOfTerms": "Definitionen von Begriffen",
+	"alreadyPastDeadline": "Bereits über die Frist hinaus",
+	"todayOrTomorrow": "Heute oder morgen",
+	"later": "Später"
 }

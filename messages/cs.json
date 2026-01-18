@@ -314,5 +314,19 @@
 	"noInviteCodeExpiryDate": "Žádné datum vypršení platnosti kódu pozvánky",
 	"orSelectACustomColor": "nebo vyberte vlastní barvu",
 	"colorSelectionButton": "Tlačítko pro výběr barvy",
-	"deleteGrade": "Smazat známku"
+	"deleteGrade": "Smazat známku",
+	"textbookAISummary": "AI shrnutí učebnice",
+	"thisTextbookIsEmptySoFar": "Tato učebnice je zatím prázdná",
+	"addAChapter": "Přidat kapitolu",
+	"addAnArticle": "Přidat článek",
+	"removeChapter": "Odebrat kapitolu",
+	"removeArticle": "Odebrat článek",
+	"renameArticle": "Přejmenovat článek",
+	"renameChapter": "Přejmenovat kapitolu",
+	"startReading": "Začít číst",
+	"openWordDefinitions: ": "Otevřít definice slov",
+	"definitionsOfTerms": "Definice pojmů",
+	"alreadyPastDeadline": "Již po termínu",
+	"todayOrTomorrow": "Dnes nebo zítra",
+	"later": "Později"
 }

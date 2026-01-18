@@ -3,6 +3,7 @@
 	import markdownit from 'markdown-it';
 	import { m } from '$lib/paraglide/messages';
 	import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
+	import { onMount, untrack } from 'svelte';
 
 	let {
 		value = $bindable(''),
@@ -22,7 +23,10 @@
 
 	let element: HTMLTextAreaElement | undefined = $state(undefined);
 	let preview: boolean = $state(false);
-	let content = $derived(preview ? md.render(value) : '');
+	let content = $derived(preview ? md.renderInline(value) : '');
+
+	let cursorBeginning = $state(0);
+	let cursorEnd = $state(0);
 </script>
 
 <div class="relative flex grow flex-col gap-0">
@@ -30,7 +34,8 @@
 		<TextareaFormatting
 			bind:value
 			bind:preview
-			bind:element
+			{cursorBeginning}
+			{cursorEnd}
 		/>
 	{/if}
 
@@ -49,6 +54,11 @@
 		bind:value
 		{placeholder}
 		bind:this={element}
+		onselect={(e) => {
+			const elem = e.target as HTMLTextAreaElement;
+			cursorBeginning = elem.selectionStart;
+			cursorEnd = elem.selectionEnd;
+		}}
 		maxlength={maxLength}
 		{name}
 	></textarea>

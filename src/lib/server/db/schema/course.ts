@@ -88,6 +88,9 @@ export const assignment = pgTable('assignment', {
 	createdAt: timestamp('createdAt')
 		.notNull()
 		.$defaultFn(() => new Date()),
+	modifiedAt: timestamp('modifiedAt')
+		.notNull()
+		.$defaultFn(() => new Date()),
 	course: integer('course')
 		.references(() => course.id)
 		.notNull(),

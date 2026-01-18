@@ -1,0 +1,1 @@
+ALTER TABLE "userCourseLinker" ADD COLUMN "owner" boolean DEFAULT false NOT NULL;

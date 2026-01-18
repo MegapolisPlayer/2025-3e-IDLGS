@@ -7,6 +7,8 @@
 	import type { CourseGradeType, UserRoleType } from '$lib/types';
 	import Attribute from '../components/freview/Attribute.svelte';
 	import HiddenInput from '$component/HiddenInput.svelte';
+	import markdownit from 'markdown-it';
+	import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
 
 	let {
 		step = $bindable(0),
@@ -53,6 +55,9 @@
 		inviteCodeUses: number;
 		inviteCodeExpiry: Date;
 	} = $props();
+
+	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
+	let descriptionFormatted = $derived(md.renderInline(description));
 </script>
 
 <Form
@@ -182,10 +187,11 @@
 			{/if}
 			<Attribute
 				{type}
-				value={description}
+				value={descriptionFormatted}
 				course={m.courseDescription()}
 				textbook={m.textbookDescription()}
 				valueLong={true}
+				html={true}
 			/>
 		</div>
 		<div class="grow"></div>

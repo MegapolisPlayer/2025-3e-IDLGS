@@ -6,6 +6,7 @@ import { textbook } from './textbook';
 export const userCourseLinker = pgTable('userCourseLinker', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	teacher: boolean('teacher').notNull().default(false),
+	owner: boolean('owner').notNull().default(false),
 	course: integer('course')
 		.references(() => course.id, {
 			onDelete: 'cascade',

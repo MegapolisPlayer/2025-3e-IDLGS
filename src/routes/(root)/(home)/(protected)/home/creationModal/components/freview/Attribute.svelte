@@ -1,5 +1,19 @@
 <script lang="ts">
-	let { type, course, textbook, value, valueLong = false } = $props();
+	let {
+		type,
+		course,
+		textbook,
+		value,
+		valueLong = false,
+		html = false,
+	}: {
+		type: string;
+		course: string;
+		textbook: string;
+		value: string;
+		valueLong?: boolean;
+		html?: boolean;
+	} = $props();
 </script>
 
 <div
@@ -19,6 +33,10 @@
 			? 'w-full grow text-lg italic opacity-70'
 			: 'font-medium'}
 	>
-		{value}
+		{#if html}
+			{@html value}
+		{:else}
+			{value}
+		{/if}
 	</div>
 </div>

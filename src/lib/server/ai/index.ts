@@ -5,26 +5,22 @@ import { type AIMessageType } from '$lib/types';
 //https://developers.cloudflare.com/workers-ai/
 //https://developers.cloudflare.com/workers-ai/platform/limits/
 
-//different system prompts for different tasks
-export const makeSystemPrompt = (): string => {
-	return ''; //TODO
-};
-
-export const sendRequest = async (
+export const sendAIRequest = async (
 	ai: Ai,
 	prompt: string,
+	system: string,
 	messages: AIMessageType[],
 ): Promise<string> => {
 	const messagesData = [
-		{ role: 'system', content: makeSystemPrompt() },
+		{ role: 'system', content: system },
 		...messages,
 	];
 	const response = await ai.run(CF_MODEL_ID, {
 		messages: messagesData,
 		prompt: prompt,
 		stream: false,
+		max_tokens: 2000,
 	});
 
-	//TODO process response
-	return '';
+	return response.toString();
 };

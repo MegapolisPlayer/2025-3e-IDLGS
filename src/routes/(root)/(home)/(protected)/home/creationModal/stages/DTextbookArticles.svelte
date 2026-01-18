@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import NextPrevious from '../components/NextPrevious.svelte';
-	import ItemList from '../dtextbookarticles/ItemList.svelte';
+	import ItemList from '../components/dtextbookarticles/ItemList.svelte';
 
 	let {
 		step = $bindable(0),

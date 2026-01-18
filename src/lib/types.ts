@@ -59,6 +59,13 @@ export type TextbookType = {
 	subject: string;
 	chapters?: ChapterType[];
 	public: boolean;
+	authors?: UserTypeLimited[];
+	canEdit?: boolean;
+};
+
+export type TextbookDefinitionType = {
+	word: string;
+	description: string;
 };
 
 export type ChapterType = {
@@ -66,6 +73,12 @@ export type ChapterType = {
 	name: string;
 	summary: string;
 	articles?: ArticleType[];
+	articlesLimited?: ArticleLimitedType[];
+};
+
+export type ArticleLimitedType = {
+	uuid: string;
+	name: string;
 };
 
 export type ArticleType = {
@@ -88,6 +101,7 @@ export type CourseType = {
 	subject: string;
 	grades?: CourseGradeType[];
 	assignments?: CourseAssignmentType[];
+	people?: UserTypeLimited[];
 };
 
 export type CourseAssignmentType = {

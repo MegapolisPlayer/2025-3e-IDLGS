@@ -5,15 +5,14 @@
 	let {
 		value = $bindable(''),
 		preview = $bindable(false),
-		element = $bindable(),
+		cursorBeginning,
+		cursorEnd,
 	}: {
 		value: string;
 		preview: boolean;
-		element: HTMLTextAreaElement;
+		cursorBeginning: number;
+		cursorEnd: number;
 	} = $props();
-
-	let cursorBeginning = $derived(element.selectionStart);
-	let cursorEnd = $derived(element.selectionEnd);
 </script>
 
 <div

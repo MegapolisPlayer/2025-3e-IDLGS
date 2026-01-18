@@ -314,5 +314,19 @@
 	"noInviteCodeExpiryDate": "Нет даты истечения срока действия кода приглашения",
 	"orSelectACustomColor": "или выберите другой цвет",
 	"colorSelectionButton": "Кнопка выбора цвета",
-	"deleteGrade": "Удалить оценку"
+	"deleteGrade": "Удалить оценку",
+	"textbookAISummary": "ИИ-суммаризация учебника",
+	"thisTextbookIsEmptySoFar": "Этот учебник пока пуст",
+	"addAChapter": "Добавить главу",
+	"addAnArticle": "Добавить статью",
+	"removeChapter": "Удалить главу",
+	"removeArticle": "Удалить статью",
+	"renameArticle": "Переименовать статью",
+	"renameChapter": "Переименовать главу",
+	"startReading": "Начать чтение",
+	"openWordDefinitions": "Открыть определения слов",
+	"definitionsOfTerms": "Дефиниции терминов",
+	"alreadyPastDeadline": "Срок уже истек",
+	"todayOrTomorrow": "Сегодня или завтра",
+	"later": "Позже"
 }
