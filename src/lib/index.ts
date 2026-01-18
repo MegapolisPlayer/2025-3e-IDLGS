@@ -14,7 +14,6 @@ export const MARKDOWN_CONFIG_OPTIONS = {
 		return hljs.highlightAuto(str, [lang]).value;
 	},
 	breaks: true,
-	
 };
 
 export const MAX_NAME_LENGTH = 50;

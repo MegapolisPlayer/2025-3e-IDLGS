@@ -12,5 +12,11 @@
 	</title>
 </svelte:head>
 
-<Desktop {data} {children} />
-<Mobile {data} {children} />
+<Desktop
+	{data}
+	{children}
+/>
+<Mobile
+	{data}
+	{children}
+/>

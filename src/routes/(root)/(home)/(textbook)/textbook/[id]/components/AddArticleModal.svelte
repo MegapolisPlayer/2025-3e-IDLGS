@@ -12,8 +12,6 @@
 	} = $props();
 </script>
 
-<Modal
-	bind:showModal
->
+<Modal bind:showModal>
 	<div></div>
 </Modal>

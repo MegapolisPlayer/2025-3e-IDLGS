@@ -6,5 +6,5 @@ export const load = async (event) => {
 
 	return {
 		assignments: await loadMyAssignments(user),
-	}
-}
+	};
+};

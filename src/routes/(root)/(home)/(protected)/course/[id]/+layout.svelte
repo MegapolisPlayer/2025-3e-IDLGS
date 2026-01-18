@@ -4,17 +4,17 @@
 	import type { Snippet } from 'svelte';
 	import Desktop from './Desktop.svelte';
 	import Mobile from './Mobile.svelte';
-	
+
 	let {
 		data,
-		children
+		children,
 	}: {
 		data: {
 			course: CourseType;
 			isTeacher: boolean;
 			isOwner: boolean;
-		},
-		children: Snippet
+		};
+		children: Snippet;
 	} = $props();
 </script>
 
@@ -24,5 +24,11 @@
 	</title>
 </svelte:head>
 
-<Desktop {data} {children} />
-<Mobile {data} {children} />
+<Desktop
+	{data}
+	{children}
+/>
+<Mobile
+	{data}
+	{children}
+/>

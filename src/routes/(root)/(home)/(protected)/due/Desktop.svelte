@@ -27,12 +27,10 @@
 			g={20}
 			b={20}
 		>
-			<div class="flex flex-col w-full gap-2 grow">
+			<div class="flex w-full grow flex-col gap-2">
 				<h2>{m.alreadyPastDeadline()}</h2>
 
-				<div>
-
-				</div>
+				<div></div>
 			</div>
 		</WideCard>
 
@@ -43,12 +41,10 @@
 			g={108}
 			b={0}
 		>
-			<div class="flex flex-col w-full gap-2 grow">
+			<div class="flex w-full grow flex-col gap-2">
 				<h2>{m.todayOrTomorrow()}</h2>
 
-				<div>
-
-				</div>
+				<div></div>
 			</div>
 		</WideCard>
 
@@ -59,9 +55,8 @@
 			g={148}
 			b={20}
 		>
-			<div class="flex flex-col w-full gap-2 grow">
+			<div class="flex w-full grow flex-col gap-2">
 				<h2>{m.later()}</h2>
-
 			</div>
 		</WideCard>
 

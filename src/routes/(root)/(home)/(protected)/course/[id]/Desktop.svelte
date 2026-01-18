@@ -6,14 +6,14 @@
 
 	let {
 		data,
-		children
+		children,
 	}: {
 		data: {
 			course: CourseType;
 			isTeacher: boolean;
 			isOwner: boolean;
-		},
-		children: Snippet
+		};
+		children: Snippet;
 	} = $props();
 </script>
 
@@ -23,10 +23,6 @@
 	*:flex-col max-xl:hidden
 "
 >
-	<CourseSidebar 
-		{data}
-	/>
-	<CourseContentPositioning 
-		{children}
-	/>
+	<CourseSidebar {data} />
+	<CourseContentPositioning {children} />
 </div>

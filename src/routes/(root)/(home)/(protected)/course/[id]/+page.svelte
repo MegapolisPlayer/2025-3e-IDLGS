@@ -3,13 +3,13 @@
 	import { m } from '$lib/paraglide/messages';
 
 	let {
-		data
+		data,
 	}: {
 		data: {
 			course: CourseType;
 			isTeacher: boolean;
 			isOwner: boolean;
-		}
+		};
 	} = $props();
 </script>
 

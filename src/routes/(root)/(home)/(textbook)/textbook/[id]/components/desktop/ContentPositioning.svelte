@@ -2,14 +2,14 @@
 	import type { Snippet } from 'svelte';
 
 	let {
-		children
+		children,
 	}: {
 		children: Snippet;
 	} = $props();
 </script>
 
-<div class="flex w-full grow flex-col items-center p-2 max-w-4/5">
+<div class="flex w-full max-w-4/5 grow flex-col items-center p-2">
 	<div class="flex w-3/4 grow flex-col">
-		{@render children ()}
+		{@render children()}
 	</div>
 </div>

@@ -10,16 +10,16 @@
 		ready = true;
 	});
 
-	let { 
+	let {
 		data,
-		children
+		children,
 	}: {
 		data: {
 			textbook: TextbookType;
 			isEditor: boolean;
 			isOwner: boolean;
-		},
-		children: Snippet
+		};
+		children: Snippet;
 	} = $props();
 </script>
 
@@ -29,12 +29,10 @@
 	*:flex-col max-xl:hidden
 "
 >
-	<Sidebar 
+	<Sidebar
 		chapters={data.textbook.chapters as ChapterType[]}
 		id={data.textbook.uuid}
 		canEdit={data.isEditor || data.isOwner}
 	/>
-	<ContentPositioning 
-		{children}
-	/>
+	<ContentPositioning {children} />
 </div>

@@ -5,14 +5,14 @@
 
 	let {
 		data,
-		children
+		children,
 	}: {
 		data: {
 			course: CourseType;
 			isTeacher: boolean;
 			isOwner: boolean;
-		},
-		children: Snippet
+		};
+		children: Snippet;
 	} = $props();
 </script>
 

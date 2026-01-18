@@ -38,7 +38,11 @@
 		{@html data.textbook.description}
 	</div>
 
-	<div class="grid {data.isEditor || data.isOwner ? 'grid-cols-3' : 'grid-cols-2'} gap-2">
+	<div
+		class="grid {data.isEditor || data.isOwner
+			? 'grid-cols-3'
+			: 'grid-cols-2'} gap-2"
+	>
 		<Button
 			btn="button-primary"
 			emoji="book-open"

@@ -11,10 +11,7 @@ export const sendAIRequest = async (
 	system: string,
 	messages: AIMessageType[],
 ): Promise<string> => {
-	const messagesData = [
-		{ role: 'system', content: system },
-		...messages,
-	];
+	const messagesData = [{ role: 'system', content: system }, ...messages];
 	const response = await ai.run(CF_MODEL_ID, {
 		messages: messagesData,
 		prompt: prompt,

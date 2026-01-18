@@ -65,7 +65,7 @@
 			<h2 class="w-full text-lg">{m.resultingGrade()}</h2>
 			<div class="flex flex-row items-center justify-center gap-2">
 				<span class="text-3xl font-bold"> 1 </span>
-				<span class="text-2xl opacity-70 font-light"> (90%) </span>
+				<span class="text-2xl font-light opacity-70"> (90%) </span>
 			</div>
 		</WideCard>
 

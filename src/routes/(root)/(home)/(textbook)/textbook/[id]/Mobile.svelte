@@ -8,10 +8,7 @@
 		ready = true;
 	});
 
-	let {
-		 data,
-		 children
-	 } = $props();
+	let { data, children } = $props();
 </script>
 
 <div class="relative flex w-full grow flex-col items-center xl:hidden"></div>

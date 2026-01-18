@@ -28,13 +28,17 @@ export const loadCourses = async (user: UserType): Promise<CourseType[]> => {
 		.where(eq(schema.userCourseLinker.user, user.id));
 
 	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
-	
-	return courses.then((coursesData) => {
-		for (let i = 0; i < coursesData.length; i++) {
-			coursesData[i].description = md.renderInline(coursesData[i].description);
-		}
-		return coursesData;
-	}).finally(() => [] as CourseType[]);
+
+	return courses
+		.then((coursesData) => {
+			for (let i = 0; i < coursesData.length; i++) {
+				coursesData[i].description = md.renderInline(
+					coursesData[i].description,
+				);
+			}
+			return coursesData;
+		})
+		.finally(() => [] as CourseType[]);
 };
 
 export const loadSingleCourse = async (
@@ -45,8 +49,8 @@ export const loadSingleCourse = async (
 ): Promise<CourseType | null> => {
 	const db = getRequestEvent().locals.db;
 
-	let course = await db.
-		select({
+	let course = await db
+		.select({
 			id: schema.course.id,
 			uuid: schema.course.uuid,
 			description: schema.course.description,
@@ -92,11 +96,11 @@ export const loadSingleCourse = async (
 		(course[0] as CourseType).people = peopleData;
 	}
 
-	if(assignments) {
+	if (assignments) {
 		const assignmentsData = await db
 			.select({
 				uuid: schema.assignment.uuid,
-				title:  schema.assignment.title,
+				title: schema.assignment.title,
 				description: schema.assignment.description,
 				deadline: schema.assignment.deadline,
 				createdAt: schema.assignment.createdAt,
@@ -108,4 +112,4 @@ export const loadSingleCourse = async (
 	}
 
 	return course[0] as CourseType;
-}
+};

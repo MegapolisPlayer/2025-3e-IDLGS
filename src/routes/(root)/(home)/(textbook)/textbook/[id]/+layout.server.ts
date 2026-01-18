@@ -23,10 +23,10 @@ export const load = async (event) => {
 	return {
 		textbook: textbook,
 		isEditor: textbook.authors!.some(
-			(author) => author.uuid === user?.uuid && author.isEditor
+			(author) => author.uuid === user?.uuid && author.isEditor,
 		),
 		isOwner: textbook.authors!.some(
-			(author) => author.uuid === user?.uuid && author.isOwner
+			(author) => author.uuid === user?.uuid && author.isOwner,
 		),
 	};
 };

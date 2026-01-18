@@ -1,9 +1,9 @@
-import { getRequestEvent } from "$app/server";
-import type { CourseAssignmentType, UserType } from "$lib/types";
-import { schema } from "$lib/server/db/mainSchema";
+import { getRequestEvent } from '$app/server';
+import type { CourseAssignmentType, UserType } from '$lib/types';
+import { schema } from '$lib/server/db/mainSchema';
 
 export const loadMyAssignments = async (
-	user: UserType
+	user: UserType,
 ): Promise<CourseAssignmentType[]> => {
 	const db = getRequestEvent().locals.db;
 
@@ -11,4 +11,3 @@ export const loadMyAssignments = async (
 
 	return [];
 };
-	

@@ -33,12 +33,16 @@ export const loadTextbooks = async (
 
 	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
 
-	return textbooks.then((textbooksData) => {
-		for (let i = 0; i < textbooksData.length; i++) {
-			textbooksData[i].description = md.renderInline(textbooksData[i].description);
-		}
-		return textbooksData;
-	}).finally(() => [] as TextbookType[]);
+	return textbooks
+		.then((textbooksData) => {
+			for (let i = 0; i < textbooksData.length; i++) {
+				textbooksData[i].description = md.renderInline(
+					textbooksData[i].description,
+				);
+			}
+			return textbooksData;
+		})
+		.finally(() => [] as TextbookType[]);
 };
 
 //also checks permissions and if logged in
@@ -104,12 +108,7 @@ export const loadSingleTextbook = async (
 				schema.userTextbookLinker,
 				eq(schema.user.id, schema.userTextbookLinker.user),
 			)
-			.where(
-				eq(
-					schema.userTextbookLinker.textbook,
-					textbook[0].id,
-				),
-			);
+			.where(eq(schema.userTextbookLinker.textbook, textbook[0].id));
 		(textbook[0] as TextbookType).authors = authorsData.map((v) => {
 			return {
 				uuid: v.uuid!,
@@ -124,7 +123,7 @@ export const loadSingleTextbook = async (
 		});
 	}
 
-	if(chapters) {
+	if (chapters) {
 		const chaptersData = await db
 			.select({
 				id: schema.chapter.id,
@@ -133,30 +132,25 @@ export const loadSingleTextbook = async (
 				summary: schema.chapter.summary,
 			})
 			.from(schema.chapter)
-			.where(
-				eq(
-					schema.chapter.textbook,
-					textbook[0].id,
-				),
-			);
+			.where(eq(schema.chapter.textbook, textbook[0].id));
 		(textbook[0] as TextbookType).chapters = chaptersData;
 		const chaptersIds = chaptersData.map((c) => c.id!);
 
 		//articles limited
-		for (let i = 0; i < (textbook[0] as TextbookType).chapters!.length; i++) {
+		for (
+			let i = 0;
+			i < (textbook[0] as TextbookType).chapters!.length;
+			i++
+		) {
 			const articlesData = await db
 				.select({
 					uuid: schema.article.uuid,
 					name: schema.article.name,
 				})
 				.from(schema.article)
-				.where(
-					eq(
-						schema.article.chapter,
-						chaptersIds[i],
-					),
-				);
-			(textbook[0] as TextbookType).chapters![i].articlesLimited = articlesData;
+				.where(eq(schema.article.chapter, chaptersIds[i]));
+			(textbook[0] as TextbookType).chapters![i].articlesLimited =
+				articlesData;
 		}
 	}
 

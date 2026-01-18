@@ -24,7 +24,7 @@
 		</h2>
 
 		{#each chapters as chapter, i (chapter.uuid)}
-			<div class="flex flex-row w-full gap-1">
+			<div class="flex w-full flex-row gap-1">
 				<a href="/textbook/{id}/{chapter.uuid}/">
 					{chapter.name}
 				</a>
