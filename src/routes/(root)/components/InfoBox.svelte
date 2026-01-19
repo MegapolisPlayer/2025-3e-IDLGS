@@ -7,10 +7,12 @@
 		children,
 		cssClass = '',
 		timer = $bindable(5000),
+		onEnd = () => {},
 	}: {
 		children?: Snippet | undefined;
 		cssClass?: string;
 		timer: number;
+		onEnd?: () => void;
 	} = $props();
 
 	let interval: NodeJS.Timeout | undefined = $state(undefined);

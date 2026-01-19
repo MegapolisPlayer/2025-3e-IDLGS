@@ -16,12 +16,18 @@ export const grade = pgTable(
 		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 		percentage: integer('percentage').notNull().default(0),
 		course: integer('course')
-			.references(() => course.id)
+			.references(() => course.id, {
+				onDelete: 'cascade',
+			})
 			.notNull(),
 		user: integer('user')
-			.references(() => user.id)
+			.references(() => user.id, {
+				onDelete: 'cascade',
+			})
 			.notNull(),
-		assignment: integer('assignment').references(() => assignment.id),
+		assignment: integer('assignment').references(() => assignment.id, {
+			onDelete: 'cascade',
+		}),
 		// can be null
 	},
 	(table) => [
@@ -35,7 +41,9 @@ export const percentageGradeValue = pgTable(
 	{
 		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 		course: integer('course')
-			.references(() => course.id)
+			.references(() => course.id, {
+				onDelete: 'cascade',
+			})
 			.notNull(),
 		min: integer('min').notNull().default(0),
 		max: integer('max').notNull().default(0),
@@ -56,7 +64,9 @@ export const course = pgTable(
 		subject: text('subject').notNull().default(''),
 		textbook: integer('textbook')
 			.notNull()
-			.references(() => textbook.id),
+			.references(() => textbook.id, {
+				onDelete: 'cascade',
+			}),
 		createdAt: timestamp('createdAt')
 			.notNull()
 			.$defaultFn(() => new Date()),
@@ -92,7 +102,9 @@ export const assignment = pgTable('assignment', {
 		.notNull()
 		.$defaultFn(() => new Date()),
 	course: integer('course')
-		.references(() => course.id)
+		.references(() => course.id, {
+			onDelete: 'cascade',
+		})
 		.notNull(),
 	title: text('title').notNull().default(''),
 	description: text('description').notNull().default(''),
@@ -104,7 +116,9 @@ export const assignment = pgTable('assignment', {
 export const assignmentComment = pgTable('assignmentComment', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	assignment: integer('assignment')
-		.references(() => assignment.id)
+		.references(() => assignment.id, {
+			onDelete: 'cascade',
+		})
 		.notNull(),
 	createdAt: timestamp('createdAt')
 		.notNull()
@@ -112,7 +126,9 @@ export const assignmentComment = pgTable('assignmentComment', {
 	comment: text('comment').notNull().default(''),
 	author: integer('author')
 		.notNull()
-		.references(() => user.id),
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		}),
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
@@ -126,7 +142,9 @@ export const question = pgTable('question', {
 	answer: text('answer').notNull().default(''),
 	name: text('name').notNull().default(''),
 	course: integer('course')
-		.references(() => course.id)
+		.references(() => course.id, {
+			onDelete: 'cascade',
+		})
 		.notNull(),
 	reportCount: integer('reportCount').notNull().default(0),
 	ai: boolean('ai').notNull().default(false),
@@ -143,7 +161,7 @@ export const courseCodes = pgTable('courseCode', {
 	infinite: boolean('infinite').notNull().default(false),
 	course: integer('course')
 		.references(() => course.id, {
-			onDelete: 'no action',
+			onDelete: 'cascade',
 		})
 		.notNull(),
 	code: text('code').notNull(),

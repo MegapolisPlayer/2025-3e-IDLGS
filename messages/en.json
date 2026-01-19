@@ -324,5 +324,7 @@
 	"definitionsOfTerms": "Definitions of Terms",
 	"alreadyPastDeadline": "Already past deadline",
 	"todayOrTomorrow": "Today or tomorrow",
-	"later": "Later"
+	"later": "Later",
+	"settingsUpdated": "Settings updated",
+	"streakHasBeenReset": "Streak has been reset"
 }

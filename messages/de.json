@@ -328,5 +328,7 @@
 	"definitionsOfTerms": "Definitionen von Begriffen",
 	"alreadyPastDeadline": "Bereits über die Frist hinaus",
 	"todayOrTomorrow": "Heute oder morgen",
-	"later": "Später"
+	"later": "Später",
+	"settingsUpdated": "Einstellungen aktualisiert",
+	"streakHasBeenReset": "Serie wurde zurückgesetzt"
 }

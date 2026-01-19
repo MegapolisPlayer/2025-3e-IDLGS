@@ -15,8 +15,14 @@
 		<InfoBox
 			cssClass="bg-linear-to-tr from-green-900 to-green-600 text-white p-2"
 			timer={timerLocal}
+			onEnd={() => {
+				message = '';
+			}}
 		>
-			{message}
+			<div class="font-medium">
+				<i class="ri-check-line"></i>
+				{message}
+			</div>
 		</InfoBox>
 	{/if}
 {/key}

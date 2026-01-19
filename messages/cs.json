@@ -328,5 +328,7 @@
 	"definitionsOfTerms": "Definice pojmů",
 	"alreadyPastDeadline": "Již po termínu",
 	"todayOrTomorrow": "Dnes nebo zítra",
-	"later": "Později"
+	"later": "Později",
+	"settingsUpdated": "Nastavení aktualizovány",
+	"streakHasBeenReset": "Streak byl resetován"
 }

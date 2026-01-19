@@ -5,11 +5,20 @@
 	import Form from '$component/Form.svelte';
 
 	let showModal = $state(false);
+
+	let {
+		formMessage = $bindable(''),
+	}: {
+		formMessage: string;
+	} = $props();
 </script>
 
 <Form
-	action="?/resetStreak"
+	action="/settings?/resetStreak"
 	cssClass="flex w-full flex-row items-center gap-2"
+	success={async () => {
+		formMessage = m.streakHasBeenReset();
+	}}
 >
 	<span class="text-lg">
 		{m.resetStreak()}

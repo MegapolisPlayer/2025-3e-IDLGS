@@ -17,3 +17,5 @@
 </script>
 
 <div class="flex w-full grow flex-col xl:hidden"></div>
+
+{@render children()}

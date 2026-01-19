@@ -68,7 +68,9 @@ export const userSession = pgTable('userSession', {
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
 	user: integer('user')
-		.references(() => user.id)
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		})
 		.notNull(),
 	expiresAt: timestamp('expiresAt').notNull(),
 });

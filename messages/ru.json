@@ -328,5 +328,7 @@
 	"definitionsOfTerms": "Дефиниции терминов",
 	"alreadyPastDeadline": "Срок уже истек",
 	"todayOrTomorrow": "Сегодня или завтра",
-	"later": "Позже"
+	"later": "Позже",
+	"settingsUpdated": "Настройки обновлены",
+	"streakHasBeenReset": "Серия была сброшена"
 }

@@ -32,7 +32,10 @@
 	{delay}
 	{perspective}
 	{onclick}
-	css="w-[35svh] h-[35svh]"
+	css={selected
+		? 'border-neutral-500! brightness-110'
+		: ''}
+	forceSquare={true}
 >
 	<div class="relative flex w-full grow flex-col gap-2 p-2 text-left">
 		<h2 class="flex flex-row items-center gap-2 text-left text-xl">

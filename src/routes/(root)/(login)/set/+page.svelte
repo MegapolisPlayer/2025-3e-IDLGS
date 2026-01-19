@@ -6,10 +6,21 @@
 	import Form from '../../components/Form.svelte';
 	import PasswordInput from '../../components/PasswordInput.svelte';
 	import PasswordInputValid from '../../components/PasswordInputValid.svelte';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	let passwordValue = $state('');
 	let passwordRepeat = $state('');
 	let passwordValid = $state(false);
+
+	onMount(() => {
+		if(!browser) return;
+
+		//hide navbar (nav element)
+		
+		document.getElementById('loggedInNavbar')!.style.display = 'none';
+		document.getElementById('loggedInNavbarFill')!.style.display = 'none';
+	});
 </script>
 
 <svelte:head>

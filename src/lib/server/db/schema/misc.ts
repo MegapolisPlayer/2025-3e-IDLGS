@@ -7,7 +7,9 @@ export const blog = pgTable('blog', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	text: text('text').notNull().default(''),
 	author: integer('user')
-		.references(() => user.id)
+		.references(() => user.id, {
+			onDelete: 'set null'
+		})
 		.notNull(),
 });
 

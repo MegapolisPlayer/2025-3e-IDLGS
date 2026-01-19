@@ -48,7 +48,9 @@ export const chapter = pgTable('chapter', {
 	name: text('name').notNull(),
 	summary: text('summary').notNull(),
 	textbook: integer('textbook')
-		.references(() => textbook.id)
+		.references(() => textbook.id, {
+			onDelete: 'cascade',
+		})
 		.notNull(),
 });
 
@@ -58,7 +60,9 @@ export const article = pgTable('article', {
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
 	chapter: integer('chapter')
-		.references(() => chapter.id)
+		.references(() => chapter.id, {
+			onDelete: 'cascade',
+		})
 		.notNull(),
 	name: text('name').notNull(),
 	text: text('text').notNull(),

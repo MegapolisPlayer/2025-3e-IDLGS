@@ -6,7 +6,7 @@ import { fail } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 
 export const actions = {
-	updatePersonalInfo: async (event) => {
+	updatePersonalInfo: async () => {
 		return await formRunner(
 			['degree', 'name', 'surname', 'day', 'month', 'year'],
 			async (event, formData, cookies, user) => {
@@ -16,9 +16,7 @@ export const actions = {
 						parseInt(formData['day']),
 						parseInt(formData['month']),
 						parseInt(formData['year']),
-					) ||
-					!Number.isInteger(parseInt(formData['background'])) ||
-					parseInt(formData['background']) < 0
+					)
 				) {
 					return fail(400);
 				}
@@ -76,6 +74,13 @@ export const actions = {
 		return await formRunner(
 			['background', 'lang', 'daily'],
 			async (event, formData, cookies, user, formDataRaw) => {
+				if(
+					!Number.isInteger(parseInt(formData['background'])) ||
+					parseInt(formData['background']) < 0
+				) {
+					return fail(400);
+				}
+
 				try {
 					await event.locals.db
 						.update(schema.user)

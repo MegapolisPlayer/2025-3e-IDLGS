@@ -14,6 +14,7 @@
 	import StreakResetRow from './components/StreakResetRow.svelte';
 	import DateRow from './components/DateRow.svelte';
 	import CardSeparator from '$component/CardSeparator.svelte';
+	import SuccessBox from '$src/routes/(root)/components/SuccessBox.svelte';
 
 	let {
 		data,
@@ -22,6 +23,8 @@
 			user: UserType;
 		};
 	} = $props();
+
+	let formMessage = $state('');
 </script>
 
 <div class="flex w-full grow flex-col items-center gap-2 max-xl:hidden">
@@ -38,7 +41,12 @@
 
 			<WideCard>
 				{#if data.user.canChangeSettings}
-					<Form action="?/updatePersonalInfo">
+					<Form 
+						action="?/updatePersonalInfo"
+						success={async () => {
+							formMessage = m.settingsUpdated();
+						}}
+					>
 						<div class="flex flex-col gap-2">
 							<h3 class="w-full text-left">
 								<i class="ri-user-3-line"></i>
@@ -61,8 +69,8 @@
 									'bc',
 									'mgr',
 									'ing',
-									'dr',
 									'rndr',
+									'dr'
 								]}
 								initialValue={data.user.degree}
 							/>
@@ -161,8 +169,8 @@
 							<i class="ri-wrench-line"></i>
 							{m.accountManagement()}
 						</h3>
-						<StreakResetRow />
-						<DeleteRow />
+						<StreakResetRow bind:formMessage />
+						<DeleteRow bind:formMessage />
 					</div>
 				{:else}
 					<DisallowedMessage />
@@ -173,3 +181,5 @@
 		</div>
 	{/await}
 </div>
+
+<SuccessBox bind:message={formMessage} />
