@@ -1,20 +1,6 @@
 import { browser } from '$app/environment';
+import { onDestroy, onMount } from 'svelte';
 import type { CourseGradeType, UserType } from './types';
-import hljs from 'highlight.js';
-
-//config values
-
-export const MARKDOWN_CONFIG_OPTIONS = {
-	html: true,
-	linkify: true,
-	typographer: true,
-	xhtmlOut: true,
-	langPrefix: 'language-',
-	highlight: (str: string, lang: string) => {
-		return hljs.highlightAuto(str, [lang]).value;
-	},
-	breaks: true,
-};
 
 export const MAX_NAME_LENGTH = 50;
 
@@ -84,6 +70,8 @@ export const getImageBackgroundClassRaw = (id: number) => {
 	switch (id) {
 		case 1:
 			return 'bg-[url(/bg/leaves.jpg)] bg-contain bg-fixed';
+		case 2:
+			return 'bg-[url(/bg/building.jpg)] bg-cover bg-fixed';
 	}
 };
 
@@ -141,7 +129,7 @@ export const checkPassword = (
 export const enableScroll = () => {
 	if (!browser) return;
 
-	document.body.style.overflow = 'auto';
+	document.body.style.overflow = '';
 	document.body.style.maxHeight = 'none';
 };
 
@@ -149,7 +137,7 @@ export const disableScroll = () => {
 	if (!browser) return;
 
 	document.body.style.overflow = 'hidden';
-	document.body.style.maxHeight = '100vh';
+	document.body.style.maxHeight = '100svh';
 };
 
 export const validateDate = (
@@ -172,13 +160,13 @@ export const validateDate = (
 		month <= 12 &&
 		day >= 1 &&
 		day <=
-			(month == 2
-				? (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-					? 29
-					: 28
-				: [4, 6, 9, 11].includes(month)
-					? 30
-					: 31)
+		(month == 2
+			? (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+				? 29
+				: 28
+			: [4, 6, 9, 11].includes(month)
+				? 30
+				: 31)
 	);
 };
 
@@ -208,4 +196,42 @@ export const isInQuery = (query: string, ...strings: string[]): boolean => {
 	}
 
 	return false;
+};
+
+export const setInputCallbacks = (
+	inputElementChangeCallback: () => void,
+	formSubmitChangeCallback: () => void,
+) => {
+	if (!browser) return;
+	onMount(() => {
+		document.querySelectorAll('input, select, textarea').forEach((el) => {
+			el.addEventListener('change', inputElementChangeCallback);
+		});
+		document.querySelectorAll('form').forEach((el) => {
+			el.addEventListener('submit', formSubmitChangeCallback);
+		});
+	});
+	onDestroy(() => {
+		document.querySelectorAll('input, select, textarea').forEach((el) => {
+			el.removeEventListener('change', inputElementChangeCallback);
+		});
+		document.querySelectorAll('form').forEach((el) => {
+			el.removeEventListener('submit', formSubmitChangeCallback);
+		});
+	});
+}
+
+export const rerunInputCallbacks = (
+	inputElementChangeCallback: () => void,
+	formSubmitChangeCallback: () => void,
+) => {
+	if (!browser) return;
+	document.querySelectorAll('input, select, textarea').forEach((el) => {
+		el.removeEventListener('change', inputElementChangeCallback);
+		el.addEventListener('change', inputElementChangeCallback);
+	});
+	document.querySelectorAll('form').forEach((el) => {
+		el.removeEventListener('submit', formSubmitChangeCallback);
+		el.addEventListener('submit', formSubmitChangeCallback);
+	});
 };

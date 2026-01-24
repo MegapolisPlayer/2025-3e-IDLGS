@@ -2,14 +2,14 @@ import type { CourseType, UserType } from '$lib/types';
 import { schema } from '$lib/server/db/mainSchema';
 import { eq } from 'drizzle-orm';
 import { getRequestEvent } from '$app/server';
-import markdownit from 'markdown-it';
-import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
+import { renderMarkdown } from '$lib/markdown';
 
 export const loadCourses = async (user: UserType): Promise<CourseType[]> => {
 	const db = getRequestEvent().locals.db;
 
-	const courses = db
+	const courses = await db
 		.select({
+			id: schema.course.id,
 			uuid: schema.course.uuid,
 			description: schema.course.description,
 			createdAt: schema.course.createdAt,
@@ -19,6 +19,7 @@ export const loadCourses = async (user: UserType): Promise<CourseType[]> => {
 			blue: schema.course.blue,
 			name: schema.course.name,
 			subject: schema.course.subject,
+			archived: schema.course.archived,
 		})
 		.from(schema.course)
 		.innerJoin(
@@ -27,18 +28,36 @@ export const loadCourses = async (user: UserType): Promise<CourseType[]> => {
 		)
 		.where(eq(schema.userCourseLinker.user, user.id));
 
-	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
+	for (let i = 0; i < courses.length; i++) {
+		const authorsData = await db
+			.select({
+				uuid: schema.user.uuid,
+				email: schema.user.email,
+				name: schema.user.name,
+				surname: schema.user.surname,
+				degree: schema.user.degree,
+				isOwner: schema.userCourseLinker.owner,
+				isTeacher: schema.userCourseLinker.teacher,
+			})
+			.from(schema.user)
+			.innerJoin(
+				schema.userCourseLinker,
+				eq(schema.user.id, schema.userCourseLinker.user),
+			)
+			.where(eq(schema.userCourseLinker.course, courses[i].id));
+		(courses[i] as CourseType).people = authorsData;
 
-	return courses
-		.then((coursesData) => {
-			for (let i = 0; i < coursesData.length; i++) {
-				coursesData[i].description = md.renderInline(
-					coursesData[i].description,
-				);
-			}
-			return coursesData;
-		})
-		.finally(() => [] as CourseType[]);
+		courses[i].description = renderMarkdown(
+			courses[i].description,
+		);
+	}
+
+	return courses.map((c) => {
+		return {
+			...c,
+			id: undefined,
+		}
+	});
 };
 
 export const loadSingleCourse = async (
@@ -61,6 +80,7 @@ export const loadSingleCourse = async (
 			blue: schema.course.blue,
 			name: schema.course.name,
 			subject: schema.course.subject,
+			archived: schema.course.archived,
 		})
 		.from(schema.course)
 		.innerJoin(
@@ -73,8 +93,7 @@ export const loadSingleCourse = async (
 		return null;
 	}
 
-	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
-	course[0].description = md.renderInline(course[0].description);
+	course[0].description = renderMarkdown(course[0].description);
 
 	if (people) {
 		const peopleData = await db

@@ -1,4 +1,3 @@
-import type { TextbookType } from '$lib/types';
 import { getRequestEvent } from '$app/server';
 import { schema } from '$lib/server/db/mainSchema';
 import { eq } from 'drizzle-orm';

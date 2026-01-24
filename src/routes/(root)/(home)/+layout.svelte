@@ -3,8 +3,15 @@
 
 	import { getImageBackgroundClass } from '$lib';
 	import WordBackground from '$component/WordBackground.svelte';
+	import type { Snippet } from 'svelte';
+	import type { UserType } from '$lib/types';
 
-	let { children, data } = $props();
+	let { children, data }: {
+		children: Snippet;
+		data: {
+			user: UserType;
+		};
+	} = $props();
 </script>
 
 <div
@@ -20,6 +27,6 @@
 	{/if}
 
 	<div class="z-3 flex w-full grow flex-col">
-		{@render children?.()}
+		{@render children()}
 	</div>
 </div>

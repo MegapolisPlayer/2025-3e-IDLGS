@@ -29,6 +29,7 @@ export const textbook = pgTable(
 			.$defaultFn(() => new Date()),
 		subject: text('subject').notNull(),
 		public: boolean('public').notNull().default(false),
+		archived: boolean('archived').notNull().default(false),
 	},
 	(table) => [
 		check('redMinCheck', sql`${table.red} >= 0`),

@@ -2,6 +2,7 @@ import { apiRunner } from '$lib/server/form/runner.js';
 import { json } from '@sveltejs/kit';
 import { schema } from '$lib/server/db/mainSchema';
 import { or, sql } from 'drizzle-orm';
+import { renderMarkdown } from '$lib/markdown';
 
 export const POST = async () => {
 	return await apiRunner(['query'], async (event, data, user) => {
@@ -26,6 +27,10 @@ export const POST = async () => {
 				),
 			)
 			.limit(100);
+
+		for(const textbook of result) {
+			textbook.description = renderMarkdown(textbook.description);
+		}
 
 		return json({
 			textbooks: result,

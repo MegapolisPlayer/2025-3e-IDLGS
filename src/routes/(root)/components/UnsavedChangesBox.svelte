@@ -1,9 +1,10 @@
 <script lang="ts">
 	import InfoBox from './InfoBox.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { untrack } from 'svelte';
 
 	let {
-		show,
+		show = $bindable(false),
 	}: {
 		show: boolean;
 	} = $props();
@@ -13,10 +14,13 @@
 
 {#if show}
 	<InfoBox
-		cssClass="bg-linear-to-tr from-amber-900 to-yellow-600 text-white p-2"
-		timer={timerLocal}
+		cssClass="bg-linear-to-tr from-amber-900 to-yellow-600 text-white"
+		bind:timer={timerLocal}
+		onEnd={() => {
+			show = false;
+		}}
 	>
-		<div class="flex flex-row gap-1">
+		<div class="flex flex-row gap-1 font-medium p-2 pb-0!">
 			<i class="ri-alarm-warning-line"></i>
 			{m.youHaveUnsavedChanges()}
 		</div>

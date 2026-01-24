@@ -3,9 +3,8 @@
 	import Desktop from './Desktop.svelte';
 	import Mobile from './Mobile.svelte';
 	import type { UserType } from '$lib/types';
-	import { onDestroy, onMount } from 'svelte';
-	import { browser } from '$app/environment';
 	import UnsavedChangesBox from '$component/UnsavedChangesBox.svelte';
+	import { setInputCallbacks } from '$lib';
 
 	let {
 		data,
@@ -17,31 +16,13 @@
 
 	let showUnsavedChanges = $state(false);
 
-	const inputElementChangeCallback = () => {
-		showUnsavedChanges = true;
-	};
-	const formSubmitChangeCallback = () => {
-		showUnsavedChanges = false;
-	};
+	const inputElementChangeCallback = () => showUnsavedChanges = true;
+	const formSubmitChangeCallback = () => showUnsavedChanges = false;
 
-	onMount(() => {
-		if (!browser) return;
-		document.querySelectorAll('input, select, textarea').forEach((el) => {
-			el.addEventListener('change', inputElementChangeCallback);
-		});
-		document.querySelectorAll('form').forEach((el) => {
-			el.addEventListener('submit', formSubmitChangeCallback);
-		});
-	});
-	onDestroy(() => {
-		if (!browser) return;
-		document.querySelectorAll('input, select, textarea').forEach((el) => {
-			el.removeEventListener('change', inputElementChangeCallback);
-		});
-		document.querySelectorAll('form').forEach((el) => {
-			el.removeEventListener('submit', formSubmitChangeCallback);
-		});
-	});
+	setInputCallbacks(
+		inputElementChangeCallback,
+		formSubmitChangeCallback,
+	);
 </script>
 
 <svelte:head>
@@ -53,4 +34,4 @@
 <Desktop {data} />
 <Mobile {data} />
 
-<UnsavedChangesBox show={showUnsavedChanges} />
+<UnsavedChangesBox bind:show={showUnsavedChanges} />

@@ -3,8 +3,8 @@
 	import SelectionInput from '$component/SelectionInput.svelte';
 	import NextPrevious from '../components/NextPrevious.svelte';
 	import type { CourseGradeType } from '$lib/types';
-	import Timeline from '../components/dcoursegrading/Timeline.svelte';
-	import GradeInformation from '../components/dcoursegrading/GradeInformation.svelte';
+	import Timeline from '../components/coursegrading/Timeline.svelte';
+	import GradeInformation from '../components/coursegrading/GradeInformation.svelte';
 	import {
 		CZECH_GRADES,
 		CZECH_LANGUAGE_GRADES,

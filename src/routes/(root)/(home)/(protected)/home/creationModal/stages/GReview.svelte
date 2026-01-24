@@ -4,11 +4,10 @@
 	import NextPrevious from '../components/NextPrevious.svelte';
 	import CourseCard from '../../components/CourseCard.svelte';
 	import TextbookCard from '../../components/TextbookCard.svelte';
-	import type { CourseGradeType, UserRoleType } from '$lib/types';
-	import Attribute from '../components/freview/Attribute.svelte';
+	import type { CourseGradeType, UserRoleType, UserTypeLimited } from '$lib/types';
+	import Attribute from '../components/review/Attribute.svelte';
 	import HiddenInput from '$component/HiddenInput.svelte';
-	import markdownit from 'markdown-it';
-	import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
+	import { renderMarkdown } from '$lib/markdown';
 
 	let {
 		step = $bindable(0),
@@ -20,7 +19,6 @@
 		green,
 		blue,
 		selectedUsers,
-		selectedUserRoles,
 		articleNames,
 		chapterNames,
 		courseGrades,
@@ -41,8 +39,7 @@
 		red: number;
 		green: number;
 		blue: number;
-		selectedUsers: string[];
-		selectedUserRoles: UserRoleType[];
+		selectedUsers: UserTypeLimited[];
 		articleNames: string[][];
 		chapterNames: string[];
 		courseGrades: CourseGradeType[];
@@ -56,8 +53,7 @@
 		inviteCodeExpiry: Date;
 	} = $props();
 
-	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
-	let descriptionFormatted = $derived(md.renderInline(description));
+	let descriptionFormatted = $derived(renderMarkdown(description));
 </script>
 
 <Form
@@ -113,11 +109,17 @@
 	/>
 	<HiddenInput
 		name="users"
-		value={JSON.stringify(selectedUsers)}
+		value={JSON.stringify(selectedUsers.map((user) => user.uuid))}
 	/>
 	<HiddenInput
 		name="roles"
-		value={JSON.stringify(selectedUserRoles)}
+		value={JSON.stringify(selectedUsers.map((user) => {
+			return {
+				isEditor: user.isEditor,
+				isTeacher: user.isTeacher,
+				isOwner: user.isOwner,
+			};
+		}))}
 	/>
 
 	{#if type == 'course'}

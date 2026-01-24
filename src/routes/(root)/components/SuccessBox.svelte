@@ -13,13 +13,13 @@
 {#key message}
 	{#if message.length > 0}
 		<InfoBox
-			cssClass="bg-linear-to-tr from-green-900 to-green-600 text-white p-2"
+			cssClass="bg-linear-to-tr from-green-900 to-green-600 text-white"
 			timer={timerLocal}
 			onEnd={() => {
 				message = '';
 			}}
 		>
-			<div class="font-medium">
+			<div class="font-medium p-2 pb-0!">
 				<i class="ri-check-line"></i>
 				{message}
 			</div>

@@ -2,16 +2,16 @@ import type { UserType, TextbookType, UserTypeLimited } from '$lib/types';
 import { schema } from '$lib/server/db/mainSchema';
 import { and, eq, or } from 'drizzle-orm';
 import { getRequestEvent } from '$app/server';
-import markdownit from 'markdown-it';
-import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
+import { renderMarkdown } from '$lib/markdown';
 
 export const loadTextbooks = async (
 	user: UserType,
 ): Promise<TextbookType[]> => {
 	const db = getRequestEvent().locals.db;
 
-	const textbooks = db
+	const textbooks = await db
 		.select({
+			id: schema.textbook.id,
 			uuid: schema.textbook.uuid,
 			description: schema.textbook.description,
 			createdAt: schema.textbook.createdAt,
@@ -23,6 +23,7 @@ export const loadTextbooks = async (
 			summary: schema.textbook.summary,
 			subject: schema.textbook.subject,
 			public: schema.textbook.public,
+			archived: schema.textbook.archived,
 		})
 		.from(schema.textbook)
 		.innerJoin(
@@ -31,18 +32,47 @@ export const loadTextbooks = async (
 		)
 		.where(eq(schema.userTextbookLinker.user, user.id));
 
-	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
+	for (let i = 0; i < textbooks.length; i++) {
+		textbooks[i].description = renderMarkdown(
+			textbooks[i].description,
+		);
+		const authorsData = await db
+			.select({
+				uuid: schema.user.uuid,
+				email: schema.user.email,
+				name: schema.user.name,
+				surname: schema.user.surname,
+				degree: schema.user.degree,
+				editor: schema.userTextbookLinker.editor,
+				owner: schema.userTextbookLinker.owner,
+			})
+			.from(schema.user)
+			.innerJoin(
+				schema.userTextbookLinker,
+				eq(schema.user.id, schema.userTextbookLinker.user),
+			)
+			.where(eq(schema.userTextbookLinker.textbook, textbooks[i].id));
 
-	return textbooks
-		.then((textbooksData) => {
-			for (let i = 0; i < textbooksData.length; i++) {
-				textbooksData[i].description = md.renderInline(
-					textbooksData[i].description,
-				);
-			}
-			return textbooksData;
-		})
-		.finally(() => [] as TextbookType[]);
+		(textbooks[i] as TextbookType).authors = authorsData.map((v) => {
+			return {
+				uuid: v.uuid!,
+				email: v.email!,
+				name: v.name!,
+				surname: v.surname!,
+				degree: v.degree!,
+				isEditor: v.editor!,
+				isTeacher: false,
+				isOwner: v.owner!,
+			} as UserTypeLimited;
+		});
+	}
+
+	return textbooks.map((t) => {
+		return {
+			...t,
+			id: undefined,
+		}
+	});
 };
 
 //also checks permissions and if logged in
@@ -68,6 +98,7 @@ export const loadSingleTextbook = async (
 			summary: schema.textbook.summary,
 			subject: schema.textbook.subject,
 			public: schema.textbook.public,
+			archived: schema.textbook.archived,
 		})
 		.from(schema.textbook)
 		.innerJoin(

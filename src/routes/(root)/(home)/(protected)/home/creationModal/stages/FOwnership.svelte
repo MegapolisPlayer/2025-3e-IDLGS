@@ -1,13 +1,11 @@
 <script lang="ts">
-	//TODO make selected users show up when going back a stage
-
 	import { m } from '$lib/paraglide/messages';
 	import TextInput from '$component/TextInput.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import NextPrevious from '../components/NextPrevious.svelte';
 	import type { UserRoleType, UserTypeLimited } from '$lib/types';
-	import User from '../components/eownership/User.svelte';
-	import UserDropdown from '../components/eownership/UserDropdown.svelte';
+	import User from '../components/ownership/User.svelte';
+	import UserDropdown from '../components/ownership/UserDropdown.svelte';
 	import CheckboxInput from '$src/routes/(root)/components/CheckboxInput.svelte';
 
 	let {
@@ -15,7 +13,6 @@
 		selected,
 		//uuids of users
 		selectedUsers = $bindable([]),
-		selectedUserRoles = $bindable([]),
 		red,
 		green,
 		blue,
@@ -24,8 +21,7 @@
 	}: {
 		step: number;
 		selected: string;
-		selectedUsers: string[];
-		selectedUserRoles: UserRoleType[];
+		selectedUsers: UserTypeLimited[];
 		red: number;
 		green: number;
 		blue: number;
@@ -41,26 +37,14 @@
 	let lastKeystroke: number = $state(0);
 
 	let usersList: Promise<UserTypeLimited[]> = $state(
-		new Promise((resolve) => {
-			resolve([]);
-		}),
+		Promise.resolve([] as UserTypeLimited[])
 	);
 
-	//although this finding code is horribly inefficient it is simpler to manage and we won't have SO many users per course
-
-	let actualUsersList: Promise<UserTypeLimited[]> = $derived.by(async () => {
-		if (selectedUsers.length == 0) return [];
-
-		return usersList.then((v) => {
-			return v.filter((w) => selectedUsers.indexOf(w.uuid) != -1);
-		});
-	}); //selected users
-
-	onMount(() => {
+	onMount(async () => {
 		ticksCounterInterval = setInterval(async () => {
 			ticksCounter++;
 
-			//200ms after last keystroke
+			//200ms after last keystroke, first load handled elsewhere
 			if (ticksCounter - lastKeystroke < 5 || hasFetched) return;
 
 			//load data
@@ -84,15 +68,6 @@
 	onDestroy(() => {
 		clearInterval(ticksCounterInterval);
 	});
-
-	const onRewriteSelectedUser = (newValue: string) => {
-		selectedUsers.push(newValue);
-		selectedUserRoles.push({
-			isEditor: false,
-			isTeacher: false,
-			isOwner: false,
-		});
-	};
 </script>
 
 <div class="flex w-full grow flex-col gap-2">
@@ -114,12 +89,13 @@
 			/>
 			<UserDropdown
 				{usersList}
-				bind:selectedUser={() => '', onRewriteSelectedUser}
+				opened={query.length >= 3}
+				bind:selectedUsers
 			/>
 		</span>
 
-		{#key actualUsersList}
-			{#await actualUsersList then users}
+		{#key selectedUsers}
+			{#await selectedUsers then users}
 				{#each users as user (user.uuid)}
 					<User
 						{user}
@@ -127,13 +103,12 @@
 						{green}
 						{blue}
 						roleHandler={(roles: UserRoleType, uuid: string) => {
-							const id = selectedUsers.indexOf(uuid);
-							selectedUserRoles[id] = { ...roles };
+							const id = selectedUsers.findIndex(user => user.uuid === uuid);
+							selectedUsers[id] = { ...selectedUsers[id], ...roles };
 						}}
 						removeHandler={(uuid: string) => {
-							const id = selectedUsers.indexOf(uuid);
+							const id = selectedUsers.findIndex(user => user.uuid === uuid);
 							selectedUsers.splice(id, 1);
-							selectedUserRoles.splice(id, 1);
 						}}
 						{type}
 					/>

@@ -9,4 +9,6 @@ export const load = async (event) => {
 	if (!user.setPassword) {
 		redirect(303, '/set');
 	}
+
+	return user;
 };

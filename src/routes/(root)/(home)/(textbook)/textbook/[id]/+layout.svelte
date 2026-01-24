@@ -14,9 +14,11 @@
 
 <Desktop
 	{data}
-	{children}
-/>
+>
+	{@render children()}
+</Desktop>
 <Mobile
 	{data}
-	{children}
-/>
+>
+	{@render children()}
+</Mobile>

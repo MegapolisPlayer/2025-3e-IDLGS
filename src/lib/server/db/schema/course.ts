@@ -79,6 +79,7 @@ export const course = pgTable(
 		uuid: text('uuid')
 			.notNull()
 			.$defaultFn(() => crypto.randomUUID()),
+		archived: boolean('archived').notNull().default(false),
 	},
 	(table) => [
 		check('redMinCheck', sql`${table.red} >= 0`),

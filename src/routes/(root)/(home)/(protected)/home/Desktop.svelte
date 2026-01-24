@@ -43,7 +43,7 @@
 				<CardSeparator />
 
 				<h2 class="w-full text-left">
-					<i class="ri-user-smile-line"></i>
+					<i class="ri-user-smile-line text-xl"></i>
 					{m.welcomeBackMessageName({ name: data.user.name })}
 				</h2>
 
@@ -52,7 +52,7 @@
 				<CardSeparator />
 
 				<div class="flex h-fit w-full flex-row items-center gap-2">
-					<i class="ri-layout-grid-line"></i>
+					<i class="ri-layout-grid-line text-xl"></i>
 					<h2 class="text-left">{m.coursesAndTextbooks()}</h2>
 					<div class="grow"></div>
 					<input
@@ -84,24 +84,32 @@
 								v.name,
 								v.description,
 								v.subject,
-							),
+							)
 						)}
+					{@const archivedItems = allItems.filter((v) => v.archived)}
+					{@const activeItems = allItems.filter((v) => !v.archived)}
 
-					{#if allItems.length === 0 && !data.user.canCreateCourses && !data.user.canCreateTextbooks}
+					{#if activeItems.length === 0 && !data.user.canCreateCourses && !data.user.canCreateTextbooks}
 						<div
 							class="flex w-full grow flex-col items-center justify-center gap-2 text-lg font-light opacity-70"
 						>
 							{m.noCoursesOrTextbooksAvailableYet()}
 						</div>
+					{:else if activeItems.length === 0 && searchValue.length > 0}
+						<div
+							class="flex w-full grow flex-col items-center justify-center gap-2 text-lg font-light opacity-70"
+						>
+							{m.noCoursesOrTextbooksMatchYourSearch()}
+						</div>
 					{:else}
 						<div class="grid grid-cols-4 gap-2">
-							{#if data.user.canCreateCourses || data.user.canCreateTextbooks}
+							{#if searchValue.length == 0 && (data.user.canCreateCourses || data.user.canCreateTextbooks)}
 								<AdditionCard
 									onclick={() => (creationModal = true)}
 								/>
 							{/if}
 
-							{#each allItems as item, i (item.uuid)}
+							{#each activeItems as item, i (item.uuid)}
 								{#if item.type == 'c'}
 									<CourseCard
 										perspective={false}
@@ -122,10 +130,59 @@
 							{/each}
 						</div>
 					{/if}
+
+					<CardSeparator />
+
+					<div class="flex h-fit w-full flex-row items-center gap-2">
+						<i class="ri-archive-line text-xl"></i>
+						<h2 class="text-left">
+							{m.archivedCoursesAndTextbooks()}
+						</h2>
+						<div class="grow"></div>
+						<p class="opacity-70">
+							{m.archivedCoursesAndTextbooksAreReadOnlyEverythingIsLeftAsItWasAtTheMomentOfArchiving()}
+						</p>
+					</div>
+
+					{#if archivedItems.length === 0 && searchValue.length === 0}
+						<div
+							class="flex w-full grow flex-col items-center justify-center gap-2 text-lg font-light opacity-70"
+						>
+							{m.noArchivedCoursesOrTextbooksYet()}
+						</div>
+					{:else if archivedItems.length === 0 && searchValue.length > 0}
+						<div
+							class="flex w-full grow flex-col items-center justify-center gap-2 text-lg font-light opacity-70"
+						>
+							{m.noArchivedCoursesOrTextbooksMatchYourSearch()}
+						</div>
+					{:else}
+						<div class="grid grid-cols-4 gap-2">
+							{#each archivedItems as item, i (item.uuid)}
+								{#if item.type == 'c'}
+									<CourseCard
+										perspective={false}
+										delay={i * 100}
+										course={item as CourseType}
+										onclick={() =>
+											goto(`/course/${item.uuid}`)}
+									/>
+								{:else}
+									<TextbookCard
+										perspective={false}
+										delay={i * 100}
+										textbook={item as TextbookType}
+										onclick={() =>
+											goto(`/textbook/${item.uuid}`)}
+									/>
+								{/if}
+							{/each}
+						</div>
+					{/if}
+
+					<CardSeparator />
 				{/await}
 			</div>
-
-			<div class="min-h-[5vh] grow"></div>
 		</div>
 	{/key}
 {/if}

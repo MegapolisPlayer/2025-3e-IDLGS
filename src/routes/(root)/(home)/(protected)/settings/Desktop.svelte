@@ -125,8 +125,9 @@
 						names={[
 							m.backgroundNameinspiration(),
 							m.backgroundNameaFreshMorning(),
+							m.backgroundNameProgressUnstoppable(),
 						]}
-						values={[0, 1]}
+						values={[0, 1, 2]}
 						label={m.background()}
 						initialValue={data.user.background}
 						name="background"

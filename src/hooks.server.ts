@@ -6,6 +6,7 @@ import { env } from '$env/dynamic/private';
 import { schema } from '$lib/server/db/mainSchema';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import { v2 as cloudinary } from 'cloudinary';
 
 const handleParaglide: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
@@ -85,4 +86,11 @@ export const handle: Handle = sequence(
 	handleDefaultUser,
 );
 
-export const init: ServerInit = async () => {};
+export const init: ServerInit = async () => {
+	cloudinary.config({
+		cloud_name: env.CLOUDINARY_CLOUD_NAME,
+		api_key: env.CLOUDINARY_API_KEY,
+		api_secret: env.CLOUDINARY_API_SECRET,
+		secure: true,
+	});
+};

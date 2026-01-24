@@ -2,6 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import 'remixicon/fonts/remixicon.css';
+	import 'katex/dist/katex.min.css';
 
 	let { children } = $props();
 </script>
@@ -14,7 +15,7 @@
 </svelte:head>
 
 <div
-	class="relative flex min-h-screen! w-screen! max-w-screen! min-w-screen! grow flex-col overflow-hidden"
+	class="relative flex min-h-screen! w-screen! max-w-screen! min-w-screen! grow flex-col"
 >
 	<noscript
 		class="absolute top-0 left-0 z-50! flex h-screen w-screen flex-col items-center justify-center bg-violet-700 text-2xl font-medium text-white"

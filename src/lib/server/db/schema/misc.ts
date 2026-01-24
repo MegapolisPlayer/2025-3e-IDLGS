@@ -36,3 +36,10 @@ export const dailyChallenges = pgTable(
 		check('paramSanityCheck', sql`${table.paramMin} <= ${table.paramMax}`),
 	],
 );
+
+//message shown to all logged in users (feature announcements, TOS updates, etc)
+export const message = pgTable('message', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	text: text('text').notNull().default(''),
+	lang: text('lang').notNull().default('en'),
+});

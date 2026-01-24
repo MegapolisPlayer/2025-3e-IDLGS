@@ -4,13 +4,13 @@
 	import { m } from '$lib/paraglide/messages';
 	import Button from './Button.svelte';
 	import Modal from './Modal.svelte';
-
+	
 	let { text, showModal = $bindable(), cssClass = '' } = $props();
 </script>
 
 <Modal
 	bind:showModal
-	cssClass="{cssClass} h-fit bg-neutral-500/70 backdrop-blur border-neutral-500 border-2"
+	cssClass="{cssClass} standardModal"
 	maxHeight={false}
 >
 	<div class="flex w-full grow flex-col gap-2">

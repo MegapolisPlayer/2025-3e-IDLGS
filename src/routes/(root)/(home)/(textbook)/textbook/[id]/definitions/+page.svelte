@@ -1,8 +1,13 @@
 <script lang="ts">
 	import WideCard from '$component/WideCard.svelte';
 	import { m } from '$lib/paraglide/messages';
-
+	import Button from '$src/routes/(root)/components/Button.svelte';
+	import Form from '$src/routes/(root)/components/Form.svelte';
+	import Modal from '$src/routes/(root)/components/Modal.svelte';
+	
 	let { data } = $props();
+
+	let showAddModal: boolean = $state(false);
 </script>
 
 <WideCard cssAddition="grow">
@@ -11,7 +16,59 @@
 		<h2>{m.definitionsOfTerms()}</h2>
 	</div>
 
-	{#each data.definitions as definition}
-		<p>{definition.word}: {definition.description}</p>
-	{/each}
+	<div class="flex w-full grow flex-col gap-2">
+		{#each data.definitions as definition}
+			<p>{definition.word}: {definition.description}</p>
+		{:else}
+			{#if data.isEditor || data.isOwner}
+			<div
+				class="flex flex-col grow w-full items-center justify-center"
+			>
+			<span class="text-lg font-medium">
+				{m.noDefinitionsInTextbookYet()}
+			</span>
+			<span class="opacity-50">
+				{m.addADefinitionByClickingTheButtonBelow()}
+			</span>
+			</div>
+			{:else}
+			<div
+				class="flex flex-col grow w-full items-center justify-center"
+			>
+				<span class="text-lg font-medium">
+					{m.noDefinitionsAvailable()}
+				</span>
+			</div>
+			{/if}
+		{/each}
+	</div>
+
+	{#if data.isEditor || data.isOwner}
+		<div class="grid grid-cols-2 gap-2">
+			<Button
+				btn="button-primary"
+				emoji="add-circle"
+				onclick={() => {
+					showAddModal = true;
+				}}
+			>
+				{m.addDefinition()}
+			</Button>
+			<Form action="?/clearDefinitions">
+				<Button
+					btn="button-red"
+					emoji="delete-bin"
+				>
+					{m.clearDefinitions()}
+				</Button>
+			</Form>
+		</div>
+	{/if}
 </WideCard>
+
+<Modal
+	bind:showModal={showAddModal}
+	cssClass="standardModal"
+>
+	<h2>{m.addDefinition()}</h2>
+</Modal>

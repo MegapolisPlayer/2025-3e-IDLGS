@@ -58,8 +58,9 @@
 	"dependencies": {
 		"@cloudflare/workers-types": "^4.20260117.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.4",
-		"cloudinary": "^2.8.0",
+		"cloudinary": "^2.9.0",
 		"highlight.js": "^11.11.1",
+		"katex": "^0.16.27",
 		"markdown-it": "^14.1.0",
 		"postgres": "^3.4.7",
 		"remixicon": "^4.7.0"

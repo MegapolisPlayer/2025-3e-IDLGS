@@ -18,7 +18,6 @@
 
 /* Scrollbar */
 :root {
-	overflow: scroll;
 	scrollbar-color: var(--color-emerald-600) rgba(0, 0, 0, 0);
 	scrollbar-width: auto;
 }
@@ -108,5 +107,20 @@
 	}
 	nav#loggedInNavbar a:hover {
 		@apply text-emerald-600 decoration-emerald-600;
+	}
+
+	.standardModal {
+		@apply h-fit bg-neutral-500/70 backdrop-blur border-neutral-500 border-2 shadow-2xl;
+	}
+
+	ul {
+		@apply list-disc list-inside;
+	}
+	ol {
+		@apply list-decimal list-inside;
+	}
+
+	.markdownText {
+		@apply w-full flex flex-col gap-2 grow;
 	}
 }

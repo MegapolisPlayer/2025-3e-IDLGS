@@ -9,7 +9,7 @@
 	import CourseInviteCode from './stages/ECourseInviteCode.svelte';
 	import TextbookArticles from './stages/DTextbookArticles.svelte';
 	import CourseTextbookSelect from './stages/BCourseTextbookSelect.svelte';
-	import type { CourseGradeType, UserRoleType, UserType } from '$lib/types';
+	import type { CourseGradeType, UserRoleType, UserType, UserTypeLimited } from '$lib/types';
 
 	//this component stores the values which it then review submits to form action
 
@@ -37,8 +37,7 @@
 	let green: number = $state(7);
 	let blue: number = $state(207);
 
-	let selectedUsers: string[] = $state([]);
-	let selectedUserRoles: UserRoleType[] = $state([]);
+	let selectedUsers: UserTypeLimited[] = $state([]);
 
 	//course only
 	let selectedTextbookUuid: string = $state('');
@@ -131,7 +130,6 @@
 				bind:step={stage}
 				{selected}
 				bind:selectedUsers
-				bind:selectedUserRoles
 				{red}
 				{green}
 				{blue}
@@ -149,7 +147,6 @@
 				{description}
 				type={selected}
 				{selectedUsers}
-				{selectedUserRoles}
 				{articleNames}
 				{chapterNames}
 				{courseGrades}

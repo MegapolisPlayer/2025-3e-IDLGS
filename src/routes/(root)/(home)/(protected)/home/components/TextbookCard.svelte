@@ -11,6 +11,7 @@
 		onclick = () => {},
 		disable = false,
 		selected = false,
+		selection = false,
 	}: {
 		textbook: TextbookType;
 		delay: number;
@@ -18,10 +19,9 @@
 		onclick?: () => void;
 		disable?: boolean;
 		selected?: boolean;
+		selection?: boolean;
 	} = $props();
 </script>
-
-<!-- TODO finish -->
 
 <Card
 	{disable}
@@ -34,20 +34,41 @@
 	css={selected ? 'border-neutral-500! brightness-110' : ''}
 	forceSquare={true}
 >
-	<div class="relative flex w-full grow flex-col p-2">
-		<h2 class="flex w-full flex-row items-center gap-2 text-left text-xl">
-			<i class="ri-book-ai-line text-3xl"></i>
-			{textbook.name}
+	<div class="relative flex w-full grow flex-col gap-0 p-2 text-left">
+		<h2 class="flex w-full flex-row items-center gap-1 text-left">
+			<div class="flex flex-row items-center gap-1 text-xl">
+				<i class="ri-book-ai-line text-3xl"></i>
+				{textbook.name}
+			</div>
+			<div class="text-lg font-light opacity-70">
+				{textbook.subject}
+			</div>
 		</h2>
-		<p class="w-full text-left text-sm opacity-70">
-			{@html textbook.description}
+		<div class="flex flex-col gap-1">
+			{#each textbook.authors as author (author.uuid)}
+				<div class="flex w-full flex-row items-center gap-1">
+					<i class="ri-user-3-line text-lg"></i>
+
+					<span class="text-left opacity-70">
+						{author.name}
+						{author.surname}
+					</span>
+				</div>
+			{/each}
+		</div>
+		<p
+			class="flex w-full grow flex-col overflow-hidden! text-left text-sm font-light text-ellipsis opacity-70 lg:max-h-[15vh]"
+		>
+			{@html textbook.description.split('\n')[0]}
 		</p>
 	</div>
 
-	<Button
-		emoji="arrow-right"
-		btn="button-primary w-full"
-	>
-		{m.open()}
-	</Button>
+	{#if !selection}
+		<Button
+			emoji="arrow-right"
+			btn="button-primary w-full"
+		>
+			{m.open()}
+		</Button>
+	{/if}
 </Card>

@@ -6,7 +6,6 @@
 	import { fade, slide } from 'svelte/transition';
 	import LearnMoreHeadCard from './LearnMoreHeadCard.svelte';
 	import { getImageBackgroundClassRaw } from '$lib';
-	import { getLocale } from '$lib/paraglide/runtime';
 
 	let ready = $state(false);
 

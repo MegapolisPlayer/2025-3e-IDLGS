@@ -35,46 +35,68 @@
 	css={selected ? 'border-neutral-500! brightness-110' : ''}
 	forceSquare={true}
 >
-	<div class="relative flex w-full grow flex-col gap-2 p-2 text-left">
-		<h2 class="flex flex-row items-center gap-2 text-left text-xl">
-			<i class="ri-file-list-3-line text-3xl"></i>
-			{course.name}
+	<div class="relative flex w-full grow flex-col gap-0 p-2 text-left">
+		<h2 class="flex flex-row items-center gap-1 text-left text-xl">
+			<div class="flex flex-row items-center gap-1 text-xl">
+				<i class="ri-book-ai-line text-3xl"></i>
+				{course.name}
+			</div>
+			<div class="text-lg font-light opacity-70">
+				{course.subject}
+			</div>
 		</h2>
-		<p class="w-full text-sm opacity-70">{course.description}</p>
+		<div class="flex flex-col gap-1">
+			{#each course.people?.filter((v) => v.isOwner || v.isTeacher) as people (people.uuid)}
+				<div class="flex w-full flex-row items-center gap-1">
+					<i class="ri-user-3-line text-lg"></i>
+					<span class="text-left opacity-70">
+						{people.name}
+						{people.surname}
+					</span>
+				</div>
+			{/each}
+		</div>
+		<p class="w-full text-sm opacity-70 font-light text-ellipsis">
+			{@html course.description.split('\n')[0]}
+		</p>
 
 		<!-- TODO teachers on same row as name -->
 
-		<WideCard
-			r={course.red}
-			g={course.green}
-			b={course.blue}
-			cssParentOverride="grow"
-			cssOverride="pt-1! pb-1! ps-2! pe-2!"
-		>
-			<h2 class="w-full text-lg">{m.assignments()}</h2>
-			<div class="flex flex-col gap-2">
-				<!-- TODO -->
-			</div>
-		</WideCard>
+		<span class="flex w-full grow flex-col pb-2 pt-2">
+			<WideCard
+				r={course.red}
+				g={course.green}
+				b={course.blue}
+				cssParentOverride="grow"
+				cssOverride="pt-1! pb-1! ps-2! pe-2! grow"
+			>
+				<h2 class="w-full text-lg">{m.assignments()}</h2>
+				<div class="flex flex-col gap-2">
+					<!-- TODO -->
+				</div>
+			</WideCard>
+		</span>
 
-		<WideCard
-			r={course.red}
-			g={course.green}
-			b={course.blue}
-			cssOverride="pt-1! pb-1! ps-2! pe-2! flex-row items-center flex"
-		>
-			<h2 class="w-full text-lg">{m.resultingGrade()}</h2>
-			<div class="flex flex-row items-center justify-center gap-2">
-				<span class="text-3xl font-bold"> 1 </span>
-				<span class="text-2xl font-light opacity-70"> (90%) </span>
-			</div>
-		</WideCard>
-
-		<Button
-			emoji="arrow-right"
-			btn="button-primary"
-		>
-			{m.open()}
-		</Button>
+		<span class="flex w-full flex-col">
+			<WideCard
+				r={course.red}
+				g={course.green}
+				b={course.blue}
+				cssOverride="pt-1! pb-1! ps-2! pe-2! flex-row items-center flex grow"
+			>
+				<h2 class="w-full text-lg">{m.resultingGrade()}</h2>
+				<div class="flex flex-row items-center justify-center gap-2">
+					<span class="text-3xl font-bold"> 1 </span>
+					<span class="text-2xl font-light opacity-70"> (90%) </span>
+				</div>
+			</WideCard>
+		</span>
 	</div>
+
+	<Button
+		emoji="arrow-right"
+		btn="button-primary w-full"
+	>
+		{m.open()}
+	</Button>
 </Card>

@@ -16,7 +16,7 @@
 </script>
 
 <div
-	class="flex w-full flex-row flex-nowrap items-center gap-0 overflow-x-scroll overflow-y-hidden"
+	class="flex w-full flex-row flex-nowrap items-center gap-0.5 overflow-x-scroll overflow-y-hidden"
 >
 	<button
 		type="button"
@@ -37,198 +37,202 @@
 		message={m.bold()}
 		emoji="bold"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'**' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'**' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '**' + part2 + '**' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.italic()}
 		emoji="italic"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'*' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'*' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '*' + part2 + '*' + part3;	
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.underline()}
 		emoji="underline"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'<u>' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'</u>' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '<u>' + part2 + '</u>' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.subscript()}
 		emoji="subscript-2"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'<sub>' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'</sub>' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '<sub>' + part2 + '</sub>' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.superscript()}
 		emoji="superscript-2"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'<sup>' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'</sup>' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '<sup>' + part2 + '</sup>' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.strikethrough()}
 		emoji="strikethrough"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'~~' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'~~' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '~~' + part2 + '~~' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.alignLeft()}
 		emoji="align-left"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'<div style="text-align: left; width: 100%;">' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'</div>' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '<div style="text-align: left; width: 100%;">' + part2 + '</div>' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.alignCenter()}
 		emoji="align-center"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'<div style="text-align: center; width: 100%;">' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'</div>' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '<div style="text-align: center; width: 100%;">' + part2 + '</div>' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.alignRight()}
 		emoji="align-right"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'<div style="text-align: right; width: 100%;">' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'</div>' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '<div style="text-align: right; width: 100%;">' + part2 + '</div>' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.header1()}
 		emoji="h-1"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'# ' +
-				value.slice(cursorBeginning, cursorEnd) +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '# ' + part2 + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.header2()}
 		emoji="h-2"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'## ' +
-				value.slice(cursorBeginning, cursorEnd) +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '## ' + part2 + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.header3()}
 		emoji="h-3"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'### ' +
-				value.slice(cursorBeginning, cursorEnd) +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '### ' + part2 + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.quote()}
 		emoji="double-quotes-l"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'> ' +
-				value.slice(cursorBeginning, cursorEnd) +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '> ' + part2 + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.codeBlock()}
 		emoji="code-view"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'```\n' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'\n```' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '```\n' + part2 + '\n```' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.orderedList()}
 		emoji="list-ordered"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'1. ' +
-				value.slice(cursorBeginning, cursorEnd) +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '1. ' + part2 + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.unorderedList()}
 		emoji="list-unordered"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'- ' +
-				value.slice(cursorBeginning, cursorEnd) +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '- ' + part2 + part3;
 		}}
 	/>
 	<TextareaFormattingButton
 		message={m.link()}
 		emoji="link"
 		onclick={() => {
-			value =
-				value.slice(0, cursorBeginning) +
-				'[' +
-				value.slice(cursorBeginning, cursorEnd) +
-				'](url)' +
-				value.slice(cursorEnd);
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '[' + part2 + '](url)' + part3;
+		}}
+	/>
+
+	<TextareaFormattingButton
+		message={m.horizontalSeparator()}
+		emoji="separator"
+		onclick={() => {
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '\n---\n' + part2 + part3;
+		}}
+	/>
+
+	<!-- LaTeX: we process LaTeX first, HTML output is ignored by markdownit -->
+	<TextareaFormattingButton
+		message={m.mathEquationLatex()}
+		emoji="function"
+		onclick={() => {
+			const part1 = value.slice(0, cursorBeginning);
+			const part2 = value.slice(cursorBeginning, cursorEnd);
+			const part3 = value.slice(cursorEnd);
+			value = part1 + '$' + part2 + '$' + part3;
+		}}
+	/>
+
+	<!-- TODO inserting images -->
+	<TextareaFormattingButton
+		message={m.image()}
+		emoji="image"
+		onclick={() => {
+			
 		}}
 	/>
 

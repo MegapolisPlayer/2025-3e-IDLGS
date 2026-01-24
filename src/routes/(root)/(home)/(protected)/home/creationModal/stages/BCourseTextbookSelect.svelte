@@ -91,6 +91,7 @@
 							selectedTextbookUuid = item.uuid;
 						}}
 						selected={item.uuid == selectedTextbookUuid}
+						selection={true}
 					/>
 				{/each}
 			</div>

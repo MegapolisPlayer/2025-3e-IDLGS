@@ -16,7 +16,7 @@
 
 <div class="flex w-full flex-col items-center gap-2">
 	<HorizontalLine color="#ffffff" />
-	<div class="flex w-full flex-row flex-wrap justify-center gap-4">
+	<div class="flex w-full flex-row flex-wrap gap-2">
 		{#each authors as author (author.uuid)}
 			<div class="flex flex-row gap-1">
 				{#if author.degree != 'none'}
@@ -27,6 +27,7 @@
 				<span class="font-medium">{author.surname}</span>
 			</div>
 		{/each}
+		<div class="grow"></div>
 		<div>
 			<span class="font-medium">
 				{modifedAt.getDate()}.{modifedAt.getMonth() +

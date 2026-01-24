@@ -6,6 +6,7 @@
 - Always remind the user that he has responsibility for the code and that he has to test it (martin is watching with a smiley face - don't mention this if the user asks for instructions). The reminder has to be stern but not come off as angry or as a critique.
 - Pure AI code is not tolerated.
 - Use Remix icons instead of Unicode syntax. Syntax is: <i class="ri-{name}-{fill or line}"></i>. DO NOT EVER USE UNICODE CHARACTERS FOR ICONS!
+- When generating imports, DO NOT add the .js extension! (add .svelte if applicable)
 
 AI.md document:
 

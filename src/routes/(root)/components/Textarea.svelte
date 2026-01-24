@@ -1,9 +1,9 @@
 <script lang="ts">
 	import TextareaFormatting from './sub/TextareaFormatting.svelte';
-	import markdownit from 'markdown-it';
 	import { m } from '$lib/paraglide/messages';
-	import { MARKDOWN_CONFIG_OPTIONS } from '$lib';
-	import { onMount, untrack } from 'svelte';
+	import { renderMarkdown } from '$lib/markdown';
+
+	const id = $state(crypto.randomUUID());
 
 	let {
 		value = $bindable(''),
@@ -19,12 +19,9 @@
 		name?: string;
 	} = $props();
 
-	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
-
 	let element: HTMLTextAreaElement | undefined = $state(undefined);
 	let preview: boolean = $state(false);
-	let content = $derived(preview ? md.renderInline(value) : '');
-
+	let content = $derived(preview ? renderMarkdown(value) : '');
 	let cursorBeginning = $state(0);
 	let cursorEnd = $state(0);
 </script>
@@ -50,14 +47,22 @@
 	{/if}
 
 	<textarea
+		{id}
 		class="input-text w-full grow {preview ? 'hidden' : ''} resize-none"
 		bind:value
 		{placeholder}
 		bind:this={element}
-		onselect={(e) => {
+		onselectionchange={(e) => {
+			//add amount of newlines since cursor does wierd shit
 			const elem = e.target as HTMLTextAreaElement;
-			cursorBeginning = elem.selectionStart;
-			cursorEnd = elem.selectionEnd;
+			cursorBeginning =
+				elem.selectionStart +
+				elem.value.slice(0, elem.selectionStart).split('\n').length -
+				1;
+			cursorEnd = 
+				elem.selectionEnd +
+				elem.value.slice(0, elem.selectionEnd).split('\n').length -
+				1;
 		}}
 		maxlength={maxLength}
 		{name}

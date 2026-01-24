@@ -24,6 +24,7 @@ export type UserType = {
 	gamification: boolean;
 	canChangeSettings: boolean;
 	canEditGamification: boolean;
+	clickedOnLastMessage: boolean;
 };
 
 export type UserRoleType = {
@@ -61,6 +62,7 @@ export type TextbookType = {
 	public: boolean;
 	authors?: UserTypeLimited[];
 	canEdit?: boolean;
+	archived?: boolean;
 };
 
 export type TextbookDefinitionType = {
@@ -102,6 +104,7 @@ export type CourseType = {
 	grades?: CourseGradeType[];
 	assignments?: CourseAssignmentType[];
 	people?: UserTypeLimited[];
+	archived?: boolean;
 };
 
 export type CourseAssignmentType = {

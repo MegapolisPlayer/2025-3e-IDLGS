@@ -2,7 +2,8 @@
 	import { onMount, type Snippet } from 'svelte';
 	import Sidebar from './components/desktop/Sidebar.svelte';
 	import ContentPositioning from './components/desktop/ContentPositioning.svelte';
-	import type { ChapterType, TextbookType } from '$lib/types';
+	import type { TextbookType } from '$lib/types';
+	import ArchivedWarningTextbook from './components/desktop/ArchivedWarningTextbook.svelte';
 
 	let ready = $state(false);
 
@@ -30,9 +31,14 @@
 "
 >
 	<Sidebar
-		chapters={data.textbook.chapters as ChapterType[]}
+		textbook={data.textbook}
 		id={data.textbook.uuid}
 		canEdit={data.isEditor || data.isOwner}
 	/>
-	<ContentPositioning {children} />
+	<ContentPositioning>
+		{#if data.textbook.archived}
+		<ArchivedWarningTextbook />
+		{/if}
+		{@render children()}
+	</ContentPositioning>
 </div>

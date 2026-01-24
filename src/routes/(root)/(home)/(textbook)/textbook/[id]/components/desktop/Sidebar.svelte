@@ -1,54 +1,107 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { m } from '$lib/paraglide/messages';
-	import type { ChapterType } from '$lib/types';
+	import type { TextbookType } from '$lib/types';
 	import Button from '$src/routes/(root)/components/Button.svelte';
 	import WideCard from '$src/routes/(root)/components/WideCard.svelte';
+	import StructureModal from './sub/StructureModal.svelte';
 
 	let {
 		id,
-		chapters = $bindable([]),
+		textbook = $bindable(),
 		canEdit,
 	}: {
 		id: string;
-		chapters: ChapterType[];
+		textbook: TextbookType;
 		canEdit: boolean;
 	} = $props();
 
-	let chaptersOpen = $state(new Array(chapters.length).fill(false));
+	let chaptersOpen = $state(new Array(textbook.chapters!.length).fill(false));
+	let showStructureModal: boolean = $state(false);
 </script>
 
-<div class="min-w-1/5 p-2">
+<div class="min-w-1/5 p-2 sticky left-0 h-[94svh] top-[6vh] overflow-clip">
 	<WideCard cssAddition="grow">
 		<h2>
 			{m.textbookContents()}
 		</h2>
 
-		{#each chapters as chapter, i (chapter.uuid)}
-			<div class="flex w-full flex-row gap-1">
-				<a href="/textbook/{id}/{chapter.uuid}/">
-					{chapter.name}
-				</a>
-				<Button
-					emoji={chaptersOpen[i] ? 'arrow-up-s' : 'arrow-down-s'}
-					btn="button-none"
-					onclick={() => {
-						chaptersOpen[i] = !chaptersOpen[i];
-					}}
-				/>
-			</div>
-		{:else}
-			<div
-				class="flex flex-col grow w-full items-center justify-center gap-2"
+		<div class="flex w-full grow flex-col gap-1">
+			<!-- home page -->
+			<Button
+				btn="button-none w-full"
+				emoji="home"
+				onclick={() => {
+					goto(`/textbook/${id}/`);
+				}}
 			>
-				<p class="text-center opacity-50">
-					{m.thisTextbookIsEmptySoFar()}
-				</p>
-			</div>
-		{/each}
+				<div class="flex w-full flex-row gap-1">
+					{m.textbookHome()}
+				</div>
+			</Button>
+
+			<!-- definitions -->
+			 <Button
+				btn="button-none w-full"
+				emoji="todo"
+				onclick={() => {
+					goto(`/textbook/${id}/definitions/`);
+				}}
+			>
+				<div class="flex w-full flex-row gap-1">
+					{m.definitionsOfTerms()}
+				</div>
+			 </Button>
+
+			{#each textbook.chapters as chapter, i (chapter.uuid)}
+				<div class="flex w-full flex-row gap-1">
+					<a href="/textbook/{id}/{chapter.uuid}/">
+						{chapter.name}
+					</a>
+					<Button
+						emoji={chaptersOpen[i] ? 'arrow-up-s' : 'arrow-down-s'}
+						btn="button-none"
+						onclick={() => {
+							chaptersOpen[i] = !chaptersOpen[i];
+						}}
+					/>
+				</div>
+			{:else}
+				<div
+					class="flex flex-col grow w-full items-center justify-center gap-2"
+				>
+					<p class="text-center opacity-50">
+						{m.thisTextbookIsEmptySoFar()}
+					</p>
+				</div>
+			{/each}
+
+			{#if canEdit}
+				<Button
+					btn="button-green w-full"
+					emoji="add-circle"
+					onclick={() => {
+						showStructureModal = true;
+					}}
+				>
+					{m.manageStructure()}
+				</Button>
+			{/if}
+		</div>
+
+		<Button
+			btn="button-primary"
+			emoji="brain"
+			onclick={() => {
+				goto(`/textbook/${id}/train/`);
+			}}
+		>
+			{m.practiceWithAI()}
+		</Button>
 
 		{#if canEdit}
 			<Button
-				btn="button-primary"
+				btn="button-violet"
 				emoji="settings"
 				onclick={() => {
 					window.location.href = `/textbook/${id}/settings/`;
@@ -59,3 +112,8 @@
 		{/if}
 	</WideCard>
 </div>
+
+<StructureModal
+	bind:showStructureModal={showStructureModal}
+	bind:textbook={textbook}
+/>

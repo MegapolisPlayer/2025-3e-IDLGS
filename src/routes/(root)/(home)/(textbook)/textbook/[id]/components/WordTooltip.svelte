@@ -2,6 +2,7 @@
 	//TODO kira wanted this, finish!
 
 	import Button from '$component/Button.svelte';
+	import Tooltip from '$src/routes/(root)/components/Tooltip.svelte';
 
 	let {
 		description,
@@ -28,3 +29,9 @@
 >
 	{word}
 </Button>
+
+<Tooltip
+	showTooltip={isPopupActive}
+>
+	{description}
+</Tooltip>

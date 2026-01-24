@@ -1,6 +1,6 @@
 import { loadCourses } from '$lib/server/loaders/course.js';
 import { loadTextbooks } from '$lib/server/loaders/textbook.js';
-import type { CourseGradeType, UserType } from '$lib/types.js';
+import type { CourseGradeType, UserRoleType, UserType } from '$lib/types.js';
 import { MAX_NAME_LENGTH } from '$lib';
 import { formRunner } from '$lib/server/form/runner.js';
 import { schema } from '$lib/server/db/mainSchema.js';
@@ -50,14 +50,17 @@ export const actions = {
 				const articles = JSON.parse(formData['articles']) as string[][];
 				const chapters = JSON.parse(formData['chapters']) as string[];
 				const users = JSON.parse(formData['users']) as string[];
-				const roles = JSON.parse(formData['roles']) as string[];
+				const roles = JSON.parse(formData['roles']) as UserRoleType[];
 
 				if (users.length !== roles.length) {
 					return fail(400);
 				}
 				if (users.indexOf(user.uuid) === -1) {
 					users.push(user.uuid);
-					roles.push('owner');
+					roles.push({
+						isOwner: true,
+						isEditor: true,
+					});
 				}
 
 				try {
@@ -113,12 +116,8 @@ export const actions = {
 							.map((u) => {
 								return {
 									user: u.id,
-									owner:
-										roles[users.indexOf(u.uuid)] ===
-										'owner',
-									editor:
-										roles[users.indexOf(u.uuid)] ===
-										'editor',
+									owner: roles[users.indexOf(u.uuid)].isOwner,
+									editor: roles[users.indexOf(u.uuid)].isEditor,
 									textbook: textbook,
 								};
 							})

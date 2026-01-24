@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import NextPrevious from '../components/NextPrevious.svelte';
-	import ItemList from '../components/dtextbookarticles/ItemList.svelte';
+	import ItemList from '../components/textbookarticles/ItemList.svelte';
 
 	let {
 		step = $bindable(0),
@@ -39,7 +39,7 @@
 		style="color: rgb({red}, {green}, {blue});"
 	>
 		<div class="w-5/11 min-w-5/11 grow">
-			<h2 class="text-white!">{m.chapters()}</h2>
+			<h3 class="text-white!">{m.chapters()}</h3>
 			<!-- push also arrays for chapters' articles -->
 			<ItemList
 				bind:items={chapterNames}
@@ -59,7 +59,7 @@
 			</ItemList>
 		</div>
 		<div class="w-5/11 min-w-5/11 grow">
-			<h2 class="text-white!">{m.articles()}</h2>
+			<h3 class="text-white!">{m.articles()}</h3>
 			{#if chapterNames.length > 0}
 				{#if selectedChapterName.length > 0}
 					<ItemList
