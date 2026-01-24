@@ -84,7 +84,7 @@
 								v.name,
 								v.description,
 								v.subject,
-							)
+							),
 						)}
 					{@const archivedItems = allItems.filter((v) => v.archived)}
 					{@const activeItems = allItems.filter((v) => !v.archived)}

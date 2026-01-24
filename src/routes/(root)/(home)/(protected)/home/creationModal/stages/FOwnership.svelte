@@ -37,7 +37,7 @@
 	let lastKeystroke: number = $state(0);
 
 	let usersList: Promise<UserTypeLimited[]> = $state(
-		Promise.resolve([] as UserTypeLimited[])
+		Promise.resolve([] as UserTypeLimited[]),
 	);
 
 	onMount(async () => {
@@ -103,11 +103,18 @@
 						{green}
 						{blue}
 						roleHandler={(roles: UserRoleType, uuid: string) => {
-							const id = selectedUsers.findIndex(user => user.uuid === uuid);
-							selectedUsers[id] = { ...selectedUsers[id], ...roles };
+							const id = selectedUsers.findIndex(
+								(user) => user.uuid === uuid,
+							);
+							selectedUsers[id] = {
+								...selectedUsers[id],
+								...roles,
+							};
 						}}
 						removeHandler={(uuid: string) => {
-							const id = selectedUsers.findIndex(user => user.uuid === uuid);
+							const id = selectedUsers.findIndex(
+								(user) => user.uuid === uuid,
+							);
 							selectedUsers.splice(id, 1);
 						}}
 						{type}

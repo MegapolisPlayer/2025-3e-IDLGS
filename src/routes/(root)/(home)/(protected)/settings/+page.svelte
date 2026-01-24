@@ -16,13 +16,10 @@
 
 	let showUnsavedChanges = $state(false);
 
-	const inputElementChangeCallback = () => showUnsavedChanges = true;
-	const formSubmitChangeCallback = () => showUnsavedChanges = false;
+	const inputElementChangeCallback = () => (showUnsavedChanges = true);
+	const formSubmitChangeCallback = () => (showUnsavedChanges = false);
 
-	setInputCallbacks(
-		inputElementChangeCallback,
-		formSubmitChangeCallback,
-	);
+	setInputCallbacks(inputElementChangeCallback, formSubmitChangeCallback);
 </script>
 
 <svelte:head>

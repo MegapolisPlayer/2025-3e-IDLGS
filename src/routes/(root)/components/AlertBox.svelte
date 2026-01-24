@@ -15,7 +15,7 @@
 				message = '';
 			}}
 		>
-			<div class="font-medium p-2 pb-0!">
+			<div class="p-2 pb-0! font-medium">
 				<i class="ri-pass-expired-line"></i>
 				{message}
 			</div>

@@ -8,7 +8,7 @@
 		name,
 		placeholder,
 		items,
-		selected = $bindable()
+		selected = $bindable(),
 	}: {
 		name: string;
 		placeholder: string;
@@ -25,9 +25,11 @@
 		class="flex w-full grow flex-col gap-2 rounded-lg bg-neutral-700/40 p-2"
 	>
 		{#each items as item (item.uuid)}
-			<div></div>	
+			<div></div>
 		{:else}
-			<div class="flex flex-col grow justify-center items-center gap-2 opacity-70 w-full">
+			<div
+				class="flex flex-col grow justify-center items-center gap-2 opacity-70 w-full"
+			>
 				<p>{placeholder}</p>
 			</div>
 		{/each}

@@ -59,7 +59,7 @@
 				elem.selectionStart +
 				elem.value.slice(0, elem.selectionStart).split('\n').length -
 				1;
-			cursorEnd = 
+			cursorEnd =
 				elem.selectionEnd +
 				elem.value.slice(0, elem.selectionEnd).split('\n').length -
 				1;

@@ -13,53 +13,47 @@ export const load = async (event) => {
 
 export const actions = {
 	updateName: async (event) => {
-		return await formRunner(['uuid', 'name'], async (
-			event,
-			formData,
-			cookies,
-			user,
-			formDataRaw,
-		) => {
-			try {
-				if (await isUserAuthorizedTextbook(user.uuid) === false) {
-					return fail(403);
-				}
+		return await formRunner(
+			['uuid', 'name'],
+			async (event, formData, cookies, user, formDataRaw) => {
+				try {
+					if ((await isUserAuthorizedTextbook(user.uuid)) === false) {
+						return fail(403);
+					}
 
-				await event.locals.db.update(schema.textbook).set({
-					name: formData['name'],
-					modifiedAt: new Date(),
-				}).where(
-					eq(schema.textbook.uuid, formData['uuid'])
-				);
-			}
-			catch (e) {
-				writeLog(event, 'ERROR', 'DB error', user);
-			}
-		})
+					await event.locals.db
+						.update(schema.textbook)
+						.set({
+							name: formData['name'],
+							modifiedAt: new Date(),
+						})
+						.where(eq(schema.textbook.uuid, formData['uuid']));
+				} catch (e) {
+					writeLog(event, 'ERROR', 'DB error', user);
+				}
+			},
+		);
 	},
 	updateDescription: async (event) => {
-		return await formRunner(['uuid', 'description'], async (
-			event,
-			formData,
-			cookies,
-			user,
-			formDataRaw,
-		) => {
-			try {
-				if (await isUserAuthorizedTextbook(user.uuid) === false) {
-					return fail(403);
-				}
+		return await formRunner(
+			['uuid', 'description'],
+			async (event, formData, cookies, user, formDataRaw) => {
+				try {
+					if ((await isUserAuthorizedTextbook(user.uuid)) === false) {
+						return fail(403);
+					}
 
-				await event.locals.db.update(schema.textbook).set({
-					description: formData['description'],
-					modifiedAt: new Date(),
-				}).where(
-					eq(schema.textbook.uuid, formData['uuid'])
-				);
-			}
-			catch (e) {
-				writeLog(event, 'ERROR', 'DB error', user);
-			}
-		})
-	}
+					await event.locals.db
+						.update(schema.textbook)
+						.set({
+							description: formData['description'],
+							modifiedAt: new Date(),
+						})
+						.where(eq(schema.textbook.uuid, formData['uuid']));
+				} catch (e) {
+					writeLog(event, 'ERROR', 'DB error', user);
+				}
+			},
+		);
+	},
 };

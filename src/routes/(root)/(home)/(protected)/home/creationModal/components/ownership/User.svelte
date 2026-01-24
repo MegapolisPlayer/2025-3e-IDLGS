@@ -24,7 +24,7 @@
 	} = $props();
 
 	let valueInput: string = $derived.by(() => {
-		if(user.isOwner) return 'owner';
+		if (user.isOwner) return 'owner';
 		else if (user.isTeacher && type == 'course') return 'teacher';
 		else if (user.isEditor && type == 'textbook') return 'editor';
 		else return 'none';

@@ -14,7 +14,7 @@
 		<i class="ri-error-warning-line text-2xl"></i>
 		<h2>{m.thisCourseHasBeenArchived()}</h2>
 	</div>
-	<p class="text-lg ps-2 opacity-70">
+	<p class="ps-2 text-lg opacity-70">
 		{m.youCanNoLongerChangeGradesAssignmentsOrMaterials()}
 	</p>
 </WideCard>

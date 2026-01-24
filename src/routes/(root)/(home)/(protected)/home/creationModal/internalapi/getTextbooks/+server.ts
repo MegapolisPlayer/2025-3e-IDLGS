@@ -28,7 +28,7 @@ export const POST = async () => {
 			)
 			.limit(100);
 
-		for(const textbook of result) {
+		for (const textbook of result) {
 			textbook.description = renderMarkdown(textbook.description);
 		}
 

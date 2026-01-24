@@ -50,7 +50,7 @@
 			const part1 = value.slice(0, cursorBeginning);
 			const part2 = value.slice(cursorBeginning, cursorEnd);
 			const part3 = value.slice(cursorEnd);
-			value = part1 + '*' + part2 + '*' + part3;	
+			value = part1 + '*' + part2 + '*' + part3;
 		}}
 	/>
 	<TextareaFormattingButton
@@ -100,7 +100,12 @@
 			const part1 = value.slice(0, cursorBeginning);
 			const part2 = value.slice(cursorBeginning, cursorEnd);
 			const part3 = value.slice(cursorEnd);
-			value = part1 + '<div style="text-align: left; width: 100%;">' + part2 + '</div>' + part3;
+			value =
+				part1 +
+				'<div style="text-align: left; width: 100%;">' +
+				part2 +
+				'</div>' +
+				part3;
 		}}
 	/>
 	<TextareaFormattingButton
@@ -110,7 +115,12 @@
 			const part1 = value.slice(0, cursorBeginning);
 			const part2 = value.slice(cursorBeginning, cursorEnd);
 			const part3 = value.slice(cursorEnd);
-			value = part1 + '<div style="text-align: center; width: 100%;">' + part2 + '</div>' + part3;
+			value =
+				part1 +
+				'<div style="text-align: center; width: 100%;">' +
+				part2 +
+				'</div>' +
+				part3;
 		}}
 	/>
 	<TextareaFormattingButton
@@ -120,7 +130,12 @@
 			const part1 = value.slice(0, cursorBeginning);
 			const part2 = value.slice(cursorBeginning, cursorEnd);
 			const part3 = value.slice(cursorEnd);
-			value = part1 + '<div style="text-align: right; width: 100%;">' + part2 + '</div>' + part3;
+			value =
+				part1 +
+				'<div style="text-align: right; width: 100%;">' +
+				part2 +
+				'</div>' +
+				part3;
 		}}
 	/>
 	<TextareaFormattingButton
@@ -231,9 +246,7 @@
 	<TextareaFormattingButton
 		message={m.image()}
 		emoji="image"
-		onclick={() => {
-			
-		}}
+		onclick={() => {}}
 	/>
 
 	<div class="grow"></div>

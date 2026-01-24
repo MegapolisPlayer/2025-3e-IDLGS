@@ -20,7 +20,7 @@
 			show = false;
 		}}
 	>
-		<div class="flex flex-row gap-1 font-medium p-2 pb-0!">
+		<div class="flex flex-row gap-1 p-2 pb-0! font-medium">
 			<i class="ri-alarm-warning-line"></i>
 			{m.youHaveUnsavedChanges()}
 		</div>

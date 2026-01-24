@@ -1,9 +1,6 @@
 import { formRunner } from '$lib/server/form/runner.js';
 import { error, fail } from '@sveltejs/kit';
-import {
-	FEEDBACK_TARGET_MAIL,
-	MAX_MESSAGE_LENGTH,
-} from '$lib';
+import { FEEDBACK_TARGET_MAIL, MAX_MESSAGE_LENGTH } from '$lib';
 import { sendMail } from '$lib/server/mail/index.js';
 import { renderMarkdown } from '$lib/markdown/index.js';
 

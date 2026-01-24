@@ -4,7 +4,7 @@
 	import Button from '$src/routes/(root)/components/Button.svelte';
 	import Form from '$src/routes/(root)/components/Form.svelte';
 	import Modal from '$src/routes/(root)/components/Modal.svelte';
-	
+
 	let { data } = $props();
 
 	let showAddModal: boolean = $state(false);
@@ -21,24 +21,24 @@
 			<p>{definition.word}: {definition.description}</p>
 		{:else}
 			{#if data.isEditor || data.isOwner}
-			<div
-				class="flex flex-col grow w-full items-center justify-center"
-			>
-			<span class="text-lg font-medium">
-				{m.noDefinitionsInTextbookYet()}
-			</span>
-			<span class="opacity-50">
-				{m.addADefinitionByClickingTheButtonBelow()}
-			</span>
-			</div>
+				<div
+					class="flex flex-col grow w-full items-center justify-center"
+				>
+					<span class="text-lg font-medium">
+						{m.noDefinitionsInTextbookYet()}
+					</span>
+					<span class="opacity-50">
+						{m.addADefinitionByClickingTheButtonBelow()}
+					</span>
+				</div>
 			{:else}
-			<div
-				class="flex flex-col grow w-full items-center justify-center"
-			>
-				<span class="text-lg font-medium">
-					{m.noDefinitionsAvailable()}
-				</span>
-			</div>
+				<div
+					class="flex flex-col grow w-full items-center justify-center"
+				>
+					<span class="text-lg font-medium">
+						{m.noDefinitionsAvailable()}
+					</span>
+				</div>
 			{/if}
 		{/each}
 	</div>

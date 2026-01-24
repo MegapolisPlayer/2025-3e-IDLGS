@@ -56,13 +56,13 @@
 				</div>
 			{/each}
 		</div>
-		<p class="w-full text-sm opacity-70 font-light text-ellipsis">
+		<p class="w-full text-sm font-light text-ellipsis opacity-70">
 			{@html course.description.split('\n')[0]}
 		</p>
 
 		<!-- TODO teachers on same row as name -->
 
-		<span class="flex w-full grow flex-col pb-2 pt-2">
+		<span class="flex w-full grow flex-col pt-2 pb-2">
 			<WideCard
 				r={course.red}
 				g={course.green}

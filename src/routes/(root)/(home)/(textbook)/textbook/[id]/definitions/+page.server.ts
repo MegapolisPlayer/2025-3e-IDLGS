@@ -21,36 +21,27 @@ export const load = async (event) => {
 
 export const actions = {
 	addDefinition: async (event) => {
-		return await formRunner(['uuid', 'term', 'definition'], async (
-			event,
-			formData,
-			cookies,
-			user,
-			formDataRaw,
-		) => {
-			//TODO
-		});
+		return await formRunner(
+			['uuid', 'term', 'definition'],
+			async (event, formData, cookies, user, formDataRaw) => {
+				//TODO
+			},
+		);
 	},
 	editDefinition: async (event) => {
-		return await formRunner(['definitionUuid', 'term', 'definition'], async (
-			event,
-			formData,
-			cookies,
-			user,
-			formDataRaw,
-		) => {
-			//TODO
-		});	
+		return await formRunner(
+			['definitionUuid', 'term', 'definition'],
+			async (event, formData, cookies, user, formDataRaw) => {
+				//TODO
+			},
+		);
 	},
 	clearDefinitions: async (event) => {
-		return await formRunner(['uuid'], async (
-			event,
-			formData,
-			cookies,
-			user,
-			formDataRaw,
-		) => {
-			//TODO
-		});
+		return await formRunner(
+			['uuid'],
+			async (event, formData, cookies, user, formDataRaw) => {
+				//TODO
+			},
+		);
 	},
 };

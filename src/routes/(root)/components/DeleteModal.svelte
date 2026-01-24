@@ -4,7 +4,7 @@
 	import { m } from '$lib/paraglide/messages';
 	import Button from './Button.svelte';
 	import Modal from './Modal.svelte';
-	
+
 	let { text, showModal = $bindable(), cssClass = '' } = $props();
 </script>
 

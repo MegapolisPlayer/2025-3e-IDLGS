@@ -4,7 +4,11 @@
 	import NextPrevious from '../components/NextPrevious.svelte';
 	import CourseCard from '../../components/CourseCard.svelte';
 	import TextbookCard from '../../components/TextbookCard.svelte';
-	import type { CourseGradeType, UserRoleType, UserTypeLimited } from '$lib/types';
+	import type {
+		CourseGradeType,
+		UserRoleType,
+		UserTypeLimited,
+	} from '$lib/types';
 	import Attribute from '../components/review/Attribute.svelte';
 	import HiddenInput from '$component/HiddenInput.svelte';
 	import { renderMarkdown } from '$lib/markdown';
@@ -113,13 +117,15 @@
 	/>
 	<HiddenInput
 		name="roles"
-		value={JSON.stringify(selectedUsers.map((user) => {
-			return {
-				isEditor: user.isEditor,
-				isTeacher: user.isTeacher,
-				isOwner: user.isOwner,
-			};
-		}))}
+		value={JSON.stringify(
+			selectedUsers.map((user) => {
+				return {
+					isEditor: user.isEditor,
+					isTeacher: user.isTeacher,
+					isOwner: user.isOwner,
+				};
+			}),
+		)}
 	/>
 
 	{#if type == 'course'}

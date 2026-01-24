@@ -47,16 +47,14 @@ export const loadCourses = async (user: UserType): Promise<CourseType[]> => {
 			.where(eq(schema.userCourseLinker.course, courses[i].id));
 		(courses[i] as CourseType).people = authorsData;
 
-		courses[i].description = renderMarkdown(
-			courses[i].description,
-		);
+		courses[i].description = renderMarkdown(courses[i].description);
 	}
 
 	return courses.map((c) => {
 		return {
 			...c,
 			id: undefined,
-		}
+		};
 	});
 };
 

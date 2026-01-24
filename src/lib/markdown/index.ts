@@ -19,8 +19,8 @@ export const MARKDOWN_CONFIG_OPTIONS = {
 export const renderMarkdown = (markdown: string): string => {
 	const md = markdownit(MARKDOWN_CONFIG_OPTIONS);
 
-	markdown = markdown.replaceAll(/\$([^\$]+)\$[^\$]?/gums, (_match, p1) => {
-		return katex.renderToString(p1, { 
+	markdown = markdown.replaceAll(/\$([^\$]+)\$[^\$]?/gmsu, (_match, p1) => {
+		return katex.renderToString(p1, {
 			throwOnError: false,
 			fleqn: true,
 			displayMode: true,

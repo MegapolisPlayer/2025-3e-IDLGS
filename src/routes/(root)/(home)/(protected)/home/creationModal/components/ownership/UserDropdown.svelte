@@ -25,7 +25,10 @@
 	{:then users}
 		<!-- only not yet selected users -->
 		{@const shownUsers = users.filter(
-			(user) => selectedUsers.findIndex((selected) => selected.uuid === user.uuid) === -1
+			(user) =>
+				selectedUsers.findIndex(
+					(selected) => selected.uuid === user.uuid,
+				) === -1,
 		)}
 		{#each shownUsers as user (user.uuid)}
 			<UserSelector

@@ -37,7 +37,7 @@
 	/>
 	<ContentPositioning>
 		{#if data.textbook.archived}
-		<ArchivedWarningTextbook />
+			<ArchivedWarningTextbook />
 		{/if}
 		{@render children()}
 	</ContentPositioning>

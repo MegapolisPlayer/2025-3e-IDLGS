@@ -45,7 +45,7 @@
 					class="
 						{cssClass ? cssClass : 'bg-white!'} 
 						{maxHeight ? 'grow max-xl:h-screen' : ''}
-						mt-5 mb-5 flex max-w-4/5 flex-col rounded-2xl text-left text-white max-xl:w-screen max-xl:min-w-9/10 xl:max-h-[66svh] xl:min-w-2/3 xl:p-5 gap-2
+						mt-5 mb-5 flex max-w-4/5 flex-col gap-2 rounded-2xl text-left text-white max-xl:w-screen max-xl:min-w-9/10 xl:max-h-[66svh] xl:min-w-2/3 xl:p-5
 			"
 					style={cssStyle}
 				>

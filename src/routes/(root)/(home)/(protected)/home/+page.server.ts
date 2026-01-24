@@ -117,7 +117,8 @@ export const actions = {
 								return {
 									user: u.id,
 									owner: roles[users.indexOf(u.uuid)].isOwner,
-									editor: roles[users.indexOf(u.uuid)].isEditor,
+									editor: roles[users.indexOf(u.uuid)]
+										.isEditor,
 									textbook: textbook,
 								};
 							})

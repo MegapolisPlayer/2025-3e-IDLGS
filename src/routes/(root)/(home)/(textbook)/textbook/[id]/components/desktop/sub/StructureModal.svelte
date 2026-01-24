@@ -28,16 +28,18 @@
 		</p>
 	</div>
 	<div class="flex w-full grow flex-row justify-center gap-4">
-		<ItemListB 
-			name={m.chapters()} 
+		<ItemListB
+			name={m.chapters()}
 			placeholder={m.noChaptersYet()}
 			items={textbook.chapters!}
 			bind:selected={selectedChapterUuid}
 		/>
-		<ItemListB 
-			name={m.articles()} 
+		<ItemListB
+			name={m.articles()}
 			placeholder={m.noChapterSelected()}
-			items={textbook.chapters?.find(v => v.uuid === selectedChapterUuid)?.articles || []}
+			items={textbook.chapters?.find(
+				(v) => v.uuid === selectedChapterUuid,
+			)?.articles || []}
 			bind:selected={selectedArticleUuid}
 		/>
 	</div>

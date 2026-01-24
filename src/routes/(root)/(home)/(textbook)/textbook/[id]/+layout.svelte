@@ -12,13 +12,9 @@
 	</title>
 </svelte:head>
 
-<Desktop
-	{data}
->
+<Desktop {data}>
 	{@render children()}
 </Desktop>
-<Mobile
-	{data}
->
+<Mobile {data}>
 	{@render children()}
 </Mobile>

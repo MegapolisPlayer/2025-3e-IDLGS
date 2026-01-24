@@ -110,17 +110,17 @@
 	}
 
 	.standardModal {
-		@apply h-fit bg-neutral-500/70 backdrop-blur border-neutral-500 border-2 shadow-2xl;
+		@apply h-fit border-2 border-neutral-500 bg-neutral-500/70 shadow-2xl backdrop-blur;
 	}
 
 	ul {
-		@apply list-disc list-inside;
+		@apply list-inside list-disc;
 	}
 	ol {
-		@apply list-decimal list-inside;
+		@apply list-inside list-decimal;
 	}
 
 	.markdownText {
-		@apply w-full flex flex-col gap-2 grow;
+		@apply flex w-full grow flex-col gap-2;
 	}
 }

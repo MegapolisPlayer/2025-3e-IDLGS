@@ -33,9 +33,7 @@ export const loadTextbooks = async (
 		.where(eq(schema.userTextbookLinker.user, user.id));
 
 	for (let i = 0; i < textbooks.length; i++) {
-		textbooks[i].description = renderMarkdown(
-			textbooks[i].description,
-		);
+		textbooks[i].description = renderMarkdown(textbooks[i].description);
 		const authorsData = await db
 			.select({
 				uuid: schema.user.uuid,
@@ -71,7 +69,7 @@ export const loadTextbooks = async (
 		return {
 			...t,
 			id: undefined,
-		}
+		};
 	});
 };
 

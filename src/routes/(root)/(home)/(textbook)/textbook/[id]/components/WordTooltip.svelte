@@ -30,8 +30,6 @@
 	{word}
 </Button>
 
-<Tooltip
-	showTooltip={isPopupActive}
->
+<Tooltip showTooltip={isPopupActive}>
 	{description}
 </Tooltip>

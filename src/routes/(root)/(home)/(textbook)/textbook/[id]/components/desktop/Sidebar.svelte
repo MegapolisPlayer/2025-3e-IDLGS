@@ -20,7 +20,7 @@
 	let showStructureModal: boolean = $state(false);
 </script>
 
-<div class="min-w-1/5 p-2 sticky left-0 h-[94svh] top-[6vh] overflow-clip">
+<div class="sticky top-[6vh] left-0 h-[94svh] min-w-1/5 overflow-clip p-2">
 	<WideCard cssAddition="grow">
 		<h2>
 			{m.textbookContents()}
@@ -41,7 +41,7 @@
 			</Button>
 
 			<!-- definitions -->
-			 <Button
+			<Button
 				btn="button-none w-full"
 				emoji="todo"
 				onclick={() => {
@@ -51,7 +51,7 @@
 				<div class="flex w-full flex-row gap-1">
 					{m.definitionsOfTerms()}
 				</div>
-			 </Button>
+			</Button>
 
 			{#each textbook.chapters as chapter, i (chapter.uuid)}
 				<div class="flex w-full flex-row gap-1">
@@ -114,6 +114,6 @@
 </div>
 
 <StructureModal
-	bind:showStructureModal={showStructureModal}
-	bind:textbook={textbook}
+	bind:showStructureModal
+	bind:textbook
 />

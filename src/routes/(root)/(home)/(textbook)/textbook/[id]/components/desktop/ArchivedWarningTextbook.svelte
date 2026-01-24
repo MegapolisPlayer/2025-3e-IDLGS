@@ -14,7 +14,7 @@
 		<i class="ri-error-warning-line text-2xl"></i>
 		<h2>{m.thisTextbookHasBeenArchived()}.</h2>
 	</div>
-	<p class="text-lg opacity-70 ps-2">
+	<p class="ps-2 text-lg opacity-70">
 		{m.youCanNoLongerEditItsContents()}.
 	</p>
 </WideCard>

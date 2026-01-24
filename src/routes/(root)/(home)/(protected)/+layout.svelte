@@ -5,12 +5,12 @@
 
 	let {
 		children,
-		data
+		data,
 	}: {
 		children: Snippet;
 		data: {
-			user: UserType
-		}
+			user: UserType;
+		};
 	} = $props();
 
 	let showMessage = $derived(!data.user.clickedOnLastMessage);

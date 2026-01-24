@@ -9,7 +9,12 @@
 	import CourseInviteCode from './stages/ECourseInviteCode.svelte';
 	import TextbookArticles from './stages/DTextbookArticles.svelte';
 	import CourseTextbookSelect from './stages/BCourseTextbookSelect.svelte';
-	import type { CourseGradeType, UserRoleType, UserType, UserTypeLimited } from '$lib/types';
+	import type {
+		CourseGradeType,
+		UserRoleType,
+		UserType,
+		UserTypeLimited,
+	} from '$lib/types';
 
 	//this component stores the values which it then review submits to form action
 
