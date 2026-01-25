@@ -18,9 +18,7 @@
 	</title>
 </svelte:head>
 
-<div
-	class="flex w-full grow flex-col items-center justify-center gap-2 p-10"
->
+<div class="flex w-full grow flex-col items-center justify-center gap-2 p-10">
 	<Card
 		css="max-xl:min-w-9/10 xl:min-w-1/3 z-11"
 		perspective={false}

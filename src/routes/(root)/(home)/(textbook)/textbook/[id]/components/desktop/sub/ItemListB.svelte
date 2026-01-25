@@ -41,16 +41,14 @@
 		{/each}
 	</div>
 	<div class="flex w-full flex-row gap-2">
-		<TextInput 
+		<TextInput
 			placeholder={m.enterName()}
 			cssClass="grow"
 		/>
 		<Button
 			btn="button-white"
 			emoji="add-circle"
-			onclick={() => {
-				
-			}}
+			onclick={() => {}}
 		>
 			{m.add()}
 		</Button>

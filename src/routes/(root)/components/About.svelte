@@ -8,7 +8,9 @@
 	import ProgramBenefits from './about/ProgramBenefits.svelte';
 </script>
 
-<div class="flex w-full grow flex-col items-center gap-2 bg-white pt-5 pb-5 overflow-y-scroll overflow-x-hidden">
+<div
+	class="flex w-full grow flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll bg-white pt-5 pb-5"
+>
 	<!-- list all interesting technologies - RESIN, testgen, AI, ... -->
 	<ProgramBenefits />
 

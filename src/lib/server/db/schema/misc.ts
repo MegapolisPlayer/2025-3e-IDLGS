@@ -50,10 +50,14 @@ export const passwordReset = pgTable('passwordReset', {
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
-	expiresAt: timestamp('expiresAt').notNull().$defaultFn(() => {
-		return new Date(Date.now() + 1000 * 15 * 60); //15 minutes
-	}),
-	user: integer('user').references(() => user.id, {
-		onDelete: 'cascade',
-	}).notNull(),
+	expiresAt: timestamp('expiresAt')
+		.notNull()
+		.$defaultFn(() => {
+			return new Date(Date.now() + 1000 * 15 * 60); //15 minutes
+		}),
+	user: integer('user')
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
 });

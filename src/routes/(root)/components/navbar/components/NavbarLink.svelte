@@ -19,8 +19,10 @@
 
 <a
 	href={link}
-	class='{page.url.pathname == link ? 'underline decoration-2 underline-offset-6 decoration-emerald-600' : ''} {classCss}'
+	class="{page.url.pathname == link
+		? 'underline decoration-emerald-600 decoration-2 underline-offset-6'
+		: ''} {classCss}"
 >
-	<HoverEmoji emoji={emoji} />
+	<HoverEmoji {emoji} />
 	{@render children()}
 </a>

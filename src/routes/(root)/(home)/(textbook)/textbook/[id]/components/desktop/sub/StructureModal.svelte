@@ -33,23 +33,21 @@
 		<ItemListB
 			name={m.chapters()}
 			placeholder={m.noChaptersYet()}
-			items={textbook.chapters!.map(v => v.name)}
+			items={textbook.chapters!.map((v) => v.name)}
 			bind:selected={selectedChapterUuid}
 		/>
 		<ItemListB
 			name={m.articles()}
 			placeholder={m.noChapterSelected()}
-			items={textbook.chapters?.find(
-				(v) => v.uuid === selectedChapterUuid,
-			)?.articles!.map(v => v.name) || []}
+			items={textbook.chapters
+				?.find((v) => v.uuid === selectedChapterUuid)
+				?.articles!.map((v) => v.name) || []}
 			bind:selected={selectedArticleUuid}
 		/>
 	</div>
-	<div class="flex flex-row w-full gap-2 items-center">
+	<div class="flex w-full flex-row items-center gap-2">
 		<div class="grow"></div>
-		<Form
-			action=""
-		>
+		<Form action="">
 			<Button
 				type="submit"
 				btn="button-primary"

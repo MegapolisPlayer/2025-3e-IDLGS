@@ -24,7 +24,7 @@
 			if (timer < 0) {
 				timer = 0;
 			}
-			if(calledEnd) {
+			if (calledEnd) {
 				onEnd();
 				calledEnd = false;
 			}

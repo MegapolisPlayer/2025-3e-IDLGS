@@ -105,7 +105,7 @@
 		<NavbarLink
 			link="/logout"
 			emoji="logout-box"
-		>	
+		>
 			{m.logout()}
 		</NavbarLink>
 	</div>

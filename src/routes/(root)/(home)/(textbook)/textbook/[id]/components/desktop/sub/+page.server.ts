@@ -8,6 +8,4 @@ export const load = async () => {
 	return error(404, 'Not Found');
 };
 
-export const actions = {
-
-};
+export const actions = {};
