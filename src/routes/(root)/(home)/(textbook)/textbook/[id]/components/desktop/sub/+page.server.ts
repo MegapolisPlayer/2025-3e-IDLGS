@@ -4,10 +4,7 @@ import { formRunner } from '$lib/server/form/runner';
 import { error, fail } from '@sveltejs/kit';
 import { desc, eq } from 'drizzle-orm';
 import { isUserAuthorizedTextbook } from '$lib/server/permission';
-import type {
-	ArticleLimitedType,
-	ChapterType,
-} from '$lib/types.js';
+import type { ArticleLimitedType, ChapterType } from '$lib/types.js';
 
 export const load = async () => {
 	return error(404, 'Not Found');
@@ -60,24 +57,36 @@ export const actions = {
 
 						//is in both lists - update
 						if (
-							chapters.findIndex((c) => c.uuid === chapter.uuid) !== -1
+							chapters.findIndex(
+								(c) => c.uuid === chapter.uuid,
+							) !== -1
 						) {
-							chapterDb = (await tx
-								.update(schema.chapter)
-								.set({ name: chapter.name })
-								.where(eq(schema.chapter.uuid, chapter.uuid))
-								.returning())[0];
+							chapterDb = (
+								await tx
+									.update(schema.chapter)
+									.set({ name: chapter.name })
+									.where(
+										eq(schema.chapter.uuid, chapter.uuid),
+									)
+									.returning()
+							)[0];
 						}
 						//not in formData - delete
 						else {
-							chapterDb = (await tx
-								.delete(schema.chapter)
-								.where(eq(schema.chapter.uuid, chapter.uuid))
-								.returning())[0];
+							chapterDb = (
+								await tx
+									.delete(schema.chapter)
+									.where(
+										eq(schema.chapter.uuid, chapter.uuid),
+									)
+									.returning()
+							)[0];
 
 							await tx
 								.delete(schema.article)
-								.where(eq(schema.article.chapter, chapterDb.id));
+								.where(
+									eq(schema.article.chapter, chapterDb.id),
+								);
 
 							chapterIndex++;
 							continue;
@@ -93,56 +102,66 @@ export const actions = {
 						for (const article of articlesTextbook) {
 							//is in both lists - update
 							if (
-								articles[chapterIndex].findIndex((a) => a.uuid === article.uuid) !== -1
+								articles[chapterIndex].findIndex(
+									(a) => a.uuid === article.uuid,
+								) !== -1
 							) {
 								await tx
 									.update(schema.article)
 									.set({ name: article.name })
-									.where(eq(schema.article.uuid, article.uuid));
+									.where(
+										eq(schema.article.uuid, article.uuid),
+									);
 							}
 							//not in formData - delete
 							else {
 								await tx
 									.delete(schema.article)
-									.where(eq(schema.article.uuid, article.uuid));
+									.where(
+										eq(schema.article.uuid, article.uuid),
+									);
 							}
 						}
 
-						for (const article of articles[chapterIndex].filter(a => a.uuid.length === 0)) {
+						for (const article of articles[chapterIndex].filter(
+							(a) => a.uuid.length === 0,
+						)) {
 							//new article
-							await tx
-								.insert(schema.article)
-								.values({
-									name: article.name,
-									chapter: chapterDb.id,
-									text: '',
-								});
+							await tx.insert(schema.article).values({
+								name: article.name,
+								chapter: chapterDb.id,
+								text: '',
+							});
 						}
 
 						chapterIndex++;
 					}
 
-					for (const chapter of chapters.filter(c => c.uuid.length === 0)) {
-						let chapterDb = (await tx
-							.insert(schema.chapter)
-							.values({
-								name: chapter.name,
-								textbook: textbook.id,
-								summary: '',
-							})
-							.returning())[0];
-
-						for (const article of articles[chapterIndex].filter(a => a.uuid.length === 0)) {
-							//new article
+					for (const chapter of chapters.filter(
+						(c) => c.uuid.length === 0,
+					)) {
+						let chapterDb = (
 							await tx
-								.insert(schema.article)
+								.insert(schema.chapter)
 								.values({
-									name: article.name,
-									chapter: chapterDb.id,
-									text: '',
-								});
+									name: chapter.name,
+									textbook: textbook.id,
+									summary: '',
+								})
+								.returning()
+						)[0];
+
+						for (const article of articles[chapterIndex].filter(
+							(a) => a.uuid.length === 0,
+						)) {
+							//new article
+							await tx.insert(schema.article).values({
+								name: article.name,
+								chapter: chapterDb.id,
+								text: '',
+							});
 						}
-					};
+					}
 				});
 
 				//} catch (e) {
