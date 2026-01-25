@@ -1,7 +1,6 @@
 <script lang="ts">
 	import InfoBox from './InfoBox.svelte';
 	import { m } from '$lib/paraglide/messages';
-	import { untrack } from 'svelte';
 
 	let {
 		show = $bindable(false),

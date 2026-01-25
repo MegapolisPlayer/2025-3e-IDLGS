@@ -2,6 +2,7 @@ import { pgTable, integer, boolean } from 'drizzle-orm/pg-core';
 import { user } from './user';
 import { course } from './course';
 import { textbook } from './textbook';
+import { dailyChallenges } from './misc';
 
 export const userCourseLinker = pgTable('userCourseLinker', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
@@ -48,4 +49,19 @@ export const userAssignmentLinker = pgTable('userAssignmentLinker', {
 			onDelete: 'cascade',
 		})
 		.notNull(),
+});
+
+export const userDailyChallengeLinker = pgTable('userDailyChallengeLinker', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	dailyChallenge: integer('dailyChallenge')
+		.references(() => dailyChallenges.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	user: integer('user')
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	completed: boolean('completed').notNull().default(false),
 });

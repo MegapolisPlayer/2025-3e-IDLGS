@@ -1,13 +1,22 @@
 <script lang="ts">
 	import { disableScroll, enableScroll } from '$lib';
 	import { fade } from 'svelte/transition';
-
+	import type { Snippet } from 'svelte';
+	
 	let {
 		children,
 		showModal = $bindable(),
 		cssClass = '',
 		cssStyle = '',
 		maxHeight = true,
+		cannotClickOutside = false,
+	}: {
+		children: Snippet;
+		showModal: boolean;
+		cssClass?: string;
+		cssStyle?: string;
+		maxHeight?: boolean;
+		cannotClickOutside?: boolean;
 	} = $props();
 	let dialog: HTMLDialogElement | undefined = $state();
 	let clickable: HTMLDivElement | undefined = $state();
@@ -28,8 +37,11 @@
 		<dialog
 			transition:fade|global={{ duration: 250 }}
 			bind:this={dialog}
-			onclose={() => (showModal = false)}
+			onclose={() => {
+				showModal = false;
+			}}
 			onclick={(e) => {
+				if (cannotClickOutside) return;
 				if (!clickable?.contains(e.target as Node)) {
 					showModal = false; //effect takes care of stuff
 				}

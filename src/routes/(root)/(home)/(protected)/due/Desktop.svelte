@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { m } from '$lib/paraglide/messages';
+	import { assignments, m } from '$lib/paraglide/messages';
 	import CardSeparator from '$component/CardSeparator.svelte';
 	import WideCard from '$src/routes/(root)/components/WideCard.svelte';
 	import type { CourseAssignmentType } from '$lib/types';
+	import Assignment from './components/Assignment.svelte';
 
 	let {
 		data,
@@ -11,6 +12,20 @@
 			assignments: CourseAssignmentType[];
 		};
 	} = $props();
+
+	const TWO_DAYS = 2 * 24 * 60 * 60 * 1000;
+
+	const past = $derived(data.assignments.filter((v) => v.deadline < new Date()));
+	const todayOrTomorrow = $derived(
+		data.assignments.filter((v) => {
+			(Date.now() - v.deadline.getTime()) < TWO_DAYS && (Date.now() - v.deadline.getTime()) >= 0
+		})
+	);
+	const later = $derived(
+		data.assignments.filter((v) => {
+			(Date.now() - v.deadline.getTime()) >= TWO_DAYS
+		})
+	);
 </script>
 
 <div class="flex w-full grow flex-col items-center gap-2 max-xl:hidden">
@@ -28,9 +43,19 @@
 			b={20}
 		>
 			<div class="flex w-full grow flex-col gap-2">
-				<h2>{m.alreadyPastDeadline()}</h2>
+				<div class="flex w-full flex-row items-center gap-1">
+					<i class="ri-error-warning-line text-2xl"></i>
+					<h2>{m.alreadyPastDeadline()}</h2>
+				</div>
 
-				<div></div>
+				{#each past as assignment (assignment.uuid)}
+					<Assignment assignment={assignment} />
+				{:else}
+					<div class="flex flex-col justify-center items-center w-full grow opacity-70">
+						{m.noAssignmentsPastDeadline()}.
+						{m.goodJob()}
+					</div>
+				{/each}
 			</div>
 		</WideCard>
 
@@ -42,9 +67,18 @@
 			b={0}
 		>
 			<div class="flex w-full grow flex-col gap-2">
-				<h2>{m.todayOrTomorrow()}</h2>
+				<div class="flex w-full flex-row items-center gap-1">
+					<i class="ri-alarm-line text-2xl"></i>
+					<h2>{m.todayOrTomorrow()}</h2>
+				</div>
 
-				<div></div>
+				{#each todayOrTomorrow as assignment (assignment.uuid)}
+					<Assignment assignment={assignment} />
+				{:else}
+					<div class="flex flex-col justify-center items-center w-full grow opacity-70">
+						{m.noAssignmentsDueTodayOrTomorrow()}.
+					</div>
+				{/each}
 			</div>
 		</WideCard>
 
@@ -56,7 +90,18 @@
 			b={20}
 		>
 			<div class="flex w-full grow flex-col gap-2">
-				<h2>{m.later()}</h2>
+				<div class="flex w-full flex-row items-center gap-1">
+					<i class="ri-time-line text-2xl"></i>
+					<h2>{m.later()}</h2>
+				</div>
+
+				{#each later as assignment (assignment.uuid)}
+					<Assignment assignment={assignment} />
+				{:else}
+					<div class="flex flex-col justify-center items-center w-full grow opacity-70">
+						{m.noOtherAssignmentsDue()}.
+					</div>
+				{/each}
 			</div>
 		</WideCard>
 

@@ -22,16 +22,20 @@
 <div class="flex min-w-0 grow flex-col gap-2">
 	<h3>{name}</h3>
 	<div
-		class="flex w-full grow flex-col gap-2 rounded-lg bg-neutral-700/40 p-2"
+		class="flex w-full grow flex-col gap-2 overflow-scroll rounded-lg bg-neutral-700/40 p-2"
 	>
-		{#each items as item (item.uuid)}
-			<div></div>
-		{:else}
-			<div
-				class="flex flex-col grow justify-center items-center gap-2 opacity-70 w-full"
-			>
-				<p>{placeholder}</p>
-			</div>
-		{/each}
+		<div class="flex w-full grow flex-col overflow-scroll gap-2">
+			{#each items as item (item.uuid)}
+				<div class="flex flex-row w-full gap-2 items-center ">
+					{item.name}
+				</div>
+			{:else}
+				<div
+					class="flex flex-col grow justify-center items-center gap-2 opacity-70 w-full"
+				>
+					<p>{placeholder}</p>
+				</div>
+			{/each}
+		</div>
 	</div>
 </div>

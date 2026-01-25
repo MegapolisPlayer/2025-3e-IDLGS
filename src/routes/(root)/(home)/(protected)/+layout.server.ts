@@ -1,7 +1,9 @@
+import { loadMessages } from '$lib/server/loaders/subjective/messages.js';
+import type { UserType } from '$lib/types.js';
 import { redirect } from '@sveltejs/kit';
 
 export const load = async (event) => {
-	const user = (await event.parent()).user;
+	const user = (await event.parent()).user as UserType;
 
 	if (!user) {
 		redirect(303, '/login');
@@ -10,5 +12,10 @@ export const load = async (event) => {
 		redirect(303, '/set');
 	}
 
-	return user;
+	const messages = await loadMessages(user);
+
+	return {
+		user,
+		messages,
+	};
 };

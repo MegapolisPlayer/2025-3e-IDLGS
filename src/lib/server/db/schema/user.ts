@@ -50,10 +50,9 @@ export const user = pgTable('user', {
 	gamification: boolean('gamification').notNull().default(true),
 	canEditGamification: boolean('canEditGamification').notNull().default(true),
 	canChangeSettings: boolean('canChangeSettings').notNull().default(true),
-	//when setting new popup message - set to false!
-	clickedOnLastMessage: boolean('clickedOnLastMessage')
+	//when setting new popup message - set to id of that message
+	lastMessage: integer('lastMessage')
 		.notNull()
-		.default(true),
 });
 
 export const userVerification = pgTable('userVerification', {

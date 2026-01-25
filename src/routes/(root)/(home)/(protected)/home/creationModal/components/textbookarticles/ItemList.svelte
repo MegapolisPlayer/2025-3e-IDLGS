@@ -25,63 +25,65 @@
 	<div
 		class="flex w-full grow flex-col gap-2 rounded-lg bg-neutral-700/40 p-2"
 	>
-		{#key items}
-			{#if items.length > 0}
-				{#each items as item, i (item)}
-					<div
-						class="
+		<div class="flex w-full grow flex-col overflow-scroll gap-2">
+			{#key items}
+				{#if items.length > 0}
+					{#each items as item, i (item)}
+						<div
+							class="
 					flex w-full
 					flex-row items-center gap-0 rounded-lg
 					{item == selectedItem ? 'bg-white' : '*:not-hover:text-white *:hover:bg-white'}
 				"
+						>
+							<Button
+								cssClass="text-lg grow justify-start"
+								btn="button-transparent"
+								onclick={() => {
+									selectedItem = item;
+								}}
+							>
+								{item}
+							</Button>
+							<Button
+								btn="button-transparent"
+								emoji="edit"
+								cssClass=""
+								onclick={() => {
+									editMode = i;
+									inputValue = items[editMode];
+								}}
+							>
+								{m.edit()}
+							</Button>
+							<Button
+								btn="button-transparent"
+								emoji="delete-bin"
+								cssClass=""
+								onclick={() => {
+									items.splice(i, 1);
+									if (selectedItem == item) {
+										selectedItem = '';
+									}
+									editMode = -1;
+									inputValue = '';
+									additionalDelete();
+								}}
+							>
+								{m.delete()}
+							</Button>
+						</div>
+					{/each}
+					<div class="grow"></div>
+				{:else}
+					<div
+						class="flex w-full grow flex-col items-center justify-center text-white! opacity-50"
 					>
-						<Button
-							cssClass="text-lg grow justify-start"
-							btn="button-transparent"
-							onclick={() => {
-								selectedItem = item;
-							}}
-						>
-							{item}
-						</Button>
-						<Button
-							btn="button-transparent"
-							emoji="edit"
-							cssClass=""
-							onclick={() => {
-								editMode = i;
-								inputValue = items[editMode];
-							}}
-						>
-							{m.edit()}
-						</Button>
-						<Button
-							btn="button-transparent"
-							emoji="delete-bin"
-							cssClass=""
-							onclick={() => {
-								items.splice(i, 1);
-								if (selectedItem == item) {
-									selectedItem = '';
-								}
-								editMode = -1;
-								inputValue = '';
-								additionalDelete();
-							}}
-						>
-							{m.delete()}
-						</Button>
+						{@render children()}
 					</div>
-				{/each}
-				<div class="grow"></div>
-			{:else}
-				<div
-					class="flex w-full grow flex-col items-center justify-center text-white! opacity-50"
-				>
-					{@render children()}
-				</div>
-			{/if}
-		{/key}
+				{/if}
+			{/key}
+		</div>
 		<div class="flex w-full flex-row gap-2 p-2">
 			<input
 				type="text"

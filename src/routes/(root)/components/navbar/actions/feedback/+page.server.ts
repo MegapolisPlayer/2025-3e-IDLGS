@@ -1,6 +1,6 @@
 import { formRunner } from '$lib/server/form/runner.js';
 import { error, fail } from '@sveltejs/kit';
-import { FEEDBACK_TARGET_MAIL, MAX_MESSAGE_LENGTH } from '$lib';
+import { FEEDBACK_TARGET_MAIL, MAX_MESSAGE_LENGTH, writeDegree } from '$lib';
 import { sendMail } from '$lib/server/mail/index.js';
 import { renderMarkdown } from '$lib/markdown/index.js';
 
@@ -15,9 +15,11 @@ export const actions = {
 			async (event, formData, cookies, user) => {
 				if (!user) return fail(401);
 
-				const message = formData['message'];
+				let message = formData['message'];
 				if (message.length === 0 || message.length > MAX_MESSAGE_LENGTH)
 					return fail(400);
+
+				message += `\n\nUživatel: ${writeDegree(user.degree)} **${user.name} ${user.surname}** (${user.email})`;
 
 				if (
 					await sendMail(

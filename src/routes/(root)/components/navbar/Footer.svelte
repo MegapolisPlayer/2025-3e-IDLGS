@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import type { UserType } from '$lib/types';
+	import AlertBox from '../AlertBox.svelte';
 	import Button from '../Button.svelte';
 	import FeedbackModal from '../FeedbackModal.svelte';
+	import SuccessBox from '../SuccessBox.svelte';
 
 	let showFeedbackModal = $state(false);
+	let errorMessage = $state('');
+	let successMessage = $state('');
 
 	let {
 		user,
@@ -61,4 +65,11 @@
 	</div>
 </div>
 
-<FeedbackModal bind:showModal={showFeedbackModal} />
+<SuccessBox bind:message={successMessage} />
+<AlertBox bind:message={errorMessage} />
+
+<FeedbackModal
+	bind:showModal={showFeedbackModal}
+	bind:errorMessage
+	bind:successMessage
+/>

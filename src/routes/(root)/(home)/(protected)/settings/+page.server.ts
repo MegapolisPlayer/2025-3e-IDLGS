@@ -3,7 +3,7 @@ import { writeLog, writeLogDeleteAccount } from '$lib/log.js';
 import { schema } from '$lib/server/db/mainSchema.js';
 import { formRunner } from '$lib/server/form/runner';
 import { fail } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 
 export const actions = {
 	updatePersonalInfo: async () => {
@@ -81,17 +81,28 @@ export const actions = {
 					return fail(400);
 				}
 
+				//change message ids when changing language
 				try {
-					await event.locals.db
-						.update(schema.user)
-						.set({
-							background: parseInt(formData['background']),
-							lang: formData['lang'],
-							gamification: user.canEditGamification
-								? Boolean(formData['daily'])
-								: user.gamification,
+					await event.locals.db.transaction(async (tx) => {
+						const lastMessage = await tx
+							.select()
+							.from(schema.message)
+							.where(eq(schema.message.lang, formData['lang']))
+							.orderBy(desc(schema.message.id))
+							.limit(1);
+
+						await tx
+							.update(schema.user)
+							.set({
+								background: parseInt(formData['background']),
+								lang: formData['lang'],
+								gamification: user.canEditGamification
+									? Boolean(formData['daily'])
+									: user.gamification,
+								lastMessage: lastMessage[0]?.id || 0,
 						})
-						.where(eq(schema.user.uuid, user.uuid));
+							.where(eq(schema.user.uuid, user.uuid));
+					});
 				} catch (e) {
 					writeLog(event, 'ERROR', 'DB failure.', user);
 					return fail(500);

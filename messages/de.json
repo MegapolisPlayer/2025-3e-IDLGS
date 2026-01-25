@@ -364,5 +364,15 @@
 	"youCanNoLongerChangeGradesAssignmentsOrMaterials": "Sie können Noten, Aufgaben oder Materialien nicht mehr ändern",
 	"noCoursesOrTextbooksMatchYourSearch": "Keine Kurse oder Lehrbücher entsprechen Ihrer Suche",
 	"noArchivedCoursesOrTextbooksMatchYourSearch": "Keine archivierten Kurse oder Lehrbücher entsprechen Ihrer Suche",
-	"noChaptersYet": "Noch keine Kapitel"
+	"noChaptersYet": "Noch keine Kapitel",
+	"feedbackSentSuccessfully": "Feedback erfolgreich gesendet",
+	"failedToSendFeedback": "Fehler beim Senden des Feedbacks",
+	"previousMessage": "Vorherige Nachricht",
+	"nextMessage": "Nächste Nachricht",
+	"noAssignmentsPastDeadline": "Keine Aufgaben nach der Frist",
+	"goodJob": "Gut gemacht!",
+	"noAssignmentsDueTodayOrTomorrow": "Keine Aufgaben fällig heute oder morgen",
+	"noOtherAssignmentsDue": "Keine weiteren fälligen Aufgaben",
+	"message": "Nachricht",
+	"markAsRead": "Als gelesen markieren"
 }

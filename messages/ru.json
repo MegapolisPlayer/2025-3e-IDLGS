@@ -364,5 +364,15 @@
 	"youCanNoLongerChangeGradesAssignmentsOrMaterials": "Вы больше не можете изменять оценки, задания или материалы",
 	"noCoursesOrTextbooksMatchYourSearch": "Нет курсов или учебников, соответствующих вашему поиску",
 	"noArchivedCoursesOrTextbooksMatchYourSearch": "Нет архивированных курсов или учебников, соответствующих вашему поиску",
-	"noChaptersYet": "Пока нет глав"
+	"noChaptersYet": "Пока нет глав",
+	"feedbackSentSuccessfully": "Отзыв успешно отправлен",
+	"failedToSendFeedback": "Не удалось отправить отзыв",
+	"previousMessage": "Предыдущее сообщение",
+	"nextMessage": "Следующее сообщение",
+	"noAssignmentsPastDeadline": "Нет заданий после срока",
+	"goodJob": "Хорошая работа!",
+	"noAssignmentsDueTodayOrTomorrow": "Нет заданий с сроком сегодня или завтра",
+	"noOtherAssignmentsDue": "Нет других заданий с сроком",
+	"message": "Сообщение",
+	"markAsRead": "Отметить как прочитанное"
 }

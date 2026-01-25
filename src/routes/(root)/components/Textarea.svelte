@@ -56,13 +56,9 @@
 			//add amount of newlines since cursor does wierd shit
 			const elem = e.target as HTMLTextAreaElement;
 			cursorBeginning =
-				elem.selectionStart +
-				elem.value.slice(0, elem.selectionStart).split('\n').length -
-				1;
+				elem.selectionStart;
 			cursorEnd =
-				elem.selectionEnd +
-				elem.value.slice(0, elem.selectionEnd).split('\n').length -
-				1;
+				elem.selectionEnd;
 		}}
 		maxlength={maxLength}
 		{name}

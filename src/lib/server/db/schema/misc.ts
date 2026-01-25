@@ -40,6 +40,7 @@ export const dailyChallenges = pgTable(
 //message shown to all logged in users (feature announcements, TOS updates, etc)
 export const message = pgTable('message', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
-	text: text('text').notNull().default(''),
+	name: text('name').notNull().default(''),
+	content: text('content').notNull().default(''),
 	lang: text('lang').notNull().default('en'),
 });

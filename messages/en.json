@@ -364,5 +364,15 @@
 	"youCanNoLongerChangeGradesAssignmentsOrMaterials": "You can no longer change grades, assignments, or materials",
 	"noCoursesOrTextbooksMatchYourSearch": "No courses or textbooks match your search",
 	"noArchivedCoursesOrTextbooksMatchYourSearch": "No archived courses or textbooks match your search",
-	"noChaptersYet": "No chapters yet"
+	"noChaptersYet": "No chapters yet",
+	"feedbackSentSuccessfully": "Feedback sent successfully",
+	"failedToSendFeedback": "Failed to send feedback",
+	"previousMessage": "Previous Message",
+	"nextMessage": "Next Message",
+	"noAssignmentsPastDeadline": "No assignments past deadline",
+	"goodJob": "Good job!",
+	"noAssignmentsDueTodayOrTomorrow": "No assignments due today or tomorrow",
+	"noOtherAssignmentsDue": "No other assignments due",
+	"message": "Message",
+	"markAsRead": "Mark as Read"
 }

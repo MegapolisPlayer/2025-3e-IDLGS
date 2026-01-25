@@ -24,7 +24,7 @@ export type UserType = {
 	gamification: boolean;
 	canChangeSettings: boolean;
 	canEditGamification: boolean;
-	clickedOnLastMessage: boolean;
+	lastMessage: number;
 };
 
 export type UserRoleType = {
@@ -43,6 +43,12 @@ export type UserTypeLimited = UserRoleType & {
 	name: string;
 	surname: string;
 	degree: string;
+};
+
+export type MessageType = {
+	name: string;
+	content: string;
+	lang: string;
 };
 
 //Textbooks

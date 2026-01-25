@@ -364,5 +364,15 @@
 	"youCanNoLongerChangeGradesAssignmentsOrMaterials": "Nie możesz już zmieniać ocen, zadań ani materiałów",
 	"noCoursesOrTextbooksMatchYourSearch": "Żadne kursy ani podręczniki nie pasują do Twojego wyszukiwania",
 	"noArchivedCoursesOrTextbooksMatchYourSearch": "Żadne archiwalne kursy ani podręczniki nie pasują do Twojego wyszukiwania",
-	"noChaptersYet": "Jeszcze nie ma rozdziałów"
+	"noChaptersYet": "Jeszcze nie ma rozdziałów",
+	"feedbackSentSuccessfully": "Opinia została pomyślnie wysłana",
+	"failedToSendFeedback": "Nie udało się wysłać opinii",
+	"previousMessage": "Poprzednia wiadomość",
+	"nextMessage": "Następna wiadomość",
+	"noAssignmentsPastDeadline": "Brak zadań po terminie",
+	"goodJob": "Dobra robota!",
+	"noAssignmentsDueTodayOrTomorrow": "Brak zadań do wykonania dzisiaj lub jutro",
+	"noOtherAssignmentsDue": "Brak innych zadań do wykonania",
+	"message": "Wiadomość",
+	"markAsRead": "Oznacz jako przeczytane"
 }

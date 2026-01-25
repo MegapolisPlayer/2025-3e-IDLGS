@@ -1,7 +1,7 @@
 import type { UserType } from '$lib/types';
 import * as crypto from 'node:crypto';
 import { schema } from '$lib/server/db/mainSchema';
-import { eq } from 'drizzle-orm';
+import { eq, count } from 'drizzle-orm';
 import { getRequestEvent } from '$app/server';
 
 export const validateTurnstile = async (
@@ -65,29 +65,34 @@ export const createUser = async (
 
 	const pass = hashPassword(password);
 
-	return (
-		await db
-			.insert(schema.user)
-			.values({
-				name,
-				surname,
-				degree,
-				email,
-				password: pass.password,
-				salt: pass.salt,
-				iterations: pass.amount,
-				admin: admin,
-				lang: lang,
-				birthday: `${birthday.getFullYear()}-${birthday.getMonth() + 1}-${birthday.getDate()}`,
-				canCreateCourses: courses,
-				canCreateTextbooks: textbooks,
-				canCreateResin: resin,
-				canChangeSettings: settings,
-				canEditGamification: editgamification,
-				gamification: gamification,
-			})
-			.returning()
-	)[0];
+	return await db.transaction(async (tx) => {
+		const messageAmount = await tx.select({ count: count() }).from(schema.message);
+
+		return (
+			await tx
+				.insert(schema.user)
+				.values({
+					name,
+					surname,
+					degree,
+					email,
+					password: pass.password,
+					salt: pass.salt,
+					iterations: pass.amount,
+					admin: admin,
+					lang: lang,
+					birthday: `${birthday.getFullYear()}-${birthday.getMonth() + 1}-${birthday.getDate()}`,
+					canCreateCourses: courses,
+					canCreateTextbooks: textbooks,
+					canCreateResin: resin,
+					canChangeSettings: settings,
+					canEditGamification: editgamification,
+					gamification: gamification,
+					lastMessage: messageAmount[0].count,
+				})
+				.returning()
+		)[0];
+	});
 };
 
 export const getUser = async (): Promise<UserType | undefined> => {

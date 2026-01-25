@@ -364,5 +364,15 @@
 	"youCanNoLongerChangeGradesAssignmentsOrMaterials": "Už nemůžete měnit známky, úkoly nebo materiály",
 	"noCoursesOrTextbooksMatchYourSearch": "Žádné kurzy nebo učebnice neodpovídají vašemu vyhledávání",
 	"noArchivedCoursesOrTextbooksMatchYourSearch": "Žádné archivované kurzy nebo učebnice neodpovídají vašemu vyhledávání",
-	"noChaptersYet": "Ještě žádné kapitoly"
+	"noChaptersYet": "Ještě žádné kapitoly",
+	"feedbackSentSuccessfully": "Zpětná vazba byla úspěšně odeslána",
+	"failedToSendFeedback": "Odeslání zpětné vazby se nezdařilo",
+	"previousMessage": "Předchozí zpráva",
+	"nextMessage": "Následující zpráva",
+	"noAssignmentsPastDeadline": "Žádné úkoly po termínu",
+	"goodJob": "Dobrá práce!",
+	"noAssignmentsDueTodayOrTomorrow": "Žádné úkoly s termínem dnes nebo zítra",
+	"noOtherAssignmentsDue": "Žádné další úkoly s termínem nejsou zadány",
+	"message": "Zpráva",
+	"markAsRead": "Označit jako přečtené"
 }

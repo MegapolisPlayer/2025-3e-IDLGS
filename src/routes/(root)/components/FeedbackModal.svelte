@@ -8,8 +8,12 @@
 
 	let {
 		showModal = $bindable(false),
+		errorMessage = $bindable(''),
+		successMessage = $bindable(''),
 	}: {
 		showModal: boolean;
+		errorMessage: string;
+		successMessage: string;
 	} = $props();
 </script>
 
@@ -20,6 +24,14 @@
 	<Form
 		cssClass="flex w-full grow flex-col gap-2"
 		action="/components/navbar/actions/feedback/?/sendFeedback"
+		success={async () => {
+			showModal = false;
+			successMessage = m.feedbackSentSuccessfully();
+		}}
+		failure={async () => {
+			showModal = false;
+			errorMessage = m.failedToSendFeedback();
+		}}
 	>
 		<h2>{m.sendFeedback()}</h2>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Modal from '../../components/Modal.svelte';
-	import type { UserType } from '$lib/types';
+	import type { MessageType, UserType } from '$lib/types';
+	import MessageModal from './components/MessageModal.svelte';
 
 	let {
 		children,
@@ -10,17 +10,16 @@
 		children: Snippet;
 		data: {
 			user: UserType;
+			messages: MessageType[];
 		};
 	} = $props();
 
-	let showMessage = $derived(!data.user.clickedOnLastMessage);
 </script>
 
 {@render children()}
 
-<Modal
-	bind:showModal={showMessage}
-	cssClass=""
->
-	<div></div>
-</Modal>
+{#if data.messages.length > 0}
+	<MessageModal
+		messages={data.messages}
+	/>
+{/if}
