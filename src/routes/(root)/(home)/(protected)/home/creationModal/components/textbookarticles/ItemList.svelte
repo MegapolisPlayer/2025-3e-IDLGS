@@ -23,7 +23,7 @@
 
 <div class="flex min-w-0 grow flex-col">
 	<div
-		class="flex w-full grow flex-col gap-2 rounded-lg bg-neutral-700/40 p-2"
+		class="flex w-full grow flex-col gap-2 rounded-lg bg-neutral-700/40 p-2 shadow-xl"
 	>
 		<div class="flex w-full grow flex-col gap-2 overflow-scroll">
 			{#key items}
@@ -74,15 +74,20 @@
 							</Button>
 						</div>
 					{/each}
-					<div class="grow"></div>
-				{:else}
-					<div
-						class="flex w-full grow flex-col items-center justify-center text-white! opacity-50"
-					>
-						{@render children()}
-					</div>
 				{/if}
 			{/key}
+			<Button
+				btn="button-transparent"
+				cssClass="grow flex flex-col bg-transparent w-full text-white opacity-70 font-light"
+				onclick={() => {
+					selectedItem = '';
+					editMode = -1;
+				}}
+			>
+				{#if items.length === 0}
+					{@render children()}
+				{/if}
+			</Button>
 		</div>
 		<div class="flex w-full flex-row gap-2 p-2">
 			<input

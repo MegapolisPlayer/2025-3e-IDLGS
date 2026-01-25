@@ -162,7 +162,7 @@ export const loadSingleTextbook = async (
 			})
 			.from(schema.chapter)
 			.where(eq(schema.chapter.textbook, textbook[0].id));
-		(textbook[0] as TextbookType).chapters = chaptersData;
+		(textbook[0] as TextbookType).chapters = chaptersData ?? [];
 		const chaptersIds = chaptersData.map((c) => c.id!);
 
 		//articles limited
@@ -179,7 +179,7 @@ export const loadSingleTextbook = async (
 				.from(schema.article)
 				.where(eq(schema.article.chapter, chaptersIds[i]));
 			(textbook[0] as TextbookType).chapters![i].articlesLimited =
-				articlesData;
+				articlesData ?? [];
 		}
 	}
 

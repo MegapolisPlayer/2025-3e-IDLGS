@@ -393,5 +393,6 @@
 	"setNewPassword": "Set New Password",
 	"passwordResetSuccessfully": "Password Reset Successfully",
 	"goToLoginPage": "Go to Login Page",
-	"youCanNowLogInWithYourNewPassword": "You can now log in with your new password"
+	"youCanNowLogInWithYourNewPassword": "You can now log in with your new password",
+	"statistics": "Statistics"
 }

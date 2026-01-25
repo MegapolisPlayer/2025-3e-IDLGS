@@ -70,7 +70,7 @@ export const RUSSIAN_GRADES: CourseGradeType[] = [
 export const getImageBackgroundClassRaw = (id: number) => {
 	switch (id) {
 		case 1:
-			return 'bg-[url(/bg/leaves.jpg)] bg-contain bg-fixed';
+			return 'bg-[url(/bg/leaves.jpg)] bg-cover bg-fixed';
 		case 2:
 			return 'bg-[url(/bg/building.jpg)] bg-cover bg-fixed';
 	}

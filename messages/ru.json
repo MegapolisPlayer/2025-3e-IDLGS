@@ -181,8 +181,6 @@
 	"delete": "Удалить",
 	"toCreateArticlesFirstAddAChapter": "Чтобы создать статьи, сначала добавьте главу",
 	"enterName": "Введите имя",
-	"selectItemByClickingOnIt": "Выберите элемент, кликнув по нему",
-	"deselectItemByClickingAnywhereElse": "Снимите выделение элемента, кликнув в любом другом месте",
 	"noChapterSelected": "Глава не выбрана",
 	"save": "Сохранить",
 	"articleName": "Название статьи",
@@ -393,5 +391,8 @@
 	"setNewPassword": "Установить новый пароль",
 	"passwordResetSuccessfully": "Пароль успешно сброшен",
 	"goToLoginPage": "Перейти на страницу входа",
-	"youCanNowLogInWithYourNewPassword": "Теперь вы можете войти в систему с новым паролем"
+	"youCanNowLogInWithYourNewPassword": "Теперь вы можете войти в систему с новым паролем",
+	"statistics": "Статистика",
+	"selectChapterOrArticleByClickingOnIt": "Выберите главу или статью, кликнув по ней",
+	"toAddOneEnterItsNameAndPressAddNew": "Чтобы добавить, введите его название и нажмите «Добавить новое»"
 }

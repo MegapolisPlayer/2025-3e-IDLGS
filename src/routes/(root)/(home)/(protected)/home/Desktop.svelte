@@ -51,14 +51,14 @@
 
 				<CardSeparator />
 
-				<div class="flex h-fit w-full flex-row items-center gap-2">
+				<div class="flex h-fit w-full max-2xl:flex-col 2xl:flex-row items-center gap-2">
 					<i class="ri-layout-grid-line text-xl"></i>
 					<h2 class="text-left">{m.coursesAndTextbooks()}</h2>
 					<div class="grow"></div>
 					<input
 						type="text"
 						bind:value={searchValue}
-						class="input-text w-2/5"
+						class="input-text max-2xl:w-full 2xl:w-2/5"
 						placeholder={m.searchCoursesAndTextbooks()}
 					/>
 				</div>
@@ -133,7 +133,7 @@
 
 					<CardSeparator />
 
-					<div class="flex h-fit w-full flex-row items-center gap-2">
+					<div class="flex h-fit w-full max-2xl:flex-col 2xl:flex-row text-left items-center gap-2">
 						<i class="ri-archive-line text-xl"></i>
 						<h2 class="text-left">
 							{m.archivedCoursesAndTextbooks()}

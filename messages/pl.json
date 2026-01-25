@@ -393,5 +393,6 @@
 	"setNewPassword": "Ustaw nowe hasło",
 	"passwordResetSuccessfully": "Hasło zostało pomyślnie zresetowane",
 	"goToLoginPage": "Przejdź do strony logowania",
-	"youCanNowLogInWithYourNewPassword": "Teraz możesz zalogować się za pomocą nowego hasła"
+	"youCanNowLogInWithYourNewPassword": "Teraz możesz zalogować się za pomocą nowego hasła",
+	"statistics": "Statystyki"
 }

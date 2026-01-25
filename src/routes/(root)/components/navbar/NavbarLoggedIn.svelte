@@ -61,14 +61,7 @@
 		>
 			{m.selfStudying()}
 		</NavbarLink>
-
-		<NavbarLink
-			link="/help"
-			emoji="questionnaire"
-		>
-			{m.help()}
-		</NavbarLink>
-
+		
 		<div class="grow"></div>
 
 		<!-- if admin: show admin page -->

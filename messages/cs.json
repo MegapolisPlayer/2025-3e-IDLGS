@@ -393,5 +393,6 @@
 	"setNewPassword": "Nastavit nové heslo",
 	"passwordResetSuccessfully": "Heslo bylo úspěšně resetováno",
 	"goToLoginPage": "Přejít na přihlašovací stránku",
-	"youCanNowLogInWithYourNewPassword": "Nyní se můžete přihlásit se svým novým heslem"
+	"youCanNowLogInWithYourNewPassword": "Nyní se můžete přihlásit se svým novým heslem",
+	"statistics": "Statistiky"
 }

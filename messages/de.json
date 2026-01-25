@@ -393,5 +393,6 @@
 	"setNewPassword": "Neues Passwort festlegen",
 	"passwordResetSuccessfully": "Passwort erfolgreich zurückgesetzt",
 	"continueToLoginPage": "Weiter zur Login-Seite",
-	"youCanNowLogInWithYourNewPassword": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden"
+	"youCanNowLogInWithYourNewPassword": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden",
+	"statistics": "Statistiken"
 }

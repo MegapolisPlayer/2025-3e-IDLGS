@@ -30,6 +30,7 @@ export const actions = {
 						.where(eq(schema.textbook.uuid, formData['uuid']));
 				} catch (e) {
 					writeLog(event, 'ERROR', 'DB error', user);
+					return fail(500);
 				}
 			},
 		);
@@ -52,6 +53,7 @@ export const actions = {
 						.where(eq(schema.textbook.uuid, formData['uuid']));
 				} catch (e) {
 					writeLog(event, 'ERROR', 'DB error', user);
+					return fail(500);
 				}
 			},
 		);

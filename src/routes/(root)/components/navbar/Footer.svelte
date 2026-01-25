@@ -45,9 +45,15 @@
 				<i class="ri-file-list-line"></i>
 				{m.privacyPolicy()}
 			</a>
+
 			<a href="/tos">
 				<i class="ri-file-list-fill"></i>
 				{m.termsOfService()}
+			</a>
+
+			<a href="/help">
+				<i class="ri-questionnaire-line"></i>
+				{m.helpAndDocumentation()}
 			</a>
 
 			{#if user}

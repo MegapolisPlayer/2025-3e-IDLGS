@@ -1,7 +1,7 @@
 import { apiRunner } from '$lib/server/form/runner';
 import { json } from '@sveltejs/kit';
 import { schema } from '$lib/server/db/mainSchema';
-import { or, sql } from 'drizzle-orm';
+import { or, sql, eq, and } from 'drizzle-orm';
 import { renderMarkdown } from '$lib/markdown';
 
 export const POST = async () => {
@@ -10,6 +10,7 @@ export const POST = async () => {
 
 		const result = await event.locals.db
 			.select({
+				id: schema.textbook.id,
 				uuid: schema.textbook.uuid,
 				name: schema.textbook.name,
 				description: schema.textbook.description,
@@ -17,14 +18,17 @@ export const POST = async () => {
 				summary: schema.textbook.summary,
 			})
 			.from(schema.textbook)
+			.innerJoin(schema.userTextbookLinker, eq(schema.userTextbookLinker.textbook, schema.textbook.id))
 			.where(
-				or(
+				and(or(
 					sql`LOWER(${schema.textbook.name}) LIKE LOWER(${searchPattern})`,
 					sql`LOWER(${schema.textbook.description}) LIKE LOWER(${searchPattern})`,
 					sql`LOWER(${schema.textbook.subject}) LIKE LOWER(${searchPattern})`,
 					sql`LOWER(${schema.textbook.summary}) LIKE LOWER(${searchPattern})`,
 					sql`LOWER(${schema.textbook.uuid}) LIKE LOWER(${searchPattern})`,
 				),
+					eq(schema.userTextbookLinker.user, user.id)
+				)
 			)
 			.limit(100);
 
@@ -33,7 +37,10 @@ export const POST = async () => {
 		}
 
 		return json({
-			textbooks: result,
+			textbooks: result.map((tb) => { return {
+				...tb,
+				id: undefined,
+			}; }),
 		});
 	});
 };

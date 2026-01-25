@@ -121,7 +121,7 @@
 					/>
 				{:else}
 					<div
-						class="flex flex-col gap-2 justify-center items-center grow w-full opacity-50"
+						class="flex flex-col gap-2 justify-center items-center grow w-full opacity-70"
 					>
 						{m.noUsersAddedYet()}
 					</div>
@@ -130,7 +130,7 @@
 		{/key}
 	</div>
 	<div
-		class="flex w-full flex-row items-center justify-center gap-1 opacity-50"
+		class="flex w-full flex-row items-center justify-center gap-1 opacity-70"
 	>
 		{#if type == 'course'}
 			{m.selectUsersWhichWillHaveAccessToTheCourseExceptForYou()}.
@@ -150,7 +150,7 @@
 				bind:checked={internet}
 				label={m.publishTextbookOnTheInternet()}
 			/>
-			<p class="grow opacity-50">
+			<p class="grow opacity-70">
 				{m.itWillBeVisibleToEveryoneAndWillShowUpInSearchEngines()}.
 			</p>
 		</div>

@@ -48,7 +48,12 @@
 	});
 </script>
 
-<WideCard cssAddition="grow">
+<WideCard 
+	cssAddition="grow"
+	r={data.textbook.red}
+	g={data.textbook.green}
+	b={data.textbook.blue}
+>
 	<div class="flex w-full flex-row items-center gap-2">
 		{#if !editingName}
 			<h1>{data.textbook.name}</h1>

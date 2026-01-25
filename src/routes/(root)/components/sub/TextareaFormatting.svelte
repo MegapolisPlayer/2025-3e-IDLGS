@@ -251,7 +251,7 @@
 
 	<div class="grow"></div>
 
-	<div class="opacity-50">
+	<div class="opacity-70">
 		{m.formattedUsingMarkdown()}.
 	</div>
 </div>

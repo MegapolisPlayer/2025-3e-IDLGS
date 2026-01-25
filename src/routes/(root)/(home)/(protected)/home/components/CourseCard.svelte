@@ -60,9 +60,10 @@
 			{@html course.description.split('\n')[0]}
 		</p>
 
-		<!-- TODO teachers on same row as name -->
 
-		<span class="flex w-full grow flex-col pt-2 pb-2">
+		<div class="grow 2xl:hidden"></div>
+
+		<span class="flex w-full grow flex-col pt-2 pb-2 max-2xl:hidden">
 			<WideCard
 				r={course.red}
 				g={course.green}
@@ -84,7 +85,11 @@
 				b={course.blue}
 				cssOverride="pt-1! pb-1! ps-2! pe-2! flex-row items-center flex grow"
 			>
-				<h2 class="w-full text-lg">{m.resultingGrade()}</h2>
+				<div class="flex flex-row flex-nowrap gap-1 overflow-hidden whitespace-nowrap **:text-lg!">
+					<h2 class="w-full max-2xl:hidden">{m.resultingGrade().split(' ')[0]}</h2>
+					<h2 class="w-full whitespace-nowrap max-2xl:capitalize">{m.resultingGrade().split(' ')[1]}</h2>
+				</div>
+				<div class="grow"></div>
 				<div class="flex flex-row items-center justify-center gap-2">
 					<span class="text-3xl font-bold"> 1 </span>
 					<span class="text-2xl font-light opacity-70"> (90%) </span>
