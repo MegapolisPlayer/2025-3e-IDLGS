@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import { goto } from '$app/navigation';
-	import Button from '../../components/Button.svelte';
-	import Card from '../../components/Card.svelte';
-	import Form from '../../components/Form.svelte';
-	import PasswordInput from '../../components/PasswordInput.svelte';
-	import PasswordInputValid from '../../components/PasswordInputValid.svelte';
+	import Button from '$component/Button.svelte';
+	import Card from '$component/Card.svelte';
+	import Form from '$component/Form.svelte';
+	import PasswordInput from '$component/PasswordInput.svelte';
+	import PasswordInputValid from '$component/PasswordInputValid.svelte';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 

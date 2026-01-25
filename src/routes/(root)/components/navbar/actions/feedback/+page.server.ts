@@ -1,8 +1,8 @@
-import { formRunner } from '$lib/server/form/runner.js';
+import { formRunner } from '$lib/server/form/runner';
 import { error, fail } from '@sveltejs/kit';
 import { FEEDBACK_TARGET_MAIL, MAX_MESSAGE_LENGTH, writeDegree } from '$lib';
-import { sendMail } from '$lib/server/mail/index.js';
-import { renderMarkdown } from '$lib/markdown/index.js';
+import { sendMail } from '$lib/server/mail';
+import { renderMarkdown } from '$lib/markdown';
 
 export const load = async () => {
 	return error(404, 'Not Found');

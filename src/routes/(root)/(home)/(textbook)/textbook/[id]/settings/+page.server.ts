@@ -1,4 +1,4 @@
-import { formRunner } from '$lib/server/form/runner.js';
+import { formRunner } from '$lib/server/form/runner';
 import { redirect } from '@sveltejs/kit';
 
 export const load = async (event) => {

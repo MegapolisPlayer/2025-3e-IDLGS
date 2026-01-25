@@ -2,14 +2,14 @@ import {
 	USER_SESSION_LENGTH,
 	USER_SESSION_LENGTH_REMEMBER,
 	validateTurnstile,
-} from '$lib/server/user/index.js';
+} from '$lib/server/user';
 import { fail } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { schema } from '$lib/server/db/mainSchema';
 import { eq } from 'drizzle-orm';
-import { EMAIL_REGEX } from '$lib/server/user/index.js';
+import { EMAIL_REGEX } from '$lib/server/user';
 import * as crypto from 'node:crypto';
-import { formRunner } from '$lib/server/form/runner.js';
+import { formRunner } from '$lib/server/form/runner';
 
 export const load = async () => {};
 

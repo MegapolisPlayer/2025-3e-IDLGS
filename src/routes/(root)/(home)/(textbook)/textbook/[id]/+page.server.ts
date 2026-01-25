@@ -1,7 +1,7 @@
-import { writeLog } from '$lib/log.js';
-import { schema } from '$lib/server/db/mainSchema.js';
-import { formRunner } from '$lib/server/form/runner.js';
-import { isUserAuthorizedTextbook } from '$lib/server/permission/index.js';
+import { writeLog } from '$lib/log';
+import { schema } from '$lib/server/db/mainSchema';
+import { formRunner } from '$lib/server/form/runner';
+import { isUserAuthorizedTextbook } from '$lib/server/permission';
 import { fail } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 

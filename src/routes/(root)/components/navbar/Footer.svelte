@@ -68,8 +68,10 @@
 <SuccessBox bind:message={successMessage} />
 <AlertBox bind:message={errorMessage} />
 
-<FeedbackModal
-	bind:showModal={showFeedbackModal}
-	bind:errorMessage
-	bind:successMessage
-/>
+{#if user}
+	<FeedbackModal
+		bind:showModal={showFeedbackModal}
+		bind:errorMessage
+		bind:successMessage
+	/>
+{/if}

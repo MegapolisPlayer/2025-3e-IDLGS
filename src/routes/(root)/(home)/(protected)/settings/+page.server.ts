@@ -1,6 +1,6 @@
 import { validateDate } from '$lib';
-import { writeLog, writeLogDeleteAccount } from '$lib/log.js';
-import { schema } from '$lib/server/db/mainSchema.js';
+import { writeLog, writeLogDeleteAccount } from '$lib/log';
+import { schema } from '$lib/server/db/mainSchema';
 import { formRunner } from '$lib/server/form/runner';
 import { fail } from '@sveltejs/kit';
 import { desc, eq } from 'drizzle-orm';

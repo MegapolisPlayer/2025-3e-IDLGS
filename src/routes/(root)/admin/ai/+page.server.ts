@@ -1,5 +1,5 @@
-import { sendAIRequest } from '$lib/server/ai/index.js';
-import { SYSTEM_PROMPT_BASE } from '$lib/server/ai/prompt.js';
+import { sendAIRequest } from '$lib/server/ai';
+import { SYSTEM_PROMPT_BASE } from '$lib/server/ai/prompt';
 import { formRunner } from '$lib/server/form/runner';
 
 export const actions = {

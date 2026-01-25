@@ -1,0 +1,26 @@
+<script lang="ts">
+	import { page } from '$app/state';
+	import { m } from '$lib/paraglide/messages';
+	import HoverEmoji from '$component/HoverEmoji.svelte';
+	import type { Snippet } from 'svelte';
+
+	let {
+		link,
+		emoji,
+		children,
+		classCss,
+	}: {
+		link: string;
+		emoji: string;
+		children: Snippet;
+		classCss?: string;
+	} = $props();
+</script>
+
+<a
+	href={link}
+	class='{page.url.pathname == link ? 'underline decoration-2 underline-offset-6 decoration-emerald-600' : ''} {classCss}'
+>
+	<HoverEmoji emoji={emoji} />
+	{@render children()}
+</a>

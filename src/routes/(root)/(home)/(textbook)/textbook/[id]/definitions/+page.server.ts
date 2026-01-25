@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import type { UserType } from '$lib/types';
 import { loadDefinitions } from '$lib/server/loaders/definitions';
-import { formRunner } from '$lib/server/form/runner.js';
+import { formRunner } from '$lib/server/form/runner';
 
 export const load = async (event) => {
 	const user = (await event.parent()).user as UserType | undefined;

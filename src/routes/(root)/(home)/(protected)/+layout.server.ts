@@ -1,5 +1,5 @@
-import { loadMessages } from '$lib/server/loaders/subjective/messages.js';
-import type { UserType } from '$lib/types.js';
+import { loadMessages } from '$lib/server/loaders/subjective/messages';
+import type { UserType } from '$lib/types';
 import { redirect } from '@sveltejs/kit';
 
 export const load = async (event) => {

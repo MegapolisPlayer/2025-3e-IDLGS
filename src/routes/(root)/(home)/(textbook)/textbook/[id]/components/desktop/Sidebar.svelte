@@ -70,8 +70,11 @@
 				<div
 					class="flex flex-col grow w-full items-center justify-center gap-2"
 				>
-					<p class="text-center opacity-50">
-						{m.thisTextbookIsEmptySoFar()}
+					<p class="text-center">
+						{m.thisTextbookIsEmptySoFar()}.
+					</p>
+					<p class="opacity-70 text-sm">
+						{m.useTheManageStructureButtonToAddChaptersAndArticles()}
 					</p>
 				</div>
 			{/each}

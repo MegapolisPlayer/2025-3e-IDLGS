@@ -1,4 +1,4 @@
-import { formRunner } from '$lib/server/form/runner.js';
+import { formRunner } from '$lib/server/form/runner';
 
 export const load = async () => {};
 

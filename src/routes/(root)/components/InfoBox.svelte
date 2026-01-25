@@ -16,12 +16,17 @@
 	} = $props();
 
 	let interval: NodeJS.Timeout | undefined = $state(undefined);
+	let calledEnd: boolean = $derived(timer === 0);
 
 	onMount(() => {
 		interval = setInterval(() => {
 			timer -= 10;
 			if (timer < 0) {
 				timer = 0;
+			}
+			if(calledEnd) {
+				onEnd();
+				calledEnd = false;
 			}
 		}, 10);
 	});
@@ -34,7 +39,7 @@
 	{#if timer > 0}
 		<div
 			class="
-	fixed top-[6svh] left-0 z-50 flex h-[6svh] w-screen flex-row items-center justify-center
+	absolute! top-[6svh] left-0 z-50 flex h-[6svh] w-screen flex-row items-center justify-center
 "
 			transition:fly|global={{
 				duration: 500,

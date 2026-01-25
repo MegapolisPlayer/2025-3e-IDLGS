@@ -1,6 +1,7 @@
 import { browser } from '$app/environment';
 import { onDestroy, onMount } from 'svelte';
 import type { CourseGradeType, UserType } from './types';
+import { getLocale } from './paraglide/runtime';
 
 export const MAX_NAME_LENGTH = 50;
 
@@ -160,13 +161,13 @@ export const validateDate = (
 		month <= 12 &&
 		day >= 1 &&
 		day <=
-			(month == 2
-				? (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-					? 29
-					: 28
-				: [4, 6, 9, 11].includes(month)
-					? 30
-					: 31)
+		(month == 2
+			? (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+				? 29
+				: 28
+			: [4, 6, 9, 11].includes(month)
+				? 30
+				: 31)
 	);
 };
 
@@ -234,4 +235,25 @@ export const rerunInputCallbacks = (
 		el.removeEventListener('submit', formSubmitChangeCallback);
 		el.addEventListener('submit', formSubmitChangeCallback);
 	});
+};
+
+export const cloudflareTurnstileBox = (node: HTMLElement) => {
+	if (!browser) return;
+	try {
+		const id = window.turnstile.render(node, {
+			sitekey: '0x4AAAAAABlMZWB6LlSqCWXH',
+			size: 'flexible',
+			theme: 'dark',
+			'refresh-timeout': 'auto',
+			'refresh-expired': 'auto',
+			language: getLocale() as string,
+		});
+		return {
+			destroy: () => {
+				window.turnstile.remove(id as unknown as HTMLElement);
+			},
+		};
+	} catch (error) {
+		console.error(error);
+	}
 };

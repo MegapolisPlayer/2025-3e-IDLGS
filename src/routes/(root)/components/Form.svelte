@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 	import type { Snippet } from 'svelte';
 	import LoadingAnimationHandler from './LoadingAnimationHandler.svelte';
-	import WideCard from './WideCard.svelte';
 
 	let {
 		children,

@@ -1,7 +1,7 @@
-import { formRunner } from '$lib/server/form/runner.js';
+import { formRunner } from '$lib/server/form/runner';
 import { schema } from '$lib/server/db/mainSchema';
 import { eq } from 'drizzle-orm';
-import { hashPassword } from '$lib/server/user/index.js';
+import { hashPassword } from '$lib/server/user';
 import { fail, redirect } from '@sveltejs/kit';
 import { checkPassword } from '$lib';
 
@@ -18,17 +18,12 @@ export const actions = {
 	setPassword: async () => {
 		return await formRunner(
 			['password', 'rpassword'],
-			async (event, formData, cookies, user) => {
-				const password = formData['password']?.toString();
-				if (password?.toString() != formData['rpassword']?.toString()) {
-					return fail(400);
-				}
+			async (event, formData, _cookies, user) => {
+				const password = formData['password'];
+				if (password != formData['rpassword']) return fail(400);
 
 				const object = checkPassword(password as string);
-
-				if (!object.all) {
-					return fail(400);
-				}
+				if (!object.all) return fail(400);
 
 				const hashed = hashPassword(password as string);
 

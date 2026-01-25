@@ -4,12 +4,10 @@
 	import Button from '$component/Button.svelte';
 	import HorizontalLine from '$component/HorizontalLine.svelte';
 	import PasswordInput from '$component/PasswordInput.svelte';
-	import { browser } from '$app/environment';
-	import { getLocale } from '$lib/paraglide/runtime';
-	import Card from '$component/Card.svelte';
 	import Form from '$component/Form.svelte';
 	import AlertBox from '$component/AlertBox.svelte';
-	import { invalidateAll } from '$app/navigation';
+	import { cloudflareTurnstileBox } from '$lib';
+	import Card from '$component/Card.svelte';
 
 	let ready = $state(false);
 	let formMessage = $state('');
@@ -17,27 +15,6 @@
 	onMount(() => {
 		ready = true;
 	});
-
-	const turnstile = (node: HTMLElement) => {
-		if (!browser) return;
-		try {
-			const id = window.turnstile.render(node, {
-				sitekey: '0x4AAAAAABlMZWB6LlSqCWXH',
-				size: 'flexible',
-				theme: 'light',
-				'refresh-timeout': 'auto',
-				'refresh-expired': 'auto',
-				language: getLocale() as string,
-			});
-			return {
-				destroy: () => {
-					window.turnstile.remove(id as unknown as HTMLElement);
-				},
-			};
-		} catch (error) {
-			console.error(error);
-		}
-	};
 </script>
 
 <svelte:head>
@@ -50,7 +27,7 @@
 
 {#if ready}
 	<div
-		class="relative flex w-full grow flex-col items-center justify-center gap-2 p-10"
+		class="flex w-full grow flex-col items-center justify-center gap-2 p-10"
 	>
 		<Card
 			css="max-xl:min-w-9/10 xl:min-w-1/3 z-11"
@@ -90,7 +67,7 @@
 				</div>
 
 				{#key ready && window.turnstile}
-					<div use:turnstile></div>
+					<div use:cloudflareTurnstileBox></div>
 				{/key}
 
 				<Button

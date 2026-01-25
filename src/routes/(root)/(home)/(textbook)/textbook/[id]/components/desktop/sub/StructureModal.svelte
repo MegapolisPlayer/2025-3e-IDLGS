@@ -3,6 +3,8 @@
 	import { m, noChapterSelected } from '$lib/paraglide/messages';
 	import type { TextbookType } from '$lib/types';
 	import ItemListB from './ItemListB.svelte';
+	import Button from '$src/routes/(root)/components/Button.svelte';
+	import Form from '$src/routes/(root)/components/Form.svelte';
 
 	let {
 		showStructureModal = $bindable(false),
@@ -31,7 +33,7 @@
 		<ItemListB
 			name={m.chapters()}
 			placeholder={m.noChaptersYet()}
-			items={textbook.chapters!}
+			items={textbook.chapters!.map(v => v.name)}
 			bind:selected={selectedChapterUuid}
 		/>
 		<ItemListB
@@ -39,8 +41,25 @@
 			placeholder={m.noChapterSelected()}
 			items={textbook.chapters?.find(
 				(v) => v.uuid === selectedChapterUuid,
-			)?.articles || []}
+			)?.articles!.map(v => v.name) || []}
 			bind:selected={selectedArticleUuid}
 		/>
+	</div>
+	<div class="flex flex-row w-full gap-2 items-center">
+		<div class="grow"></div>
+		<Form
+			action=""
+		>
+			<Button
+				type="submit"
+				btn="button-primary"
+				emoji="save-3"
+				onclick={() => {
+					showStructureModal = false;
+				}}
+			>
+				{m.saveChanges()}
+			</Button>
+		</Form>
 	</div>
 </Modal>

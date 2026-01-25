@@ -3,6 +3,8 @@
 
 	import { m } from '$lib/paraglide/messages';
 	import type { ArticleType, ChapterType } from '$lib/types';
+	import Button from '$src/routes/(root)/components/Button.svelte';
+	import TextInput from '$src/routes/(root)/components/TextInput.svelte';
 
 	let {
 		name,
@@ -12,9 +14,11 @@
 	}: {
 		name: string;
 		placeholder: string;
-		items: ArticleType[] | ChapterType[];
+		items: string[];
 		selected: string; //uuid
 	} = $props();
+
+	let value = $state('');
 </script>
 
 <!-- TODO -->
@@ -24,18 +28,31 @@
 	<div
 		class="flex w-full grow flex-col gap-2 overflow-scroll rounded-lg bg-neutral-700/40 p-2"
 	>
-		<div class="flex w-full grow flex-col gap-2 overflow-scroll">
-			{#each items as item (item.uuid)}
-				<div class="flex w-full flex-row items-center gap-2">
-					{item.name}
-				</div>
-			{:else}
-				<div
-					class="flex flex-col grow justify-center items-center gap-2 opacity-70 w-full"
-				>
-					<p>{placeholder}</p>
-				</div>
-			{/each}
-		</div>
+		{#each items as item, i (i)}
+			<div class="flex w-full flex-row items-center gap-2">
+				{item}
+			</div>
+		{:else}
+			<div
+				class="flex flex-col grow justify-center items-center gap-2 opacity-70 w-full"
+			>
+				<p>{placeholder}</p>
+			</div>
+		{/each}
+	</div>
+	<div class="flex w-full flex-row gap-2">
+		<TextInput 
+			placeholder={m.enterName()}
+			cssClass="grow"
+		/>
+		<Button
+			btn="button-white"
+			emoji="add-circle"
+			onclick={() => {
+				
+			}}
+		>
+			{m.add()}
+		</Button>
 	</div>
 </div>

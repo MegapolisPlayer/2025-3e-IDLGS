@@ -1,5 +1,5 @@
 import type { ActionFailure, Cookies, RequestEvent } from '@sveltejs/kit';
-import { getUser } from '$lib/server/user/index.js';
+import { getUser } from '$lib/server/user';
 import { error, fail } from '@sveltejs/kit';
 import type { UserType } from '$lib/types';
 import { getRequestEvent } from '$app/server';

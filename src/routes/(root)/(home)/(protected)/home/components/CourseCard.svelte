@@ -38,7 +38,7 @@
 	<div class="relative flex w-full grow flex-col gap-0 p-2 text-left">
 		<h2 class="flex flex-row items-center gap-1 text-left text-xl">
 			<div class="flex flex-row items-center gap-1 text-xl">
-				<i class="ri-book-ai-line text-3xl"></i>
+				<i class="ri-file-list-3-line text-3xl"></i>
 				{course.name}
 			</div>
 			<div class="text-lg font-light opacity-70">

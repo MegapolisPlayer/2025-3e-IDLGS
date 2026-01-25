@@ -7,14 +7,14 @@ export const writeLog = (
 	event: RequestEvent,
 	type: LogType,
 	error: string,
-	user: UserType,
+	user?: UserType,
 ) => {
 	const date = new Date();
 	console.log(
 		`[DATE ${date.getDate()}] [MONTH ${date.getMonth() + 1}] [YEAR ${date.getFullYear()}]`,
 		`[HOUR ${date.getHours()}] [MINUTE ${date.getMinutes()}] [SECOND ${date.getSeconds()}]`,
 		`[TYPE ${type}] [URL ${event.route.id}] [COUNTRY ${event.request.headers.get('CF-IPCountry')}]`,
-		`[UUID ${user.uuid}] [ERROR ${error}]`,
+		`[UUID ${user?.uuid ?? 'unknown'}] [ERROR ${error}]`,
 	);
 };
 

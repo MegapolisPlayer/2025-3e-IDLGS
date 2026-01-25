@@ -1,7 +1,7 @@
 import type { UserType } from '$lib/types';
 import { error } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
-import { loadSingleCourse } from '$lib/server/loaders/course.js';
+import { loadSingleCourse } from '$lib/server/loaders/course';
 
 export const load = async (event) => {
 	const user = (await event.parent()).user as UserType | undefined;

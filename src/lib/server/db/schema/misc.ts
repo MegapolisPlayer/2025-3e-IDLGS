@@ -1,4 +1,4 @@
-import { pgTable, text, integer, check } from 'drizzle-orm/pg-core';
+import { pgTable, text, integer, check, timestamp } from 'drizzle-orm/pg-core';
 import { user } from './user';
 import { sql } from 'drizzle-orm';
 
@@ -43,4 +43,17 @@ export const message = pgTable('message', {
 	name: text('name').notNull().default(''),
 	content: text('content').notNull().default(''),
 	lang: text('lang').notNull().default('en'),
+});
+
+export const passwordReset = pgTable('passwordReset', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
+	expiresAt: timestamp('expiresAt').notNull().$defaultFn(() => {
+		return new Date(Date.now() + 1000 * 15 * 60); //15 minutes
+	}),
+	user: integer('user').references(() => user.id, {
+		onDelete: 'cascade',
+	}).notNull(),
 });

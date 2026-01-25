@@ -1,4 +1,4 @@
-import { apiRunner } from '$lib/server/form/runner.js';
+import { apiRunner } from '$lib/server/form/runner';
 import { json } from '@sveltejs/kit';
 import { schema } from '$lib/server/db/mainSchema';
 import { or, sql } from 'drizzle-orm';

@@ -72,7 +72,7 @@
 	<div
 		class="
 	flex {forceSquare ? 'aspect-square!' : 'grow'} w-full
-	flex-col gap-2 rounded-lg
+	flex-col gap-2 rounded-lg static
 	border-2 shadow-xl perspective-[1600px] hover:shadow-2xl
 	{hover ? 'hover:border-neutral-300!' : ''}
 	{css}
@@ -91,7 +91,7 @@
 		<button
 			disabled={disable}
 			class="
-		disable:brightness-100!
+		disable:brightness-100! static
 		flex w-full grow flex-col gap-2 rounded-lg {padding} backdrop-blur hover:brightness-100!
 		{hover ? 'hover:backdrop-brightness-120' : ''}
 		"

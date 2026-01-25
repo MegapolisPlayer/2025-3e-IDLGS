@@ -1,11 +1,11 @@
-import { loadCourses } from '$lib/server/loaders/course.js';
-import { loadTextbooks } from '$lib/server/loaders/textbook.js';
-import type { CourseGradeType, UserRoleType, UserType } from '$lib/types.js';
+import { loadCourses } from '$lib/server/loaders/course';
+import { loadTextbooks } from '$lib/server/loaders/textbook';
+import type { CourseGradeType, UserRoleType, UserType } from '$lib/types';
 import { MAX_NAME_LENGTH } from '$lib';
-import { formRunner } from '$lib/server/form/runner.js';
-import { schema } from '$lib/server/db/mainSchema.js';
+import { formRunner } from '$lib/server/form/runner';
+import { schema } from '$lib/server/db/mainSchema';
 import { eq, inArray } from 'drizzle-orm';
-import { writeLog } from '$lib/log.js';
+import { writeLog } from '$lib/log';
 import { fail } from '@sveltejs/kit';
 
 export const load = async (event) => {
