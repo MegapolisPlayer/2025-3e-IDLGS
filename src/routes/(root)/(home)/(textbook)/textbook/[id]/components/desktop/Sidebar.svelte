@@ -30,8 +30,6 @@
 			domain: window.location.hostname,
 		});
 	});
-
-	$inspect('showEditButtonsLocal', showEditButtonsLocal);
 </script>
 
 <div class="sticky top-[6vh] left-0 h-[94svh] min-w-1/5 overflow-clip p-2">
