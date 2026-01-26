@@ -82,7 +82,7 @@ export type ChapterType = {
 	summary: string;
 	articles?: ArticleType[];
 	articlesLimited?: ArticleLimitedType[];
-	order: number
+	order: number;
 };
 
 export type ArticleLimitedType = {

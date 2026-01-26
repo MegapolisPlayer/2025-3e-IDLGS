@@ -14,7 +14,7 @@
 	} = $props();
 </script>
 
-<WideCard 
+<WideCard
 	cssAddition="grow"
 	r={data.textbook.red}
 	g={data.textbook.green}

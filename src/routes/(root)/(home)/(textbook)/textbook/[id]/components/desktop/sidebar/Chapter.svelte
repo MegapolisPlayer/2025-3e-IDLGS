@@ -19,7 +19,7 @@
 	let isOpen = $state(false);
 </script>
 
-<div class="flex w-full flex-col gap-0 pl-0 pr-0">
+<div class="flex w-full flex-col gap-0 pr-0 pl-0">
 	<div class="flex w-full flex-row items-center justify-start gap-1">
 		<a href="/textbook/{textbookUuid}/{chapter.uuid}">
 			{chapter.name}
@@ -37,19 +37,19 @@
 			<Button
 				btn="button-none *:font-medium"
 				emoji="pencil"
-				label={m.editChapterName()}	
+				label={m.editChapterName()}
 			/>
 
 			<!-- move up and down -->
 			<Button
 				btn="button-none *:font-medium"
 				emoji="arrow-up-s"
-				label={m.moveChapterUp()}	
+				label={m.moveChapterUp()}
 			/>
 			<Button
 				btn="button-none *:font-medium"
 				emoji="arrow-down-s"
-				label={m.moveChapterDown()}	
+				label={m.moveChapterDown()}
 			/>
 		{/if}
 	</div>
@@ -64,7 +64,9 @@
 				{showEditButtons}
 			/>
 		{:else}
-			<div class="flex flex-row w-full gap-1 items-center opacity-70 pl-4 pr-4">
+			<div
+				class="flex flex-row w-full gap-1 items-center opacity-70 pl-4 pr-4"
+			>
 				{m.noArticlesInChapter()}
 			</div>
 		{/each}

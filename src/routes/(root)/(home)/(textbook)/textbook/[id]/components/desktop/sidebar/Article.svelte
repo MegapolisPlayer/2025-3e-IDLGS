@@ -20,7 +20,7 @@
 
 <!-- TODO make draggable -->
 
-<Form 
+<Form
 	cssClass="pl-4 pr-4 flex w-full flex-row gap-1"
 	action=""
 >
@@ -36,19 +36,19 @@
 		<Button
 			btn="button-none *:font-medium"
 			emoji="pencil"
-			label={m.editArticleName()}	
+			label={m.editArticleName()}
 		/>
 
 		<!-- move up and down -->
 		<Button
 			btn="button-none *:font-medium"
 			emoji="arrow-up-s"
-			label={m.moveArticleUp()}	
+			label={m.moveArticleUp()}
 		/>
 		<Button
 			btn="button-none *:font-medium"
 			emoji="arrow-down-s"
-			label={m.moveArticleDown()}	
+			label={m.moveArticleDown()}
 		/>
 	{/if}
 </Form>

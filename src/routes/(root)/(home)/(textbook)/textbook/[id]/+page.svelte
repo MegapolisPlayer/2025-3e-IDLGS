@@ -166,9 +166,7 @@
 			{@html renderMarkdown(data.textbook.description)}
 		</div>
 
-		<div
-			class="grid grid-cols-3 gap-2"
-		>
+		<div class="grid grid-cols-3 gap-2">
 			<Button
 				btn="button-primary"
 				emoji="book-open"

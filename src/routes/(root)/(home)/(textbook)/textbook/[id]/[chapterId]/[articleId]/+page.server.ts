@@ -6,13 +6,13 @@ export const load = async (event) => {
 
 	const article = await loadArticle(articleId);
 
-	if(!article){
+	if (!article) {
 		return error(404, 'Article not found');
 	}
 
 	return {
-		article: article
-	}
+		article: article,
+	};
 };
 
 export const actions = {

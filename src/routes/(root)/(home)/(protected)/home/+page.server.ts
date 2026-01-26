@@ -112,17 +112,15 @@ export const actions = {
 								})
 								.from(schema.user)
 								.where(inArray(schema.user.uuid, users))
-						)
-							.map((u) => {
-								return {
-									user: u.id,
-									owner: roles[users.indexOf(u.uuid)].isOwner,
-									editor: roles[users.indexOf(u.uuid)]
-										.isEditor,
-									textbook: textbook,
-								};
-							});
-						
+						).map((u) => {
+							return {
+								user: u.id,
+								owner: roles[users.indexOf(u.uuid)].isOwner,
+								editor: roles[users.indexOf(u.uuid)].isEditor,
+								textbook: textbook,
+							};
+						});
+
 						await tx
 							.insert(schema.userTextbookLinker)
 							.values(userIds);
@@ -251,17 +249,15 @@ export const actions = {
 							})
 							.from(schema.user)
 							.where(inArray(schema.user.uuid, users))
-					)
-						.map((u) => {
-							return {
-								user: u.id,
-								teacher:
-									roles[users.indexOf(u.uuid)] === 'teacher',
-								owner: roles[users.indexOf(u.uuid)] === 'owner',
-								course: course[0].id,
-							};
-						});
-					
+					).map((u) => {
+						return {
+							user: u.id,
+							teacher: roles[users.indexOf(u.uuid)] === 'teacher',
+							owner: roles[users.indexOf(u.uuid)] === 'owner',
+							course: course[0].id,
+						};
+					});
+
 					await tx.insert(schema.userCourseLinker).values(userIds);
 				});
 				//} catch (e) {

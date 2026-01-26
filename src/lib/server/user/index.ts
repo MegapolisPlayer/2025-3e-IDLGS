@@ -107,9 +107,10 @@ export const createUser = async (
 		throw e;
 	}
 
-	if (!(await sendMail(
-		m.welcomeToIDLGS({}, { locale: lang as Locale }),
-		renderMarkdown(`
+	if (
+		!(await sendMail(
+			m.welcomeToIDLGS({}, { locale: lang as Locale }),
+			renderMarkdown(`
 # ${m.welcomeToIDLGS({}, { locale: lang as Locale })}
 ${m.anAccountWasCreatedForThisEmailAddress({}, { locale: lang as Locale })}
 ${m.yourLoginInformation({}, { locale: lang as Locale })}
@@ -119,9 +120,15 @@ ${m.youCanLoginHere({}, { locale: lang as Locale })}: [IDLGS](https://ucebnice.m
 
 ${m.youWIllBeAskedToChangeYourPasswordAfterYourFirstLogin({}, { locale: lang as Locale })}
 		`),
-		email,
-	))) {
-		writeLog(getRequestEvent(), 'ERROR', 'Failed to send welcome email', result);
+			email,
+		))
+	) {
+		writeLog(
+			getRequestEvent(),
+			'ERROR',
+			'Failed to send welcome email',
+			result,
+		);
 		throw new Error('Failed to send welcome email');
 	}
 
@@ -147,7 +154,6 @@ export const getUser = async (): Promise<UserType | undefined> => {
 		if (token.length == 0) return undefined;
 
 		if (token[0].expiresAt.getTime() <= Date.now()) {
-
 			await tx
 				.delete(schema.userSession)
 				.where(eq(schema.userSession.token, cookie));
@@ -159,9 +165,7 @@ export const getUser = async (): Promise<UserType | undefined> => {
 			await tx
 				.update(schema.userSession)
 				.set({
-					expiresAt: new Date(
-						Date.now() + USER_SESSION_LENGTH,
-					),
+					expiresAt: new Date(Date.now() + USER_SESSION_LENGTH),
 				})
 				.where(eq(schema.userSession.token, cookie));
 		}

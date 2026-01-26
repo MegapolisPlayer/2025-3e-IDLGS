@@ -1,7 +1,7 @@
 <script lang="ts">
-	import WideCard from "$src/routes/(root)/components/WideCard.svelte";
-	import type { TextbookType } from "$lib/types";
-	import { m } from "$lib/paraglide/messages";
+	import WideCard from '$src/routes/(root)/components/WideCard.svelte';
+	import type { TextbookType } from '$lib/types';
+	import { m } from '$lib/paraglide/messages';
 
 	let {
 		data,

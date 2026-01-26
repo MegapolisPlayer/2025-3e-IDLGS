@@ -10,7 +10,7 @@
 			textbook: TextbookType;
 			isEditor: boolean;
 			isOwner: boolean;
-		};	
+		};
 	} = $props();
 </script>
 

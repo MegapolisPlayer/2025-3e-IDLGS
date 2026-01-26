@@ -81,7 +81,9 @@
 			"
 			>
 				{#await data.textbooks}
-					<div class="absolute top-0 left-0 flex h-full w-full grow flex-col justify-center items-center">
+					<div
+						class="absolute top-0 left-0 flex h-full w-full grow flex-col items-center justify-center"
+					>
 						<LoadingAnimationHandler />
 					</div>
 				{:then textbooks}

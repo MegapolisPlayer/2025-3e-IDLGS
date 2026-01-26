@@ -6,13 +6,13 @@ export const load = async (event) => {
 
 	const chapter = await loadChapter(chapterId);
 
-	if(!chapter){
+	if (!chapter) {
 		return error(404, 'Chapter not found');
 	}
-	
+
 	return {
 		chapter: chapter,
-	}
+	};
 };
 
 export const actions = {

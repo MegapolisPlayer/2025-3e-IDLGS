@@ -30,10 +30,12 @@ export const loadTextbooks = async (
 			schema.userTextbookLinker,
 			eq(schema.textbook.id, schema.userTextbookLinker.textbook), //join condition
 		)
-		.where(or(
-			eq(schema.userTextbookLinker.user, user?.id ?? -1),
-			eq(schema.textbook.public, true),
-		));
+		.where(
+			or(
+				eq(schema.userTextbookLinker.user, user?.id ?? -1),
+				eq(schema.textbook.public, true),
+			),
+		);
 
 	for (let i = 0; i < textbooks.length; i++) {
 		textbooks[i].description = renderMarkdown(textbooks[i].description);

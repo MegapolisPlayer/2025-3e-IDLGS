@@ -59,16 +59,8 @@ export const actions = {
 			},
 		);
 	},
-	addChapter: async (event) => {
-
-	},
-	addArticle: async (event) => {
-
-	},
-	removeChapter: async (event) => {
-
-	},
-	removeArticle: async (event) => {
-
-	},
+	addChapter: async (event) => {},
+	addArticle: async (event) => {},
+	removeChapter: async (event) => {},
+	removeArticle: async (event) => {},
 };

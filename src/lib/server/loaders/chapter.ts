@@ -1,9 +1,9 @@
-import { getRequestEvent } from "$app/server"
-import { schema } from "../db/mainSchema";
-import { eq } from "drizzle-orm";
+import { getRequestEvent } from '$app/server';
+import { schema } from '../db/mainSchema';
+import { eq } from 'drizzle-orm';
 
 export const loadChapter = async (uuid: string) => {
-	const db = getRequestEvent().locals.db;	
+	const db = getRequestEvent().locals.db;
 
 	const result = await db
 		.select({
@@ -12,15 +12,12 @@ export const loadChapter = async (uuid: string) => {
 			order: schema.chapter.order,
 		})
 		.from(schema.chapter)
-		.where(eq(
-			schema.chapter.uuid,
-			uuid,
-		))
+		.where(eq(schema.chapter.uuid, uuid))
 		.limit(1);
 
-	if(result.length === 0) {
+	if (result.length === 0) {
 		return undefined;
 	}
 
 	return result[0];
-}
+};

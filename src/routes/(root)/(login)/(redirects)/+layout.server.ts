@@ -10,5 +10,5 @@ export const load = async (event) => {
 
 	return {
 		user: user,
-	}
+	};
 };
