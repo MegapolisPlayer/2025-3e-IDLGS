@@ -57,7 +57,7 @@ const handleDefaultUser: Handle = async ({ event, resolve }) => {
 	if (!env.DEV || !env.DEFAULT_EMAIL || !env.DEFAULT_PASSWORD)
 		throw Error('ENV vars not set!');
 
-	const query = (await event.locals.db.select().from(schema.user).limit(1));
+	const query = await event.locals.db.select().from(schema.user).limit(1);
 
 	if (query.length === 0) {
 		await createUser(
@@ -76,9 +76,9 @@ const handleDefaultUser: Handle = async ({ event, resolve }) => {
 			true,
 			true,
 		);
-		console.log("Default user created.");
+		console.log('Default user created.');
+	} else {
 	}
-	else {}
 
 	return resolve(event);
 };
