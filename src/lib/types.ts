@@ -98,6 +98,16 @@ export type ArticleType = {
 	order: number;
 };
 
+//Bookmarks and highlights
+
+//TODO
+export type BookmarkType = {
+
+};
+export type HighlightType = {
+
+};
+
 //Courses
 
 export type CourseType = {

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-	import WideCard from '$component/WideCard.svelte';
 	import type { TextbookType } from '$lib/types';
 
 	let {
@@ -14,11 +13,4 @@
 	} = $props();
 </script>
 
-<WideCard
-	cssAddition="grow"
-	r={data.textbook.red}
-	g={data.textbook.green}
-	b={data.textbook.blue}
->
-	<h2>{m.articleName()}</h2>
-</WideCard>
+<h2>{m.articleName()}</h2>

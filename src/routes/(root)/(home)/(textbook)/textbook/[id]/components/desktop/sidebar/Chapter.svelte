@@ -1,30 +1,72 @@
 <script lang="ts">
 	import type { ChapterType } from '$lib/types';
 	import Button from '$component/Button.svelte';
-	import { addAnArticle, m } from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 	import Article from './Article.svelte';
 	import Modal from '$component/Modal.svelte';
 	import Form from '$component/Form.svelte';
 	import TextInput from '$component/TextInput.svelte';
+	import HiddenInput from '$src/routes/(root)/components/HiddenInput.svelte';
+	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
 
 	let {
 		chapter,
 		textbookUuid,
 		canEdit,
 		showEditButtons,
+		formMessage = $bindable(''),
+		formAlert = $bindable(''),
 	}: {
 		chapter: ChapterType;
 		textbookUuid: string;
 		canEdit: boolean;
 		showEditButtons: boolean;
+		formMessage: string;
+		formAlert: string;
 	} = $props();
 
 	let isOpen = $state(false);
 
 	let addArticleModal = $state(false);
+	let chapterDeletionRequested = $state(false);
+	let chapterRenameRequested = $state(false);
 </script>
 
-<div class="flex w-full flex-col gap-0 pr-0 pl-0">
+<Form
+	cssClass="flex w-full flex-col gap-0 pr-0 pl-0"
+	action=""
+	smallLoadAnimation={true}
+	success={async () => {
+		if(chapterDeletionRequested) {
+			formMessage = m.chapterDeletedSuccessfully();
+		}
+		if(chapterRenameRequested) {
+			formMessage = m.chapterRenamedSuccessfully();
+		}
+	}}
+	failure={async () => {
+		if(chapterDeletionRequested) {
+			formAlert = m.couldNotDeleteChapter();
+		}
+		if(chapterRenameRequested) {
+			formAlert = m.couldNotRenameChapter();
+		}
+	}}
+	final={async () => {
+		if(page.params.chapterId === chapter.uuid) {
+			goto(`/textbook/${textbookUuid}/`);
+		}
+
+		chapterDeletionRequested = false;
+		chapterRenameRequested = false;
+	}}
+>
+	<HiddenInput
+		name="uuid"
+		value={chapter.uuid}
+		ignoreChangeEvents={true}
+	/>
 	<div class="flex w-full flex-row items-center justify-start gap-1">
 		<a href="/textbook/{textbookUuid}/{chapter.uuid}">
 			{chapter.name}
@@ -42,19 +84,40 @@
 			<Button
 				btn="button-none *:font-medium"
 				emoji="pencil"
+				type="submit"
+				action={`/textbook/${textbookUuid}/?/editChapterName`}
 				label={m.editChapterName()}
+				onclick={() => {
+					chapterRenameRequested = true;
+				}}
 			/>
 
 			<!-- move up and down -->
 			<Button
 				btn="button-none *:font-medium"
 				emoji="arrow-up-s"
+				type="submit"
+				action={`/textbook/${textbookUuid}/?/moveChapterUp`}
 				label={m.moveChapterUp()}
 			/>
 			<Button
 				btn="button-none *:font-medium"
 				emoji="arrow-down-s"
+				type="submit"
+				action={`/textbook/${textbookUuid}/?/moveChapterDown`}
 				label={m.moveChapterDown()}
+			/>
+
+			<!-- delete -->
+			<Button
+				btn="button-none *:font-medium"
+				emoji="delete-bin"
+				type="submit"
+				action={`/textbook/${textbookUuid}/?/removeChapter`}
+				label={m.removeChapter()}
+				onclick={() => {
+					chapterDeletionRequested = true;
+				}}
 			/>
 		{/if}
 	</div>
@@ -67,6 +130,8 @@
 				chapterUuid={chapter.uuid}
 				{canEdit}
 				{showEditButtons}
+				bind:formMessage
+				bind:formAlert
 			/>
 		{:else}
 			<div
@@ -88,7 +153,7 @@
 			</Button>
 		{/if}
 	{/if}
-</div>
+</Form>
 
 <Modal
 	bind:showModal={addArticleModal}
@@ -96,31 +161,41 @@
 	maxHeight={false}
 	maxWidth={false}
 >
-	<h2>{m.addAnArticle()}</h2>
-	<div class="flex w-full grow flex-col items-center justify-center">
-		<TextInput
-			name="name"
-			label={m.articleName()}
-			placeholder={m.enterArticleName()}
-		/>
-	</div>
 	<Form
-		cssClass="grid grid-cols-2 gap-2 w-full"
-		action="//textbook/{textbookUuid}/?/addArticle"
+		action={`/textbook/${textbookUuid}/${chapter.uuid}/?/addArticle`}
+		cssClass="flex w-full flex-col gap-2"
+		success={async () => {
+			addArticleModal = false;
+			formMessage = m.articleAddedSuccessfully();
+		}}
+		failure={async () => {
+			addArticleModal = false;
+			formAlert = m.articleCouldNotBeAdded();
+		}}
 	>
-		<Button
-			type="submit"
-			btn="button-primary"
-			emoji="add-circle"
-		>
-			{m.addAnArticle()}
-		</Button>
-		<Button
-			btn="button-red"
-			emoji="close-circle"
-			type="button"
-		>
-			{m.cancel()}
-		</Button>
+		<h2>{m.addAnArticle()}</h2>
+		<div class="flex w-full grow flex-col items-center justify-center">
+			<TextInput
+				name="name"
+				label={m.articleName()}
+				placeholder={m.enterArticleName()}
+			/>
+		</div>
+		<div class="grid w-full grid-cols-2 gap-2">
+			<Button
+				type="submit"
+				btn="button-primary"
+				emoji="add-circle"
+			>
+				{m.addAnArticle()}
+			</Button>
+			<Button
+				btn="button-red"
+				emoji="close-circle"
+				type="button"
+			>
+				{m.cancel()}
+			</Button>
+		</div>
 	</Form>
 </Modal>

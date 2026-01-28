@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { m } from '$lib/paraglide/messages';
-	import WideCard from '$component/WideCard.svelte';
-	import type { TextbookType } from '$lib/types';
+	import type { ChapterType, TextbookType } from '$lib/types';
+	import Desktop from './Desktop.svelte';
+	import Mobile from './Mobile.svelte';
+	import type { Snippet } from 'svelte';
 
 	let {
 		data,
@@ -10,15 +11,11 @@
 			textbook: TextbookType;
 			isEditor: boolean;
 			isOwner: boolean;
+			chapter: ChapterType;
 		};
 	} = $props();
 </script>
 
-<WideCard
-	cssAddition="grow"
-	r={data.textbook.red}
-	g={data.textbook.green}
-	b={data.textbook.blue}
->
-	<h2>{m.chapter()}</h2>
-</WideCard>
+<Desktop {data} />
+
+<Mobile {data} />

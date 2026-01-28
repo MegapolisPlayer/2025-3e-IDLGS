@@ -1,4 +1,4 @@
-import { pgTable, integer, boolean } from 'drizzle-orm/pg-core';
+import { pgTable, integer, boolean, numeric } from 'drizzle-orm/pg-core';
 import { user } from './user';
 import { course } from './course';
 import { textbook } from './textbook';
@@ -34,6 +34,7 @@ export const userTextbookLinker = pgTable('userTextbookLinker', {
 			onDelete: 'cascade',
 		})
 		.notNull(),
+	readProgress: numeric('readProgress').notNull().default('0'),
 });
 
 export const userAssignmentLinker = pgTable('userAssignmentLinker', {

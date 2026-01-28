@@ -414,7 +414,6 @@
 	"editChapterName": "Kapitelname bearbeiten",
 	"moveChapterUp": "Kapitel nach oben verschieben",
 	"moveChapterDown": "Kapitel nach unten verschieben",
-	"theNameOfTheChapterOrTheArticleIsIncorrect": "Der Name des Kapitels oder des Artikels ist falsch.",
 	"errorMessage": "Fehlermeldung",
 	"goBackToTextbookHomepage": "Zurück zur Lehrbuch-Startseite",
 	"textbookStatistics": "Lehrbuch-Statistiken",
@@ -423,5 +422,18 @@
 	"enterChapterName": "Kapitelname eingeben",
 	"enterArticleName": "Artikelname eingeben",
 	"educationIsTheMostPowerfulToolWhichYouCanUseToChangeTheWorld": "Bildung ist das mächtigste Werkzeug, mit dem Sie die Welt verändern können.",
-	"nelsonMandela": "Nelson Mandela"
+	"nelsonMandela": "Nelson Mandela",
+	"noChapterOrArticleAtThisAddress": "Kein Kapitel oder Artikel unter dieser Adresse",
+	"chapterCouldNotBeAdded": "Kapitel konnte nicht hinzugefügt werden",
+	"articleCouldNotBeAdded": "Artikel konnte nicht hinzugefügt werden",
+	"chapterAddedSuccessfully": "Kapitel erfolgreich hinzugefügt",
+	"articleAddedSuccessfully": "Artikel erfolgreich hinzugefügt",
+	"chapterDeletedSuccessfully": "Kapitel erfolgreich gelöscht",
+	"articleDeletedSuccessfully": "Artikel erfolgreich gelöscht",
+	"chapterRenamedSuccessfully": "Kapitel erfolgreich umbenannt",
+	"articleRenamedSuccessfully": "Artikel erfolgreich umbenannt",
+	"couldNotDeleteChapter": "Kapitel konnte nicht gelöscht werden",
+	"couldNotDeleteArticle": "Artikel konnte nicht gelöscht werden",
+	"couldNotRenameChapter": "Kapitel konnte nicht umbenannt werden",
+	"couldNotRenameArticle": "Artikel konnte nicht umbenannt werden"
 }

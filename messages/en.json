@@ -414,7 +414,6 @@
 	"editChapterName": "Edit Chapter Name",
 	"moveChapterDown": "Move Chapter Down",
 	"moveChapterUp": "Move Chapter Up",
-	"theNameOfTheChapterOrTheArticleIsIncorrect": "The name of the chapter or the article is incorrect.",
 	"errorMessage": "Error Message",
 	"goBackToTextbookHomepage": "Go Back to Textbook Homepage",
 	"textbookStatistics": "Textbook Statistics",
@@ -423,5 +422,18 @@
 	"enterChapterName": "Enter chapter name",
 	"chapterName": "Chapter Name",
 	"educationIsTheMostPowerfulToolWhichYouCanUseToChangeTheWorld": "Education is the most powerful tool which you can use to change the world.",
-	"nelsonMandela": "Nelson Mandela"
+	"nelsonMandela": "Nelson Mandela",
+	"noChapterOrArticleAtThisAddress": "No chapter or article at this address",
+	"chapterAddedSuccessfully": "Chapter added successfully",
+	"articleAddedSuccessfully": "Article added successfully",
+	"chapterCouldNotBeAdded": "Chapter could not be added",
+	"articleCouldNotBeAdded": "Article could not be added",
+	"chapterRenamedSuccessfully": "Chapter renamed successfully",
+	"articleRenamedSuccessfully": "Article renamed successfully",
+	"couldNotRenameChapter": "Chapter could not be renamed",
+	"couldNotRenameArticle": "Article could not be renamed",
+	"chapterDeletedSuccessfully": "Chapter deleted successfully",
+	"articleDeletedSuccessfully": "Article deleted successfully",
+	"couldNotDeleteArticle": "Article could not be deleted",
+	"couldNotDeleteChapter": "Chapter could not be deleted"
 }

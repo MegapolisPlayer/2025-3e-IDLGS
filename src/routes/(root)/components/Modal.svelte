@@ -59,7 +59,7 @@
 					class="
 						{cssClass ? cssClass : 'bg-white!'} 
 						{maxHeight ? 'grow max-xl:h-screen' : ''}
-						{maxWidth ? 'max-xl:w-screen max-xl:min-w-9/10 xl:max-w-4/5 ' : ''}
+						{maxWidth ? 'max-xl:w-screen max-xl:min-w-9/10 xl:max-w-4/5 xl:min-w-2/3' : ''}
 						mt-5 mb-5 flex flex-col gap-2 rounded-2xl text-left text-white xl:max-h-[66svh] xl:p-5
 			"
 					style={cssStyle}

@@ -414,7 +414,6 @@
 	"editChapterName": "Edytuj nazwę rozdziału",
 	"moveChapterDown": "Przenieś rozdział w dół",
 	"moveChapterUp": "Przenieś rozdział w górę",
-	"theNameOfTheChapterOrTheArticleIsIncorrect": "Nazwa rozdziału lub artykułu jest niepoprawna.",
 	"errorMessage": "Wiadomość o błędzie",
 	"goBackToTextbookHomepage": "Wróć do strony głównej podręcznika",
 	"textbookStatistics": "Statystyki podręcznika",
@@ -423,5 +422,18 @@
 	"enterArticleName": "Wprowadź nazwę artykułu",
 	"chapterName": "Nazwa rozdziału",
 	"educationIsTheMostPowerfulToolWhichYouCanUseToChangeTheWorld": "Edukacja jest najpotężniejszym narzędziem, które możesz wykorzystać do zmiany świata.",
-	"nelsonMandela": "Nelson Mandela"
+	"nelsonMandela": "Nelson Mandela",
+	"noChapterOrArticleAtThisAddress": "Brak rozdziału lub artykułu pod tym adresem",
+	"chapterCouldNotBeAdded": "Nie można dodać rozdziału",
+	"articleCouldNotBeAdded": "Nie można dodać artykułu",
+	"chapterAddedSuccessfully": "Rozdział został pomyślnie dodany",
+	"articleAddedSuccessfully": "Artykuł został pomyślnie dodany",
+	"articleDeletedSuccessfully": "Artykuł został pomyślnie usunięty",
+	"chapterDeletedSuccessfully": "Rozdział został pomyślnie usunięty",
+	"articleRenamedSuccessfully": "Nazwa artykułu została pomyślnie zaktualizowana",
+	"chapterRenamedSuccessfully": "Nazwa rozdziału została pomyślnie zaktualizowana",
+	"couldNotDeleteArticle": "Nie udało się usunąć artykułu",
+	"couldNotDeleteChapter": "Nie udało się usunąć rozdziału",
+	"couldNotRenameArticle": "Nie udało się zmienić nazwy artykułu",
+	"couldNotRenameChapter": "Nie udało się zmienić nazwy rozdziału"
 }

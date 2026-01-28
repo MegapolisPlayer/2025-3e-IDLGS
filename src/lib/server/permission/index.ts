@@ -3,7 +3,8 @@ import { schema } from '$lib/server/db/mainSchema';
 import { and, eq, or } from 'drizzle-orm';
 
 export const isUserAuthorizedTextbook = async (
-	uuid: string,
+	textbookUuid: string,
+	userUuid: string,
 ): Promise<boolean> => {
 	const db = getRequestEvent().locals.db;
 
@@ -15,9 +16,14 @@ export const isUserAuthorizedTextbook = async (
 			schema.user,
 			eq(schema.user.id, schema.userTextbookLinker.user),
 		)
+		.innerJoin(
+			schema.textbook,
+			eq(schema.textbook.id, schema.userTextbookLinker.textbook),
+		)
 		.where(
 			and(
-				eq(schema.user.uuid, uuid),
+				eq(schema.user.uuid, userUuid),
+				eq(schema.textbook.uuid, textbookUuid),
 				or(
 					eq(schema.userTextbookLinker.editor, true),
 					eq(schema.userTextbookLinker.owner, true),

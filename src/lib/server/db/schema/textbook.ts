@@ -7,6 +7,7 @@ import {
 	boolean,
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
+import { user } from './user';
 
 export const textbook = pgTable(
 	'textbook',
@@ -78,4 +79,44 @@ export const textbookWordDefinition = pgTable('textbookWordDefinition', {
 	textbook: integer('textbook')
 		.references(() => textbook.id, { onDelete: 'cascade' })
 		.notNull(),
+});
+
+export const bookmark = pgTable('bookmark', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	user: integer('user')
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	article: integer('article')
+		.references(() => article.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	//TODO move on article edit! (calc diff or something)
+	textIndex: integer('textIndex').notNull().default(0),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
+});
+
+export const highlight = pgTable('highlight', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	user: integer('user')
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	article: integer('article')
+		.references(() => article.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	color: integer('color').notNull().default(0),
+	//TODO move and resize on article edit! (calc diff or something)
+	startIndex: integer('startIndex').notNull().default(0),
+	endIndex: integer('endIndex').notNull().default(0),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });

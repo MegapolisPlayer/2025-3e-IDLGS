@@ -13,6 +13,7 @@
 		failure = async () => {},
 		final = async () => {},
 		action,
+		smallLoadAnimation = false,
 	}: {
 		children: Snippet;
 		cssClass?: string;
@@ -23,6 +24,7 @@
 		failure?: (data: unknown) => Promise<void>;
 		final?: () => Promise<void>;
 		action: string;
+		smallLoadAnimation?: boolean;
 	} = $props();
 </script>
 
@@ -49,7 +51,7 @@
 	{action}
 >
 	{#if loading}
-		<LoadingAnimationHandler />
+		<LoadingAnimationHandler text={!smallLoadAnimation} smallerBubbles={smallLoadAnimation}/>
 	{:else}
 		{@render children()}
 	{/if}

@@ -414,7 +414,6 @@
 	"editChapterName": "Редактировать название главы",
 	"moveChapterDown": "Переместить главу вниз",
 	"moveChapterUp": "Переместить главу вверх",
-	"theNameOfTheChapterOrTheArticleIsIncorrect": "Название главы или статьи некорректно.",
 	"errorMessage": "Сообщение об ошибке",
 	"goBackToTextbookHomepage": "Вернуться на главную страницу учебника",
 	"textbookStatistics": "Статистика учебника",
@@ -423,5 +422,18 @@
 	"enterChapterName": "Введите название главы",
 	"enterArticleName": "Введите название статьи",
 	"educationIsTheMostPowerfulToolWhichYouCanUseToChangeTheWorld": "Образование — это самое мощное оружие, которое вы можете использовать, чтобы изменить мир.",
-	"nelsonMandela": "Нельсон Мандела"
+	"nelsonMandela": "Нельсон Мандела",
+	"noChapterOrArticleAtThisAddress": "Нет главы или статьи по этому адресу",
+	"chapterCouldNotBeAdded": "Не удалось добавить главу",
+	"articleCouldNotBeAdded": "Не удалось добавить статью",
+	"chapterAddedSuccessfully": "Глава успешно добавлена",
+	"articleAddedSuccessfully": "Статья успешно добавлена",
+	"chapterDeletedSuccessfully": "Глава успешно удалена",
+	"articleDeletedSuccessfully": "Статья успешно удалена",
+	"chapterRenamedSuccessfully": "Глава успешно переименована",
+	"articleRenamedSuccessfully": "Статья успешно переименована",
+	"couldNotDeleteArticle": "Не удалось удалить статью",
+	"couldNotDeleteChapter": "Не удалось удалить главу",
+	"couldNotRenameChapter": "Не удалось переименовать главу",
+	"couldNotRenameArticle": "Не удалось переименовать статью"
 }

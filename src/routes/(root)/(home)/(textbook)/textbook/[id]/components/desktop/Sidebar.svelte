@@ -11,6 +11,9 @@
 	import Chapter from './sidebar/Chapter.svelte';
 	import { browser } from '$app/environment';
 	import TextInput from '$component/TextInput.svelte';
+	import { page } from '$app/state';
+	import SuccessBox from '$src/routes/(root)/components/SuccessBox.svelte';
+	import AlertBox from '$src/routes/(root)/components/AlertBox.svelte';
 
 	let {
 		id,
@@ -51,6 +54,9 @@
 
 		clearInterval(showEditButtonsInterval);
 	});
+
+	let formMessage: string = $state('');
+	let formAlert: string = $state('');
 </script>
 
 <div class="sticky top-[6vh] left-0 h-[94svh] min-w-1/5 overflow-clip p-2">
@@ -125,6 +131,8 @@
 					textbookUuid={id}
 					{canEdit}
 					showEditButtons={showEditButtonsLocal}
+					bind:formMessage
+					bind:formAlert
 				/>
 			{:else}
 				<div
@@ -194,31 +202,44 @@
 	maxHeight={false}
 	maxWidth={false}
 >
-	<h2>{m.addAChapter()}</h2>
-	<div class="flex w-full grow flex-col items-center justify-center">
-		<TextInput
-			name="name"
-			label={m.chapterName()}
-			placeholder={m.enterChapterName()}
-		/>
-	</div>
 	<Form
-		cssClass="grid grid-cols-2 gap-2 w-full"
-		action="//textbook/{id}/?/addChapter"
+		action={`/textbook/${id}/?/addChapter`}
+		cssClass="flex w-full flex-col gap-2"
+		success={async () => {
+			addChapterModal = false;
+			formMessage = m.chapterAddedSuccessfully();
+		}}
+		failure={async () => {
+			addChapterModal = false;
+			formAlert = m.chapterCouldNotBeAdded();
+		}}
 	>
-		<Button
-			type="submit"
-			btn="button-primary"
-			emoji="add-circle"
-		>
-			{m.addAChapter()}
-		</Button>
-		<Button
-			btn="button-red"
-			emoji="close-circle"
-			type="button"
-		>
-			{m.cancel()}
-		</Button>
+		<h2>{m.addAChapter()}</h2>
+		<div class="flex w-full grow flex-col items-center justify-center">
+			<TextInput
+				name="name"
+				label={m.chapterName()}
+				placeholder={m.enterChapterName()}
+			/>
+		</div>
+		<div class="grid w-full grid-cols-2 gap-2">
+			<Button
+				type="submit"
+				btn="button-primary"
+				emoji="add-circle"
+			>
+				{m.addAChapter()}
+			</Button>
+			<Button
+				btn="button-red"
+				emoji="close-circle"
+				type="button"
+			>
+				{m.cancel()}
+			</Button>
+		</div>
 	</Form>
 </Modal>
+
+<SuccessBox bind:message={formMessage} />
+<AlertBox bind:message={formAlert} />

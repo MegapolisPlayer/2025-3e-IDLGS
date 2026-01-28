@@ -17,7 +17,7 @@
 		</h2>
 		<p class="text-lg font-light! opacity-70">
 			{#if page.status === 404}
-				{m.theNameOfTheChapterOrTheArticleIsIncorrect()}
+				{m.noChapterOrArticleAtThisAddress()}
 			{:else}
 				{m.errorMessage()}:
 				{page.error!.message}

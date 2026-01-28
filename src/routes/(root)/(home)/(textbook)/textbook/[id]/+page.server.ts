@@ -1,10 +1,10 @@
 import { writeLog } from '$lib/log';
-import { add, removeChapter } from '$lib/paraglide/messages.js';
+import { editChapterName } from '$lib/paraglide/messages.js';
 import { schema } from '$lib/server/db/mainSchema';
 import { formRunner } from '$lib/server/form/runner';
 import { isUserAuthorizedTextbook } from '$lib/server/permission';
 import { fail } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 
 //TODO guard against if archived textbook!!
 
@@ -18,7 +18,7 @@ export const actions = {
 			['uuid', 'name'],
 			async (event, formData, cookies, user, formDataRaw) => {
 				try {
-					if ((await isUserAuthorizedTextbook(user.uuid)) === false) {
+					if ((await isUserAuthorizedTextbook(event.params.id!, user.uuid)) === false) {
 						return fail(403);
 					}
 
@@ -41,7 +41,7 @@ export const actions = {
 			['uuid', 'description'],
 			async (event, formData, cookies, user, formDataRaw) => {
 				try {
-					if ((await isUserAuthorizedTextbook(user.uuid)) === false) {
+					if ((await isUserAuthorizedTextbook(event.params.id!, user.uuid)) === false) {
 						return fail(403);
 					}
 
@@ -63,24 +63,41 @@ export const actions = {
 		return await formRunner(
 			['name'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				try {
-					await event.locals.db.transaction(async (tx) => {
-						//TODO
-					});
-				} catch (e) {
-					writeLog(event, 'ERROR', 'DB error', user);
-					return fail(500);
+				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+					return fail(403);
 				}
-			},
-		);
-	},
-	addArticle: async () => {
-		return await formRunner(
-			['name', 'chapterUuid'],
-			async (event, formData, cookies, user, formDataRaw) => {
+
 				try {
 					await event.locals.db.transaction(async (tx) => {
-						//TODO
+						const textbook = await tx
+							.select()
+							.from(schema.textbook)
+							.where(
+								eq(
+									schema.textbook.uuid,
+									event.params.id!,
+								),
+							)
+							.limit(1);
+
+						const order = await tx
+							.select()
+							.from(schema.chapter)
+							.where(
+								eq(
+									schema.chapter.textbook,
+									textbook[0].id,
+								),
+							)
+							.orderBy(desc(schema.chapter.order))
+							.limit(1);
+
+						await tx.insert(schema.chapter).values({
+							name: formData['name'],
+							summary: '',
+							textbook: textbook[0].id,
+							order: order.length > 0 ? order[0].order + 1 : 0,
+						});
 					});
 				} catch (e) {
 					writeLog(event, 'ERROR', 'DB error', user);
@@ -93,6 +110,10 @@ export const actions = {
 		return await formRunner(
 			['uuid'],
 			async (event, formData, cookies, user, formDataRaw) => {
+				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+					return fail(403);
+				}
+
 				try {
 					await event.locals.db
 						.delete(schema.chapter)
@@ -104,25 +125,14 @@ export const actions = {
 			},
 		);
 	},
-	removeArticle: async () => {
-		return await formRunner(
-			['uuid'],
-			async (event, formData, cookies, user, formDataRaw) => {
-				try {
-					await event.locals.db
-						.delete(schema.article)
-						.where(eq(schema.article.uuid, formData['uuid']));
-				} catch (e) {
-					writeLog(event, 'ERROR', 'DB error', user);
-					return fail(500);
-				}
-			},
-		);
-	},
 	moveChapterUp: async () => {
 		return await formRunner(
 			['uuid'],
 			async (event, formData, cookies, user, formDataRaw) => {
+				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+					return fail(403);
+				}
+
 				try {
 					//TODO
 				} catch (e) {
@@ -136,6 +146,10 @@ export const actions = {
 		return await formRunner(
 			['uuid'],
 			async (event, formData, cookies, user, formDataRaw) => {
+				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+					return fail(403);
+				}
+
 				try {
 					//TODO
 				} catch (e) {
@@ -145,24 +159,14 @@ export const actions = {
 			},
 		);
 	},
-	//if article first/last in chapter, move to previous/next chapter
-	moveArticleUp: async () => {
+	editChapterName: async () => {
 		return await formRunner(
-			['uuid'],
+			['uuid', 'name'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				try {
-					//TODO
-				} catch (e) {
-					writeLog(event, 'ERROR', 'DB error', user);
-					return fail(500);
+				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+					return fail(403);
 				}
-			},
-		);
-	},
-	moveArticleDown: async () => {
-		return await formRunner(
-			['uuid'],
-			async (event, formData, cookies, user, formDataRaw) => {
+
 				try {
 					//TODO
 				} catch (e) {

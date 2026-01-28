@@ -414,7 +414,6 @@
 	"editChapterName": "Upravit název kapitoly",
 	"moveChapterDown": "Přesunout kapitolu dolů",
 	"moveChapterUp": "Přesunout kapitolu nahoru",
-	"theNameOfTheChapterOrTheArticleIsIncorrect": "Název kapitoly nebo článku je nesprávný.",
 	"errorMessage": "Chybová zpráva",
 	"goBackToTextbookHomepage": "Zpět na domovskou stránku učebnice",
 	"textbookStatistics": "Statistiky učebnice",
@@ -423,5 +422,18 @@
 	"enterArticleName": "Zadejte název článku",
 	"chapterName": "Název kapitoly",
 	"educationIsTheMostPowerfulToolWhichYouCanUseToChangeTheWorld": "Vzdělání je nejsilnější nástroj, který můžete použít ke změně světa.",
-	"nelsonMandela": "Nelson Mandela"
+	"nelsonMandela": "Nelson Mandela",
+	"noChapterOrArticleAtThisAddress": "Na této adrese není žádná kapitola ani článek",
+	"chapterAddedSuccessfully": "Kapitola byla úspěšně přidána",
+	"articleAddedSuccessfully": "Článek byl úspěšně přidán",
+	"chapterCouldNotBeAdded": "Nepodařilo se přidat kapitolu",
+	"articleCouldNotBeAdded": "Nepodařilo se přidat článek",
+	"chapterDeletedSuccessfully": "Kapitola byla úspěšně smazána",
+	"articleDeletedSuccessfully": "Článek byl úspěšně smazán",
+	"chapterCouldNotBeDeleted": "Nepodařilo se smazat kapitolu",
+	"articleCouldNotBeDeleted": "Nepodařilo se smazat článek",
+	"chapterRenamedSuccessfully": "Kapitola byla úspěšně přejmenována",
+	"articleRenamedSuccessfully": "Článek byl úspěšně přejmenován",
+	"chapterCouldNotBeRenamed": "Nepodařilo se přejmenovat kapitolu",
+	"articleCouldNotBeRenamed": "Nepodařilo se přejmenovat článek"
 }

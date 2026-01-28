@@ -7,7 +7,13 @@
 	let dots: number = $state(1);
 	let newMessage = $state(false);
 
-	let { text = true } = $props();
+	let { 
+		text = true,
+		smallerBubbles = false
+ 	}: {
+		text?: boolean;
+		smallerBubbles?: boolean;
+	} = $props();
 
 	onMount(() => {
 		timeoutMessageChange = setTimeout(() => {
@@ -25,7 +31,7 @@
 </script>
 
 <div class="flex flex-col items-center gap-0">
-	<div class="flex flex-row gap-1 text-emerald-600">
+	<div class="flex flex-row gap-1 text-emerald-600 {smallerBubbles ? 'text-sm' : 'text-lg'}">
 		<i class="ri-circle-fill animate-bounce [animation-delay:-0.66s]"></i>
 		<i class="ri-circle-fill animate-bounce [animation-delay:-0.33s]"></i>
 		<i class="ri-circle-fill animate-bounce"></i>
