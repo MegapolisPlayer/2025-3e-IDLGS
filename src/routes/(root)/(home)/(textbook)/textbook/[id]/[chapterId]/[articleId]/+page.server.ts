@@ -1,10 +1,6 @@
-import { formRunner } from '$lib/server/form/runner.js'; 
+import { formRunner } from '$lib/server/form/runner.js';
 
 export const actions = {
-	updateName: async () => {
-	
-	},
-	updateContent: async () => {
-	
-	}
+	updateName: async () => {},
+	updateContent: async () => {},
 };

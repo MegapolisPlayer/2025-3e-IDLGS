@@ -51,7 +51,10 @@
 	{action}
 >
 	{#if loading}
-		<LoadingAnimationHandler text={!smallLoadAnimation} smallerBubbles={smallLoadAnimation}/>
+		<LoadingAnimationHandler
+			text={!smallLoadAnimation}
+			smallerBubbles={smallLoadAnimation}
+		/>
 	{:else}
 		{@render children()}
 	{/if}

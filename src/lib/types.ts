@@ -101,12 +101,8 @@ export type ArticleType = {
 //Bookmarks and highlights
 
 //TODO
-export type BookmarkType = {
-
-};
-export type HighlightType = {
-
-};
+export type BookmarkType = {};
+export type HighlightType = {};
 
 //Courses
 

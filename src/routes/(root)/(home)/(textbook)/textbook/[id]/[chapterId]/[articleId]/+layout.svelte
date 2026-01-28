@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import Desktop from "./Desktop.svelte";
-	import Mobile from "./Mobile.svelte";
-	import type { ArticleType, TextbookType } from "$lib/types";
+	import type { Snippet } from 'svelte';
+	import Desktop from './Desktop.svelte';
+	import Mobile from './Mobile.svelte';
+	import type { ArticleType, TextbookType } from '$lib/types';
 
 	let {
 		children,
-		data
+		data,
 	}: {
 		children: Snippet;
 		data: {

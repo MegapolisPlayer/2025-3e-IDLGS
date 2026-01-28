@@ -3,11 +3,11 @@
 	import WideCard from '$component/WideCard.svelte';
 	import type { TextbookType } from '$lib/types';
 	import type { Snippet } from 'svelte';
-	import type { ArticleType } from "$lib/types";
+	import type { ArticleType } from '$lib/types';
 
 	let {
 		data,
-		children
+		children,
 	}: {
 		data: {
 			article: ArticleType;

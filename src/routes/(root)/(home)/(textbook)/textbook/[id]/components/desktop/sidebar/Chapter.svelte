@@ -38,23 +38,23 @@
 	action=""
 	smallLoadAnimation={true}
 	success={async () => {
-		if(chapterDeletionRequested) {
+		if (chapterDeletionRequested) {
 			formMessage = m.chapterDeletedSuccessfully();
 		}
-		if(chapterRenameRequested) {
+		if (chapterRenameRequested) {
 			formMessage = m.chapterRenamedSuccessfully();
 		}
 	}}
 	failure={async () => {
-		if(chapterDeletionRequested) {
+		if (chapterDeletionRequested) {
 			formAlert = m.couldNotDeleteChapter();
 		}
-		if(chapterRenameRequested) {
+		if (chapterRenameRequested) {
 			formAlert = m.couldNotRenameChapter();
 		}
 	}}
 	final={async () => {
-		if(page.params.chapterId === chapter.uuid) {
+		if (page.params.chapterId === chapter.uuid) {
 			goto(`/textbook/${textbookUuid}/`);
 		}
 

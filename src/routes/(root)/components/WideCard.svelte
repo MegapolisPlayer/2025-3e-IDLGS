@@ -15,9 +15,9 @@
 
 <div
 	class="
-	flex h-fit w-full
-	flex-col gap-2
-	rounded-lg border-2 shadow-xl hover:shadow-2xl z-5!
+	z-5! flex h-fit
+	w-full flex-col
+	gap-2 rounded-lg border-2 shadow-xl hover:shadow-2xl
 	{cssParentOverride} {cssAddition}
 	"
 	style="background-color: rgb({r} {g} {b} / 30%); border-color: rgb({r} {g} {b} / 30%);"

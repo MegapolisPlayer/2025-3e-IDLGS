@@ -168,7 +168,8 @@ export const loadSingleTextbook = async (
 			})
 			.from(schema.chapter)
 			.where(eq(schema.chapter.textbook, textbook[0].id));
-		(textbook[0] as TextbookType).chapters = chaptersData.sort((a, b) => a.order - b.order) ?? [];
+		(textbook[0] as TextbookType).chapters =
+			chaptersData.sort((a, b) => a.order - b.order) ?? [];
 		const chaptersIds = chaptersData.map((c) => c.id!);
 
 		//articles limited

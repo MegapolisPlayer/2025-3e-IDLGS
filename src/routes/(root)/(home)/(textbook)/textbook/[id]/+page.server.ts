@@ -18,7 +18,12 @@ export const actions = {
 			['uuid', 'name'],
 			async (event, formData, cookies, user, formDataRaw) => {
 				try {
-					if ((await isUserAuthorizedTextbook(event.params.id!, user.uuid)) === false) {
+					if (
+						(await isUserAuthorizedTextbook(
+							event.params.id!,
+							user.uuid,
+						)) === false
+					) {
 						return fail(403);
 					}
 
@@ -41,7 +46,12 @@ export const actions = {
 			['uuid', 'description'],
 			async (event, formData, cookies, user, formDataRaw) => {
 				try {
-					if ((await isUserAuthorizedTextbook(event.params.id!, user.uuid)) === false) {
+					if (
+						(await isUserAuthorizedTextbook(
+							event.params.id!,
+							user.uuid,
+						)) === false
+					) {
 						return fail(403);
 					}
 
@@ -63,7 +73,12 @@ export const actions = {
 		return await formRunner(
 			['name'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+				if (
+					!(await isUserAuthorizedTextbook(
+						event.params.id!,
+						user.uuid,
+					))
+				) {
 					return fail(403);
 				}
 
@@ -72,23 +87,13 @@ export const actions = {
 						const textbook = await tx
 							.select()
 							.from(schema.textbook)
-							.where(
-								eq(
-									schema.textbook.uuid,
-									event.params.id!,
-								),
-							)
+							.where(eq(schema.textbook.uuid, event.params.id!))
 							.limit(1);
 
 						const order = await tx
 							.select()
 							.from(schema.chapter)
-							.where(
-								eq(
-									schema.chapter.textbook,
-									textbook[0].id,
-								),
-							)
+							.where(eq(schema.chapter.textbook, textbook[0].id))
 							.orderBy(desc(schema.chapter.order))
 							.limit(1);
 
@@ -110,7 +115,12 @@ export const actions = {
 		return await formRunner(
 			['uuid'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+				if (
+					!(await isUserAuthorizedTextbook(
+						event.params.id!,
+						user.uuid,
+					))
+				) {
 					return fail(403);
 				}
 
@@ -129,7 +139,12 @@ export const actions = {
 		return await formRunner(
 			['uuid'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+				if (
+					!(await isUserAuthorizedTextbook(
+						event.params.id!,
+						user.uuid,
+					))
+				) {
 					return fail(403);
 				}
 
@@ -146,7 +161,12 @@ export const actions = {
 		return await formRunner(
 			['uuid'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+				if (
+					!(await isUserAuthorizedTextbook(
+						event.params.id!,
+						user.uuid,
+					))
+				) {
 					return fail(403);
 				}
 
@@ -163,7 +183,12 @@ export const actions = {
 		return await formRunner(
 			['uuid', 'name'],
 			async (event, formData, cookies, user, formDataRaw) => {
-				if (!(await isUserAuthorizedTextbook(event.params.id!, user.uuid))) {
+				if (
+					!(await isUserAuthorizedTextbook(
+						event.params.id!,
+						user.uuid,
+					))
+				) {
 					return fail(403);
 				}
 

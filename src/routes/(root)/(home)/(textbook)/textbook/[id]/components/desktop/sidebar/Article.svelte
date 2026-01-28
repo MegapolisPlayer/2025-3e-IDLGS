@@ -35,26 +35,26 @@
 	action=""
 	smallLoadAnimation={true}
 	success={async () => {
-		if(articleDeletionRequested) {
-			formMessage = m.articleDeletedSuccessfully();	
+		if (articleDeletionRequested) {
+			formMessage = m.articleDeletedSuccessfully();
 		}
-		if(articleRenameRequested) {
+		if (articleRenameRequested) {
 			formMessage = m.articleRenamedSuccessfully();
 		}
 	}}
 	failure={async () => {
-		if(articleDeletionRequested) {
-			formAlert = m.couldNotDeleteArticle();	
+		if (articleDeletionRequested) {
+			formAlert = m.couldNotDeleteArticle();
 		}
-		if(articleRenameRequested) {
+		if (articleRenameRequested) {
 			formAlert = m.couldNotRenameArticle();
 		}
 	}}
 	final={async () => {
-		if(page.params.articleId === article.uuid) {
+		if (page.params.articleId === article.uuid) {
 			goto(`/textbook/${textbookUuid}/${chapterUuid}/`);
 		}
-		
+
 		articleDeletionRequested = false;
 		articleRenameRequested = false;
 	}}
@@ -102,7 +102,7 @@
 		/>
 
 		<!-- delete -->
-		 	<Button
+		<Button
 			btn="button-none *:font-medium"
 			emoji="delete-bin"
 			type="submit"
