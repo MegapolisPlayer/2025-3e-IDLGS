@@ -18,7 +18,8 @@
 
 <svelte:head>
 	<title>
-		{m.article()} {data.article.name} - {data.textbook.name} - {m.textbookNameShort()}
+		{m.article()}
+		{data.article.name} - {data.textbook.name} - {m.textbookNameShort()}
 	</title>
 </svelte:head>
 

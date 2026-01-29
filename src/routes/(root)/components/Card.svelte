@@ -89,7 +89,7 @@
 	border-2 shadow-xl perspective-[1600px] hover:shadow-2xl
 	{hover ? 'hover:border-neutral-300!' : ''}
 	{css}
-	max-xl:p-0! xl:rounded-lg max-xl:border-s-0! max-xl:border-e-0!
+	max-xl:border-s-0! max-xl:border-e-0! max-xl:p-0! xl:rounded-lg
 	"
 		style="background-color: rgb({r} {g} {b} / 30%); border-color: rgb({r} {g} {b} / 30%); {perspective
 			? `transform: rotateX(${yRotation}deg) rotateY(${xRotation}deg) translateZ(0);`

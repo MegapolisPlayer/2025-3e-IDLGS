@@ -90,7 +90,9 @@
 	>
 		<h2>{m.addDefinition()}</h2>
 
-		<div class="flex w-full grow flex-col items-center justify-center gap-2">
+		<div
+			class="flex w-full grow flex-col items-center justify-center gap-2"
+		>
 			<TextInput
 				name="term"
 				label={m.term()}

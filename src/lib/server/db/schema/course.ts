@@ -150,7 +150,9 @@ export const question = pgTable('question', {
 	ai: boolean('ai').notNull().default(false),
 	//aiTextRepresentation - source text where AI took info from
 	aitr: text('aitr').notNull().default(''),
-	uuid: text('uuid').notNull().$defaultFn(() => crypto.randomUUID()),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const courseCodes = pgTable('courseCode', {

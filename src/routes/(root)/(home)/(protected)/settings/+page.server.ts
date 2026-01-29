@@ -119,21 +119,27 @@ export const actions = {
 				//if user exists checked by formRunner
 				let userDetail = undefined;
 				try {
-					userDetail = (await event.locals.db.select()
-						.from(schema.user)
-						.where(eq(schema.user.id, user.id))
-						.limit(1))[0];
+					userDetail = (
+						await event.locals.db
+							.select()
+							.from(schema.user)
+							.where(eq(schema.user.id, user.id))
+							.limit(1)
+					)[0];
 				} catch (e) {
 					writeLog(event, 'ERROR', 'DB failure.', user);
 					return fail(500);
 				}
 
-				if (!comparePassword(
-					formData['password'],
-					userDetail.password,
-					userDetail.salt,
-					userDetail.iterations,
-				)) return fail(400);
+				if (
+					!comparePassword(
+						formData['password'],
+						userDetail.password,
+						userDetail.salt,
+						userDetail.iterations,
+					)
+				)
+					return fail(400);
 
 				if (formData['new'] != formData['newrepeat']) return fail(400);
 
@@ -155,7 +161,7 @@ export const actions = {
 					writeLog(event, 'ERROR', 'DB failure.', user);
 					return fail(500);
 				}
-			}
-		)
+			},
+		);
 	},
 };

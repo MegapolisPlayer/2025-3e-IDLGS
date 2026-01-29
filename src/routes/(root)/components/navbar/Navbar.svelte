@@ -14,7 +14,7 @@
 	});
 </script>
 
-<div class="flex h-[6svh] w-full print:hidden max-xl:hidden"></div>
+<div class="flex h-[6svh] w-full max-xl:hidden print:hidden"></div>
 <nav
 	id="loggedOutNavbar"
 	class="fixed top-0 left-0 z-50! flex h-[6svh] w-full flex-col items-center justify-center bg-white max-xl:hidden print:hidden"

@@ -53,17 +53,19 @@ export const actions = {
 						.limit(1)
 				)[0];
 
-				if(!user) {
+				if (!user) {
 					//no such user
 					return fail(401, {});
 				}
 
-				if(!comparePassword(
-					password,
-					user.password,
-					user.salt,
-					user.iterations,
-				)) {
+				if (
+					!comparePassword(
+						password,
+						user.password,
+						user.salt,
+						user.iterations,
+					)
+				) {
 					return fail(401, {});
 				}
 

@@ -58,13 +58,7 @@ export const comparePassword = (
 	amount: number,
 ): boolean => {
 	const hashed = crypto
-		.pbkdf2Sync(
-			Buffer.from(password),
-			salt,
-			amount,
-			64,
-			'sha512',
-		)
+		.pbkdf2Sync(Buffer.from(password), salt, amount, 64, 'sha512')
 		.toString('hex');
 
 	return crypto.timingSafeEqual(

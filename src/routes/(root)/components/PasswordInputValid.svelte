@@ -25,8 +25,10 @@
 <div
 	class="
 	m-2 flex w-full grow flex-col gap-0 rounded-2xl p-2 shadow
-	{object.all ? '' : 'bg-red-800/50! border-red-800!'} border-2
-	{equal ? 'bg-emerald-700/50! border-emerald-700!' : 'bg-amber-700/50! border-amber-700!'}
+	{object.all ? '' : 'border-red-800! bg-red-800/50!'} border-2
+	{equal
+		? 'border-emerald-700! bg-emerald-700/50!'
+		: 'border-amber-700! bg-amber-700/50!'}
 "
 >
 	<PasswordInputValidItem

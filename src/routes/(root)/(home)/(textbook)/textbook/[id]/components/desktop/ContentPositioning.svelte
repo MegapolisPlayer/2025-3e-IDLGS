@@ -8,8 +8,10 @@
 	} = $props();
 </script>
 
-<div class="flex w-full grow flex-col items-center p-2 overflow-x-hidden overflow-y-scroll">
-	<div class="flex max-2xl:w-full grow flex-col 2xl:w-3/4">
+<div
+	class="flex w-full grow flex-col items-center overflow-x-hidden overflow-y-scroll p-2"
+>
+	<div class="flex grow flex-col max-2xl:w-full 2xl:w-3/4">
 		{@render children()}
 	</div>
 </div>

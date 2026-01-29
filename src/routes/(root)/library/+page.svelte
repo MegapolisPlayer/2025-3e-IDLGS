@@ -112,8 +112,8 @@
 			<!-- list -->
 			<div
 				class="
-				relative grid grow grid-cols-4 gap-2 rounded-2xl
-				p-5 shadow-2xl w-full
+				relative grid w-full grow grid-cols-4 gap-2
+				rounded-2xl p-5 shadow-2xl
 			"
 			>
 				{#await data.textbooks}

@@ -8,10 +8,13 @@
 	import type { Snippet } from 'svelte';
 	import type { UserType } from '$lib/types';
 
-	let { children, data }: {
-		children: Snippet,
+	let {
+		children,
+		data,
+	}: {
+		children: Snippet;
 		data: {
-			user: UserType
+			user: UserType;
 		};
 	} = $props();
 </script>

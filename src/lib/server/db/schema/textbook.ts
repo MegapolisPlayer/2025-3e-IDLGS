@@ -81,66 +81,74 @@ export const textbookWordDefinition = pgTable('textbookWordDefinition', {
 		.notNull(),
 });
 
-export const bookmark = pgTable('bookmark', {
-	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
-	user: integer('user')
-		.references(() => user.id, {
-			onDelete: 'cascade',
-		})
-		.notNull(),
-	article: integer('article')
-		.references(() => article.id, {
-			onDelete: 'cascade',
-		})
-		.notNull(),
-	red: integer('red').notNull().default(255),
-	green: integer('green').notNull().default(255),
-	blue: integer('blue').notNull().default(0),
-	//TODO move on article edit! (calc diff or something)
-	textIndex: integer('textIndex').notNull().default(0),
-	uuid: text('uuid')
-		.notNull()
-		.$defaultFn(() => crypto.randomUUID()),
-}, (table) => [
-	check('redMinCheck', sql`${table.red} >= 0`),
-	check('redMaxCheck', sql`${table.red} <= 255`),
-	check('greenMinCheck', sql`${table.green} >= 0`),
-	check('greenMaxCheck', sql`${table.green} <= 255`),
-	check('blueMinCheck', sql`${table.blue} >= 0`),
-	check('blueMaxCheck', sql`${table.blue} <= 255`),
-]);
+export const bookmark = pgTable(
+	'bookmark',
+	{
+		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+		user: integer('user')
+			.references(() => user.id, {
+				onDelete: 'cascade',
+			})
+			.notNull(),
+		article: integer('article')
+			.references(() => article.id, {
+				onDelete: 'cascade',
+			})
+			.notNull(),
+		red: integer('red').notNull().default(255),
+		green: integer('green').notNull().default(255),
+		blue: integer('blue').notNull().default(0),
+		//TODO move on article edit! (calc diff or something)
+		textIndex: integer('textIndex').notNull().default(0),
+		uuid: text('uuid')
+			.notNull()
+			.$defaultFn(() => crypto.randomUUID()),
+	},
+	(table) => [
+		check('redMinCheck', sql`${table.red} >= 0`),
+		check('redMaxCheck', sql`${table.red} <= 255`),
+		check('greenMinCheck', sql`${table.green} >= 0`),
+		check('greenMaxCheck', sql`${table.green} <= 255`),
+		check('blueMinCheck', sql`${table.blue} >= 0`),
+		check('blueMaxCheck', sql`${table.blue} <= 255`),
+	],
+);
 
-export const highlight = pgTable('highlight', {
-	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
-	user: integer('user')
-		.references(() => user.id, {
-			onDelete: 'cascade',
-		})
-		.notNull(),
-	article: integer('article')
-		.references(() => article.id, {
-			onDelete: 'cascade',
-		})
-		.notNull(),
-	red: integer('red').notNull().default(255),
-	green: integer('green').notNull().default(255),
-	blue: integer('blue').notNull().default(0),
-	//TODO move and resize on article edit! (calc diff or something)
-	//if whole text between start/end deleted -> remove
-	//if text between start/end modified -> shift end by amount of change
-	//if text changed before highlight -> shift both start/end by that amount
-	//if text changed after highlight -> do nothing
-	//this can be combined, TODO
-	startIndex: integer('startIndex').notNull().default(0),
-	endIndex: integer('endIndex').notNull().default(0),
-	uuid: text('uuid')
-		.notNull()
-		.$defaultFn(() => crypto.randomUUID()),
-}, (table) => [
-	check('redMinCheck', sql`${table.red} >= 0`),
-	check('redMaxCheck', sql`${table.red} <= 255`),
-	check('greenMinCheck', sql`${table.green} >= 0`),
-	check('greenMaxCheck', sql`${table.green} <= 255`),
-	check('blueMinCheck', sql`${table.blue} >= 0`),
-	check('blueMaxCheck', sql`${table.blue} <= 255`),
-]);
+export const highlight = pgTable(
+	'highlight',
+	{
+		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+		user: integer('user')
+			.references(() => user.id, {
+				onDelete: 'cascade',
+			})
+			.notNull(),
+		article: integer('article')
+			.references(() => article.id, {
+				onDelete: 'cascade',
+			})
+			.notNull(),
+		red: integer('red').notNull().default(255),
+		green: integer('green').notNull().default(255),
+		blue: integer('blue').notNull().default(0),
+		//TODO move and resize on article edit! (calc diff or something)
+		//if whole text between start/end deleted -> remove
+		//if text between start/end modified -> shift end by amount of change
+		//if text changed before highlight -> shift both start/end by that amount
+		//if text changed after highlight -> do nothing
+		//this can be combined, TODO
+		startIndex: integer('startIndex').notNull().default(0),
+		endIndex: integer('endIndex').notNull().default(0),
+		uuid: text('uuid')
+			.notNull()
+			.$defaultFn(() => crypto.randomUUID()),
+	},
+	(table) => [
+		check('redMinCheck', sql`${table.red} >= 0`),
+		check('redMaxCheck', sql`${table.red} <= 255`),
+		check('greenMinCheck', sql`${table.green} >= 0`),
+		check('greenMaxCheck', sql`${table.green} <= 255`),
+		check('blueMinCheck', sql`${table.blue} >= 0`),
+		check('blueMaxCheck', sql`${table.blue} <= 255`),
+	],
+);

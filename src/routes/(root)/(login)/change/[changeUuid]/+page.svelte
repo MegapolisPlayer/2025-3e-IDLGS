@@ -37,7 +37,9 @@
 			invalidateAll={false}
 		>
 			{#if !set}
-				<h2 class="w-full max-xl:text-center xl:text-left">{m.setAPassword()}</h2>
+				<h2 class="w-full max-xl:text-center xl:text-left">
+					{m.setAPassword()}
+				</h2>
 
 				<HiddenInput
 					name="uuid"

@@ -59,7 +59,7 @@
 	let formAlert: string = $state('');
 </script>
 
-<div class="sticky xl:top-[6vh] left-0 h-[94svh] min-w-1/5 overflow-clip p-2">
+<div class="sticky left-0 h-[94svh] min-w-1/5 overflow-clip p-2 xl:top-[6vh]">
 	<WideCard
 		cssAddition="grow"
 		r={textbook.red}

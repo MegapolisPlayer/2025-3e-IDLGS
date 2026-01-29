@@ -6,10 +6,10 @@
 	import type { TextbookType, UserType } from '$lib/types';
 	import ButtonEdit from './components/ButtonEdit.svelte';
 	import ButtonBackToTop from '$component/ButtonBackToTop.svelte';
-	
+
 	let {
 		children,
-		data
+		data,
 	}: {
 		children: Snippet;
 		data: {
@@ -46,7 +46,7 @@
 		{@render children()}
 	</ContentPositioning>
 
-	<div class="sticky xl:top-[80vh] right-4 gap-2 overflow-clip pb-4 h-[20vh]">
+	<div class="sticky right-4 h-[20vh] gap-2 overflow-clip pb-4 xl:top-[80vh]">
 		<div class="grow"></div>
 		<!-- if ends with UUID: main, chapter, article... -->
 		<ButtonEdit bind:clicked={clickedEdit} />

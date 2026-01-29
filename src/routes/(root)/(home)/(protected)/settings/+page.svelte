@@ -81,7 +81,9 @@
 							}}
 						>
 							<div class="flex flex-col gap-2">
-								<h3 class="w-full max-xl:text-center xl:text-left">
+								<h3
+									class="w-full max-xl:text-center xl:text-left"
+								>
 									<i class="ri-user-3-line"></i>
 									{m.personalInfo()}
 								</h3>

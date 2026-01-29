@@ -31,8 +31,8 @@
 
 <div
 	class="
-	relative flex w-full grow flex-row justify-center *:flex
-	*:flex-col max-xl:hidden max-w-screen!
+	relative flex w-full max-w-screen! grow flex-row justify-center
+	*:flex *:flex-col max-xl:hidden
 "
 >
 	<CourseSidebar {data} />
@@ -40,7 +40,7 @@
 		{@render children()}
 	</CourseContentPositioning>
 
-	<div class="sticky xl:top-[80vh] right-4 gap-2 overflow-clip pb-4 h-[20vh]">
+	<div class="sticky right-4 h-[20vh] gap-2 overflow-clip pb-4 xl:top-[80vh]">
 		<div class="grow"></div>
 		<!-- every page different behaviour -->
 		<ButtonAdd bind:clicked={clickedAdd} />

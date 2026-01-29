@@ -42,7 +42,9 @@
 					formMessage = m.incorrectCredentials();
 				}}
 			>
-				<h2 class="w-full max-xl:text-center xl:text-left text-white">{m.login()}</h2>
+				<h2 class="w-full text-white max-xl:text-center xl:text-left">
+					{m.login()}
+				</h2>
 
 				<TextInput
 					name="email"

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
-	import WideCard from "$component/WideCard.svelte";
-	import type { CourseQuestionType, CourseType } from "$lib/types";
+	import { m } from '$lib/paraglide/messages';
+	import WideCard from '$component/WideCard.svelte';
+	import type { CourseQuestionType, CourseType } from '$lib/types';
 
 	let {
-		data
+		data,
 	}: {
 		data: {
 			course: CourseType;
 			questions: CourseQuestionType[];
-		}
+		};
 	} = $props();
 </script>
 

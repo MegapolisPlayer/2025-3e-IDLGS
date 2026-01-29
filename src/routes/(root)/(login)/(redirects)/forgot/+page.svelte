@@ -35,7 +35,7 @@
 			}}
 		>
 			{#if !sent && !error}
-				<h2 class="w-full max-xl:text-center xl:text-left text-white">
+				<h2 class="w-full text-white max-xl:text-center xl:text-left">
 					{m.passwordRecovery()}
 				</h2>
 
@@ -74,7 +74,7 @@
 					{m.back()}
 				</Button>
 			{:else if sent}
-				<h2 class="w-full max-xl:text-center xl:text-left text-white">
+				<h2 class="w-full text-white max-xl:text-center xl:text-left">
 					{m.emailSent()}
 				</h2>
 				<p class="font-light opacity-70">
@@ -93,7 +93,7 @@
 					{m.goToHomePage()}
 				</Button>
 			{:else if error}
-				<h2 class="w-full max-xl:text-center xl:text-left text-white">
+				<h2 class="w-full text-white max-xl:text-center xl:text-left">
 					{m.anErrorOccurred()}
 				</h2>
 				<p class="font-light opacity-70">

@@ -146,10 +146,10 @@
 					<div
 						class="flex h-fit w-full items-center gap-2 max-2xl:flex-col max-xl:text-center xl:text-left 2xl:flex-row"
 					>
-							<i class="ri-archive-line text-xl"></i>
-							<h2 class="max-xl:text-center xl:text-left">
-								{m.archivedCoursesAndTextbooks()}
-							</h2>
+						<i class="ri-archive-line text-xl"></i>
+						<h2 class="max-xl:text-center xl:text-left">
+							{m.archivedCoursesAndTextbooks()}
+						</h2>
 						<div class="grow"></div>
 						<p class="opacity-70">
 							{m.archivedCoursesAndTextbooksAreReadOnlyEverythingIsLeftAsItWasAtTheMomentOfArchiving()}

@@ -25,14 +25,14 @@
 		{data.course.name}
 	</h1>
 
-	<span class="wrap-break-word overflow-hidden text-ellipsis">
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
-	{JSON.stringify(data)}
+	<span class="overflow-hidden wrap-break-word text-ellipsis">
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
+		{JSON.stringify(data)}
 	</span>
 </WideCard>

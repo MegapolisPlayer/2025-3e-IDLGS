@@ -17,7 +17,8 @@
 
 <svelte:head>
 	<title>
-		{m.chapter()} {data.chapter.name} - {data.textbook.name} - {m.textbookNameShort()}
+		{m.chapter()}
+		{data.chapter.name} - {data.textbook.name} - {m.textbookNameShort()}
 	</title>
 </svelte:head>
 

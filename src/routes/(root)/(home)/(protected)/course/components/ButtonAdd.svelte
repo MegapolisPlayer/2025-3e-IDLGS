@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Button from "$component/Button.svelte";
+	import Button from '$component/Button.svelte';
 	import HoverEmoji from '$component/HoverEmoji.svelte';
-	import { m } from "$lib/paraglide/messages";
+	import { m } from '$lib/paraglide/messages';
 
 	let {
 		clicked = $bindable(false),

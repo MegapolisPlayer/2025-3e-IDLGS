@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
-	import type { UserType } from "$lib/types";
+	import { m } from '$lib/paraglide/messages';
+	import type { UserType } from '$lib/types';
 
 	let {
 		user,
@@ -15,6 +15,6 @@
 </div>
 
 <div
-	class="flex h-[8svh] w-full print:hidden xl:hidden"
+	class="flex h-[8svh] w-full xl:hidden print:hidden"
 	id="loggedInNavbarFill"
 ></div>
