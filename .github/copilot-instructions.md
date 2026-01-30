@@ -7,6 +7,10 @@
 - Pure AI code is not tolerated.
 - Use Remix icons instead of Unicode syntax. Syntax is: <i class="ri-{name}-{fill or line}"></i>. DO NOT EVER USE UNICODE CHARACTERS FOR ICONS!
 - When generating imports, DO NOT add the .js extension! (add .svelte if applicable)
+- ALWAYS use alias of SvelteKit
+  - '$lib': 'src/lib/'
+  - '$src': 'src/'
+  - '$component': 'src/routes/(root)/components/'
 
 AI.md document:
 

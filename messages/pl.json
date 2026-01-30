@@ -450,5 +450,7 @@
 	"definition": "Definicja",
 	"enterTerm": "Wprowadź termin",
 	"enterDefinition": "Wprowadź definicję",
-	"backToTop": "Powrót na górę"
+	"backToTop": "Powrót na górę",
+	"couldNotMoveArticle": "Nie można przenieść artykułu",
+	"couldNotMoveChapter": "Nie można przenieść rozdziału"
 }

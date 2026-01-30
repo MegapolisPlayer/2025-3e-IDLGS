@@ -112,6 +112,11 @@ export const assignment = pgTable('assignment', {
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
+	author: integer('author')
+		.notNull()
+		.references(() => user.id, {
+			onDelete: "no action",
+		}),
 });
 
 export const assignmentComment = pgTable('assignmentComment', {
@@ -128,7 +133,49 @@ export const assignmentComment = pgTable('assignmentComment', {
 	author: integer('author')
 		.notNull()
 		.references(() => user.id, {
+			onDelete: "no action",
+		}),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
+});
+
+export const courseMessage = pgTable('courseMessage', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	course: integer('course')
+		.references(() => course.id, {
 			onDelete: 'cascade',
+		})
+		.notNull(),
+	createdAt: timestamp('createdAt')
+		.notNull()
+		.$defaultFn(() => new Date()),
+	content: text('content').notNull().default(''),
+	author: integer('author')
+		.notNull()
+		.references(() => user.id, {
+			onDelete: 'no action',
+		}),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
+});
+
+export const courseMessageComment = pgTable('courseMessageComment', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	courseMessage: integer('courseMessage')
+		.references(() => courseMessage.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	createdAt: timestamp('createdAt')
+		.notNull()
+		.$defaultFn(() => new Date()),
+	comment: text('comment').notNull().default(''),
+	author: integer('author')
+		.notNull()
+		.references(() => user.id, {
+			onDelete: 'no action',
 		}),
 	uuid: text('uuid')
 		.notNull()

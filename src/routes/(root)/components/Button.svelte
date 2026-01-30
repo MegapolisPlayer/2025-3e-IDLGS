@@ -34,7 +34,7 @@
 </script>
 
 <button
-	class="{btn} group {cssClass}"
+	class="{btn} group print:hidden {cssClass}"
 	{disabled}
 	{type}
 	{onclick}

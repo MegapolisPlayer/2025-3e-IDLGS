@@ -17,6 +17,8 @@
 		showEditButtons,
 		formMessage = $bindable(''),
 		formAlert = $bindable(''),
+		i,
+		amount,
 	}: {
 		chapter: ChapterType;
 		textbookUuid: string;
@@ -24,6 +26,8 @@
 		showEditButtons: boolean;
 		formMessage: string;
 		formAlert: string;
+		i: number;
+		amount: number;
 	} = $props();
 
 	let isOpen = $state(false);
@@ -31,6 +35,7 @@
 	let addArticleModal = $state(false);
 	let chapterDeletionRequested = $state(false);
 	let chapterRenameRequested = $state(false);
+	let chapterMoveRequested = $state(false);
 
 	let chapterLocalName = $derived(chapter.name);
 	let chapterRename = $state(false);
@@ -58,6 +63,10 @@
 		if (chapterRenameRequested) {
 			formAlert = m.couldNotRenameChapter();
 		}
+		if (chapterMoveRequested) {
+			//move shows message only on fail
+			formAlert = m.couldNotMoveChapter();
+		}
 	}}
 	final={async () => {
 		if (page.params.chapterId === chapter.uuid) {
@@ -66,6 +75,7 @@
 
 		chapterDeletionRequested = false;
 		chapterRenameRequested = false;
+		chapterMoveRequested = false;
 	}}
 >
 	<HiddenInput
@@ -130,6 +140,7 @@
 					type="submit"
 					action={`/textbook/${textbookUuid}/?/moveChapterUp`}
 					label={m.moveChapterUp()}
+					disabled={i === 0}
 				/>
 				<Button
 					btn="button-none *:font-medium"
@@ -137,6 +148,7 @@
 					type="submit"
 					action={`/textbook/${textbookUuid}/?/moveChapterDown`}
 					label={m.moveChapterDown()}
+					disabled={i === amount - 1}
 				/>
 
 				<!-- delete -->
@@ -155,13 +167,17 @@
 	</div>
 
 	{#if isOpen}
-		{#each chapter.articlesLimited as article (article.uuid)}
+		{#each chapter.articlesLimited as article, articleI (article.uuid)}
 			<Article
 				{article}
 				{textbookUuid}
 				chapterUuid={chapter.uuid}
 				{canEdit}
 				{showEditButtons}
+				i={articleI}
+				chapterI={i}
+				amount={chapter.articlesLimited!.length}
+				chapterAmount={amount}
 				bind:formMessage
 				bind:formAlert
 			/>

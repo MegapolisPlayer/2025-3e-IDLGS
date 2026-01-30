@@ -450,5 +450,7 @@
 	"definition": "Definition",
 	"enterTerm": "Begriff eingeben",
 	"enterDefinition": "Definition eingeben",
-	"backToTop": "Zurück nach oben"
+	"backToTop": "Zurück nach oben",
+	"couldNotMoveChapter": "Kapitel konnte nicht verschoben werden",
+	"couldNotMoveArticle": "Artikel konnte nicht verschoben werden"
 }

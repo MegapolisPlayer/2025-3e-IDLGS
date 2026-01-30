@@ -11,7 +11,6 @@
 	import Chapter from './sidebar/Chapter.svelte';
 	import { browser } from '$app/environment';
 	import TextInput from '$component/TextInput.svelte';
-	import { page } from '$app/state';
 	import SuccessBox from '$component/SuccessBox.svelte';
 	import AlertBox from '$component/AlertBox.svelte';
 
@@ -130,6 +129,8 @@
 					{chapter}
 					textbookUuid={id}
 					{canEdit}
+					{i}
+					amount={textbook.chapters!.length}
 					showEditButtons={showEditButtonsLocal}
 					bind:formMessage
 					bind:formAlert

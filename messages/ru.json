@@ -450,5 +450,7 @@
 	"definition": "Определение",
 	"enterTerm": "Введите термин",
 	"enterDefinition": "Введите определение",
-	"backToTop": "Наверх"
+	"backToTop": "Наверх",
+	"couldNotMoveChapter": "Не удалось переместить главу",
+	"couldNotMoveArticle": "Не удалось переместить статью"
 }

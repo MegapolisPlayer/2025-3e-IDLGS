@@ -450,5 +450,7 @@
 	"definition": "Definice",
 	"enterTerm": "Zadejte termín",
 	"enterDefinition": "Zadejte definici",
-	"backToTop": "Zpět nahoru"
+	"backToTop": "Zpět nahoru",
+	"couldNotMoveArticle": "Nepodařilo se přesunout článek",
+	"couldNotMoveChapter": "Nepodařilo se přesunout kapitolu"
 }

@@ -20,6 +20,17 @@
 		g={data.course.green}
 		b={data.course.blue}
 	>
-		<h2>{data.course.name}</h2>
+		<h2 class="flex flex-row items-center gap-1">
+			<i class="ri-file-list-3-line text-3xl"></i>
+			{data.course.name}
+		</h2>
+
+		{#if data.isOwner || data.isTeacher}
+			
+		{:else}
+			
+		{/if}
+
+
 	</WideCard>
 </div>

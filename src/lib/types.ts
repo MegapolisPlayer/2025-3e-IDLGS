@@ -67,7 +67,6 @@ export type TextbookType = {
 	chapters?: ChapterType[];
 	public: boolean;
 	authors?: UserTypeLimited[];
-	canEdit?: boolean;
 	archived?: boolean;
 };
 
@@ -103,15 +102,15 @@ export type ArticleType = {
 export type BookmarkType = {
 	uuid: string;
 	textIndex: number;
-	article?: number;
-	user?: number;
+	article?: ArticleType;
+	user?: UserType;
 	red: number;
 	green: number;
 	blue: number;
 };
 export type HighlightType = {
-	article?: number;
-	user?: number;
+	article?: ArticleType;
+	user?: UserType;
 	startIndex: number;
 	endIndex: number;
 	red: number;
@@ -136,6 +135,7 @@ export type CourseType = {
 	assignments?: CourseAssignmentType[];
 	people?: UserTypeLimited[];
 	archived?: boolean;
+	messages?: CourseMessageType[];
 };
 
 export type CourseAssignmentType = {
@@ -145,13 +145,31 @@ export type CourseAssignmentType = {
 	deadline: Date;
 	createdAt: Date;
 	comments?: CourseAssignmentCommentType[];
+	author?: UserTypeLimited;
 };
 
 export type CourseAssignmentCommentType = {
 	uuid: string;
 	comment: string;
 	createdAt: Date;
-	author?: UserType;
+	author?: UserTypeLimited;
+};
+
+export type CourseMessageType = {
+	course?: CourseType;
+	createdAt: Date;
+	content: string;
+	author?: UserTypeLimited;
+	uuid: string;
+	comments?: CourseMessageCommentType[];
+};
+
+export type CourseMessageCommentType = {
+	uuid: string;
+	message?: CourseMessageType;
+	comment: string;
+	createdAt: Date;
+	author?: UserTypeLimited;
 };
 
 //definition of grade scale in course

@@ -450,5 +450,7 @@
 	"definition": "Definition",
 	"enterTerm": "Enter term",
 	"enterDefinition": "Enter definition",
-	"backToTop": "Back to Top"
+	"backToTop": "Back to Top",
+	"couldNotMoveArticle": "Could not move article",
+	"couldNotMoveChapter": "Could not move chapter"
 }

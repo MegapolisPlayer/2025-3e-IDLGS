@@ -1,17 +1,20 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import TextareaFormattingButton from './TextareaFormattingButton.svelte';
+	import type { Snippet } from 'svelte';
 
 	let {
 		value = $bindable(''),
 		preview = $bindable(false),
 		cursorBeginning,
 		cursorEnd,
+		children,
 	}: {
 		value: string;
 		preview: boolean;
 		cursorBeginning: number;
 		cursorEnd: number;
+		children?: Snippet;
 	} = $props();
 </script>
 
@@ -242,12 +245,8 @@
 		}}
 	/>
 
-	<!-- TODO inserting images -->
-	<TextareaFormattingButton
-		message={m.image()}
-		emoji="image"
-		onclick={() => {}}
-	/>
+	<!-- additional buttons -->
+	{@render children?.()}
 
 	<div class="grow"></div>
 

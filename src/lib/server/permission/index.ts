@@ -36,11 +36,33 @@ export const isUserAuthorizedTextbook = async (
 };
 
 export const isUserAuthorizedCourse = async (
-	uuid: string,
+	courseUuid: string,
+	userUuid: string,
 ): Promise<boolean> => {
 	const db = getRequestEvent().locals.db;
 
-	//TODO CRITICAL
+	const userData = await db
+		.select()
+		.from(schema.userCourseLinker)
+		.innerJoin(
+			schema.user,
+			eq(schema.user.id, schema.userCourseLinker.user),
+		)
+		.innerJoin(
+			schema.course,
+			eq(schema.course.id, schema.userCourseLinker.course),
+		)
+		.where(
+			and(
+				eq(schema.user.uuid, userUuid),
+				eq(schema.course.uuid, courseUuid),
+				or(
+					eq(schema.userCourseLinker.teacher, true),
+					eq(schema.userCourseLinker.owner, true),
+				),
+			),
+		)
+		.limit(1);
 
-	return true;
+	return userData.length > 0;
 };
