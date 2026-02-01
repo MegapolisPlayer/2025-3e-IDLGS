@@ -6,6 +6,7 @@
 	import type { TextbookType, UserType } from '$lib/types';
 	import ButtonEdit from './components/ButtonEdit.svelte';
 	import ButtonBackToTop from '$component/ButtonBackToTop.svelte';
+	import { page } from '$app/state';
 
 	let {
 		children,
@@ -23,6 +24,12 @@
 
 	//TODO finish, remove from definitions and statistics etc.
 	let clickedEdit: boolean = $state(false);
+
+	let isEditablePage: boolean = $derived((
+		page.route.id?.endsWith('[id]') ||
+		page.route.id?.endsWith('[chapterId]') ||
+		page.route.id?.endsWith('[articleId]')
+	) ?? false);
 </script>
 
 <div
@@ -49,7 +56,9 @@
 	<div class="sticky right-4 h-[20vh] gap-2 overflow-clip pb-4 xl:top-[80vh]">
 		<div class="grow"></div>
 		<!-- if ends with UUID: main, chapter, article... -->
-		<ButtonEdit bind:clicked={clickedEdit} />
+		{#if isEditablePage}
+			<ButtonEdit bind:clicked={clickedEdit} />
+		{/if}
 		<ButtonBackToTop />
 	</div>
 </div>

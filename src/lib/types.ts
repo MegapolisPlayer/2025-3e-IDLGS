@@ -73,6 +73,7 @@ export type TextbookType = {
 export type TextbookDefinitionType = {
 	word: string;
 	description: string;
+	uuid: string;
 };
 
 export type ChapterType = {
@@ -204,6 +205,7 @@ export type TestCheatingType = {
 	consoleOpen: boolean;
 	mouseOut: boolean;
 	rightClick: boolean;
+	//TODO more
 };
 
 //Cloudflare AI workers

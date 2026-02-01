@@ -66,6 +66,7 @@
 		b={textbook.blue}
 	>
 		<h2>
+			<i class="ri-book-ai-line text-3xl"></i>
 			{m.textbookContents()}
 		</h2>
 
@@ -80,6 +81,19 @@
 			>
 				<div class="flex w-full flex-row gap-1">
 					{m.textbookHome()}
+				</div>
+			</Button>
+
+			<!-- search -->
+			<Button
+				btn="button-none w-full"
+				emoji="search"
+				onclick={() => {
+					goto(`/textbook/${id}/search/`);
+				}}
+			>
+				<div class="flex w-full flex-row gap-1">
+					{m.search()}
 				</div>
 			</Button>
 
@@ -120,6 +134,19 @@
 				>
 					<div class="flex w-full flex-row gap-1">
 						{m.textbookStatistics()}
+					</div>
+				</Button>
+
+				<!-- settings -->
+				<Button
+					btn="button-none w-full"
+					emoji="settings"
+					onclick={() => {
+						goto(`/textbook/${id}/settings/`);
+					}}
+				>
+					<div class="flex w-full flex-row gap-1">
+						{m.settings()}
 					</div>
 				</Button>
 			{/if}

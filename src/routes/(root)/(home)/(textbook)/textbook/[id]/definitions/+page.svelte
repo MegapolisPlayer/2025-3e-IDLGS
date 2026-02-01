@@ -5,10 +5,16 @@
 	import Form from '$component/Form.svelte';
 	import Modal from '$component/Modal.svelte';
 	import TextInput from '$component/TextInput.svelte';
+	import SuccessBox from '$src/routes/(root)/components/SuccessBox.svelte';
+	import AlertBox from '$src/routes/(root)/components/AlertBox.svelte';
+	import Definition from './components/Definition.svelte';
 
 	let { data } = $props();
 
 	let showAddModal: boolean = $state(false);
+
+	let successMessage: string = $state('');
+	let alertMessage: string = $state('');
 </script>
 
 <svelte:head>
@@ -29,8 +35,12 @@
 	</div>
 
 	<div class="flex w-full grow flex-col gap-2">
-		{#each data.definitions as definition}
-			<p>{definition.word}: {definition.description}</p>
+		{#each data.definitions as definition (definition.id)}
+			<Definition
+				{definition}
+				bind:successMessage
+				bind:alertMessage
+			/>
 		{:else}
 			{#if data.isEditor || data.isOwner}
 				<div
@@ -63,13 +73,23 @@
 				onclick={() => {
 					showAddModal = true;
 				}}
+				type="button"
 			>
 				{m.addDefinition()}
 			</Button>
-			<Form action="?/clearDefinitions">
+			<Form
+				action="?/clearDefinitions"
+				success={async () => {
+					successMessage = m.allDefinitionsRemovedSuccessfully();
+				}}
+				failure={async () => {
+					alertMessage = m.couldNotRemoveDefinitions();
+				}}
+			>
 				<Button
 					btn="button-red"
 					emoji="delete-bin"
+					type="submit"
 				>
 					{m.clearDefinitions()}
 				</Button>
@@ -86,7 +106,16 @@
 >
 	<Form
 		cssClass="flex w-full flex-col gap-2"
-		action={`/textbook/${data.textbook.uuid}/definitions?/addDefinition`}
+		action="?/addDefinition"
+		success={async () => {
+			successMessage = m.definitionAddedSuccessfully();
+		}}
+		failure={async () => {
+			alertMessage = m.couldNotAddDefinition();
+		}}
+		final={async () => {
+			showAddModal = false;
+		}}
 	>
 		<h2>{m.addDefinition()}</h2>
 
@@ -117,9 +146,15 @@
 				btn="button-red"
 				emoji="close-circle"
 				type="button"
+				onclick={() => {
+					showAddModal = false;
+				}}
 			>
 				{m.cancel()}
 			</Button>
 		</div>
 	</Form>
 </Modal>
+
+<SuccessBox bind:message={successMessage} />
+<AlertBox bind:message={alertMessage} />

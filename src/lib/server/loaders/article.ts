@@ -2,7 +2,10 @@ import { getRequestEvent } from '$app/server';
 import { eq } from 'drizzle-orm';
 import { schema } from '../db/mainSchema';
 
-export const loadArticle = async (uuid: string) => {
+export const loadArticle = async (
+	uuid: string,
+	textbookUuid?: string,
+) => {
 	const db = getRequestEvent().locals.db;
 
 	const result = await db
@@ -18,6 +21,11 @@ export const loadArticle = async (uuid: string) => {
 
 	if (result.length === 0) {
 		return undefined;
+	}
+
+	if(textbookUuid) {
+		//find definitions and apply them
+		//TODO
 	}
 
 	return result[0];

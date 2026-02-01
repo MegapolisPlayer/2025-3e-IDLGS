@@ -8,6 +8,8 @@
 	}: {
 		assignment: CourseAssignmentType;
 	} = $props();
+
+	//TODO use color of course!
 </script>
 
 <WideCard>

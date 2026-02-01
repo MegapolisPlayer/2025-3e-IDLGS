@@ -71,7 +71,7 @@
 	<div class="flex w-full flex-row items-center gap-2">
 		{#if !editingName}
 			<h1 class="flex flex-row items-center gap-1">
-				<i class="ri-book-ai-line text-5xl"></i>
+				<i class="ri-book-ai-line text-4xl"></i>
 				{data.textbook.name}
 			</h1>
 		{:else}

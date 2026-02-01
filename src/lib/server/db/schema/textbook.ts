@@ -79,6 +79,9 @@ export const textbookWordDefinition = pgTable('textbookWordDefinition', {
 	textbook: integer('textbook')
 		.references(() => textbook.id, { onDelete: 'cascade' })
 		.notNull(),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const bookmark = pgTable(
