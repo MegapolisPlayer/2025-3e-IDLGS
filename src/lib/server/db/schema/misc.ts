@@ -6,10 +6,9 @@ import { sql } from 'drizzle-orm';
 export const blog = pgTable('blog', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
 	text: text('text').notNull().default(''),
-	author: integer('user')
-		.references(() => user.id, {
-			onDelete: 'set null',
-		})
+	author: integer('user').references(() => user.id, {
+		onDelete: 'set null',
+	}),
 });
 
 export const subject = pgTable('subject', {

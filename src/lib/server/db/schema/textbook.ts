@@ -194,10 +194,9 @@ export const articleHistoryVersion = pgTable('articleHistoryVersion', {
 			onDelete: 'cascade',
 		})
 		.notNull(),
-	user: integer('user')
-		.references(() => user.id, {
-			onDelete: 'set null',
-		}),
+	user: integer('user').references(() => user.id, {
+		onDelete: 'set null',
+	}),
 	editedAt: timestamp('editedAt')
 		.notNull()
 		.$defaultFn(() => new Date()),
@@ -207,9 +206,12 @@ export const articleHistoryVersion = pgTable('articleHistoryVersion', {
 	note: text('note').notNull().default(''),
 });
 
-export const articleHistoryVersionEntry = pgTable('articleHistoryVersionEntry', {
-	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
-	startIndex: integer('startIndex').notNull().default(0),
-	oldText: text('oldText').notNull().default(''),
-	newText: text('newText').notNull().default(''),
-});
+export const articleHistoryVersionEntry = pgTable(
+	'articleHistoryVersionEntry',
+	{
+		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+		startIndex: integer('startIndex').notNull().default(0),
+		oldText: text('oldText').notNull().default(''),
+		newText: text('newText').notNull().default(''),
+	},
+);

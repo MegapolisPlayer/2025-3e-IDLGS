@@ -60,15 +60,15 @@ export const wordSimilarity = (a: string, b: string): number => {
 //TODO
 
 export class BKNode {
-	word: string = "";
+	word: string = '';
 	//distance, child nodes (multiple children can have same distance)
-	children: Array<{distance: number, node: BKNode}> = [];
+	children: Array<{ distance: number; node: BKNode }> = [];
 	wordIndex: number = 0;
-};
+}
 
 export class BKTree {
 	//TODO
-};
+}
 
 export const addWordToBKTree = (root: BKNode, word: string): void => {
 	//TODO

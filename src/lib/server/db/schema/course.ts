@@ -112,10 +112,9 @@ export const assignment = pgTable('assignment', {
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
-	author: integer('author')
-		.references(() => user.id, {
-			onDelete: 'set null',
-		}),
+	author: integer('author').references(() => user.id, {
+		onDelete: 'set null',
+	}),
 });
 
 export const assignmentComment = pgTable('assignmentComment', {
@@ -129,10 +128,9 @@ export const assignmentComment = pgTable('assignmentComment', {
 		.notNull()
 		.$defaultFn(() => new Date()),
 	comment: text('comment').notNull().default(''),
-	author: integer('author')
-		.references(() => user.id, {
-			onDelete: 'set null',
-		}),
+	author: integer('author').references(() => user.id, {
+		onDelete: 'set null',
+	}),
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
@@ -149,10 +147,9 @@ export const courseMessage = pgTable('courseMessage', {
 		.notNull()
 		.$defaultFn(() => new Date()),
 	content: text('content').notNull().default(''),
-	author: integer('author')
-		.references(() => user.id, {
-			onDelete: 'set null',
-		}),
+	author: integer('author').references(() => user.id, {
+		onDelete: 'set null',
+	}),
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
@@ -169,10 +166,9 @@ export const courseMessageComment = pgTable('courseMessageComment', {
 		.notNull()
 		.$defaultFn(() => new Date()),
 	comment: text('comment').notNull().default(''),
-	author: integer('author')
-		.references(() => user.id, {
-			onDelete: 'set null',
-		}),
+	author: integer('author').references(() => user.id, {
+		onDelete: 'set null',
+	}),
 	uuid: text('uuid')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),

@@ -44,7 +44,7 @@ export const school = pgTable('school', {
 });
 
 //until drizzle 1.0.0 there is no support for bytea
-const bytea = customType<{ data: Buffer, notNull: false, default: false }>({
+const bytea = customType<{ data: Buffer; notNull: false; default: false }>({
 	dataType() {
 		return 'bytea';
 	},

@@ -1,6 +1,8 @@
-import type { ArticleType } from "$lib/types"
+import type { ArticleType } from '$lib/types';
 
-export const applyArticleHistoryVersion = (uuid: string): Promise<ArticleType> => {
+export const applyArticleHistoryVersion = (
+	uuid: string,
+): Promise<ArticleType> => {
 	//TODO
 
 	return new Promise<ArticleType>((resolve) => {
@@ -11,4 +13,4 @@ export const applyArticleHistoryVersion = (uuid: string): Promise<ArticleType> =
 			order: 0,
 		});
 	});
-}
+};
