@@ -1,9 +1,6 @@
 import { pgTable, integer, boolean, numeric } from 'drizzle-orm/pg-core';
 import { user } from './user';
-import { 
-	course,
-	courseLesson
-} from './course';
+import { course, courseLesson } from './course';
 import {
 	articleHistoryVersion,
 	articleHistoryVersionEntry,
@@ -110,4 +107,4 @@ export const userCourseLessonLinker = pgTable('userCourseLessonLinker', {
 	locked: boolean('locked').notNull().default(false),
 	uncountable: boolean('uncountable').notNull().default(false),
 	distance: boolean('distance').notNull().default(false),
-});	
+});

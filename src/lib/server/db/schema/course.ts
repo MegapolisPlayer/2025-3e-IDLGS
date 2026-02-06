@@ -80,7 +80,9 @@ export const course = pgTable(
 			.notNull()
 			.$defaultFn(() => crypto.randomUUID()),
 		archived: boolean('archived').notNull().default(false),
-		treatLateAsAbsence: boolean('treatLateAsAbsence').notNull().default(false),
+		treatLateAsAbsence: boolean('treatLateAsAbsence')
+			.notNull()
+			.default(false),
 	},
 	(table) => [
 		check('redMinCheck', sql`${table.red} >= 0`),
