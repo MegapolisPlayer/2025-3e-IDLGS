@@ -64,7 +64,7 @@
 		ready = true;
 	});
 	onDestroy(() => {
-		if(!browser) return;
+		if (!browser) return;
 		window.clearTimeout(updateInterval);
 	});
 
