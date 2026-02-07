@@ -21,8 +21,22 @@ export const loadArticle = async (uuid: string, textbookUuid?: string) => {
 	}
 
 	if (textbookUuid) {
+		const textbook = await db
+			.select()
+			.from(schema.textbook)
+			.where(eq(schema.textbook.uuid, textbookUuid))
+			.limit(1);
+
+		const definitions = await db
+			.select()
+			.from(schema.textbookWordDefinition)
+			.where(eq(schema.textbookWordDefinition.textbook, textbook[0].id));
+
 		//find definitions and apply them
-		//TODO
+
+		for(const definition of definitions) {
+			//TODO
+		}
 	}
 
 	return result[0];

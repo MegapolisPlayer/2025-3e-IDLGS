@@ -1,6 +1,6 @@
 import type { UserType, TextbookType, UserTypeLimited } from '$lib/types';
 import { schema } from '$lib/server/db/mainSchema';
-import { and, eq, or } from 'drizzle-orm';
+import { and, eq, inArray, or } from 'drizzle-orm';
 import { getRequestEvent } from '$app/server';
 import { renderMarkdown } from '$lib/markdown';
 
@@ -192,4 +192,67 @@ export const loadSingleTextbook = async (
 	}
 
 	return textbook[0];
+};
+
+
+//for search function
+export const loadTextbookText = async (textbookUuid: string) => {
+	const db = getRequestEvent().locals.db;
+
+	const textbook = await db
+		.select({
+			id: schema.textbook.id,
+			uuid: schema.textbook.uuid,
+			description: schema.textbook.description,
+		})
+		.from(schema.textbook)
+		.where(eq(schema.textbook.uuid, textbookUuid))
+		.limit(1);
+
+	if (textbook.length === 0) {
+		return [];
+	}
+
+	const chapters = await db
+		.select({
+			id: schema.chapter.id,
+			name: schema.chapter.name,
+			description: schema.chapter.description,
+			uuid: schema.chapter.uuid,
+		})
+		.from(schema.chapter)
+		.where(eq(schema.chapter.textbook, textbook[0].id));
+
+	const articles = await db
+		.select({
+			uuid: schema.article.uuid,
+			name: schema.article.name,
+			text: schema.article.text,
+			order: schema.article.order,
+			chapter: schema.article.chapter,
+		})
+		.from(schema.article)
+		.where(
+			inArray(schema.article.chapter, chapters.map((c) => c.id)),
+		);
+
+	return [...articles.map((article) => ({
+		uuid: article.uuid,
+		name: article.name,
+		text: article.text,
+		article: true,
+		chapter: false,
+	})), ...chapters.map((chapter) => ({
+		uuid: chapter.uuid,
+		name: chapter.name,
+		text: chapter.description,
+		article: false,
+		chapter: true,
+	})), {
+		uuid: textbook[0].uuid,
+		name: '',
+		text: textbook[0].description,
+		article: false,
+		chapter: false,
+	}];
 };

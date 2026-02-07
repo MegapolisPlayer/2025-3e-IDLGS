@@ -31,10 +31,13 @@
 			isOwner: boolean;
 			showEditButtons: boolean;
 			user: UserType | undefined;
+			searchStart: number;
+			searchEnd: number;
 		};
 	} = $props();
 
 	let editingDescription: boolean = $state(false);
+	let displayDescription: string = $derived(data.textbook.description);
 	let descriptionValue: string = $derived(data.textbook.description);
 	let editingName: boolean = $state(false);
 
@@ -52,6 +55,28 @@
 				inputElementChangeCallback,
 				formSubmitChangeCallback,
 			);
+		}
+	});
+
+	$effect(() => {
+		if (displayDescription.length > 0) {
+			const y =
+				document.getElementById('searchResult')?.getBoundingClientRect()
+					.top ?? 0;
+
+			window.scrollTo({
+				top: y - 50,
+				behavior: 'smooth',
+			});
+		}
+	});
+
+	onMount(() => {
+		if (data.searchStart && data.searchEnd) {
+			displayDescription =
+				displayDescription.substring(0, data.searchStart) +
+				`<mark id="searchResult">${displayDescription.substring(data.searchStart, data.searchEnd)}</mark>` +
+				displayDescription.substring(data.searchEnd);
 		}
 	});
 </script>
@@ -180,7 +205,7 @@
 
 	{#if !editingDescription}
 		<div class="flex w-full grow flex-col gap-2">
-			{@html renderMarkdown(data.textbook.description)}
+			{@html renderMarkdown(displayDescription)}
 		</div>
 
 		<div class="grid grid-cols-3 gap-2">

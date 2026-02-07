@@ -30,5 +30,7 @@ export const load = async (event) => {
 		),
 		showEditButtons: event.cookies.get('editButtons') === 'true',
 		user: user,
+		searchStart: parseInt(event.url.searchParams.get('searchStart') ?? '0'),
+		searchEnd: parseInt(event.url.searchParams.get('searchEnd') ?? '0'),
 	};
 };

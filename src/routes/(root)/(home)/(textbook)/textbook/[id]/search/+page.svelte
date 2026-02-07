@@ -3,17 +3,41 @@
 	import { m } from '$lib/paraglide/messages';
 	import TextInput from '$component/TextInput.svelte';
 	import LoadingAnimationHandler from '$component/LoadingAnimationHandler.svelte';
-	import { wordSimilarity } from '$lib/text';
+	import {
+		searchInText,
+		searchPreprocess,
+		type SearchResultType,
+	} from '$lib/text/index.js';
+	import Button from '$src/routes/(root)/components/Button.svelte';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 
 	let { data } = $props();
 
 	let query = $state('');
-	let searching = $state(false);
 
-	console.log(
-		'word similarity:',
-		wordSimilarity('oxid uhlicity', 'oxidu uhelnateho'),
+	const processedData = $derived(
+		data.text.map((v) => searchPreprocess(v.text)),
 	);
+
+	let results = $derived.by(() => {
+		if (query.length <= 3) return [];
+
+		let temp: SearchResultType[] = [];
+		for (let i = 0; i < processedData.length; i++) {
+			temp.push(
+				...searchInText(query, processedData[i]).map((v) => {
+					return {
+						...v,
+						id: i,
+						chapter: data.text[i].chapter,
+						article: data.text[i].article,
+					};
+				}),
+			);
+		}
+		return temp;
+	});
 </script>
 
 <svelte:head>
@@ -38,9 +62,10 @@
 	<TextInput
 		placeholder={m.enterSearchQuery()}
 		bind:value={query}
+		maxLength={30}
 	/>
 
-	{#if searching}
+	{#if false}
 		<LoadingAnimationHandler />
 	{:else if query.trim().length === 0}
 		<div
@@ -53,6 +78,44 @@
 	{:else}
 		<div class="flex w-full flex-col gap-2">
 			<!-- TODO show results -->
+			{#each results as result, i (result.start / result.end)}
+				<WideCard
+					delay={i * 100}
+					cssOverride="flex-row! gap-1! p-2! text-ellipsis! overflow-hidden! text-nowrap"
+				>
+					<Button
+						btn="button-none"
+						cssClass="flex flex-row gap-1 text-ellipsis overflow-hidden text-nowrap"
+						emoji=""
+						onclick={() => {
+							let address = `/textbook/${page.params.id}`;
+
+							if(result.chapter) {
+								address += `/${result.chapter}`;
+							}
+							if(result.article) {
+								address += `/${result.article}`;
+							}
+
+							address += `/?searchStart=${result.start}&searchEnd=${result.end}`;
+
+							goto(address);
+						}}
+					>
+						<span class="font-medium">
+							{data.text[result.id!].text.substring(
+								result.start,
+								result.end,
+							)}
+						</span>
+						<span class="opacity-80 italic text-ellipsis! overflow-hidden! ">
+							{data.text[result.id!].text.substring(
+								result.end,
+							)}
+						</span>
+					</Button>
+				</WideCard>
+			{/each}
 		</div>
 	{/if}
 </WideCard>

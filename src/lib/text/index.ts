@@ -54,6 +54,72 @@ export const wordSimilarity = (a: string, b: string): number => {
 	return (maxLen - distance) / maxLen;
 };
 
+export const searchPreprocess = (text: string): string[] => {
+	return text
+		.toLocaleLowerCase()
+		.normalize('NFD') //remove accents
+		.replaceAll(/\$([^\$]+)\$[^\$]?/gmsu, (match) => {
+			return '?'.repeat(match.length);
+		}) //remove math
+		.replaceAll('\n', ' ')
+		.replaceAll(/[^A-Za-z0-9 ]/g, ' ')
+		.split(' ');
+};
+
+export type SearchResultType = {
+	start: number;
+	end: number;
+	similarity: number;
+	id?: number;
+	chapter?: boolean;
+	article?: boolean;
+};
+
+//returns start indexes, this is "good enough" for our use case
+export const searchInText = (query: string, words: string[]): SearchResultType[] => {
+	if (query.length >= 30) return [];
+
+	const queries: string[] = query.toLocaleLowerCase().split(' ');
+	if (queries.length > 3) return [];
+
+	let results: SearchResultType[] = [];
+	for (const activeQuery of queries) {
+		let letterId = 0;
+
+		for (const word of words) {
+			if (word.length === 0) {
+				letterId += 1;
+				continue;
+			}
+
+			//first character
+			//4 characters from the word is too much
+
+			if (word[0] != activeQuery[0] ||
+				Math.abs(word.length - activeQuery.length) >= 4) {
+				letterId += word.length;
+				letterId += 1;
+				continue;
+			};
+
+			const similarity = wordSimilarity(activeQuery, word);
+			if (similarity >= 0.75) {
+				results.push({
+					start: letterId,
+					end: letterId + word.length,
+					similarity: similarity,
+				});
+			}
+
+			letterId += word.length;
+			letterId += 1;
+		}
+	}
+
+	//descending
+	return results.sort((a, b) => b.similarity - a.similarity);
+};
+
 //adds tooltip in text
 export const highlightInText = (
 	text: string,

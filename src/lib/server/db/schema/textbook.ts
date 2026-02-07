@@ -6,7 +6,7 @@ import {
 	check,
 	boolean,
 } from 'drizzle-orm/pg-core';
-import { sql } from 'drizzle-orm';
+import { desc, sql } from 'drizzle-orm';
 import { user } from './user';
 
 export const textbook = pgTable(
@@ -49,6 +49,7 @@ export const chapter = pgTable('chapter', {
 		.$defaultFn(() => crypto.randomUUID()),
 	name: text('name').notNull(),
 	summary: text('summary').notNull(),
+	description: text('description').notNull().default(''),
 	textbook: integer('textbook')
 		.references(() => textbook.id, {
 			onDelete: 'cascade',

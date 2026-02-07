@@ -10,6 +10,7 @@
 		placeholder = '',
 		onchange = undefined,
 		noChangeEvents = false,
+		maxLength = -1,
 	} = $props();
 
 	let element: HTMLInputElement | undefined = $state(undefined);
@@ -38,5 +39,6 @@
 		class="input-text grow {noChangeEvents ? 'ignoreChangeEvents' : ''}"
 		{placeholder}
 		required={true}
+		maxlength={maxLength}
 	/>
 </div>

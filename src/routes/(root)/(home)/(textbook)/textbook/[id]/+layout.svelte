@@ -19,10 +19,11 @@
 			isOwner: boolean;
 			showEditButtons: boolean;
 			user: UserType | undefined;
+			searchStart: number;
+			searchEnd: number;
 		};
 	} = $props();
 
-	//TODO finish, remove from definitions and statistics etc.
 	let clickedEdit: boolean = $state(false);
 
 	let isEditablePage: boolean = $derived(
