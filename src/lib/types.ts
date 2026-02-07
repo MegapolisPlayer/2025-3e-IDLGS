@@ -25,6 +25,9 @@ export type UserType = {
 	canChangeSettings: boolean;
 	canEditGamification: boolean;
 	lastMessage: number;
+	xpWeek: number;
+	xpTotal: number;
+	leagueId: number;
 };
 
 export type UserRoleType = {
@@ -73,6 +76,7 @@ export type TextbookType = {
 export type TextbookDefinitionType = {
 	word: string;
 	description: string;
+	uuid: string;
 };
 
 export type ChapterType = {
@@ -204,6 +208,7 @@ export type TestCheatingType = {
 	consoleOpen: boolean;
 	mouseOut: boolean;
 	rightClick: boolean;
+	//TODO more
 };
 
 //Cloudflare AI workers

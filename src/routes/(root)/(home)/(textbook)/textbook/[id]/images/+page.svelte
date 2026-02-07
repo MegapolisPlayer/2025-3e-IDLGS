@@ -30,4 +30,6 @@
 		<h1>{data.textbook.name}</h1>
 		<h2>{m.imageLibrary()}</h2>
 	</div>
+
+	<div></div>
 </WideCard>

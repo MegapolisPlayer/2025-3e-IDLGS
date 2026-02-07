@@ -1,7 +1,11 @@
-import { pgTable, integer, boolean, numeric } from 'drizzle-orm/pg-core';
+import { pgTable, integer, boolean, numeric, text } from 'drizzle-orm/pg-core';
 import { user } from './user';
-import { course } from './course';
-import { textbook } from './textbook';
+import { course, courseLesson } from './course';
+import {
+	articleHistoryVersion,
+	articleHistoryVersionEntry,
+	textbook,
+} from './textbook';
 import { dailyChallenges } from './misc';
 
 export const userCourseLinker = pgTable('userCourseLinker', {
@@ -18,6 +22,9 @@ export const userCourseLinker = pgTable('userCourseLinker', {
 			onDelete: 'cascade',
 		})
 		.notNull(),
+	dekEncrypted: text('dekEncrypted')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const userTextbookLinker = pgTable('userTextbookLinker', {
@@ -35,6 +42,9 @@ export const userTextbookLinker = pgTable('userTextbookLinker', {
 		})
 		.notNull(),
 	readProgress: numeric('readProgress').notNull().default('0'),
+	dekEncrypted: text('dekEncrypted')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const userAssignmentLinker = pgTable('userAssignmentLinker', {
@@ -65,4 +75,42 @@ export const userDailyChallengeLinker = pgTable('userDailyChallengeLinker', {
 		})
 		.notNull(),
 	completed: boolean('completed').notNull().default(false),
+});
+
+export const articleHistoryVersionEntryLinker = pgTable(
+	'articleHistoryVersionEntryLinker',
+	{
+		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+		articleHistoryVersionEntry: integer('articleHistoryVersionEntry')
+			.references(() => articleHistoryVersionEntry.id, {
+				onDelete: 'cascade',
+			})
+			.notNull(),
+		articleHistoryVersion: integer('articleHistoryVersion')
+			.references(() => articleHistoryVersion.id, {
+				onDelete: 'cascade',
+			})
+			.notNull(),
+	},
+);
+
+export const userCourseLessonLinker = pgTable('userCourseLessonLinker', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	courseLesson: integer('courseLesson')
+		.references(() => courseLesson.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	user: integer('user')
+		.references(() => user.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	present: boolean('present').notNull().default(false),
+	late: boolean('late').notNull().default(false),
+	earlyLeave: boolean('earlyLeave').notNull().default(false),
+	excused: boolean('excused').notNull().default(false),
+	locked: boolean('locked').notNull().default(false),
+	uncountable: boolean('uncountable').notNull().default(false),
+	distance: boolean('distance').notNull().default(false),
 });

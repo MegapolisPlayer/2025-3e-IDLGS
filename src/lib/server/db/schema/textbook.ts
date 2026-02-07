@@ -79,6 +79,9 @@ export const textbookWordDefinition = pgTable('textbookWordDefinition', {
 	textbook: integer('textbook')
 		.references(() => textbook.id, { onDelete: 'cascade' })
 		.notNull(),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
 });
 
 export const bookmark = pgTable(
@@ -151,4 +154,35 @@ export const highlight = pgTable(
 		check('blueMinCheck', sql`${table.blue} >= 0`),
 		check('blueMaxCheck', sql`${table.blue} <= 255`),
 	],
+);
+
+//article history
+//rollback painful but not needed often
+export const articleHistoryVersion = pgTable('articleHistoryVersion', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	article: integer('article')
+		.references(() => article.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	user: integer('user').references(() => user.id, {
+		onDelete: 'set null',
+	}),
+	editedAt: timestamp('editedAt')
+		.notNull()
+		.$defaultFn(() => new Date()),
+	uuid: text('uuid')
+		.notNull()
+		.$defaultFn(() => crypto.randomUUID()),
+	note: text('note').notNull().default(''),
+});
+
+export const articleHistoryVersionEntry = pgTable(
+	'articleHistoryVersionEntry',
+	{
+		id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+		startIndex: integer('startIndex').notNull().default(0),
+		oldText: text('oldText').notNull().default(''),
+		newText: text('newText').notNull().default(''),
+	},
 );

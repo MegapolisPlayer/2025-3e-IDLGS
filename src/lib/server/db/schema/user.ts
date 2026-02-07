@@ -6,6 +6,9 @@ import {
 	date,
 	boolean,
 } from 'drizzle-orm/pg-core';
+import { school } from './commerce';
+
+//TODO encrypt name, surname, parent emails, email, degree
 
 export const user = pgTable('user', {
 	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
@@ -13,9 +16,12 @@ export const user = pgTable('user', {
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
 	email: text('email').notNull().default('').unique(),
+	parentEmail1: text('parentEmail1').notNull().default(''),
+	parentEmail2: text('parentEmail2').notNull().default(''),
 	password: text('password').notNull().default(''),
 	iterations: integer('iterations').notNull().default(0),
 	salt: text('salt').notNull().default(''),
+	publicKey: text('publicKey').notNull().default(''),
 	createdAt: timestamp('createdAt')
 		.notNull()
 		.$defaultFn(() => new Date()),
@@ -29,10 +35,19 @@ export const user = pgTable('user', {
 	streak: integer('streak').notNull().default(0),
 	verified: boolean('verified').notNull().default(false),
 	extended: boolean('extended').notNull().default(false),
+	//website admin
 	admin: boolean('admin').notNull().default(false),
+	//student / teacher / director
+	schoolTeacher: boolean('schoolTeacher').notNull().default(false),
+	schoolDirector: boolean('schoolDirector').notNull().default(false),
+	school: integer('school').references(() => school.id, {
+		onDelete: 'set null',
+	}),
+	//API key - read only
 	readOnlyKey: text('readOnlyKey')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
+	//API key - write access
 	apiKey: text('apiKey')
 		.notNull()
 		.$defaultFn(() => crypto.randomUUID()),
@@ -52,6 +67,12 @@ export const user = pgTable('user', {
 	canChangeSettings: boolean('canChangeSettings').notNull().default(true),
 	//when setting new popup message - set to id of that message
 	lastMessage: integer('lastMessage').notNull(),
+	//for gamification: which league the user is in, 0 for lowest, -1 opt out
+	leagueId: integer('leagueId').notNull().default(0),
+	//for league
+	xpWeek: integer('xpWeek').notNull().default(0),
+	//for stats
+	xpTotal: integer('xpTotal').notNull().default(0),
 });
 
 export const userVerification = pgTable('userVerification', {

@@ -58,18 +58,19 @@
 	let formAlert: string = $state('');
 </script>
 
-<div class="sticky left-0 h-[94svh] min-w-1/5 overflow-clip p-2 xl:top-[6vh]">
+<div class="sticky left-0 h-[94svh] min-w-1/5 overflow-clip xl:top-[6vh]">
 	<WideCard
-		cssAddition="grow"
+		cssAddition="grow rounded-none! border-s-0!  border-s-0! border-t-0! border-b-0!"
 		r={textbook.red}
 		g={textbook.green}
 		b={textbook.blue}
 	>
 		<h2>
+			<i class="ri-book-ai-line text-3xl"></i>
 			{m.textbookContents()}
 		</h2>
 
-		<div class="flex w-full grow flex-col gap-0">
+		<div class="flex w-full grow flex-col gap-0 text-lg">
 			<!-- home page -->
 			<Button
 				btn="button-none w-full"
@@ -80,6 +81,19 @@
 			>
 				<div class="flex w-full flex-row gap-1">
 					{m.textbookHome()}
+				</div>
+			</Button>
+
+			<!-- search -->
+			<Button
+				btn="button-none w-full"
+				emoji="search"
+				onclick={() => {
+					goto(`/textbook/${id}/search/`);
+				}}
+			>
+				<div class="flex w-full flex-row gap-1">
+					{m.search()}
 				</div>
 			</Button>
 
@@ -122,6 +136,19 @@
 						{m.textbookStatistics()}
 					</div>
 				</Button>
+
+				<!-- settings -->
+				<Button
+					btn="button-none w-full"
+					emoji="settings"
+					onclick={() => {
+						goto(`/textbook/${id}/settings/`);
+					}}
+				>
+					<div class="flex w-full flex-row gap-1">
+						{m.settings()}
+					</div>
+				</Button>
 			{/if}
 
 			{#each textbook.chapters as chapter, i (chapter.uuid)}
@@ -139,7 +166,7 @@
 				<div
 					class="flex flex-col grow w-full items-center justify-center gap-0"
 				>
-					<p class="text-center font-medium opacity-70">
+					<p class="text-center font-medium opacity-80">
 						{m.thisTextbookIsEmptySoFar()}.
 					</p>
 				</div>

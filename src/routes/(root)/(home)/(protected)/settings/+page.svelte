@@ -146,7 +146,7 @@
 
 				<CardSeparator />
 
-				<WideCard delay={600}>
+				<WideCard delay={200}>
 					<Form
 						action="?/editPersonalization"
 						success={async () => {
@@ -204,7 +204,7 @@
 
 				<CardSeparator />
 
-				<WideCard delay={1100}>
+				<WideCard delay={300}>
 					<Form
 						action="?/updatePassword"
 						success={async () => {
@@ -272,7 +272,7 @@
 
 				<CardSeparator />
 
-				<WideCard delay={1600}>
+				<WideCard delay={400}>
 					{#if data.user.canChangeSettings}
 						<div class="flex w-full grow flex-col gap-2">
 							<h3 class="w-full max-xl:text-center xl:text-left">
