@@ -77,6 +77,8 @@ export type TextbookDefinitionType = {
 	word: string;
 	description: string;
 	uuid: string;
+	startIndex?: number;
+	endIndex?: number;
 };
 
 export type ChapterType = {
@@ -228,3 +230,14 @@ export type AIGenerationQuestionType =
 	| 'QT:FILL'
 	| 'QT:OPEN'
 	| 'QT:CROSS';
+
+//Internal types
+
+export type SearchResultType = {
+	start: number;
+	end: number;
+	similarity: number;
+	id?: number;
+	chapter?: boolean;
+	article?: boolean;
+};

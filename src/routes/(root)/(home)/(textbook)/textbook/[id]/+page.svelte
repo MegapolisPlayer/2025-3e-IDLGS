@@ -16,7 +16,6 @@
 	import { onDestroy, onMount } from 'svelte';
 	import type { TextbookType, UserType, UserTypeLimited } from '$lib/types';
 	import { browser } from '$app/environment';
-	import { page } from '$app/state';
 
 	let {
 		data,

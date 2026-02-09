@@ -13,17 +13,22 @@
 		definition,
 		successMessage = $bindable(''),
 		alertMessage = $bindable(''),
+		highlighted = false,
 	}: {
 		definition: TextbookDefinitionType;
 		successMessage: string;
 		alertMessage: string;
+		highlighted?: boolean;
 	} = $props();
 
 	let edit = $state(false);
 </script>
 
 <WideCard
-	cssOverride="flex flex-row w-full items-center gap-0 p-0!"
+	cssOverride="
+		flex flex-row w-full items-center gap-0 p-0!
+		{highlighted ? 'bg-yellow-500/70 border-yellow-500' : ''}
+	"
 	cssParentOverride="border-0!"
 >
 	<Form

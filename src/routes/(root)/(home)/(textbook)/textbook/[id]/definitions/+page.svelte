@@ -8,6 +8,7 @@
 	import SuccessBox from '$src/routes/(root)/components/SuccessBox.svelte';
 	import AlertBox from '$src/routes/(root)/components/AlertBox.svelte';
 	import Definition from './components/Definition.svelte';
+	import { page } from '$app/state';
 
 	let { data } = $props();
 
@@ -40,6 +41,7 @@
 				{definition}
 				bind:successMessage
 				bind:alertMessage
+				highlighted={page.url.searchParams.get('uuid') === definition.uuid}	
 			/>
 		{:else}
 			{#if data.isEditor || data.isOwner}

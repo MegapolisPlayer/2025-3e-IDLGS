@@ -471,5 +471,6 @@
 	"coursePlan": "Kursplan",
 	"updateDefinition": "Definition aktualisieren",
 	"definitionUpdatedSuccessfully": "Definition erfolgreich aktualisiert",
-	"couldNotUpdateDefinition": "Definition konnte nicht aktualisiert werden"
+	"couldNotUpdateDefinition": "Definition konnte nicht aktualisiert werden",
+	"viewInDefinitionList": "In der Definitionsliste anzeigen"
 }

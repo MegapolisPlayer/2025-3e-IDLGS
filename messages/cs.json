@@ -471,5 +471,6 @@
 	"coursePlan": "Plán kurzu",
 	"updateDefinition": "Aktualizovat definici",
 	"definitionUpdatedSuccessfully": "Definice byla úspěšně aktualizována",
-	"couldNotUpdateDefinition": "Nepodařilo se aktualizovat definici"
+	"couldNotUpdateDefinition": "Nepodařilo se aktualizovat definici",
+	"viewInDefinitionList": "Zobrazit v seznamu definic"
 }

@@ -8,6 +8,7 @@
 		cssClass = 'bg-linear-to-tr from-violet-800 to-emerald-600 text-white',
 		//background as text
 		cssClass2 = 'text-violet-800',
+		cssButtonOverride = 'p-0',
 		//bindable value with tooltip show
 		showTooltip = $bindable(false),
 		notButton = false,
@@ -15,6 +16,7 @@
 		children: Snippet;
 		cssClass?: string;
 		cssClass2?: string;
+		cssButtonOverride?: string;
 		showTooltip: boolean;
 		notButton?: boolean;
 	} = $props();
@@ -37,9 +39,9 @@
 			</div>
 		{:else}
 			<Button
-				cssClass="flex flex-col {cssClass} p-0 rounded! font-light! text-center!"
+				cssClass="flex flex-col {cssClass} {cssButtonOverride} rounded! font-light! text-center!"
 				emoji=""
-				btn="button-none"
+				btn=""
 				onclick={() => {
 					showTooltip = false;
 				}}

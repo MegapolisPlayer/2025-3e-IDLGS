@@ -2,10 +2,10 @@
 //https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance#Optimal_string_alignment_distance
 //https://www.geeksforgeeks.org/dsa/damerau-levenshtein-distance/
 
-import type { TextbookDefinitionType } from '$lib/types';
+import type { SearchResultType, TextbookDefinitionType } from '$lib/types';
 
 //Wagner-Fischer algorithm for Damerau-Levenshtein distance
-export const wordDistance = (a: string, b: string): number => {
+export const wordDistance = (a: string, b: string, max: number): number => {
 	//a, b are one-indexed
 	let d = new Array(a.length + 1);
 
@@ -40,6 +40,13 @@ export const wordDistance = (a: string, b: string): number => {
 					d[i - 2][j - 2] + 1, //transposition
 				);
 			}
+
+			//bailout - we build matrix row by row, we can exit
+			//https://www.youtube.com/watch?v=eneSE4vVAOs
+			//video does not have code!
+			if(d[i][j] > max) {
+				return max + 1;
+			}
 		}
 	}
 
@@ -48,8 +55,8 @@ export const wordDistance = (a: string, b: string): number => {
 
 //similarity score: (length - changes) / maximum distance
 export const wordSimilarity = (a: string, b: string): number => {
-	const distance = wordDistance(a, b);
 	const maxLen = Math.max(a.length, b.length);
+	const distance = wordDistance(a, b, maxLen*0.8);
 	if (maxLen === 0) return 1; //both strings are empty
 	return (maxLen - distance) / maxLen;
 };
@@ -64,15 +71,6 @@ export const searchPreprocess = (text: string): string[] => {
 		.replaceAll('\n', ' ')
 		.replaceAll(/[^A-Za-z0-9 ]/g, ' ')
 		.split(' ');
-};
-
-export type SearchResultType = {
-	start: number;
-	end: number;
-	similarity: number;
-	id?: number;
-	chapter?: boolean;
-	article?: boolean;
 };
 
 //returns start indexes, this is "good enough" for our use case

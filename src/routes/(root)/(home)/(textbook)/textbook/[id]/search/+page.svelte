@@ -6,7 +6,6 @@
 	import {
 		searchInText,
 		searchPreprocess,
-		type SearchResultType,
 	} from '$lib/text/index.js';
 	import Button from '$src/routes/(root)/components/Button.svelte';
 	import { goto } from '$app/navigation';
@@ -23,7 +22,7 @@
 	let results = $derived.by(() => {
 		if (query.length <= 3) return [];
 
-		let temp: SearchResultType[] = [];
+		let temp = [];
 		for (let i = 0; i < processedData.length; i++) {
 			temp.push(
 				...searchInText(query, processedData[i]).map((v) => {
@@ -32,6 +31,8 @@
 						id: i,
 						chapter: data.text[i].chapter,
 						article: data.text[i].article,
+						uuid: data.text[i].uuid,
+						chapterUuid: data.text[i].chapterUuid,
 					};
 				}),
 			);
@@ -77,7 +78,6 @@
 		</div>
 	{:else}
 		<div class="flex w-full flex-col gap-2">
-			<!-- TODO show results -->
 			{#each results as result, i (result.start / result.end)}
 				<WideCard
 					delay={i * 100}
@@ -91,10 +91,11 @@
 							let address = `/textbook/${page.params.id}`;
 
 							if (result.chapter) {
-								address += `/${result.chapter}`;
+								address += `/${result.chapterUuid}`;
 							}
-							if (result.article) {
-								address += `/${result.article}`;
+							else if (result.article) {
+								address += `/${result.chapterUuid}`;
+								address += `/${result.uuid}`;
 							}
 
 							address += `/?searchStart=${result.start}&searchEnd=${result.end}`;

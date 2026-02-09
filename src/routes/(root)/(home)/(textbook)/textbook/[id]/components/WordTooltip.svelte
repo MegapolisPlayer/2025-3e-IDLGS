@@ -1,15 +1,18 @@
 <script lang="ts">
-	//TODO kira wanted this, finish!
-
+	import { page } from '$app/state';
 	import Button from '$component/Button.svelte';
 	import Tooltip from '$component/Tooltip.svelte';
+	import { m } from '$lib/paraglide/messages';
+	import HoverEmoji from '$src/routes/(root)/components/HoverEmoji.svelte';
 
 	let {
 		description,
 		word,
+		uuid,
 	}: {
 		description: string;
 		word: string;
+		uuid: string;
 	} = $props();
 
 	let isPopupActive = $state(false);
@@ -23,13 +26,24 @@
 	></div>
 {/if}
 <Button
-	btn="button-none"
+	btn="button-none relative"
 	emoji=""
-	cssClass="underline decoration-dotted"
+	cssClass="underline decoration-dotted text-nowrap"
+	onclick={() => (isPopupActive = !isPopupActive)}
 >
 	{word}
-</Button>
 
-<Tooltip showTooltip={isPopupActive}>
-	{description}
-</Tooltip>
+	<Tooltip 
+		showTooltip={isPopupActive}
+		cssButtonOverride="p-1! flex-row! gap-1!"
+	>
+		{description}
+
+		<a 
+			href="/textbook/{page.params.id}/definitions?uuid={uuid}"
+			aria-label={m.viewInDefinitionList()}
+		>
+			<HoverEmoji emoji="expand-vertical" />
+		</a>
+	</Tooltip>
+</Button>

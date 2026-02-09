@@ -228,9 +228,10 @@ export const loadTextbookText = async (textbookUuid: string) => {
 			name: schema.article.name,
 			text: schema.article.text,
 			order: schema.article.order,
-			chapter: schema.article.chapter,
+			chapterUuid: schema.chapter.uuid,
 		})
 		.from(schema.article)
+		.innerJoin(schema.chapter, eq(schema.article.chapter, schema.chapter.id))
 		.where(
 			inArray(
 				schema.article.chapter,
@@ -245,6 +246,7 @@ export const loadTextbookText = async (textbookUuid: string) => {
 			text: article.text,
 			article: true,
 			chapter: false,
+			chapterUuid: article.chapterUuid,
 		})),
 		...chapters.map((chapter) => ({
 			uuid: chapter.uuid,
@@ -252,6 +254,7 @@ export const loadTextbookText = async (textbookUuid: string) => {
 			text: chapter.description,
 			article: false,
 			chapter: true,
+			chapterUuid: chapter.uuid,
 		})),
 		{
 			uuid: textbook[0].uuid,
@@ -259,6 +262,7 @@ export const loadTextbookText = async (textbookUuid: string) => {
 			text: textbook[0].description,
 			article: false,
 			chapter: false,
+			chapterUuid: '',
 		},
 	];
 };

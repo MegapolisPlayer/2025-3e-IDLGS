@@ -6,6 +6,8 @@
 	import Form from '$src/routes/(root)/components/Form.svelte';
 	import Button from '$src/routes/(root)/components/Button.svelte';
 	import Textarea from '$src/routes/(root)/components/Textarea.svelte';
+	import { mount, onMount } from 'svelte';
+	import WordTooltip from '../../components/WordTooltip.svelte';
 
 	let {
 		data,
@@ -20,6 +22,25 @@
 
 	let editingName: boolean = $state(false);
 	let editingDescription: boolean = $state(false);
+
+	onMount(() => {
+		const components = [];
+
+		document
+			.querySelectorAll('.definitionMountPlace')
+			.forEach((dmp: Element) => {
+				components.push(
+					mount(WordTooltip, {
+						target: dmp,
+						props: {
+							word: dmp.getAttribute('data-word')!,
+							description: dmp.getAttribute('data-description')!,
+							uuid: dmp.getAttribute('data-uuid')!,
+						},
+					}),
+				);
+			});
+	});
 </script>
 
 <svelte:head>

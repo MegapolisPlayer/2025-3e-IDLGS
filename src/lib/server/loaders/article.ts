@@ -2,11 +2,12 @@ import { getRequestEvent } from '$app/server';
 import { eq } from 'drizzle-orm';
 import { schema } from '../db/mainSchema';
 
-export const loadArticle = async (uuid: string, textbookUuid?: string) => {
+export const loadArticle = async (uuid: string) => {
 	const db = getRequestEvent().locals.db;
 
 	const result = await db
 		.select({
+			id: schema.article.id,
 			uuid: schema.article.uuid,
 			name: schema.article.name,
 			text: schema.article.text,
@@ -20,24 +21,31 @@ export const loadArticle = async (uuid: string, textbookUuid?: string) => {
 		return undefined;
 	}
 
-	if (textbookUuid) {
-		const textbook = await db
-			.select()
-			.from(schema.textbook)
-			.where(eq(schema.textbook.uuid, textbookUuid))
-			.limit(1);
+	const definitions = await db
+		.select({
+			startIndex: schema.articleDefinitionIndex.startIndex,
+			endIndex: schema.articleDefinitionIndex.endIndex,
+			uuid: schema.textbookWordDefinition.uuid,
+			word: schema.textbookWordDefinition.word,
+			description: schema.textbookWordDefinition.description,
+		})
+		.from(schema.articleDefinitionIndex)
+		.innerJoin(
+			schema.textbookWordDefinition, 
+			eq(schema.textbookWordDefinition.id, schema.articleDefinitionIndex.definition)
+		)
+		.where(eq(schema.articleDefinitionIndex.article, result[0].id));
 
-		const definitions = await db
-			.select()
-			.from(schema.textbookWordDefinition)
-			.where(eq(schema.textbookWordDefinition.textbook, textbook[0].id));
-
-		//find definitions and apply them
-
-		for (const definition of definitions) {
-			//TODO
-		}
+	for (const definition of definitions) {
+		result[0].text = [
+			...result[0].text.slice(0,definition.startIndex), 
+			`<span class="definitionMountPlace" data-uuid="${definition.uuid}" data-word="${definition.word}" data-description="${definition.description}"></span>`,
+			...result[0].text.slice(definition.endIndex),
+		].join('');
 	}
 
-	return result[0];
+	return {
+		...result[0],
+		id: undefined,
+	};
 };

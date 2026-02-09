@@ -471,5 +471,6 @@
 	"coursePlan": "План курса",
 	"updateDefinition": "Обновить определение",
 	"definitionUpdatedSuccessfully": "Определение успешно обновлено",
-	"couldNotUpdateDefinition": "Не удалось обновить определение"
+	"couldNotUpdateDefinition": "Не удалось обновить определение",
+	"viewInDefinitionList": "Посмотреть в списке определений"
 }

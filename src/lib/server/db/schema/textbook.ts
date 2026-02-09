@@ -187,3 +187,19 @@ export const articleHistoryVersionEntry = pgTable(
 		newText: text('newText').notNull().default(''),
 	},
 );
+
+export const articleDefinitionIndex = pgTable('articleDefinitionIndex', {
+	id: integer('id').primaryKey().generatedAlwaysAsIdentity().notNull(),
+	article: integer('article')
+		.references(() => article.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	definition: integer('definition')
+		.references(() => textbookWordDefinition.id, {
+			onDelete: 'cascade',
+		})
+		.notNull(),
+	startIndex: integer('startIndex').notNull().default(0),
+	endIndex: integer('endIndex').notNull().default(0),
+});
