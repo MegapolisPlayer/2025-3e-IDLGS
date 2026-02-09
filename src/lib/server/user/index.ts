@@ -115,6 +115,8 @@ export const createUser = async (
 						canEditGamification: editgamification,
 						gamification: gamification,
 						lastMessage: messageAmount[0].count,
+						parentEmail1: '',
+						parentEmail2: '',
 					})
 					.returning()
 			)[0];
