@@ -65,16 +65,18 @@
 		g={textbook.green}
 		b={textbook.blue}
 	>
-		<h2 class="flex flex-row border-b-2 border-white items-center gap-1">
+		<h2 class="flex flex-row items-center gap-1 border-b-2 border-white">
 			<i class="ri-book-ai-line text-3xl"></i>
 			{m.textbookContents()}
 		</h2>
 
-		<div class="
-			*:first:border-t-0! *:last:border-b-0! 
-			flex w-full grow flex-col gap-0 text-lg
-			*:border-b *:border-t *:border-collapse *:border-white/20 *:rounded-none			
-		">
+		<div
+			class="
+			flex w-full
+			grow flex-col gap-0 text-lg *:border-collapse *:rounded-none
+			*:border-t *:border-b *:border-white/20 *:first:border-t-0! *:last:border-b-0!
+		"
+		>
 			<!-- home page -->
 			<Button
 				btn="button-none-p w-full p-1!"
@@ -117,7 +119,7 @@
 			{#if canEdit}
 				<!-- image library -->
 				<Button
-				btn="button-none-p w-full p-1!"
+					btn="button-none-p w-full p-1!"
 					emoji="folder-image"
 					onclick={() => {
 						goto(`/textbook/${id}/images/`);
@@ -130,7 +132,7 @@
 
 				<!-- analytics -->
 				<Button
-				btn="button-none-p w-full p-1!"
+					btn="button-none-p w-full p-1!"
 					emoji="pie-chart"
 					onclick={() => {
 						goto(`/textbook/${id}/statistics/`);
@@ -143,7 +145,7 @@
 
 				<!-- settings -->
 				<Button
-				btn="button-none-p w-full p-1!"
+					btn="button-none-p w-full p-1!"
 					emoji="settings"
 					onclick={() => {
 						goto(`/textbook/${id}/settings/`);

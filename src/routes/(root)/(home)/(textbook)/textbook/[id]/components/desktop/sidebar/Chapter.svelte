@@ -167,7 +167,9 @@
 	</div>
 
 	{#if isOpen}
-		<div class="flex w-full grow flex-col gap-0 *:border-b *:border-t *:border-white/10 border-collapse *:first:border-t-0! *:last:border-b-0!">
+		<div
+			class="flex w-full grow border-collapse flex-col gap-0 *:border-t *:border-b *:border-white/10 *:first:border-t-0! *:last:border-b-0!"
+		>
 			{#each chapter.articlesLimited as article, articleI (article.uuid)}
 				<Article
 					{article}

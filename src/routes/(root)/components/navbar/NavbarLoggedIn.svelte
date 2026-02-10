@@ -28,7 +28,7 @@
 	class="fixed top-0 left-0 z-50! flex h-[6svh] w-full flex-col items-center justify-center bg-violet-900 max-xl:hidden print:hidden"
 >
 	<div
-		class="w-6/8 grow 3xl:gap-10 fixed z-40! flex flex-row items-center font-medium text-white! *:flex-nowrap *:text-nowrap xl:gap-2 2xl:gap-6"
+		class="3xl:gap-10 fixed z-40! flex w-6/8 grow flex-row items-center font-medium text-white! *:flex-nowrap *:text-nowrap xl:gap-2 2xl:gap-6"
 	>
 		<Logo whiteBackground={false} />
 

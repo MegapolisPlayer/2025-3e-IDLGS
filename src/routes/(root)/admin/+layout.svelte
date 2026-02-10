@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
-	import type { Snippet } from "svelte";
+	import { m } from '$lib/paraglide/messages';
+	import type { Snippet } from 'svelte';
 
 	let {
-		children
+		children,
 	}: {
-		children: Snippet
+		children: Snippet;
 	} = $props();
 </script>
 
@@ -13,6 +13,4 @@
 	<title>{m.schoolAdministration()} - {m.textbookNameShort()}</title>
 </svelte:head>
 
-<div >
-
-</div>
+<div></div>

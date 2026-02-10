@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { m } from "$lib/paraglide/messages";
-	import type { Snippet } from "svelte";
+	import { m } from '$lib/paraglide/messages';
+	import type { Snippet } from 'svelte';
 
 	//TODO school OOBE - not for users
 
 	let {
-		children
+		children,
 	}: {
-		children: Snippet
+		children: Snippet;
 	} = $props();
 </script>
 

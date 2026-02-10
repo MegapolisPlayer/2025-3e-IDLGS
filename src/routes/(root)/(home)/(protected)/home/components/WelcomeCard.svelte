@@ -18,8 +18,8 @@
 <WideCard>
 	<div
 		class="
-			flex h-[30vh] w-full max-xl:gap-10 xl:gap-4 *:flex *:flex-col *:gap-2 max-xl:flex-col xl:flex-row
-			*:border-e-2 *:border-neutral-500 *:last:border-e-0
+			flex h-[30vh] w-full *:flex *:flex-col *:gap-2 *:border-e-2 *:border-neutral-500 *:last:border-e-0 max-xl:flex-col
+			max-xl:gap-10 xl:flex-row xl:gap-4
 		"
 	>
 		<div class="min-w-1/4">
