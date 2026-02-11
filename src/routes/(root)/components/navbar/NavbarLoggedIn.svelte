@@ -22,7 +22,6 @@
 	let isInTextbook = $derived(page.url.pathname.includes('/textbook/'));
 	let isInCourse = $derived(page.url.pathname.includes('/course/'));
 	let isInTextbookOrCourse = $derived(isInTextbook || isInCourse);
-
 </script>
 
 <nav
@@ -31,7 +30,11 @@
 		3xl:gap-10 *:3xl:gap-10 fixed top-0 left-0 z-50! m-0! flex h-[4svh] w-full grow flex-row items-center
 		justify-center bg-transparent p-0! font-medium text-white! print:hidden"
 >
-	<div class="flex h-[4svh] {isInTextbookOrCourse ? 'min-w-3/10 grow' : 'min-w-1/8'} flex-row">
+	<div
+		class="flex h-[4svh] {isInTextbookOrCourse
+			? 'min-w-3/10 grow'
+			: 'min-w-1/8'} flex-row"
+	>
 		<div class="grow"></div>
 		<div
 			class="aspect-square h-full w-auto"
@@ -86,15 +89,17 @@
 				class="aspect-square h-full w-auto"
 				style="background-image: radial-gradient(circle at 100% 100%, transparent 0%, transparent 5svh, var(--color-blue-900) 5svh, var(--color-blue-900) 100%);"
 			></div>
-			<div class="grow text-blue-900 flex flex-row gap-1 items-center justify-center">
+			<div
+				class="flex grow flex-row items-center justify-center gap-1 text-blue-900"
+			>
 				{#if isInTextbook}
 					<i class="ri-book-ai-line text-2xl"></i>
-					<span class="underline decoration-2 decoration-offset-4">
+					<span class="decoration-offset-4 underline decoration-2">
 						{m.textbook()}
 					</span>
 				{:else if isInCourse}
 					<i class="ri-file-list-3-line text-2xl"></i>
-					<span class="underline decoration-2 decoration-offset-4">
+					<span class="decoration-offset-4 underline decoration-2">
 						{m.course()}
 					</span>
 				{/if}

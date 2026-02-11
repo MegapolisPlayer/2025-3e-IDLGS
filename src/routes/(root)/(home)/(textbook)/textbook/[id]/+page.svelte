@@ -98,9 +98,9 @@
 
 <WideCard
 	cssAddition="grow"
-	r={data.textbook.red/5+80}
-	g={data.textbook.green/5+80}
-	b={data.textbook.blue/5+80}
+	r={data.textbook.red / 5 + 80}
+	g={data.textbook.green / 5 + 80}
+	b={data.textbook.blue / 5 + 80}
 >
 	<div class="flex w-full flex-row items-center gap-2">
 		{#if !editingName}

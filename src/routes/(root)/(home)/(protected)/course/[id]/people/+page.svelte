@@ -14,9 +14,9 @@
 </script>
 
 <WideCard
-	r={80+data.course.red/5}
-	g={80+data.course.green/5}
-	b={80+data.course.blue/5}
+	r={80 + data.course.red / 5}
+	g={80 + data.course.green / 5}
+	b={80 + data.course.blue / 5}
 >
 	<div></div>
 </WideCard>

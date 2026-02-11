@@ -83,7 +83,9 @@
 		value={chapter.uuid}
 		ignoreChangeEvents={true}
 	/>
-	<div class="flex w-full flex-row items-center justify-start gap-1 overflow-hidden">
+	<div
+		class="flex w-full flex-row items-center justify-start gap-1 overflow-hidden"
+	>
 		{#if chapterRename}
 			<TextInput
 				name="name"

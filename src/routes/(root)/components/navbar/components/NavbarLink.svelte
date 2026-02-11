@@ -24,8 +24,10 @@
 <a
 	href={link}
 	class="{page.url.pathname == link
-		? 'underline  decoration-2 underline-offset-4! font-bold'
-		: ''} {classCss} {secondary ? 'decoration-blue-900 hover:text-blue-900' : 'decoration-cyan-600'} hover:decoration-2"
+		? 'font-bold  underline decoration-2 underline-offset-4!'
+		: ''} {classCss} {secondary
+		? 'decoration-blue-900 hover:text-blue-900'
+		: 'decoration-cyan-600'} hover:decoration-2"
 	data-sveltekit-reload={reload}
 >
 	<HoverEmoji {emoji} />

@@ -169,7 +169,7 @@
 								m.backgroundNameaFreshMorning(),
 								m.backgroundNameProgressUnstoppable(),
 							]}
-							values={[-1,0, 1, 2]}
+							values={[-1, 0, 1, 2]}
 							label={m.background()}
 							initialValue={data.user.background}
 							name="background"

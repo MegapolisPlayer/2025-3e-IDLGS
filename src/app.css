@@ -40,7 +40,7 @@
 	/* .button == button */
 	button,
 	.button {
-		@apply transition-all duration-200 flex flex-row items-center justify-center gap-1 rounded-xl font-medium hover:brightness-80 active:brightness-60 disabled:brightness-60 max-lg:p-2 lg:p-3;
+		@apply flex flex-row items-center justify-center gap-1 rounded-xl font-medium transition-all duration-200 hover:brightness-80 active:brightness-60 disabled:brightness-60 max-lg:p-2 lg:p-3;
 	}
 	.button-none {
 		@apply gap-1 p-0! font-light! hover:brightness-100! active:brightness-100!;

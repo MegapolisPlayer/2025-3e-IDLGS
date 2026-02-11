@@ -19,7 +19,6 @@
 	<div
 		class="absolute top-0 left-0 z-1 flex h-full w-full flex-row flex-wrap items-center justify-center gap-2 overflow-hidden text-sm font-bold text-white opacity-10"
 	>
-	
 		{#each { length: 700 } as a, i (i)}
 			{@const selectedLocale = i % locales.length}
 			{@const selectedMessage = Math.trunc(

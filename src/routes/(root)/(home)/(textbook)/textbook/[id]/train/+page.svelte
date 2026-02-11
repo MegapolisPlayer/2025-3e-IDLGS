@@ -14,11 +14,11 @@
 	} = $props();
 </script>
 
-<WideCard 
+<WideCard
 	cssAddition="grow"
-	r={data.textbook.red/5+80}
-	g={data.textbook.green/5+80}
-	b={data.textbook.blue/5+80}
+	r={data.textbook.red / 5 + 80}
+	g={data.textbook.green / 5 + 80}
+	b={data.textbook.blue / 5 + 80}
 >
 	<h2>{m.AIPoweredTraining()}</h2>
 </WideCard>

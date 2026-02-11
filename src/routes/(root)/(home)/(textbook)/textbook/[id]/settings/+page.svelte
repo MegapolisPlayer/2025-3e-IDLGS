@@ -20,23 +20,21 @@
 
 <svelte:head>
 	<title>
-		{m.textbookSettings() } - {data.textbook.name} - {m.textbookNameShort()}
+		{m.textbookSettings()} - {data.textbook.name} - {m.textbookNameShort()}
 	</title>
 </svelte:head>
 
 <WideCard
 	cssAddition="grow"
-	r={data.textbook.red/5+80}
-	g={data.textbook.green/5+80}
-	b={data.textbook.blue/5+80}
+	r={data.textbook.red / 5 + 80}
+	g={data.textbook.green / 5 + 80}
+	b={data.textbook.blue / 5 + 80}
 >
 	<h1>{m.textbookSettings()}</h1>
 
 	<Form action="?/updateInformation">
 		<h2>{m.textbookInformation()}</h2>
-		<div class="flex flex-col w-full grow">
-
-		</div>
+		<div class="flex w-full grow flex-col"></div>
 	</Form>
 
 	<Form action="?/updateSettings">
@@ -50,7 +48,9 @@
 		>
 			<div>
 				<span class="text-lg">{m.archiveTextbook()}</span>
-				<span class="opacity-80 text-sm">{m.archivingTheTextbookWillMakeItReadOnly()}.</span>
+				<span class="text-sm opacity-80"
+					>{m.archivingTheTextbookWillMakeItReadOnly()}.</span
+				>
 				<div class="grow"></div>
 				<Button
 					btn="button-red"
@@ -61,7 +61,9 @@
 			</div>
 			<div>
 				<span class="text-lg">{m.deleteTextbook()}</span>
-				<span class="opacity-80 text-sm">{m.deletingTheTextbookIsAnIrreversibleAction()}.</span>
+				<span class="text-sm opacity-80"
+					>{m.deletingTheTextbookIsAnIrreversibleAction()}.</span
+				>
 				<div class="grow"></div>
 				<Button
 					btn="button-red"

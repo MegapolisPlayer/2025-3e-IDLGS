@@ -40,7 +40,9 @@
 		{@render children()}
 	</CourseContentPositioning>
 
-	<div class="sticky right-4 h-[20svh] gap-2 overflow-clip pb-4 xl:top-[80svh]">
+	<div
+		class="sticky right-4 h-[20svh] gap-2 overflow-clip pb-4 xl:top-[80svh]"
+	>
 		<div class="grow"></div>
 		<!-- every page different behaviour -->
 		<ButtonAdd bind:clicked={clickedAdd} />

@@ -1,7 +1,5 @@
 <script lang="ts">
-	import WideCard from "$src/routes/(root)/components/WideCard.svelte";
-
-
+	import WideCard from '$src/routes/(root)/components/WideCard.svelte';
 </script>
 
 <WideCard>

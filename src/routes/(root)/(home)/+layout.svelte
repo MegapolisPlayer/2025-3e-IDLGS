@@ -24,15 +24,21 @@
 >
 	{#if (data.user?.background ?? 0) === 0}
 		<WordBackground />
-	{:else if (data.user?.background === -1)}
+	{:else if data.user?.background === -1}
 		<!-- gradient -->
-		<div class="absolute z-2! h-full w-full from-blue-900 to-cyan-600 bg-linear-to-bl"></div>
+		<div
+			class="absolute z-2! h-full w-full bg-linear-to-bl from-blue-900 to-cyan-600"
+		></div>
 	{:else}
 		<!-- cover -->
 		<div class="absolute z-2! h-full w-full bg-blue-900/60"></div>
 	{/if}
 
-	<div class="z-3 flex w-full grow flex-col { data.user?.background > 0 ? 'backdrop-blur-sm' : '' }">
+	<div
+		class="z-3 flex w-full grow flex-col {data.user?.background > 0
+			? 'backdrop-blur-sm'
+			: ''}"
+	>
 		{@render children()}
 	</div>
 </div>

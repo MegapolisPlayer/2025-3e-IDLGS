@@ -18,7 +18,10 @@ export const writeLog = (
 	);
 };
 
-export const writeLogDeleteAccount = (event: RequestEvent, user: UserTypeLimited) => {
+export const writeLogDeleteAccount = (
+	event: RequestEvent,
+	user: UserTypeLimited,
+) => {
 	const date = new Date();
 	console.log(
 		`[DATE ${date.getDate()}] [MONTH ${date.getMonth() + 1}] [YEAR ${date.getFullYear()}]`,

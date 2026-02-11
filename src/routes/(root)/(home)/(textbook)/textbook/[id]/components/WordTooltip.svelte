@@ -25,13 +25,13 @@
 "
 	></div>
 {/if}
-<div class="relative underline decoration-dotted text-nowrap max-w-fit">
+<div class="relative max-w-fit text-nowrap underline decoration-dotted">
 	<Button
 		btn="relative font-light p-0!"
 		emoji=""
 		onclick={() => (isPopupActive = !isPopupActive)}
 	>
-	{word}
+		{word}
 	</Button>
 
 	<Tooltip
