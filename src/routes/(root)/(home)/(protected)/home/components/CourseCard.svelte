@@ -107,7 +107,7 @@
 
 	<Button
 		emoji="arrow-right"
-		btn="button-primary w-full"
+		btn="button-blue w-full"
 	>
 		{m.open()}
 	</Button>

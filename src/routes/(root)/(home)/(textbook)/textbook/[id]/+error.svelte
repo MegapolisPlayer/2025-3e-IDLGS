@@ -25,7 +25,7 @@
 		</p>
 		<div class="grow"></div>
 		<Button
-			btn="button-primary"
+			btn="button-blue"
 			cssClass="w-full"
 			emoji="arrow-left-s"
 			onclick={() => {

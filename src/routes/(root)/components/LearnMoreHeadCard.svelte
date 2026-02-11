@@ -24,7 +24,7 @@
 		<div class="grow"></div>
 		<Button
 			emoji="arrow-right"
-			btn="button-primary"
+			btn="button-blue"
 		>
 			{m.learnMore()}
 		</Button>

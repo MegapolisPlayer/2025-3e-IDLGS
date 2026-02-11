@@ -474,5 +474,11 @@
 	"couldNotUpdateDefinition": "Nepodařilo se aktualizovat definici",
 	"viewInDefinitionList": "Zobrazit v seznamu definic",
 	"schoolAdministration": "Správa školy",
-	"lessonPlan": "Rozvrh hodin"
+	"lessonPlan": "Rozvrh hodin",
+	"archiveTextbook": "Archivovat učebnici",
+	"archivingTheTextbookWillMakeItReadOnly": "Archivace učebnice ji učiní pouze pro čtení",
+	"archive": "Archivovat",
+	"deleteTextbook": "Smazat učebnici",
+	"deletingTheTextbookIsAnIrreversibleAction": "Smazání učebnice je nevratná akce",
+	"backgroundNameSimplicity": "\"Jednoduchost\""
 }

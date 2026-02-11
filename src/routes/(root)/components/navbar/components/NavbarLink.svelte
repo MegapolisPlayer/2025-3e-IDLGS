@@ -10,20 +10,22 @@
 		children,
 		classCss,
 		reload = false,
+		secondary = false,
 	}: {
 		link: string;
 		emoji: string;
 		children: Snippet;
 		classCss?: string;
 		reload?: boolean;
+		secondary?: boolean;
 	} = $props();
 </script>
 
 <a
 	href={link}
 	class="{page.url.pathname == link
-		? 'underline decoration-emerald-600 decoration-2 underline-offset-6'
-		: ''} {classCss}"
+		? 'underline  decoration-2 underline-offset-4! font-bold'
+		: ''} {classCss} {secondary ? 'decoration-blue-900 hover:text-blue-900' : 'decoration-cyan-600'} hover:decoration-2"
 	data-sveltekit-reload={reload}
 >
 	<HoverEmoji {emoji} />

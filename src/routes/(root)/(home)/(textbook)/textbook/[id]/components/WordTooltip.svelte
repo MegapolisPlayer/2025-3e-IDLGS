@@ -25,27 +25,31 @@
 "
 	></div>
 {/if}
-<Button
-	btn="button-none relative"
-	emoji=""
-	cssClass="underline decoration-dotted text-nowrap"
-	onclick={() => (isPopupActive = !isPopupActive)}
->
+<div class="relative underline decoration-dotted text-nowrap max-w-fit">
+	<Button
+		btn="relative font-light p-0!"
+		emoji=""
+		onclick={() => (isPopupActive = !isPopupActive)}
+	>
 	{word}
+	</Button>
 
 	<Tooltip
 		showTooltip={isPopupActive}
 		cssButtonOverride="p-1! flex-row! gap-1!"
-		cssClass="bg-violet-800"
-		cssClass2="text-violet-800"
+		cssClass="bg-blue-900"
+		cssClass2="text-blue-900"
 	>
-		{description}
-
 		<a
 			href="/textbook/{page.params.id}/definitions?uuid={uuid}"
 			aria-label={m.viewInDefinitionList()}
 		>
-			<HoverEmoji emoji="expand-vertical" />
+			{description}
 		</a>
+		<Button
+			btn="button-none-p! p-0!"
+			emoji="close-circle"
+			onclick={() => (isPopupActive = !isPopupActive)}
+		/>
 	</Tooltip>
-</Button>
+</div>

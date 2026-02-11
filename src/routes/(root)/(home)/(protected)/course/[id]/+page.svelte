@@ -33,9 +33,9 @@
 
 <WideCard
 	cssAddition="grow"
-	r={data.course.red}
-	g={data.course.green}
-	b={data.course.blue}
+	r={80+data.course.red/5}
+	g={80+data.course.green/5}
+	b={80+data.course.blue/5}
 >
 	<div class="flex flex-row items-end gap-2">
 		<i class="ri-file-list-3-line text-4xl"></i>

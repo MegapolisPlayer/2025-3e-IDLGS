@@ -22,9 +22,9 @@
 
 <WideCard
 	cssAddition="grow"
-	r={data.textbook.red}
-	g={data.textbook.green}
-	b={data.textbook.blue}
+	r={data.textbook.red/5+80}
+	g={data.textbook.green/5+80}
+	b={data.textbook.blue/5+80}
 >
 	<div class="flex flex-row items-end gap-2">
 		<h1>{data.textbook.name}</h1>

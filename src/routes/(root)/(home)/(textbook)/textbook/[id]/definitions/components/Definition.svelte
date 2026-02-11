@@ -26,8 +26,8 @@
 
 <WideCard
 	cssOverride="
-		flex flex-row w-full items-center gap-0 p-0!
-		{highlighted ? 'bg-yellow-500/70 border-yellow-500' : ''}
+		flex flex-row w-full items-center gap-0 p-0! rounded-xl
+		{highlighted ? 'bg-yellow-500/70 border-yellow-500 ' : ''}
 	"
 	cssParentOverride="border-0!"
 >
@@ -118,7 +118,7 @@
 		<div class="grid w-full grid-cols-2 gap-2">
 			<Button
 				type="submit"
-				btn="button-primary"
+				btn="button-blue"
 				emoji="edit-circle"
 			>
 				{m.updateDefinition()}

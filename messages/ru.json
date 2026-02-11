@@ -474,5 +474,11 @@
 	"couldNotUpdateDefinition": "Не удалось обновить определение",
 	"viewInDefinitionList": "Посмотреть в списке определений",
 	"schoolAdministration": "Администрация школы",
-	"lessonPlan": "Рaсписание уроков"
+	"lessonPlan": "Рaсписание уроков",
+	"archiveTextbook": "Aрхивировать учебник",
+	"archivingTheTextbookWillMakeItReadOnly": "Архивирование учебника сделает его доступным только для чтения",
+	"archive": "Архивировать",
+	"deleteTextbook": "Удалить учебник",
+	"deletingTheTextbookIsAnIrreversibleAction": "Удаление учебника является необратимым действием",
+	"backgroundNameSimplicity": "\"Простота\""
 }

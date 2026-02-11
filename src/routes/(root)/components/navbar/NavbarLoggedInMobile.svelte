@@ -22,7 +22,7 @@
 <nav
 	id="loggedInNavbarMobile"
 	class="fixed bottom-0 left-0 z-50! flex h-[8svh]
-	w-full flex-col items-center justify-center bg-violet-900 xl:hidden print:hidden"
+	w-full flex-col items-center justify-center bg-blue-900 xl:hidden print:hidden"
 >
 	<NavbarLink
 		link="/home"

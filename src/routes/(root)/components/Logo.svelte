@@ -9,14 +9,14 @@
 >
 	<i
 		class="{whiteBackground
-			? 'text-violet-800'
+			? 'text-blue-900'
 			: 'text-white'} ri-book-ai-fill"
 	></i>
-	<span class="text-emerald-600">I</span>
-	<span class={whiteBackground ? 'text-violet-800' : 'text-white'}>D</span>
-	<span class={whiteBackground ? 'text-violet-800' : 'text-white'}>L</span>
-	<span class="text-emerald-600">G</span>
-	<span class={whiteBackground ? 'text-violet-800' : 'text-white'}>S</span>
+	<span class="text-cyan-600">I</span>
+	<span class={whiteBackground ? 'text-blue-900' : 'text-white'}>D</span>
+	<span class={whiteBackground ? 'text-blue-900' : 'text-white'}>L</span>
+	<span class="text-cyan-600">G</span>
+	<span class={whiteBackground ? 'text-blue-900' : 'text-white'}>S</span>
 </a>
 
 <!--

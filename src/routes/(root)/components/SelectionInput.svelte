@@ -21,7 +21,7 @@
 				value = v;
 				onchange(v);
 			}}
-			class={value == v ? 'button-green' : 'button-violet'}
+			class={value == v ? 'button-cyan' : 'button-blue'}
 			type="button"
 		>
 			{names[i]}

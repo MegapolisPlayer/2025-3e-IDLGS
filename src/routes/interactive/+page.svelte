@@ -156,7 +156,7 @@ Author: Martin Bykov
 
 		<ResinElementAddition {el} />
 
-		<div class="flex grow flex-col gap-2 rounded bg-neutral-600 p-5">
+		<div class="flex grow flex-col gap-2 rounded-xl bg-neutral-600 p-5">
 			<h3>{m.currentlyAddedElements()}</h3>
 			{#key el}
 				{#each el?.elements as element (element.uuid)}
@@ -173,7 +173,7 @@ Author: Martin Bykov
 				{/each}
 			{/key}
 		</div>
-		<div class="flex grow flex-col gap-2 rounded bg-neutral-600 p-5">
+		<div class="flex grow flex-col gap-2 rounded-xl bg-neutral-600 p-5">
 			<h3>{m.manageElement()}</h3>
 			<div class="flex flex-row gap-2">
 				{m.aspectRatio()}
@@ -218,7 +218,7 @@ Author: Martin Bykov
 			</div>
 			<div class="grow"></div>
 			<div class="grid grid-cols-2 gap-2">
-				<button class="button-violet group">
+				<button class="button-blue group">
 					<i class="ri-import-line text-xl not-group-hover:hidden"
 					></i>
 					<i class="ri-import-fill text-xl group-hover:hidden"></i>
@@ -226,7 +226,7 @@ Author: Martin Bykov
 				</button>
 				<!-- TODO confirmation modal -->
 				<button
-					class="button-green group"
+					class="button-cyan group"
 					onclick={() => {
 						el = new RInteractive();
 					}}
@@ -238,13 +238,13 @@ Author: Martin Bykov
 					></i>
 					{m.clear()}
 				</button>
-				<button class="button-green group">
+				<button class="button-cyan group">
 					<i class="ri-export-line text-xl not-group-hover:hidden"
 					></i>
 					<i class="ri-export-fill text-xl group-hover:hidden"></i>
 					{m.export()}
 				</button>
-				<button class="button-violet group">
+				<button class="button-blue group">
 					<i class="ri-cpu-line text-xl not-group-hover:hidden"></i>
 					<i class="ri-cpu-fill text-xl group-hover:hidden"></i>
 					{m.compileAndExport()}
@@ -255,10 +255,10 @@ Author: Martin Bykov
 	<div
 		id="workspace"
 		bind:this={workspaceElement}
-		class="flex grow-20 flex-col items-center justify-center gap-2 bg-linear-to-tr from-violet-800 to-emerald-600"
+		class="flex grow-20 flex-col items-center justify-center gap-2 bg-linear-to-tr from-blue-900 to-cyan-600"
 	>
 		<div
-			class="relative max-h-screen rounded bg-white"
+			class="relative max-h-screen rounded-xl bg-white"
 			bind:clientWidth={elementWidthShowValue}
 			bind:clientHeight={elementHeightShowValue}
 			style="width: {elementWidthShowValue}px; height: {elementHeightShowValue}px;"
@@ -277,7 +277,7 @@ Author: Martin Bykov
 				{/key}
 			</span>
 			<div
-				class="absolute right-0 bottom-0 flex flex-row items-center gap-0 text-2xl text-emerald-600"
+				class="absolute right-0 bottom-0 flex flex-row items-center gap-0 text-2xl text-cyan-600"
 				bind:this={dragSizeElement}
 			>
 				<i class="ri-drag-move-2-line"></i>

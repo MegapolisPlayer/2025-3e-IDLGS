@@ -14,13 +14,13 @@
 	<div class="grid grid-cols-2 gap-2">
 		<Button
 			emoji="chat-4"
-			btn="button-violet"
+			btn="button-blue"
 		>
 			{m.addComment()}
 		</Button>
 		<Button
 			emoji="discuss"
-			btn="button-violet"
+			btn="button-blue"
 		>
 			{m.addCommentToScriptBlock()}
 		</Button>

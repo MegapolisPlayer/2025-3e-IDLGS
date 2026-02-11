@@ -32,10 +32,8 @@
 	>
 		{#if data.user}
 			<NavbarLoggedIn user={data.user} />
-			<NavbarLoggedInMobile user={data.user} />
 		{:else}
 			<Navbar />
-			<NavbarMobile />
 		{/if}
 		<div class="relative flex w-full grow flex-col">
 			{@render children()}

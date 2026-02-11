@@ -13,6 +13,11 @@
 	} = $props();
 </script>
 
-<WideCard cssAddition="grow">
+<WideCard 
+	cssAddition="grow"
+	r={80+data.course.red/5}
+	g={80+data.course.green/5}
+	b={80+data.course.blue/5}
+>
 	<h2>TODO questions</h2>
 </WideCard>

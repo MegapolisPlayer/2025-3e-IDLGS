@@ -25,7 +25,7 @@
 	<div class="flex w-full flex-row items-center gap-2">
 		<Button
 			emoji="arrow-left-s"
-			btn="button-primary"
+			btn="button-blue"
 			disabled={selectedMessageIndex == 0}
 			onclick={() => {
 				selectedMessageIndex -= 1;
@@ -42,7 +42,7 @@
 		{#if selectedMessageIndex < messages.length - 1}
 			<Button
 				emoji="arrow-right-s"
-				btn="button-primary"
+				btn="button-blue"
 				onclick={() => {
 					selectedMessageIndex += 1;
 				}}
@@ -63,7 +63,7 @@
 				<Button
 					type="submit"
 					emoji="check"
-					btn="button-primary"
+					btn="button-blue"
 				>
 					{m.markAsRead()}
 				</Button>

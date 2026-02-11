@@ -5,7 +5,6 @@ import { formRunner } from '$lib/server/form/runner';
 import { comparePassword, hashPassword } from '$lib/server/user/index.js';
 import { fail } from '@sveltejs/kit';
 import { desc, eq } from 'drizzle-orm';
-import * as crypto from 'node:crypto';
 
 export const actions = {
 	updatePersonalInfo: async () => {
@@ -78,7 +77,7 @@ export const actions = {
 			async (event, formData, cookies, user, formDataRaw) => {
 				if (
 					!Number.isInteger(parseInt(formData['background'])) ||
-					parseInt(formData['background']) < 0
+					parseInt(formData['background']) < -1
 				) {
 					return fail(400);
 				}

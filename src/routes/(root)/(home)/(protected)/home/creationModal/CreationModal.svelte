@@ -37,10 +37,10 @@
 	let subject: string = $state('');
 	let description: string = $state('');
 
-	//default values = tailwind's bg-violet-700
-	let red: number = $state(101);
-	let green: number = $state(7);
-	let blue: number = $state(207);
+	//default values = tailwind's bg-blue-900
+	let red: number = $state(30);
+	let green: number = $state(58);
+	let blue: number = $state(138);
 
 	let selectedUsers: UserTypeLimited[] = $state([]);
 

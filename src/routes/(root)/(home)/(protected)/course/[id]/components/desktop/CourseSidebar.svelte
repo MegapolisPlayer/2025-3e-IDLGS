@@ -22,15 +22,15 @@
 
 <div
 	class="
-	sticky left-0 h-[94svh] min-w-1/5 overflow-clip xl:top-[6vh]
+	sticky left-0 h-[94svh] min-w-1/5 overflow-clip xl:top-[4svh] max-h-[94svh]
 "
 >
 	<WideCard
-		cssAddition="grow rounded-none! border-s-0! border-t-0! border-b-0!"
+		cssAddition="grow rounded-none! border-s-0! border-t-0! border-b-0! overflow-scroll"
 		cssOverride="p-5 rounded-none!"
-		r={data.course.red}
-		g={data.course.green}
-		b={data.course.blue}
+		r={80+data.course.red/5}
+		g={80+data.course.green/5}
+		b={80+data.course.blue/5}
 	>
 		<h2
 			class="

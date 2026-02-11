@@ -6,7 +6,7 @@
 
 <Button
 	cssClass="text-2xl aspect-square! p-4!"
-	btn="button-primary"
+	btn="button-cyan"
 	onclick={() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}}

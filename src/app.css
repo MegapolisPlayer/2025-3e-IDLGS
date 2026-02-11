@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Finlandica:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400..800&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
@@ -8,17 +9,18 @@
 	--font-inter: 'Inter', sans-serif;
 	--font-anon: 'Anonymous Pro', monospace;
 	--font-lexend: 'Lexend', sans-serif;
+	--font-tasa: 'TASA Orbiter', sans-serif;
 }
 
 @layer base {
 	:root {
-		@apply font-lexend font-light wrap-break-word text-white max-xl:text-lg;
+		@apply font-lexend font-light wrap-break-word text-white! max-xl:text-lg;
 	}
 }
 
 /* Scrollbar */
 :root {
-	scrollbar-color: var(--color-emerald-600) rgba(0, 0, 0, 0);
+	scrollbar-color: var(--color-cyan-600) rgba(0, 0, 0, 0);
 	scrollbar-width: auto;
 }
 
@@ -38,7 +40,7 @@
 	/* .button == button */
 	button,
 	.button {
-		@apply flex flex-row items-center justify-center gap-1 rounded font-medium hover:brightness-80 active:brightness-60 disabled:brightness-60 max-lg:p-2 lg:p-3;
+		@apply transition-all duration-200 flex flex-row items-center justify-center gap-1 rounded-xl font-medium hover:brightness-80 active:brightness-60 disabled:brightness-60 max-lg:p-2 lg:p-3;
 	}
 	.button-none {
 		@apply gap-1 p-0! font-light! hover:brightness-100! active:brightness-100!;
@@ -47,17 +49,14 @@
 	.button-none-p {
 		@apply gap-1 font-light! hover:brightness-100! active:brightness-100!;
 	}
-	.button-primary {
-		@apply bg-linear-to-tr from-violet-800 to-emerald-600 text-white!;
+	.button-blue {
+		@apply bg-blue-900 text-white!;
 	}
-	.button-violet {
-		@apply bg-violet-800 text-white!;
-	}
-	.button-green {
-		@apply bg-emerald-600 text-white!;
+	.button-cyan {
+		@apply bg-cyan-600 text-white!;
 	}
 	.button-white {
-		@apply bg-white text-violet-800;
+		@apply bg-white text-blue-900;
 	}
 	.button-transparent {
 		@apply bg-transparent;
@@ -67,13 +66,13 @@
 	}
 
 	.input-text {
-		@apply min-w-0 rounded border-0! bg-neutral-700/40 text-white backdrop-blur-xl placeholder:font-light! placeholder:text-white placeholder:opacity-80 backdrop:blur-2xl;
+		@apply min-w-0 rounded-xl border-0! bg-neutral-700/40 text-white backdrop-blur-xl placeholder:font-light! placeholder:text-white placeholder:opacity-80 backdrop:blur-2xl;
 	}
 	.input-checkbox {
-		@apply appearance-auto rounded bg-white! text-violet-800 accent-violet-800 outline-0 hover:brightness-80;
+		@apply appearance-auto rounded-xl bg-white! text-blue-900 accent-blue-900 outline-0 hover:brightness-80;
 	}
 	.input-color {
-		@apply rounded border-2 border-white outline-offset-2 outline-white active:outline-2;
+		@apply rounded-xl border-2 border-white outline-offset-2 outline-white active:outline-2;
 	}
 	input {
 		@apply min-w-0;
@@ -91,26 +90,29 @@
 	}
 
 	.input-text-resin {
-		@apply rounded border-2 text-violet-800 placeholder:font-light! placeholder:text-violet-800/50;
+		@apply rounded-xl border-2 text-blue-900 placeholder:font-light! placeholder:text-blue-900/50;
 	}
 
+	a {
+		@apply transition-all duration-200;
+	}
 	a:hover {
 		@apply underline decoration-dotted decoration-1;
 	}
 
 	nav#loggedOutNavbar a {
-		@apply text-emerald-600 decoration-emerald-600;
+		@apply text-cyan-600 decoration-cyan-600;
 	}
 
 	nav#loggedOutNavbar a:hover {
-		@apply text-violet-800 decoration-violet-800;
+		@apply text-blue-900 decoration-blue-900;
 	}
 
 	nav#loggedInNavbar a {
 		@apply text-white decoration-white;
 	}
 	nav#loggedInNavbar a:hover {
-		@apply text-emerald-600 decoration-emerald-600;
+		@apply text-cyan-600 decoration-cyan-600;
 	}
 
 	.standardModal {

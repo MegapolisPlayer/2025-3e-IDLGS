@@ -52,9 +52,9 @@
 
 <WideCard
 	cssAddition="grow"
-	r={data.textbook.red}
-	g={data.textbook.green}
-	b={data.textbook.blue}
+	r={data.textbook.red/5+80}
+	g={data.textbook.green/5+80}
+	b={data.textbook.blue/5+80}
 >
 	<div class="flex w-full flex-row items-center gap-2">
 		{#if !editingName}
@@ -65,7 +65,7 @@
 				cssClass="flex grow flex-row gap-2 w-full"
 			>
 				<Button
-					btn="button-primary"
+					btn="button-blue"
 					type="submit"
 					emoji="pencil"
 				>
@@ -77,7 +77,7 @@
 			<div class="grow"></div>
 			{#if data.isEditor || data.isOwner}
 				<Button
-					btn="button-primary"
+					btn="button-blue"
 					emoji="pencil"
 					onclick={() => {
 						editingName = true;
@@ -86,7 +86,7 @@
 					{m.editArticleName()}
 				</Button>
 				<Button
-					btn="button-primary"
+					btn="button-blue"
 					emoji="pencil-ruler"
 					onclick={() => {
 						editingDescription = true;

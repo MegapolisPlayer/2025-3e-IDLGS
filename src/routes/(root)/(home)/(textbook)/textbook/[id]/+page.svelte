@@ -98,9 +98,9 @@
 
 <WideCard
 	cssAddition="grow"
-	r={data.textbook.red}
-	g={data.textbook.green}
-	b={data.textbook.blue}
+	r={data.textbook.red/5+80}
+	g={data.textbook.green/5+80}
+	b={data.textbook.blue/5+80}
 >
 	<div class="flex w-full flex-row items-center gap-2">
 		{#if !editingName}
@@ -129,7 +129,7 @@
 				/>
 				<Button
 					type="submit"
-					btn="button-primary text-nowrap"
+					btn="button-none text-nowrap"
 					emoji="save-3"
 				>
 					{m.saveChanges()}
@@ -140,7 +140,7 @@
 			<div class="grow"></div>
 			{#if data.isEditor || data.isOwner}
 				<Button
-					btn="button-primary"
+					btn="button-none"
 					emoji="pencil"
 					onclick={() => {
 						editingName = true;
@@ -149,7 +149,7 @@
 					{m.editTextbookName()}
 				</Button>
 				<Button
-					btn="button-primary"
+					btn="button-none"
 					emoji="pencil-ruler"
 					onclick={() => {
 						editingDescription = true;
@@ -181,7 +181,7 @@
 					<div class="grow"></div>
 					<Button
 						type="submit"
-						btn="button-primary"
+						btn="button-blue"
 						emoji="save-3"
 					>
 						{m.saveChanges()}
@@ -223,7 +223,7 @@
 
 		<div class="grid grid-cols-3 gap-2">
 			<Button
-				btn="button-primary"
+				btn="button-blue"
 				emoji="book-open"
 				onclick={() => {
 					goto(
@@ -235,7 +235,7 @@
 				{m.startReading()}
 			</Button>
 			<Button
-				btn="button-primary"
+				btn="button-blue"
 				emoji="file-list"
 				onclick={() => {
 					goto(`/textbook/${data.textbook.uuid}/definitions/`);
@@ -244,7 +244,7 @@
 				{m.openWordDefinitions()}
 			</Button>
 			<Button
-				btn="button-primary"
+				btn="button-blue"
 				emoji="brain"
 				onclick={() => {
 					goto(`/textbook/${data.textbook.uuid}/train/`);

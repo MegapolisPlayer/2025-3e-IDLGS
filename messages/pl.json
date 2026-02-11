@@ -474,5 +474,11 @@
 	"couldNotUpdateDefinition": "Nie można zaktualizować definicji",
 	"viewInDefinitionList": "Zobacz na liście definicji",
 	"schoolAdministration": "Administracja szkolna",
-	"lessonPlan": "Plan lekcji"
+	"lessonPlan": "Plan lekcji",
+	"archiveTextbook": "Zarchiwizuj podręcznik",
+	"archivingTheTextbookWillMakeItReadOnly": "Zarchiwizowanie podręcznika sprawi, że będzie on tylko do odczytu",
+	"archive": "Zarchiwizuj",
+	"deleteTextbook": "Usuń podręcznik",
+	"deletingTheTextbookIsAnIrreversibleAction": "Usunięcie podręcznika jest nieodwracalną akcją",
+	"backgroundNameSimplicity": "\"Prostota\""
 }

@@ -66,7 +66,7 @@
 				/>
 
 				<Button
-					btn="button-primary"
+					btn="button-blue"
 					emoji="lock-2"
 					cssClass="w-full"
 					type="submit"
@@ -83,7 +83,7 @@
 				</p>
 				<Button
 					emoji="arrow-left-s"
-					btn="button-primary w-full"
+					btn="button-blue w-full"
 					onclick={() => {
 						goto('/login');
 					}}

@@ -71,8 +71,8 @@
 		{#key month || year}
 			<Tooltip
 				bind:showTooltip={showTooltipDay}
-				cssClass="bg-violet-800 text-white"
-				cssClass2="text-violet-800"
+				cssClass="bg-blue-900 text-white"
+				cssClass2="text-blue-900"
 				notButton={true}
 			>
 				<div class="top-0 left-0 m-0! grid w-56 grid-cols-7 gap-1 p-0">
@@ -114,8 +114,8 @@
 		{#key year || day}
 			<Tooltip
 				bind:showTooltip={showTooltipMonth}
-				cssClass="bg-violet-800 text-white"
-				cssClass2="text-violet-800"
+				cssClass="bg-blue-900 text-white"
+				cssClass2="text-blue-900"
 				notButton={true}
 			>
 				<div class="m-0! flex w-full flex-col p-0">
@@ -153,8 +153,8 @@
 		{#key month || day}
 			<Tooltip
 				bind:showTooltip={showTooltipYear}
-				cssClass="bg-violet-800 text-white"
-				cssClass2="text-violet-800"
+				cssClass="bg-blue-900 text-white"
+				cssClass2="text-blue-900"
 				notButton={true}
 			>
 				<div class="z-35 flex flex-row gap-2">

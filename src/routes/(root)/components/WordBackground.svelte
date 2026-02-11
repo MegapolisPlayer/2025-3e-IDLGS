@@ -14,11 +14,12 @@
 </script>
 
 <div
-	class="absolute top-0 left-0 h-full w-full bg-linear-to-tr from-emerald-600 to-violet-800"
+	class="absolute top-0 left-0 h-full w-full bg-linear-to-tr from-cyan-600 to-blue-900"
 >
 	<div
 		class="absolute top-0 left-0 z-1 flex h-full w-full flex-row flex-wrap items-center justify-center gap-2 overflow-hidden text-sm font-bold text-white opacity-10"
 	>
+	
 		{#each { length: 700 } as a, i (i)}
 			{@const selectedLocale = i % locales.length}
 			{@const selectedMessage = Math.trunc(

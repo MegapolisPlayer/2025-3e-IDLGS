@@ -48,7 +48,7 @@
 
 		<Button
 			emoji="send-plane"
-			btn="button-primary"
+			btn="button-blue"
 			type="submit"
 		>
 			{m.sendFeedback()}

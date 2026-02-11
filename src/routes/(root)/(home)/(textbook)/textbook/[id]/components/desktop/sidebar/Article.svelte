@@ -44,7 +44,7 @@
 <!-- TODO make draggable -->
 
 <Form
-	cssClass="pl-6 pr-6 flex w-full flex-row gap-1 p-0.5 opacity-80"
+	cssClass="pl-6 pr-6 flex w-full flex-row gap-1 p-0.5 opacity-80 overflow-hidden"
 	action=""
 	smallLoadAnimation={true}
 	start={async () => {

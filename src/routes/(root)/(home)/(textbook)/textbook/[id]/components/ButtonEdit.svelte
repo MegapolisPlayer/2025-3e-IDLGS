@@ -12,7 +12,7 @@
 
 <Button
 	cssClass="text-2xl aspect-square! p-4!"
-	btn="button-primary"
+	btn="button-blue"
 	onclick={() => {
 		clicked = true;
 	}}

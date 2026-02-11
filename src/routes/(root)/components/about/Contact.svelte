@@ -24,13 +24,13 @@
 		<div class="flex gap-2 max-xl:flex-col xl:flex-row">
 			<h2
 				in:fly|global={ABOUT_ANIMATION_FIRST}
-				class="flex-nowrap text-6xl font-medium text-nowrap text-violet-800"
+				class="flex-nowrap text-6xl font-medium text-nowrap text-blue-900"
 			>
 				{m.stillHaveQuestions()}
 			</h2>
 			<h2
 				in:fly|global={ABOUT_ANIMATION_SECOND}
-				class="flex-nowrap text-6xl font-bold text-nowrap text-emerald-600"
+				class="flex-nowrap text-6xl font-bold text-nowrap text-cyan-600"
 			>
 				{m.contactUs()}!
 			</h2>

@@ -20,7 +20,7 @@
 		<div class="grid w-full grid-cols-2 gap-4">
 			<Button
 				emoji="check"
-				btn="button-primary"
+				btn="button-blue"
 				type="submit"
 				onclick={() => {
 					showModal = false;
@@ -30,7 +30,7 @@
 			</Button>
 			<Button
 				emoji="close-circle"
-				btn="button-violet"
+				btn="button-blue"
 				type="button"
 				onclick={() => {
 					showModal = false;

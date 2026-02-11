@@ -32,7 +32,7 @@
 
 <div class="flex flex-col items-center gap-0 p-4">
 	<div
-		class="flex flex-row gap-1 text-emerald-600 {smallerBubbles
+		class="flex flex-row gap-1 text-cyan-600 {smallerBubbles
 			? 'text-sm'
 			: 'text-lg'}"
 	>

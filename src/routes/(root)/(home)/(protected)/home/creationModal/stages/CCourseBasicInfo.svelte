@@ -23,7 +23,7 @@
 			red.toString(16).padStart(2, '0') +
 			green.toString(16).padStart(2, '0') +
 			blue.toString(16).padStart(2, '0'),
-	); //bg-violet-700
+	); //bg-blue-900
 	$effect(() => {
 		red = parseInt(color.slice(1, 3), 16);
 		green = parseInt(color.slice(3, 5), 16);

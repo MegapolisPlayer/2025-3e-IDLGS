@@ -83,7 +83,7 @@
 		value={chapter.uuid}
 		ignoreChangeEvents={true}
 	/>
-	<div class="flex w-full flex-row items-center justify-start gap-1">
+	<div class="flex w-full flex-row items-center justify-start gap-1 overflow-hidden">
 		{#if chapterRename}
 			<TextInput
 				name="name"
@@ -194,7 +194,7 @@
 
 			{#if canEdit && showEditButtons}
 				<Button
-					btn="button-none w-full *:font-medium ml-4"
+					btn="button-none w-full *:font-medium ml-6"
 					emoji="add-circle"
 					onclick={() => (addArticleModal = true)}
 				>
@@ -236,7 +236,7 @@
 		<div class="grid w-full grid-cols-2 gap-2">
 			<Button
 				type="submit"
-				btn="button-primary"
+				btn="button-blue"
 				emoji="add-circle"
 			>
 				{m.addAnArticle()}

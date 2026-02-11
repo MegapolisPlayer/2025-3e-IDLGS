@@ -8,7 +8,7 @@
 	<div class="grow"></div>
 	<Button
 		{emoji}
-		btn="button-primary"
+		btn="button-blue"
 		type="submit"
 		{disabled}
 	>

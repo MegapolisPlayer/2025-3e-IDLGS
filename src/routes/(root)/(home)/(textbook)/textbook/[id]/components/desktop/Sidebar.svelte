@@ -35,6 +35,8 @@
 	let oldShowEditButtons: boolean = $derived(showEditButtons);
 	let showEditButtonsInterval: NodeJS.Timeout | undefined = $state(undefined);
 
+	let ready = $state(false);
+
 	onMount(async () => {
 		if (!browser) return;
 
@@ -47,6 +49,8 @@
 				);
 			}
 		}, 500);
+
+		ready = true;
 	});
 	onDestroy(async () => {
 		if (!browser) return;
@@ -58,12 +62,12 @@
 	let formAlert: string = $state('');
 </script>
 
-<div class="sticky left-0 h-[94svh] min-w-1/5 overflow-clip xl:top-[6vh]">
+<div class="sticky top-0 left-0 h-screen max-h-screen min-w-1/5 overflow-clip">
 	<WideCard
-		cssAddition="grow rounded-none! border-s-0! border-s-0! border-t-0! border-b-0!"
-		r={textbook.red}
-		g={textbook.green}
-		b={textbook.blue}
+		cssAddition="grow rounded-none! border-s-0! border-s-0! border-t-0! border-b-0! overflow-scroll"
+		r={textbook.red / 5 + 80}
+		g={textbook.green / 5 + 80}
+		b={textbook.blue / 5 + 80}
 	>
 		<h2 class="flex flex-row items-center gap-1 border-b-2 border-white">
 			<i class="ri-book-ai-line text-3xl"></i>
@@ -180,7 +184,7 @@
 
 			{#if canEdit && showEditButtonsLocal}
 				<Button
-					btn="button-none w-full *:font-medium"
+					btn="button-none w-full *:font-medium ml-6"
 					emoji="add-circle"
 					onclick={() => (addChapterModal = true)}
 				>
@@ -207,7 +211,7 @@
 		{/if}
 
 		<Button
-			btn="button-primary"
+			btn="button-blue"
 			emoji="brain"
 			onclick={() => {
 				goto(`/textbook/${id}/train/`);
@@ -218,7 +222,7 @@
 
 		{#if canEdit}
 			<Button
-				btn="button-violet"
+				btn="button-cyan"
 				emoji="settings"
 				onclick={() => {
 					window.location.href = `/textbook/${id}/settings/`;
@@ -259,7 +263,7 @@
 		<div class="grid w-full grid-cols-2 gap-2">
 			<Button
 				type="submit"
-				btn="button-primary"
+				btn="button-blue"
 				emoji="add-circle"
 			>
 				{m.addAChapter()}

@@ -15,10 +15,14 @@
 	} = $props();
 </script>
 
-<WideCard>
+<WideCard
+	r={120}
+	g={120}
+	b={120}
+>
 	<div
 		class="
-			flex h-[30vh] w-full *:flex *:flex-col *:gap-2 *:border-e-2 *:border-neutral-500 *:last:border-e-0 max-xl:flex-col
+			flex h-[30svh] w-full *:flex *:flex-col *:gap-2 *:border-e-2 *:border-neutral-500 *:last:border-e-0 max-xl:flex-col
 			max-xl:gap-10 xl:flex-row xl:gap-4
 		"
 	>

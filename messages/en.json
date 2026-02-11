@@ -474,5 +474,11 @@
 	"couldNotUpdateDefinition": "Could not update definition",
 	"viewInDefinitionList": "View in definition list",
 	"schoolAdministration": "School Administration",
-	"lessonPlan": "Lesson Plan"
+	"lessonPlan": "Lesson Plan",
+	"archiveTextbook": "Archive textbook",
+	"archivingTheTextbookWillMakeItReadOnly": "Archiving the textbook will make it read only.",
+	"archive": "Archive",
+	"deleteTextbook": "Delete textbook",
+	"deletingTheTextbookIsAnIrreversibleAction": "Deleting the textbook is an irreversible action.",
+	"backgroundNameSimplicity": "\"Simplicity\""
 }

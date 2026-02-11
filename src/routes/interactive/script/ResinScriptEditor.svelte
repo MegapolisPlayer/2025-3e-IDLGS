@@ -110,12 +110,12 @@
 		</div>
 
 		<div class="flex w-full flex-row gap-2">
-			<button class="button-green group">
+			<button class="button-cyan group">
 				<i class="ri-save-3-line not-group-hover:hidden"></i>
 				<i class="ri-save-3-fill group-hover:hidden"></i>
 				{m.validateAndSave()}
 			</button>
-			<button class="button-violet group">
+			<button class="button-blue group">
 				<i class="ri-save-3-line not-group-hover:hidden"></i>
 				<i class="ri-save-3-fill group-hover:hidden"></i>
 				{m.helpAndDocumentation()}
@@ -123,7 +123,7 @@
 			<div class="grow"></div>
 			<!-- TODO confirm modal -->
 			<button
-				class="button-violet group"
+				class="button-blue group"
 				onclick={() => (closeModal = false)}
 			>
 				<i class="ri-delete-bin-line not-group-hover:hidden"></i>

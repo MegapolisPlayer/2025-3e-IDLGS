@@ -44,7 +44,7 @@
 			/>
 			<button
 				aria-label={m.showPassword()}
-				class="button-green rounded-s-none!"
+				class="button-cyan rounded-s-none!"
 				tabindex="-1"
 				type="button"
 				onclick={() => {

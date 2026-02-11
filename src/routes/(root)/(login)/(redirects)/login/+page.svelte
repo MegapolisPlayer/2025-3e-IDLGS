@@ -73,7 +73,7 @@
 
 				<Button
 					emoji="login-box"
-					btn="button-primary"
+					btn="button-blue"
 					type="submit"
 				>
 					{m.login()}

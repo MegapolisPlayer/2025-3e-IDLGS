@@ -13,24 +13,24 @@
 <div
 	class="
 relative flex w-full grow flex-col items-center
-justify-center bg-linear-to-tr from-emerald-600 to-violet-800
+justify-center bg-linear-to-tr from-cyan-600 to-blue-900
 "
 >
-	<div class="flex flex-col gap-2 rounded bg-white p-5">
-		<div class="text-xl text-violet-800">
+	<div class="flex flex-col gap-2 rounded-xl bg-white p-5">
+		<div class="text-xl text-blue-900">
 			{m.anErrorOccurred()}:
 		</div>
-		<div class="text-9xl font-medium text-emerald-600">
+		<div class="text-9xl font-medium text-cyan-600">
 			{page.status}
 		</div>
-		<div class="text-2xl text-violet-800">
+		<div class="text-2xl text-blue-900">
 			{page.error?.message}
 		</div>
 		{#if page.status == 404}
 			<!-- TODO message -->
 		{/if}
 		<button
-			class="button-primary w-full"
+			class="button-blue w-full"
 			onclick={() => {
 				goto('/');
 			}}

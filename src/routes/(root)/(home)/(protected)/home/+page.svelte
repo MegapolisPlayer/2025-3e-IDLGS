@@ -111,7 +111,7 @@
 						</div>
 					{:else}
 						<div
-							class="grid gap-2 max-xl:grid-cols-1 xl:grid-cols-4"
+							class="grid gap-2 max-xl:grid-cols-1 xl:grid-cols-5"
 						>
 							{#if searchValue.length == 0 && (data.user.canCreateCourses || data.user.canCreateTextbooks)}
 								<AdditionCard

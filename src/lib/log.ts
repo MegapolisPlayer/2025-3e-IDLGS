@@ -1,4 +1,4 @@
-import type { UserType } from './types';
+import type { UserTypeLimited } from './types';
 import type { RequestEvent } from '@sveltejs/kit';
 
 export type LogType = 'INFO' | 'WEIRD' | 'ERROR';
@@ -7,7 +7,7 @@ export const writeLog = (
 	event: RequestEvent,
 	type: LogType,
 	error: string,
-	user?: UserType,
+	user?: UserTypeLimited,
 ) => {
 	const date = new Date();
 	console.log(
@@ -18,7 +18,7 @@ export const writeLog = (
 	);
 };
 
-export const writeLogDeleteAccount = (event: RequestEvent, user: UserType) => {
+export const writeLogDeleteAccount = (event: RequestEvent, user: UserTypeLimited) => {
 	const date = new Date();
 	console.log(
 		`[DATE ${date.getDate()}] [MONTH ${date.getMonth() + 1}] [YEAR ${date.getFullYear()}]`,

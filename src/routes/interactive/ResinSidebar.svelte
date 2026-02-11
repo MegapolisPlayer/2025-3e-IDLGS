@@ -48,7 +48,7 @@
 	</span>
 
 	<button
-		class="button-green group"
+		class="button-cyan group"
 		onclick={() => {
 			showScriptingModal = true;
 		}}

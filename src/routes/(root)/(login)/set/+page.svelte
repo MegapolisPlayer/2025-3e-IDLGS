@@ -71,7 +71,7 @@
 			/>
 
 			<Button
-				btn="button-primary"
+				btn="button-blue"
 				emoji="lock-2"
 				cssClass="w-full"
 				type="submit"

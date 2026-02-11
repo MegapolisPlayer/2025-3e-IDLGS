@@ -5,9 +5,9 @@
 	let {
 		children,
 		//bg and text classes
-		cssClass = 'bg-linear-to-tr from-violet-800 to-emerald-600 text-white',
+		cssClass = 'bg-linear-to-tr from-blue-900 to-cyan-600 text-white',
 		//background as text
-		cssClass2 = 'text-violet-800',
+		cssClass2 = 'text-blue-900',
 		cssButtonOverride = 'p-0',
 		//bindable value with tooltip show
 		showTooltip = $bindable(false),
@@ -33,13 +33,13 @@
 		</span>
 		{#if notButton}
 			<div
-				class="flex flex-col {cssClass} rounded! p-2! text-center! font-light!"
+				class="flex flex-col {cssClass} rounded-xl! p-2! text-center! font-light!"
 			>
 				{@render children()}
 			</div>
 		{:else}
 			<Button
-				cssClass="flex flex-col {cssClass} {cssButtonOverride} rounded! font-light! text-center!"
+				cssClass="flex flex-col {cssClass} {cssButtonOverride} rounded-xl! font-light! text-center!"
 				emoji=""
 				btn=""
 				onclick={() => {

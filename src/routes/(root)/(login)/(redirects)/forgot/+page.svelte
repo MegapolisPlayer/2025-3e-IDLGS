@@ -59,14 +59,14 @@
 
 				<Button
 					emoji="mail-send"
-					btn="button-primary"
+					btn="button-blue"
 					type="submit"
 				>
 					{m.sendEmail()}
 				</Button>
 				<Button
 					emoji="arrow-left-s"
-					btn="button-violet"
+					btn="button-blue"
 					onclick={() => {
 						goto('/login');
 					}}
@@ -85,7 +85,7 @@
 				</p>
 				<Button
 					emoji="arrow-left-s"
-					btn="button-primary"
+					btn="button-blue"
 					onclick={() => {
 						goto('/');
 					}}
@@ -101,7 +101,7 @@
 				</p>
 				<Button
 					emoji="arrow-left-s"
-					btn="button-primary"
+					btn="button-blue"
 					onclick={() => {
 						goto('/');
 					}}

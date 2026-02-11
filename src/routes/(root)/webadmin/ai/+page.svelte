@@ -11,7 +11,7 @@
 		<h1>AI</h1>
 		<TextInput name="prompt" />
 		<Button
-			btn="button-primary"
+			btn="button-blue"
 			type="submit"
 		>
 			Submit

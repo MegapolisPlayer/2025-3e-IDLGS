@@ -474,5 +474,11 @@
 	"couldNotUpdateDefinition": "Definition konnte nicht aktualisiert werden",
 	"viewInDefinitionList": "In der Definitionsliste anzeigen",
 	"schoolAdministration": "Schulverwaltung",
-	"lessonPlan": "Stundenplan"
+	"lessonPlan": "Stundenplan",
+	"archiveTextbook": "Lehrbuch archivieren",
+	"archivingTheTextbookWillMakeItReadOnly": "Das Archivieren des Lehrbuchs macht es schreibgeschützt",
+	"archive": "Archivieren",
+	"deleteTextbook": "Lehrbuch löschen",
+	"deletingTheTextbookIsAnIrreversibleAction": "Das Löschen des Lehrbuchs ist eine unwiderrufliche Aktion",
+	"backgroundNameSimplicity": "\"Einfachheit\""
 }
